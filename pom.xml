@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ao-oss-parent - Parent POM for all AO open-source projects.
+Copyright (C) 2016  AO Industries, Inc.
+    support@aoindustries.com
+    7262 Bull Pen Cir
+    Mobile, AL 36695
+
+This file is part of ao-oss-parent.
+
+ao-oss-parent is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ao-oss-parent is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<prerequisites>
+		<maven>3.0.4</maven>
+	</prerequisites>
+
+	<groupId>com.aoindustries</groupId>
+	<artifactId>ao-oss-parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>AO OSS Parent</name>
+	<url>https://www.aoindustries.com/ao-oss-parent/</url>
+	<description>Parent POM for all AO open-source projects.</description>
+	<inceptionYear>2016</inceptionYear>
+
+	<licenses>
+		<license>
+			<name>GNU General Lesser Public License (LGPL) version 3.0</name>
+			<url>https://www.gnu.org/licenses/lgpl-3.0.txt</url>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>AO Industries, Inc.</name>
+		<url>https://www.aoindustries.com/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>AO Industries, Inc.</name>
+			<email>support@aoindustries.com</email>
+			<url>https://www.aoindustries.com/</url>
+			<organization>AO Industries, Inc.</organization>
+			<organizationUrl>https://www.aoindustries.com/</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/aoindustries/ao-oss-parent.git</connection>
+		<developerConnection>scm:git:git@github.com:aoindustries/ao-oss-parent.git</developerConnection>
+		<url>https://github.com/aoindustries/ao-oss-parent</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<repositories>
+		<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>java.net2</id>
+			<name>Repository hosting the jee6 artifacts</name>
+			<url>https://maven.java.net/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<!-- Unused for Nexus plugin
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+		-->
+	</distributionManagement>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- Default to using -Xlint and showing warnings as Java 1.6 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.5.1</version>
+					<configuration>
+						<compilerArgs>
+							<arg>-Xlint</arg>
+						</compilerArgs>
+						<showDeprecation>true</showDeprecation>
+						<showWarnings>true</showWarnings>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+				<!-- We support additional src/main/book and src/main/book-filtered
+				     that are packaged into a JAR with the "book" classifier.  This
+				contains the project documentation in SemanticCMS format. -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>3.0.1</version>
+					<configuration>
+						<useDefaultDelimiters>false</useDefaultDelimiters>
+						<delimiters>
+							<!-- ${*} is JSP EL and shell scripts, so avoiding it -->
+							<!-- #{*} is JSP EL deferred syntax, so avoiding it -->
+							<!-- @{*} selected over @*@, as it gives our developers a more
+							     consistent representation with JSP EL and shell scripts -->
+							<delimiter>@{*}</delimiter>
+						</delimiters>
+					</configuration>
+					<executions>
+						<execution>
+							<id>default-resources</id>
+							<phase>process-resources</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<resources>
+									<resource>
+										<directory>src/main/resources</directory>
+									</resource>
+									<resource>
+										<directory>src/main/resources-filtered</directory>
+										<filtering>true</filtering>
+									</resource>
+								</resources>
+								<outputDirectory>${project.build.outputDirectory}</outputDirectory>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<!-- We want clean output such that anything visible is something that must be addressed -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.8.1</version><!-- 2.9 still shows some output even with printSummary=false -->
+					<configuration>
+						<printSummary>false</printSummary>
+						<redirectTestOutputToFile>true</redirectTestOutputToFile>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.7</version>
+				<extensions>true</extensions>
+				<inherited>false</inherited>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<useReleaseProfile>false</useReleaseProfile>
+					<releaseProfiles>release</releaseProfiles>
+					<goals>deploy<!-- Necessary with autoReleaseAfterClose=true? nexus-staging:release--></goals>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<excludes>
+						<!-- Stay on Java EE Web API 6 -->
+						<exclude>javax.servlet:javax.servlet-api</exclude>
+						<exclude>javax.el:javax.el-api</exclude>
+						<exclude>javax.servlet.jsp:javax.servlet.jsp-api</exclude>
+						<exclude>javax.servlet:jstl</exclude>
+						<exclude>org.glassfish.web:jstl-impl</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<!-- Add bootclasspath when profile enabled -->
+		<profile>
+			<id>bootclasspaths</id>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-compiler-plugin</artifactId>
+							<configuration>
+								<compilerArguments>
+									<bootclasspath>${bootclasspath.jdk16}</bootclasspath>
+								</compilerArguments>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-javadoc-plugin</artifactId>
+							<configuration>
+								<!--
+									Java 1.8 javadoc bug: https://bugs.openjdk.java.net/browse/JDK-8041628
+									Java 1.9: Set this back to jdk16.
+								-->
+								<bootclasspath>${bootclasspath.jdk18}</bootclasspath>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+		<!-- Disable doclint in Java 1.8+ -->
+		<profile>
+			<id>doclint-java8-disable</id>
+			<activation>
+				<jdk>[1.8,)</jdk>
+			</activation>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-javadoc-plugin</artifactId>
+							<version>2.10.4</version>
+							<configuration>
+								<additionalparam>-Xdoclint:none</additionalparam>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<!-- Attach sources only during release builds -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>3.0.1</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Create javadocs only during release builds -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>2.10.4</version>
+						<configuration>
+							<!-- TODO: Here and all javadocs, support canonical URL links in generated docs -->
+							<packagesheader><![CDATA[<a target="_top" href="${project.url}">${project.name} ${project.version}</a>]]></packagesheader>
+							<header><![CDATA[<a target="_top" href="${project.url}">${project.name} ${project.version}</a>]]></header>
+							<keywords>true</keywords><!-- Help internal search systems -->
+							<quiet>true</quiet>
+							<docfilessubdirs>true</docfilessubdirs>
+							<!-- Links to JDK docs are added manually to the https version on a per-project basis -->
+							<detectJavaApiLink>false</detectJavaApiLink>
+						</configuration>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Create build.currentYear property for filtering -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>buildnumber-maven-plugin</artifactId>
+						<version>1.4</version>
+						<executions>
+							<execution>
+								<id>build.currentYear</id>
+								<phase>initialize</phase>
+								<goals>
+									<goal>create-timestamp</goal>
+								</goals>
+								<configuration>
+									<timestampFormat>yyyy</timestampFormat>
+									<timestampPropertyName>build.currentYear</timestampPropertyName>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Copy and filter book only during release builds -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-resources-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>book-filtered-resources</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<resources>
+										<resource>
+											<directory>src/main/book</directory>
+										</resource>
+										<resource>
+											<directory>src/main/book-filtered</directory>
+											<filtering>true</filtering>
+										</resource>
+									</resources>
+									<outputDirectory>${project.build.directory}/book</outputDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Package the book only during release builds -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jar-plugin</artifactId>
+						<version>3.0.2</version>
+						<executions>
+							<execution>
+								<id>attach-book</id>
+								<phase>package</phase>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+								<configuration>
+									<classifier>book</classifier>
+									<classesDirectory>${project.build.directory}/book</classesDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Sign all release jars -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
