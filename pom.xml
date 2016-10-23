@@ -355,7 +355,8 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 											<filtering>true</filtering>
 										</resource>
 									</resources>
-									<outputDirectory>${project.build.directory}/book</outputDirectory>
+									<!-- Put into META-INF/resources to be accessible as website content when jar included in WEB-INF/lib -->
+									<outputDirectory>${project.build.directory}/book/META-INF/resources</outputDirectory>
 								</configuration>
 							</execution>
 						</executions>
@@ -373,8 +374,9 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 									<goal>jar</goal>
 								</goals>
 								<configuration>
-									<classifier>book</classifier>
 									<classesDirectory>${project.build.directory}/book</classesDirectory>
+									<classifier>book</classifier>
+									<skipIfEmpty>true</skipIfEmpty>
 								</configuration>
 							</execution>
 						</executions>
