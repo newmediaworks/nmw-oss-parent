@@ -57,6 +57,8 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<description.html>${project.description}</description.html>
 		<!-- Modules section for javadocs -->
 		<javadoc.modules><!-- Default is none --></javadoc.modules>
+		<!-- Related Projects section for javadocs -->
+		<javadoc.relatedProjects><!-- Default is none --></javadoc.relatedProjects>
 		<!-- Google Analytics tracking code for the javadocs -->
 		<google.analytics.trackingId>UA-8801760-3</google.analytics.trackingId>
 	</properties>
@@ -345,6 +347,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		</ul>
 	</div>
 	${javadoc.modules}
+	${javadoc.relatedProjects}
 	<div style="float:left; margin: 0 1em">
 		<h2 style="margin-top: 0em">Contact Us</h2>
 		<p>
