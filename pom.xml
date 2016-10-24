@@ -294,6 +294,34 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</pluginManagement>
 			</build>
 		</profile>
+		<!-- Do not pack the war in "skip-war" profile -->
+		<profile>
+			<id>skip-war</id>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-war-plugin</artifactId>
+							<version>3.0.0</version>
+							<executions>
+								<execution>
+									<id>default-war</id>
+									<phase>none</phase>
+								</execution>
+								<execution>
+									<id>war-exploded</id>
+									<phase>package</phase>
+									<goals>
+										<goal>exploded</goal>
+									</goals>
+								</execution>
+							</executions>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
 		<profile>
 			<id>release</id>
 			<build>
