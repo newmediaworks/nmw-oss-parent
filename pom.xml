@@ -332,7 +332,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<ul>
 			<li><a target="_top" href="${project.url}">Project Home</a></li>
 			<li><a target="_top" href="${project.url}apidocs/">API Docs</a></li>
-			<li><a target="_top" href="https://search.maven.org/#search|gav|1|g:%22${project.groupId}%22%20AND%20a:%22${project.artifactId}%22">Maven Central Repository</a></li>
+			<li><a target="_top" href="https://search.maven.org/#search%7Cgav%7C1%7Cg:%22${project.groupId}%22%20AND%20a:%22${project.artifactId}%22">Maven Central Repository</a></li>
 			<li><a target="_top" href="${project.scm.url}">GitHub</a></li>
 		</ul>
 	</div>
