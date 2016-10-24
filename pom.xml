@@ -35,7 +35,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- The book path, empty for root book or starting with a slash, such as /path/to/book -->
+		<!-- The book path: empty or starting with a slash, such as /path/to/book -->
 		<bookPath>/${project.artifactId}</bookPath>
 		<!-- The version of JDK used, such as 1.6, 1.7, 1.8, ... -->
 		<javaVersion>1.6</javaVersion>
