@@ -225,7 +225,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<configuration>
 					<useReleaseProfile>false</useReleaseProfile>
 					<releaseProfiles>release</releaseProfiles>
-					<goals>deploy<!-- Necessary with autoReleaseAfterClose=true? nexus-staging:release--></goals>
+					<goals>deploy</goals>
 				</configuration>
 			</plugin>
 			<plugin>
