@@ -31,6 +31,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 	<core:page
 		title="@{project.name}"
 		description="@{project.description}"
+		datePublished="2016-10-23T19:27:00-0500"
 	>
 		<p>
 			@{description.html}
