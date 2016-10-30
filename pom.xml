@@ -203,6 +203,20 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<redirectTestOutputToFile>true</redirectTestOutputToFile>
 					</configuration>
 				</plugin>
+				<!-- We need newer dependency plugin for Java 8 compatibility -->
+				<!-- See https://issues.apache.org/jira/browse/MDEP-439 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.10</version>
+				</plugin>
+				<!-- Setup a few global plugin versions so we don't have to specify elsewhere -->
+				<!-- This also keeps the output of versions:display-plugin-updates more meaningful -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.10.4</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -285,7 +299,6 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-javadoc-plugin</artifactId>
-							<version>2.10.4</version>
 							<configuration>
 								<additionalparam>-Xdoclint:none</additionalparam>
 							</configuration>
@@ -344,7 +357,6 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>2.10.4</version>
 						<configuration>
 							<!-- TODO: Here and all javadocs, support canonical URL links in generated docs -->
 							<packagesheader><![CDATA[<a target="_top" href="${project.url}">${project.name} ${project.version}</a>]]></packagesheader>
@@ -369,6 +381,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<h2 style="margin-top: 0em">Project Links</h2>
 		<ul>
 			<li><a target="_top" href="${project.url}">Project Home</a></li>
+			<li><a target="_top" href="${project.url}changelog">Changelog</a></li>
 			<li><a target="_top" href="${project.url}apidocs/">API Docs</a></li>
 			<li><a target="_top" href="https://search.maven.org/#search%7Cgav%7C1%7Cg:%22${project.groupId}%22%20AND%20a:%22${project.artifactId}%22">Maven Central Repository</a></li>
 			<li><a target="_top" href="${project.scm.url}">GitHub</a></li>
