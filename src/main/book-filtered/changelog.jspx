@@ -36,6 +36,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
+		dateModified="2016-11-02T02:08:30-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT')}">
@@ -48,6 +49,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			>
 				<ul>
 					<li>New parent pom for open-source projects to reduce duplication within pom.xml files</li>
+					<li>Made the components of the current version available as <ao:a href="http://www.mojohaus.org/build-helper-maven-plugin/parse-version-mojo.html">parsedVersion.* properties</ao:a>.</li>
 				</ul>
 			</changelog:release>
 		</c:if>
