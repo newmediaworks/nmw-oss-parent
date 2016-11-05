@@ -60,7 +60,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<!-- Related Projects section for javadocs -->
 		<javadoc.relatedProjects><!-- Default is none --></javadoc.relatedProjects>
 		<!-- Google Analytics tracking code for the javadocs -->
-		<google.analytics.trackingId>UA-8801760-3</google.analytics.trackingId>
+		<google.analytics.trackingId>UA-86871646-1</google.analytics.trackingId>
 	</properties>
 
 	<name>AO OSS Parent</name>
