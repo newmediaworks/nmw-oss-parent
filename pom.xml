@@ -234,6 +234,20 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</execution>
 				</executions>
 			</plugin>
+			<!-- Make dependency versions available as properties -->
+			<plugin>
+				<groupId>io.reformanda.semper</groupId>
+				<artifactId>dependencyversion-maven-plugin</artifactId>
+				<version>1.0.1</version>
+				<executions>
+					<execution>
+						<id>set-all</id>
+						<goals>
+							<goal>set-version</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
