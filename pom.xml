@@ -55,6 +55,8 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<javadoc.breadcrumbs><![CDATA[<a target="_top" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
 		<!-- The HTML format of the description -->
 		<description.html>${project.description}</description.html>
+		<!-- Taglib reference line for javadocs -->
+		<javadoc.taglibReference><!-- Default is none --></javadoc.taglibReference>
 		<!-- Modules section for javadocs -->
 		<javadoc.modules><!-- Default is none --></javadoc.modules>
 		<!-- Related Projects section for javadocs -->
@@ -410,6 +412,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<ul>
 			<li><a target="_top" href="${project.url}">Project Home</a></li>
 			<li><a target="_top" href="${project.url}changelog">Changelog</a></li>
+			${javadoc.taglibReference}
 			<li><a target="_top" href="${project.url}apidocs/">API Docs</a></li>
 			<li><a target="_top" href="https://search.maven.org/#search%7Cgav%7C1%7Cg:%22${project.groupId}%22%20AND%20a:%22${project.artifactId}%22">Maven Central Repository</a></li>
 			<li><a target="_top" href="${project.scm.url}">GitHub</a></li>
