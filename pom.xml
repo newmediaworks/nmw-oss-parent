@@ -35,8 +35,6 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- The book path: empty or starting with a slash, such as /path/to/book -->
-		<bookPath>/${project.artifactId}</bookPath>
 		<!-- The version of JDK used, such as 1.6, 1.7, 1.8, ... -->
 		<javaVersion>1.6</javaVersion>
 		<!-- This should be set in your ~/.m2/settings.xml and activated -->
@@ -66,7 +64,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 	</properties>
 
 	<name>AO OSS Parent</name>
-	<url>https://aoindustries.com${bookPath}/</url>
+	<url>https://aoindustries.com/${project.artifactId}/</url>
 	<description>Parent POM for all AO open-source projects.</description>
 	<inceptionYear>2016</inceptionYear>
 
@@ -156,9 +154,6 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<target>${javaVersion}</target>
 					</configuration>
 				</plugin>
-				<!-- We support additional src/main/book and src/main/book-filtered
-				     that are packaged into a JAR with the "book" classifier.  This
-				contains the project documentation in SemanticCMS format. -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
@@ -476,53 +471,6 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							</execution>
 						</executions>
 					</plugin>
-					<!-- Copy and filter book only during release builds -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-resources-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>book-filtered-resources</id>
-								<phase>process-resources</phase>
-								<goals>
-									<goal>copy-resources</goal>
-								</goals>
-								<configuration>
-									<resources>
-										<resource>
-											<directory>src/main/book</directory>
-										</resource>
-										<resource>
-											<directory>src/main/book-filtered</directory>
-											<filtering>true</filtering>
-										</resource>
-									</resources>
-									<!-- Put into META-INF/resources to be accessible as website content when jar included in WEB-INF/lib -->
-									<outputDirectory>${project.build.directory}/book/META-INF/resources${bookPath}</outputDirectory>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<!-- Package the book only during release builds -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-jar-plugin</artifactId>
-						<version>3.0.2</version>
-						<executions>
-							<execution>
-								<id>attach-book</id>
-								<phase>package</phase>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-								<configuration>
-									<classesDirectory>${project.build.directory}/book</classesDirectory>
-									<classifier>book</classifier>
-									<skipIfEmpty>true</skipIfEmpty>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
 					<!-- Sign all release jars -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -553,4 +501,8 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<modules>
+		<module>book</module>
+	</modules>
 </project>
