@@ -39,12 +39,10 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<!-- These values are copied from the project being documented -->
 		<documented.groupId>com.aoindustries</documented.groupId>
 		<documented.artifactId>ao-oss-parent</documented.artifactId>
-
 		<documented.name>AO OSS Parent</documented.name>
 		<documented.url>https://aoindustries.com/${documented.artifactId}/</documented.url>
 		<documented.description>Parent POM for all AO open-source projects.</documented.description>
 		<documented.inceptionYear>2016</documented.inceptionYear>
-
 		<documented.scm.url>https://github.com/aoindustries/${documented.artifactId}</documented.scm.url>
 
 		<description.html><![CDATA[Documentation for <a target="_top" href="${documented.url}">${documented.name}</a> in <a target="_top" href="https://semanticcms.com/">SemanticCMS</a> format.]]></description.html>
@@ -62,31 +60,6 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<url>${documented.scm.url}</url>
 		<tag>HEAD</tag>
 	</scm>
-
-	<profiles>
-		<profile>
-			<id>release</id>
-			<build>
-				<pluginManagement>
-					<plugins>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-javadoc-plugin</artifactId>
-							<configuration>
-								<links>
-									<link>https://docs.oracle.com/javaee/6/api/</link>
-									<link>https://aoindustries.com/ao-taglib/apidocs/</link>
-									<link>https://semanticcms.com/changelog/taglib/apidocs/</link>
-									<link>https://semanticcms.com/core/taglib/apidocs/</link>
-									<link>https://semanticcms.com/section/taglib/apidocs/</link>
-								</links>
-							</configuration>
-						</plugin>
-					</plugins>
-				</pluginManagement>
-			</build>
-		</profile>
-	</profiles>
 
 	<dependencies>
 		<dependency>
@@ -145,6 +118,15 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			<groupId>com.semanticcms</groupId>
 			<artifactId>semanticcms-section-taglib</artifactId>
 			<version>1.4.2-SNAPSHOT</version>
+		</dependency>
+		<!-- Dependency for dependencyversion-maven-plugin only -->
+		<dependency>
+			<groupId>com.aoindustries</groupId>
+			<artifactId>ao-oss-parent</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<type>pom</type>
+			<scope>provided</scope>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 </project>
