@@ -1,6 +1,6 @@
 <!--
 ao-oss-parent - Parent POM for all AO open-source projects.
-Copyright (C) 2016  AO Industries, Inc.
+Copyright (C) 2016, 2017  AO Industries, Inc.
     support@aoindustries.com
     7262 Bull Pen Cir
     Mobile, AL 36695
@@ -36,7 +36,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2016-11-15T10:50:44-0600"
+		dateModified="2017-02-14T22:20:46-0600"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-oss-parent:pom.version}" />
@@ -51,7 +51,11 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				groupId="@{documented.groupId}"
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{documented.scm.url}"
-			/>
+			>
+				<ul>
+					<li>Added <code>--allow-script-in-comments</code> for Javadoc in JDK 1.8.0_121+.</li>
+				</ul>
+			</changelog:release>
 		</c:if>
 
 		<changelog:release
