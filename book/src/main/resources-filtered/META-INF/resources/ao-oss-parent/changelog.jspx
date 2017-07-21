@@ -36,7 +36,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2017-07-19T14:27:39-0500"
+		dateModified="2017-07-21T11:08:23-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-oss-parent:pom.version}" />
@@ -51,7 +51,15 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				groupId="@{documented.groupId}"
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{documented.scm.url}"
-			/>
+			>
+				<ul>
+					<li>
+						Added more plugin versions under <code>build/pluginManagement</code> to
+						both support repeatable builds and keep the output of
+						<code>versions:display-plugin-updates</code> more meaningful.
+					</li>
+				</ul>
+			</changelog:release>
 		</c:if>
 
 		<changelog:release
