@@ -533,8 +533,4 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<modules>
-		<module>book</module>
-	</modules>
 </project>
