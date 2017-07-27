@@ -30,7 +30,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 
 	<groupId>com.aoindustries</groupId>
 	<artifactId>ao-oss-parent</artifactId>
-	<version>1.0.3-SNAPSHOT</version>
+	<version>1.0.3</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -102,7 +102,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<connection>scm:git:git://github.com/aoindustries/${project.artifactId}.git</connection>
 		<developerConnection>scm:git:git@github.com:aoindustries/${project.artifactId}.git</developerConnection>
 		<url>https://github.com/aoindustries/${project.artifactId}</url>
-		<tag>HEAD</tag>
+		<tag>ao-oss-parent-1.0.3</tag>
 	</scm>
 
 	<repositories>
