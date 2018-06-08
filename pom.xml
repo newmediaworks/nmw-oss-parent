@@ -296,6 +296,8 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
+						<!-- Built-By defaults to ${user.name} - skip it -->
+						<_removeheaders>Built-By</_removeheaders>
 						<!-- TODO: What to do with validation builds regarding Bundle-Version? -->
 						<!-- TODO: ao-badges for OSGI? -->
 						<!-- TODO: _nouses like in http://svn.apache.org/repos/asf/commons/proper/commons-parent/trunk/pom.xml ? -->
