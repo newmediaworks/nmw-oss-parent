@@ -304,7 +304,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<artifactId>maven-site-plugin</artifactId>
 					<version>3.7.1</version>
 				</plugin>
-				<!-- Plugin used by some project-specific pom.xml -->
+				<!-- Plugins used by some project-specific pom.xml -->
 				<plugin>
 					<groupId>org.apache.tomcat.maven</groupId>
 					<artifactId>tomcat7-maven-plugin</artifactId>
