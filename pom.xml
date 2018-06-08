@@ -255,6 +255,11 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>3.0.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
 					<version>3.0.1</version>
 				</plugin>
@@ -294,14 +299,21 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</execution>
 				</executions>
 			</plugin>
-			<!-- Built-By defaults to ${user.name} - hide it -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
 					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+						</manifest>
 						<manifestEntries>
+							<!-- Built-By defaults to ${user.name} - hide it -->
 							<Built-By></Built-By>
+							<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+							<X-Compile-Source-JDK>${javaVersion}</X-Compile-Source-JDK>
+							<X-Compile-Target-JDK>${javaVersion}</X-Compile-Target-JDK>
 						</manifestEntries>
 					</archive>
 				</configuration>
@@ -311,8 +323,16 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+						</manifest>
 						<manifestEntries>
+							<!-- Built-By defaults to ${user.name} - hide it -->
 							<Built-By></Built-By>
+							<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+							<X-Compile-Source-JDK>${javaVersion}</X-Compile-Source-JDK>
+							<X-Compile-Target-JDK>${javaVersion}</X-Compile-Target-JDK>
 						</manifestEntries>
 					</archive>
 				</configuration>
@@ -478,13 +498,27 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
-						<version>3.0.1</version>
 						<executions>
 							<execution>
 								<id>attach-sources</id>
 								<goals>
 									<goal>jar-no-fork</goal>
 								</goals>
+								<configuration>
+									<archive>
+										<manifest>
+											<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+											<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+										</manifest>
+										<manifestEntries>
+											<!-- Built-By defaults to ${user.name} - hide it -->
+											<Built-By></Built-By>
+											<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+											<X-Compile-Source-JDK>${javaVersion}</X-Compile-Source-JDK>
+											<X-Compile-Target-JDK>${javaVersion}</X-Compile-Target-JDK>
+										</manifestEntries>
+									</archive>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>
@@ -556,6 +590,21 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 								<goals>
 									<goal>jar</goal>
 								</goals>
+								<configuration>
+									<archive>
+										<manifest>
+											<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+											<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+										</manifest>
+										<manifestEntries>
+											<!-- Built-By defaults to ${user.name} - hide it -->
+											<Built-By></Built-By>
+											<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+											<X-Compile-Source-JDK>${javaVersion}</X-Compile-Source-JDK>
+											<X-Compile-Target-JDK>${javaVersion}</X-Compile-Target-JDK>
+										</manifestEntries>
+									</archive>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>
