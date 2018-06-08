@@ -250,6 +250,11 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.2.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
 					<version>3.0.1</version>
 				</plugin>
@@ -288,6 +293,29 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<!-- Built-By defaults to ${user.name} - hide it -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Built-By></Built-By>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Built-By></Built-By>
+						</manifestEntries>
+					</archive>
+				</configuration>
 			</plugin>
 			<!-- Supporting packaging of "bundle" for OSGI bundles -->
 			<plugin>
@@ -424,7 +452,6 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-war-plugin</artifactId>
-							<version>3.2.1</version>
 							<executions>
 								<execution>
 									<id>default-war</id>
