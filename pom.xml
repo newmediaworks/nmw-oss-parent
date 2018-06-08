@@ -321,8 +321,8 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<X-Compile-Target-JDK>${javaVersion}</X-Compile-Target-JDK>
 						<!-- Optional Main-Class, as seen at https://github.com/FasterXML/oss-parent/blob/master/pom.xml -->
 						<Main-Class>${osgi.mainClass}</Main-Class>
-						<!-- From https://academy.jahia.com/documentation/techwiki/modules/osgi -->
-						<Implementation-URL>${project.organization.url}</Implementation-URL>
+						<!-- From https://maven.apache.org/shared/maven-archiver/ -->
+						<Implementation-URL>${project.url}</Implementation-URL>
 					</instructions>
 				</configuration>
 			</plugin>
