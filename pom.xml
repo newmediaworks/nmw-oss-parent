@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 ao-oss-parent - Parent POM for all AO open-source projects.
-Copyright (C) 2016, 2017, 2018  AO Industries, Inc.
+Copyright (C) 2016, 2017, 2018, 2019  AO Industries, Inc.
     support@aoindustries.com
     7262 Bull Pen Cir
     Mobile, AL 36695
@@ -192,6 +192,35 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 								<outputDirectory>${project.build.outputDirectory}</outputDirectory>
 							</configuration>
 						</execution>
+						<!--
+							maven-bundle-plugin does not use the filtered resources from project.build.outputDirectory.
+							To workaround this limitation, we perform a second filtering into a separate directory
+							that is then used in bundle creation.
+
+							We tried to avoid duplicate filtering by only filtering to target/resources-filtered
+							and not also into target/classes.  However, maven-jar-plugin used for default-jar
+							does not allow multiple source directories, and a second execution must be placed in
+							a different artifact classifier.
+
+							We hope for a better solution within maven-bundle-plugin in the future, but this issue
+							goes back over a decade - we're not holding our breath.
+						-->
+						<execution>
+							<id>filter-resources</id>
+							<phase>process-resources</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<resources>
+									<resource>
+										<directory>src/main/resources-filtered</directory>
+										<filtering>true</filtering>
+									</resource>
+								</resources>
+								<outputDirectory>${project.build.directory}/resources-filtered</outputDirectory>
+							</configuration>
+						</execution>
 					</executions>
 				</plugin>
 				<!-- We want clean output such that anything visible is something that must be addressed -->
@@ -209,7 +238,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</plugin>
 				<!-- Supporting packaging of "bundle" for OSGI bundles -->
 				<plugin>
-					<groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId><version>3.5.0</version>
+					<groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId><version>4.2.0</version>
 				</plugin>
 				<!-- Other plugins used below -->
 				<plugin>
@@ -357,6 +386,10 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
 						<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
 						<Implementation-URL>${project.url}</Implementation-URL>
+						<Include-Resource>
+							{maven-resources},
+							${project.build.directory}/resources-filtered
+						</Include-Resource>
 						<Specification-Title>${project.name}</Specification-Title>
 						<!--
 							TODO: The Specification-Version is not being set to major.minor as expected.
@@ -486,6 +519,24 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			<id>release</id>
 			<build>
 				<plugins>
+					<!-- Include the unfiltered form of resources-filtered in the source artifact -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>add-resources-filtered-source</id>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>add-source</goal>
+								</goals>
+								<configuration>
+									<sources>
+										<source>src/main/resources-filtered</source>
+									</sources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
 					<!-- Attach sources only during release builds -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId>

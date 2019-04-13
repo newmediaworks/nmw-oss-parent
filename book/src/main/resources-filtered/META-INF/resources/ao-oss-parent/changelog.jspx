@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 ao-oss-parent - Parent POM for all AO open-source projects.
-Copyright (C) 2016, 2017, 2018  AO Industries, Inc.
+Copyright (C) 2016, 2017, 2018, 2019  AO Industries, Inc.
     support@aoindustries.com
     7262 Bull Pen Cir
     Mobile, AL 36695
@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2018-06-07T17:47:02-0500"
+		dateModified="2019-04-12T23:45:23-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-oss-parent:pom.version}" />
@@ -58,6 +58,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						Added support for packaging as OSGI bundles as <code>&lt;packaging&gt;bundle&lt;/packaging&gt;</code>
 						via the <ao:a href="https://felix.apache.org/components/bundle-plugin/index.html">Maven Bundle Plugin</ao:a>.
 					</li>
+					<li>Now including unfiltered form of <code>src/main/resources-filtered</code> in source artifacts.</li>
 				</ul>
 			</changelog:release>
 		</c:if>
