@@ -316,6 +316,23 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</execution>
 				</executions>
 			</plugin>
+			<!-- Create build.currentYear property for filtering -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId><artifactId>buildnumber-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>build.currentYear</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>create-timestamp</goal>
+						</goals>
+						<configuration>
+							<timestampFormat>yyyy</timestampFormat>
+							<timestampPropertyName>build.currentYear</timestampPropertyName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<!-- Make dependency versions available as properties -->
 			<plugin>
 				<groupId>io.reformanda.semper</groupId><artifactId>dependencyversion-maven-plugin</artifactId>
@@ -673,23 +690,6 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 											<X-Compile-Target-JDK>${javaVersion}</X-Compile-Target-JDK>
 										</manifestEntries>
 									</archive>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<!-- Create build.currentYear property for filtering -->
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId><artifactId>buildnumber-maven-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>build.currentYear</id>
-								<phase>initialize</phase>
-								<goals>
-									<goal>create-timestamp</goal>
-								</goals>
-								<configuration>
-									<timestampFormat>yyyy</timestampFormat>
-									<timestampPropertyName>build.currentYear</timestampPropertyName>
 								</configuration>
 							</execution>
 						</executions>
