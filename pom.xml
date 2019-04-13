@@ -147,6 +147,9 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 	<build>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>1.8</version>
+				 </plugin>
 				<!-- Default to using -Xlint and showing warnings -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.7.0</version>
@@ -361,6 +364,27 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</archive>
 				</configuration>
 			</plugin>
+			<!--
+				The second copy of resources-filtered is required for maven-bundle-plugin, even if empty.
+				Otherwise the bundle packaging will fail.
+			-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>create-resources-filtered-output</id>
+						<phase>process-resources</phase>
+						<configuration>
+							<tasks>
+								<mkdir dir="${project.build.directory}/resources-filtered"/>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			 </plugin>
 			<!-- Supporting packaging of "bundle" for OSGI bundles -->
 			<plugin>
 				<groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId>
