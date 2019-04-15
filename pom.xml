@@ -33,27 +33,31 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- The version of JDK used, such as 1.6, 1.7, 1.8, ... -->
-		<javaVersion>1.6</javaVersion>
+		<!-- The version of JDK used, such as 1.7, 1.8, 9, 10, 11, 12, 13, ... -->
+		<javaVersion>1.7</javaVersion>
 		<!-- This should be set in your ~/.m2/settings.xml and activated -->
-		<compiler.bootclasspath>${bootclasspath.jdk16}</compiler.bootclasspath>
+		<compiler.bootclasspath>${bootclasspath.jdk7}</compiler.bootclasspath>
 		<!--
 			Java 1.8 javadoc bug: https://bugs.openjdk.java.net/browse/JDK-8041628
-			Java 1.9: Set this back to jdk16.
+			Java 1.9: Set this back to jdk7.
 		-->
-		<javac.bootclasspath>${bootclasspath.jdk18}</javac.bootclasspath>
+		<javac.bootclasspath>${bootclasspath.jdk8}</javac.bootclasspath>
 		<!-- The version of Java apidocs to link to, preferring https -->
-		<javac.link.javaApi.jdk15>https://docs.oracle.com/javase/1.5.0/docs/api</javac.link.javaApi.jdk15>
-		<javac.link.javaApi.jdk16>https://docs.oracle.com/javase/6/docs/api</javac.link.javaApi.jdk16>
-		<javac.link.javaApi.jdk17>https://docs.oracle.com/javase/7/docs/api</javac.link.javaApi.jdk17>
-		<javac.link.javaApi.jdk18>https://docs.oracle.com/javase/8/docs/api</javac.link.javaApi.jdk18>
-		<javac.link.javaApi.jdk19>http://download.java.net/java/jdk9/docs/api</javac.link.javaApi.jdk19>
-		<javac.link.javaApi>${javac.link.javaApi.jdk16}</javac.link.javaApi>
+		<javac.link.javaApi.jdk5>https://docs.oracle.com/javase/1.5.0/docs/api</javac.link.javaApi.jdk5>
+		<javac.link.javaApi.jdk6>https://docs.oracle.com/javase/6/docs/api</javac.link.javaApi.jdk6>
+		<javac.link.javaApi.jdk7>https://docs.oracle.com/javase/7/docs/api</javac.link.javaApi.jdk7>
+		<javac.link.javaApi.jdk8>https://docs.oracle.com/javase/8/docs/api</javac.link.javaApi.jdk8>
+		<javac.link.javaApi.jdk9>https://docs.oracle.com/javase/9/docs/api</javac.link.javaApi.jdk9>
+		<javac.link.javaApi.jdk10>https://docs.oracle.com/javase/10/docs/api</javac.link.javaApi.jdk10>
+		<javac.link.javaApi.jdk11>https://docs.oracle.com/en/java/javase/11/docs/api</javac.link.javaApi.jdk11>
+		<javac.link.javaApi.jdk12>https://docs.oracle.com/en/java/javase/12/docs/api</javac.link.javaApi.jdk12>
+		<javac.link.javaApi.jdk13>https://download.java.net/java/early_access/jdk13/docs/api</javac.link.javaApi.jdk13>
+		<javac.link.javaApi>${javac.link.javaApi.jdk7}</javac.link.javaApi>
 		<!-- The Java EE apidocs to link to, preferring https -->
 		<javac.link.javaeeApi.5>https://docs.oracle.com/javaee/5/api</javac.link.javaeeApi.5>
 		<javac.link.javaeeApi.6>https://docs.oracle.com/javaee/6/api</javac.link.javaeeApi.6>
 		<javac.link.javaeeApi.7>https://docs.oracle.com/javaee/7/api</javac.link.javaeeApi.7>
-		<javac.link.javaeeApi.8>http://www.oracle.com/technetwork/java/javaee/overview/index.html</javac.link.javaeeApi.8>
+		<javac.link.javaeeApi.8>https://javaee.github.io/javaee-spec/javadocs</javac.link.javaeeApi.8>
 		<!-- The breadcrumbs for the javadocs -->
 		<javadoc.breadcrumbs><![CDATA[<a target="_top" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
 		<!-- The HTML format of the description -->
