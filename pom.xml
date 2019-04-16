@@ -43,21 +43,21 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		-->
 		<javac.bootclasspath>${bootclasspath.jdk8}</javac.bootclasspath>
 		<!-- The version of Java apidocs to link to, preferring https -->
-		<javac.link.javaApi.jdk5>https://docs.oracle.com/javase/1.5.0/docs/api</javac.link.javaApi.jdk5>
-		<javac.link.javaApi.jdk6>https://docs.oracle.com/javase/6/docs/api</javac.link.javaApi.jdk6>
-		<javac.link.javaApi.jdk7>https://docs.oracle.com/javase/7/docs/api</javac.link.javaApi.jdk7>
-		<javac.link.javaApi.jdk8>https://docs.oracle.com/javase/8/docs/api</javac.link.javaApi.jdk8>
-		<javac.link.javaApi.jdk9>https://docs.oracle.com/javase/9/docs/api</javac.link.javaApi.jdk9>
-		<javac.link.javaApi.jdk10>https://docs.oracle.com/javase/10/docs/api</javac.link.javaApi.jdk10>
-		<javac.link.javaApi.jdk11>https://docs.oracle.com/en/java/javase/11/docs/api</javac.link.javaApi.jdk11>
-		<javac.link.javaApi.jdk12>https://docs.oracle.com/en/java/javase/12/docs/api</javac.link.javaApi.jdk12>
-		<javac.link.javaApi.jdk13>https://download.java.net/java/early_access/jdk13/docs/api</javac.link.javaApi.jdk13>
+		<javac.link.javaApi.jdk5>https://docs.oracle.com/javase/1.5.0/docs/api/</javac.link.javaApi.jdk5>
+		<javac.link.javaApi.jdk6>https://docs.oracle.com/javase/6/docs/api/</javac.link.javaApi.jdk6>
+		<javac.link.javaApi.jdk7>https://docs.oracle.com/javase/7/docs/api/</javac.link.javaApi.jdk7>
+		<javac.link.javaApi.jdk8>https://docs.oracle.com/javase/8/docs/api/</javac.link.javaApi.jdk8>
+		<javac.link.javaApi.jdk9>https://docs.oracle.com/javase/9/docs/api/</javac.link.javaApi.jdk9>
+		<javac.link.javaApi.jdk10>https://docs.oracle.com/javase/10/docs/api/</javac.link.javaApi.jdk10>
+		<javac.link.javaApi.jdk11>https://docs.oracle.com/en/java/javase/11/docs/api/</javac.link.javaApi.jdk11>
+		<javac.link.javaApi.jdk12>https://docs.oracle.com/en/java/javase/12/docs/api/</javac.link.javaApi.jdk12>
+		<javac.link.javaApi.jdk13>https://download.java.net/java/early_access/jdk13/docs/api/</javac.link.javaApi.jdk13>
 		<javac.link.javaApi>${javac.link.javaApi.jdk7}</javac.link.javaApi>
 		<!-- The Java EE apidocs to link to, preferring https -->
-		<javac.link.javaeeApi.5>https://docs.oracle.com/javaee/5/api</javac.link.javaeeApi.5>
-		<javac.link.javaeeApi.6>https://docs.oracle.com/javaee/6/api</javac.link.javaeeApi.6>
-		<javac.link.javaeeApi.7>https://docs.oracle.com/javaee/7/api</javac.link.javaeeApi.7>
-		<javac.link.javaeeApi.8>https://javaee.github.io/javaee-spec/javadocs</javac.link.javaeeApi.8>
+		<javac.link.javaeeApi.5>https://docs.oracle.com/javaee/5/api/</javac.link.javaeeApi.5>
+		<javac.link.javaeeApi.6>https://docs.oracle.com/javaee/6/api/</javac.link.javaeeApi.6>
+		<javac.link.javaeeApi.7>https://docs.oracle.com/javaee/7/api/</javac.link.javaeeApi.7>
+		<javac.link.javaeeApi.8>https://javaee.github.io/javaee-spec/javadocs/</javac.link.javaeeApi.8>
 		<!-- The breadcrumbs for the javadocs -->
 		<javadoc.breadcrumbs><![CDATA[<a target="_top" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
 		<!-- The HTML format of the description -->
@@ -293,7 +293,12 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId><version>3.0.1</version>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.0.1</version>
+					<!--
+						Leave at 3.0.0 until bug fixed:
+						[MJAVADOC-539] Upgrading plugin from 3.0.0 to 3.0.1 and 3.1.0 breaks certain external javadoc links
+						https://issues.apache.org/jira/browse/MJAVADOC-539
+					-->
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.0.0</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId><version>3.7.1</version>

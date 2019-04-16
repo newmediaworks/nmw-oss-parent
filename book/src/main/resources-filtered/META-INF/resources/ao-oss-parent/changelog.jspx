@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2019-04-15T01:09:21-0500"
+		dateModified="2019-04-15T08:51:45-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-oss-parent:pom.version}" />
@@ -72,6 +72,12 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 								</ol>
 							</li>
 						</ol>
+					</li>
+					<li>
+						Fixed cross-project linking of javadocs (really this time).
+						The issue was our redirects from <code>*/apidocs/</code>
+						to <code>*/apidocs/index.html</code> were interacting with a Maven plugin bug:
+						<ao:a href="https://issues.apache.org/jira/browse/MJAVADOC-539">[MJAVADOC-539] Upgrading plugin from 3.0.0 to 3.0.1 and 3.1.0 breaks certain external javadoc links</ao:a>.
 					</li>
 				</ul>
 			</changelog:release>
