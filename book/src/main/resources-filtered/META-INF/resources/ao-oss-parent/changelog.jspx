@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2019-04-15T08:51:45-0500"
+		dateModified="2019-04-16T02:16:27-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-oss-parent:pom.version}" />
@@ -55,7 +55,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			>
 				<ul>
 					<li>
-						Added support for packaging as OSGI bundles as <code>&lt;packaging&gt;bundle&lt;/packaging&gt;</code>
+						Added support for packaging as OSGI bundles as <code><![CDATA[&lt;packaging&gt;bundle&lt;/packaging&gt;]]></code>
 						via the <ao:a href="https://felix.apache.org/components/bundle-plugin/index.html">Maven Bundle Plugin</ao:a>.
 					</li>
 					<li>Now including unfiltered form of <code>src/main/resources-filtered</code> in source artifacts.</li>
@@ -142,7 +142,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			scmUrl="@{documented.scm.url}"
 		>
 			<ul>
-				<li>Removed erroneous <code>&lt;inherited&gt;false&lt;/inherited&gt;</code>.</li>
+				<li>Removed erroneous <code><![CDATA[&lt;inherited&gt;false&lt;/inherited&gt;]]></code>.</li>
 			</ul>
 		</changelog:release>
 
