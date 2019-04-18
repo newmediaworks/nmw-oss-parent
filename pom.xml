@@ -24,10 +24,6 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<prerequisites>
-		<maven>3.0.5</maven>
-	</prerequisites>
-
 	<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
@@ -153,7 +149,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			<plugins>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>1.8</version>
-				 </plugin>
+				</plugin>
 				<!-- Default to using -Xlint and showing warnings -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.7.0</version>
@@ -166,6 +162,9 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<source>${javaVersion}</source>
 						<target>${javaVersion}</target>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId><version>3.0.0-M2</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-resources-plugin</artifactId><version>3.1.0</version>
@@ -313,6 +312,25 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			</plugins>
 		</pluginManagement>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>enforce-maven</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<message>Maven &gt;= 3.3.1 required for extensions.xml</message>
+									<version>[3.3.1,)</version>
+								</requireMavenVersion>
+							</rules>    
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<!-- Make the components of the current version available as parsedVersion.* properties -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId>
