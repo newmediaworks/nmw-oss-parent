@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2019-04-17T19:24:59-0500"
+		dateModified="2019-04-18T00:37:10-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-oss-parent:pom.version}" />
@@ -52,44 +52,53 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				groupId="@{documented.groupId}"
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{documented.scm.url}"
-			>
-				<ul>
-					<li>
-						Added support for packaging as OSGI bundles as <code><![CDATA[&lt;packaging&gt;bundle&lt;/packaging&gt;]]></code>
-						via the <ao:a href="https://felix.apache.org/components/bundle-plugin/index.html">Maven Bundle Plugin</ao:a>.
-					</li>
-					<li>Now including unfiltered form of <code>src/main/resources-filtered</code> in source artifacts.</li>
-					<li>Fixed bug: <code>build.currentYear</code> property was only available during release builds.</li>
-					<li>Now supporting Java 12:
-						<ol>
-							<li>Changed default Java version from 1.6 to 1.7</li>
-							<li>Renamed Maven build property names to not conflict with newer versions of Java:
-								<ol type="a">
-									<li><code>*.jdk15</code> -&gt; <code>*.jdk5</code></li>
-									<li><code>*.jdk16</code> -&gt; <code>*.jdk6</code></li>
-									<li><code>*.jdk17</code> -&gt; <code>*.jdk7</code></li>
-									<li><code>*.jdk18</code> -&gt; <code>*.jdk8</code></li>
-								</ol>
-							</li>
-						</ol>
-					</li>
-					<li>
-						Fixed cross-project linking of javadocs (really this time).
-						The issue was our redirects from <code>*/apidocs/</code>
-						to <code>*/apidocs/index.html</code> were interacting with a Maven plugin bug:
-						<ao:a href="https://issues.apache.org/jira/browse/MJAVADOC-539">[MJAVADOC-539] Upgrading plugin from 3.0.0 to 3.0.1 and 3.1.0 breaks certain external javadoc links</ao:a>.
-					</li>
-					<li>
-						Changed minimum Maven version enforcement from
-						<code><ao:a href="https://maven.apache.org/pom.html#Prerequisites"><![CDATA[&lt;prerequisites&gt;&lt;maven&gt;…&lt;/maven&gt;&lt;/prerequisites&gt;]]></ao:a></code>
-						to use the <ao:a href="https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html">Maven Enforcer Plugin</ao:a>
-						instead.  This eliminates the warnings introduced in
-						<ao:a href="https://maven.apache.org/docs/3.5.0/release-notes.html">Maven 3.5.0</ao:a>.
-					</li>
-					<li>Updated plugin versions.</li>
-				</ul>
-			</changelog:release>
+			/>
 		</c:if>
+
+		<changelog:release
+			projectName="@{documented.name}"
+			version="1.1.0"
+			datePublished="2019-04-18T00:37:10-0500"
+			groupId="@{documented.groupId}"
+			artifactId="@{documented.artifactId}"
+			scmUrl="@{documented.scm.url}"
+		>
+			<ul>
+				<li>
+					Added support for packaging as OSGI bundles as <code><![CDATA[&lt;packaging&gt;bundle&lt;/packaging&gt;]]></code>
+					via the <ao:a href="https://felix.apache.org/components/bundle-plugin/index.html">Maven Bundle Plugin</ao:a>.
+				</li>
+				<li>Now including unfiltered form of <code>src/main/resources-filtered</code> in source artifacts.</li>
+				<li>Fixed bug: <code>build.currentYear</code> property was only available during release builds.</li>
+				<li>Now supporting Java 12:
+					<ol>
+						<li>Changed default Java version from 1.6 to 1.7</li>
+						<li>Renamed Maven build property names to not conflict with newer versions of Java:
+							<ol type="a">
+								<li><code>*.jdk15</code> -&gt; <code>*.jdk5</code></li>
+								<li><code>*.jdk16</code> -&gt; <code>*.jdk6</code></li>
+								<li><code>*.jdk17</code> -&gt; <code>*.jdk7</code></li>
+								<li><code>*.jdk18</code> -&gt; <code>*.jdk8</code></li>
+							</ol>
+						</li>
+					</ol>
+				</li>
+				<li>
+					Fixed cross-project linking of javadocs (really this time).
+					The issue was our redirects from <code>*/apidocs/</code>
+					to <code>*/apidocs/index.html</code> were interacting with a Maven plugin bug:
+					<ao:a href="https://issues.apache.org/jira/browse/MJAVADOC-539">[MJAVADOC-539] Upgrading plugin from 3.0.0 to 3.0.1 and 3.1.0 breaks certain external javadoc links</ao:a>.
+				</li>
+				<li>
+					Changed minimum Maven version enforcement from
+					<code><ao:a href="https://maven.apache.org/pom.html#Prerequisites"><![CDATA[&lt;prerequisites&gt;&lt;maven&gt;…&lt;/maven&gt;&lt;/prerequisites&gt;]]></ao:a></code>
+					to use the <ao:a href="https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html">Maven Enforcer Plugin</ao:a>
+					instead.  This eliminates the warnings introduced in
+					<ao:a href="https://maven.apache.org/docs/3.5.0/release-notes.html">Maven 3.5.0</ao:a>.
+				</li>
+				<li>Updated plugin versions.</li>
+			</ul>
+		</changelog:release>
 
 		<changelog:release
 			projectName="@{documented.name}"
