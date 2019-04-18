@@ -323,7 +323,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<configuration>
 							<rules>
 								<requireMavenVersion>
-									<message>Maven &gt;= 3.5.0 required for extensions.xml</message>
+									<message>Maven &gt;= 3.5.0 required by org.apache.felix:maven-bundle-plugin</message>
 									<version>[3.5.0,)</version>
 								</requireMavenVersion>
 							</rules>    
