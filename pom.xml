@@ -24,7 +24,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.1.0-SNAPSHOT</version>
+	<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.1.0</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -102,7 +102,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<connection>scm:git:git://github.com/aoindustries/${project.artifactId}.git</connection>
 		<developerConnection>scm:git:git@github.com:aoindustries/${project.artifactId}.git</developerConnection>
 		<url>https://github.com/aoindustries/${project.artifactId}</url>
-		<tag>HEAD</tag>
+		<tag>ao-oss-parent-1.1.0</tag>
 	</scm>
 
 	<repositories>
@@ -382,7 +382,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						</manifest>
 						<manifestEntries>
 							<!-- Built-By defaults to ${user.name} - hide it -->
-							<Built-By></Built-By>
+							<Built-By />
 							<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
 							<X-Compile-Source-JDK>${javaVersion}</X-Compile-Source-JDK>
 							<X-Compile-Target-JDK>${javaVersion}</X-Compile-Target-JDK>
@@ -400,7 +400,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						</manifest>
 						<manifestEntries>
 							<!-- Built-By defaults to ${user.name} - hide it -->
-							<Built-By></Built-By>
+							<Built-By />
 							<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
 							<X-Compile-Source-JDK>${javaVersion}</X-Compile-Source-JDK>
 							<X-Compile-Target-JDK>${javaVersion}</X-Compile-Target-JDK>
@@ -420,8 +420,8 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<phase>process-resources</phase>
 						<configuration>
 							<tasks>
-								<mkdir dir="${project.build.directory}/classes"/>
-								<mkdir dir="${project.build.directory}/resources-filtered"/>
+								<mkdir dir="${project.build.directory}/classes" />
+								<mkdir dir="${project.build.directory}/resources-filtered" />
 							</tasks>
 						</configuration>
 						<goals>
@@ -623,7 +623,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 										</manifest>
 										<manifestEntries>
 											<!-- Built-By defaults to ${user.name} - hide it -->
-											<Built-By></Built-By>
+											<Built-By />
 											<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
 											<X-Compile-Source-JDK>${javaVersion}</X-Compile-Source-JDK>
 											<X-Compile-Target-JDK>${javaVersion}</X-Compile-Target-JDK>
@@ -711,7 +711,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 										</manifest>
 										<manifestEntries>
 											<!-- Built-By defaults to ${user.name} - hide it -->
-											<Built-By></Built-By>
+											<Built-By />
 											<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
 											<X-Compile-Source-JDK>${javaVersion}</X-Compile-Source-JDK>
 											<X-Compile-Target-JDK>${javaVersion}</X-Compile-Target-JDK>
