@@ -28,7 +28,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.1.0</version>
 	</parent>
 
-	<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent-book</artifactId><version>1.1.0-SNAPSHOT</version>
+	<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent-book</artifactId><version>1.1.0</version>
 	<packaging>bundle</packaging>
 
 	<properties>
@@ -53,7 +53,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<connection>scm:git:git://github.com/aoindustries/${documented.artifactId}.git</connection>
 		<developerConnection>scm:git:git@github.com:aoindustries/${documented.artifactId}.git</developerConnection>
 		<url>${documented.scm.url}</url>
-		<tag>HEAD</tag>
+		<tag>ao-oss-parent-book-1.1.0</tag>
 	</scm>
 
 	<dependencies>
