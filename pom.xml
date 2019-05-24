@@ -732,6 +732,16 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 								<goals>
 									<goal>sign</goal>
 								</goals>
+								<configuration>
+									<keyname>${gpg.nmw.keyname}</keyname>
+									<passphrase>${gpg.nmw.passphrase}</passphrase>
+									<defaultKeyring>${gpg.nmw.defaultKeyring}</defaultKeyring>
+									<useAgent>${gpg.nmw.useagent}</useAgent>
+									<lockMode>${gpg.nmw.lockMode}</lockMode>
+									<homedir>${gpg.nmw.homedir}</homedir>
+									<publicKeyring>${gpg.nmw.publicKeyring}</publicKeyring>
+									<secretKeyring>${gpg.nmw.secretKeyring}</secretKeyring>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>
