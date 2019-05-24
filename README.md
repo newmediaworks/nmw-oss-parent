@@ -1,4 +1,4 @@
-# [<img src="nmw-logo.png" alt="NMW Logo" width="46" height="46">](https://github.com/newmediaworks) [NMW OSS Parent](https://github.com/newmediaworks/nmw-oss-parent)
+# [<img src="nmw-logo.png" alt="NMW Logo" width="46" height="46">](https://github.com/newmediaworks) [NMW OSS](https://github.com/newmediaworks/nmw-oss) / [Parent](https://github.com/newmediaworks/nmw-oss-parent)
 <p>
 	<a href="https://aoindustries.com/life-cycle#project-current-stable">
 		<img src="https://aoindustries.com/ao-badges/project-current-stable.svg" alt="project: current stable" />
