@@ -55,7 +55,9 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<javac.link.javaeeApi.7>https://docs.oracle.com/javaee/7/api/</javac.link.javaeeApi.7>
 		<javac.link.javaeeApi.8>https://javaee.github.io/javaee-spec/javadocs/</javac.link.javaeeApi.8>
 		<!-- The breadcrumbs for the javadocs -->
-		<javadoc.breadcrumbs><![CDATA[<a target="_top" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
+		<javadoc.breadcrumbs><![CDATA[<a target="_top" href="https://oss.newmediaworks.com/">NMW OSS</a>
+/ <a target="_top" href="${project.url}">${shortTitle}</a>]]></javadoc.breadcrumbs>
+		<shortTitle>Parent</shortTitle>
 		<!-- The HTML format of the description -->
 		<description.html>${project.description}</description.html>
 		<!-- Taglib reference line for javadocs -->
