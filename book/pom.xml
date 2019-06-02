@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-nmw-oss-parent - Parent POM for all New Media Works open-source projects.
+nmw-oss-parent - Parent POM for all New Media Works open-source software projects.
 Copyright (C) 2019  New Media Works
     info@newmediaworks.com
     703 2nd Street #465
@@ -37,7 +37,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<documented.name>NMW OSS Parent</documented.name>
 		<documented.shortTitle>Parent</documented.shortTitle>
 		<documented.url>https://oss.newmediaworks.com/parent/</documented.url>
-		<documented.description>Parent POM for all New Media Works open-source projects.</documented.description>
+		<documented.description>Parent POM for all New Media Works open-source software projects.</documented.description>
 		<documented.inceptionYear>2019</documented.inceptionYear>
 		<documented.scm.url>https://github.com/newmediaworks/${documented.artifactId}</documented.scm.url>
 
