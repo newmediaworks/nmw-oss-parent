@@ -755,6 +755,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+				<!-- TODO: Include in each project instead of parent -->
 				<groupId>junit</groupId><artifactId>junit</artifactId><version>4.12</version>
 				<scope>test</scope>
 			</dependency>
