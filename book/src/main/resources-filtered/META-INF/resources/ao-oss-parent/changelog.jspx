@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2019-04-18T00:37:10-0500"
+		dateModified="2019-06-07T03:32:38-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-oss-parent:pom.version}" />
@@ -52,7 +52,14 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				groupId="@{documented.groupId}"
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{documented.scm.url}"
-			/>
+			>
+				<ul>
+					<li>
+						No longer including JUnit version in dependencyManagement.
+						Each project should specify its own JUnit version.
+					</li>
+				</ul>
+			</changelog:release>
 		</c:if>
 
 		<changelog:release
