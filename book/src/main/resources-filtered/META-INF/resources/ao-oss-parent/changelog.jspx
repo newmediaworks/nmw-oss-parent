@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2019-06-07T03:32:38-0500"
+		dateModified="2019-06-13T03:53:50-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-oss-parent:pom.version}" />
@@ -58,6 +58,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						No longer including JUnit version in dependencyManagement.
 						Each project should specify its own JUnit version.
 					</li>
+					<li>Set maven-surefire-plugin back to default configuration for better interaction with standard development tools.</li>
 				</ul>
 			</changelog:release>
 		</c:if>
