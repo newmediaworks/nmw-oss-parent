@@ -90,11 +90,11 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 
 	<developers>
 		<developer>
-			<name>${project.organization.name}</name>
+			<name>AO Industries, Inc.</name>
 			<email>support@aoindustries.com</email>
-			<url>${project.organization.url}</url>
-			<organization>${project.organization.name}</organization>
-			<organizationUrl>${project.organization.url}</organizationUrl>
+			<url>https://aoindustries.com/</url>
+			<organization>AO Industries, Inc.</organization>
+			<organizationUrl>https://aoindustries.com/</organizationUrl>
 		</developer>
 	</developers>
 
