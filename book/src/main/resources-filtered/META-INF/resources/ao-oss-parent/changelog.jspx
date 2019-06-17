@@ -36,7 +36,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2019-06-17T13:13:17-0500"
+		dateModified="2019-06-17T13:35:53-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-oss-parent:pom.version}" />
@@ -58,7 +58,13 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						Each project should specify its own JUnit version.
 					</li>
 					<li>Set maven-surefire-plugin back to default configuration for better interaction with standard development tools.</li>
-					<li>No longer excluding Java EE Web API 6 from <ao:a href="https://www.mojohaus.org/versions-maven-plugin/examples/advancing-dependency-versions.html#Controlling_which_dependencies_are_processed">version updates</ao:a>.</li>
+					<li>
+						No longer excluding
+						<ao:a rel="nofollow" href="https://www.oracle.com/technetwork/java/javaee/documentation/avaee6sdku1-relnotes-326908.html">Java EE Web API 6</ao:a>
+						from <ao:a href="https://www.mojohaus.org/versions-maven-plugin/examples/advancing-dependency-versions.html#Controlling_which_dependencies_are_processed">version updates</ao:a>.
+						Instead, projects are encouraged to use the new
+						<core:link book="/javaee-web-api-bom" page="/index.jspx" /> project.
+					</li>
 					<li>
 						Removed the repository "java.net2" that was going to <ao:a href="https://maven.java.net/content/groups/public/" />.
 						All the artifacts we require are in <ao:a href="https://maven.apache.org/repository/">The Central Repository</ao:a>.
