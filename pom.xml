@@ -123,8 +123,8 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 
 	<distributionManagement>
 		<snapshotRepository>
-            <id>ossrh-newmediaworks</id>
-            <name>ossrh-newmediaworks</name>
+			<id>ossrh-newmediaworks</id>
+			<name>ossrh-newmediaworks</name>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 		<!-- Unused for Nexus plugin
