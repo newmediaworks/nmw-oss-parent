@@ -121,8 +121,8 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 
 	<distributionManagement>
 		<snapshotRepository>
-            <id>ossrh-aoindustries</id>
-            <name>ossrh-aoindustries</name>
+			<id>ossrh-aoindustries</id>
+			<name>ossrh-aoindustries</name>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 		<!-- Unused for Nexus plugin
