@@ -121,12 +121,14 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 
 	<distributionManagement>
 		<snapshotRepository>
-			<id>ossrh</id>
+            <id>ossrh-aoindustries</id>
+            <name>ossrh-aoindustries</name>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 		<!-- Unused for Nexus plugin
 		<repository>
-			<id>ossrh</id>
+			<id>ossrh-aoindustries</id>
+			<name>ossrh-aoindustries</name>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 		-->
@@ -467,7 +469,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
-					<serverId>ossrh</serverId>
+					<serverId>ossrh-aoindustries</serverId>
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>
@@ -701,6 +703,16 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 								<goals>
 									<goal>sign</goal>
 								</goals>
+								<configuration>
+									<keyname>${gpg.support-aoindustries-com.keyname}</keyname>
+									<passphrase>${gpg.support-aoindustries-com.passphrase}</passphrase>
+									<defaultKeyring>${gpg.support-aoindustries-com.defaultKeyring}</defaultKeyring>
+									<useAgent>${gpg.support-aoindustries-com.useagent}</useAgent>
+									<lockMode>${gpg.support-aoindustries-com.lockMode}</lockMode>
+									<homedir>${gpg.support-aoindustries-com.homedir}</homedir>
+									<publicKeyring>${gpg.support-aoindustries-com.publicKeyring}</publicKeyring>
+									<secretKeyring>${gpg.support-aoindustries-com.secretKeyring}</secretKeyring>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>
