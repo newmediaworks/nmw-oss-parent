@@ -123,12 +123,14 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 
 	<distributionManagement>
 		<snapshotRepository>
-			<id>ossrh-oss@newmediaworks.com</id>
+            <id>ossrh-newmediaworks</id>
+            <name>ossrh-newmediaworks</name>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 		<!-- Unused for Nexus plugin
 		<repository>
-			<id>ossrh-oss@newmediaworks.com</id>
+			<id>ossrh-newmediaworks</id>
+			<name>ossrh-newmediaworks</name>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 		-->
@@ -469,7 +471,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
-					<serverId>ossrh-oss@newmediaworks.com</serverId>
+					<serverId>ossrh-newmediaworks</serverId>
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>
@@ -705,14 +707,14 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 									<goal>sign</goal>
 								</goals>
 								<configuration>
-									<keyname>${gpg.nmw.keyname}</keyname>
-									<passphrase>${gpg.nmw.passphrase}</passphrase>
-									<defaultKeyring>${gpg.nmw.defaultKeyring}</defaultKeyring>
-									<useAgent>${gpg.nmw.useagent}</useAgent>
-									<lockMode>${gpg.nmw.lockMode}</lockMode>
-									<homedir>${gpg.nmw.homedir}</homedir>
-									<publicKeyring>${gpg.nmw.publicKeyring}</publicKeyring>
-									<secretKeyring>${gpg.nmw.secretKeyring}</secretKeyring>
+									<keyname>${gpg.oss-newmediaworks-com.keyname}</keyname>
+									<passphrase>${gpg.oss-newmediaworks-com.passphrase}</passphrase>
+									<defaultKeyring>${gpg.oss-newmediaworks-com.defaultKeyring}</defaultKeyring>
+									<useAgent>${gpg.oss-newmediaworks-com.useagent}</useAgent>
+									<lockMode>${gpg.oss-newmediaworks-com.lockMode}</lockMode>
+									<homedir>${gpg.oss-newmediaworks-com.homedir}</homedir>
+									<publicKeyring>${gpg.oss-newmediaworks-com.publicKeyring}</publicKeyring>
+									<secretKeyring>${gpg.oss-newmediaworks-com.secretKeyring}</secretKeyring>
 								</configuration>
 							</execution>
 						</executions>
