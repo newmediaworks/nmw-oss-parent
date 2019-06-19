@@ -142,7 +142,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</plugin>
 				<!-- Default to using -Xlint and showing warnings -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.8.0</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.8.1</version>
 					<configuration>
 						<compilerArgs>
 							<arg>-Xlint</arg>
@@ -220,7 +220,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</executions>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>2.22.1</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>2.22.2</version>
 				</plugin>
 				<!-- We need newer dependency plugin for Java 8 compatibility -->
 				<!-- See https://issues.apache.org/jira/browse/MDEP-439 -->
@@ -268,13 +268,13 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-install-plugin</artifactId><version>2.5.2</version>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.1.1</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.1.2</version>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId><version>3.2.2</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId><version>3.2.3</version>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId><version>3.0.1</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId><version>3.1.0</version>
 				</plugin>
 				<plugin>
 					<!--
@@ -292,7 +292,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<groupId>org.apache.tomcat.maven</groupId><artifactId>tomcat7-maven-plugin</artifactId><version>2.2</version>
 				</plugin>
 				<plugin>
-					<groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId><version>9.4.16.v20190411</version>
+					<groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId><version>9.4.19.v20190610</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
