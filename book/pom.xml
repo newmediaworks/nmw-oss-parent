@@ -28,7 +28,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.0.0</version>
 	</parent>
 
-	<groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent-book</artifactId><version>1.0.0</version>
+	<groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent-book</artifactId><version>1.0.0-validation-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 
 	<properties>
@@ -54,7 +54,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<connection>scm:git:git://github.com/newmediaworks/${documented.artifactId}.git</connection>
 		<developerConnection>scm:git:git@github.com:newmediaworks/${documented.artifactId}.git</developerConnection>
 		<url>${documented.scm.url}</url>
-		<tag>nmw-oss-parent-book-1.0.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<dependencyManagement>
