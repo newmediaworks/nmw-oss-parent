@@ -24,7 +24,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.0.0-validation-SNAPSHOT</version>
+	<groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -70,6 +70,8 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<google.analytics.trackingId>TODO</google.analytics.trackingId>
 		<!-- Optional Main-Class for JAR manifest -->
 		<osgi.mainClass><!-- Default is none --></osgi.mainClass>
+		<!-- Set to "-POST-SNAPSHOT" by activating the "POST-SNAPSHOT" profile to use post-release dependencies -->
+		<POST-SNAPSHOT><!-- -POST-SNAPSHOT --></POST-SNAPSHOT>
 	</properties>
 
 	<name>NMW OSS Parent</name>
@@ -425,7 +427,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<instructions>
 						<!-- Built-By defaults to ${user.name} - skip it -->
 						<_removeheaders>Built-By</_removeheaders>
-						<!-- TODO: What to do with validation builds regarding Bundle-Version? -->
+						<!-- TODO: What to do with post-release builds regarding Bundle-Version? -->
 						<!-- TODO: ao-badges for OSGI? -->
 						<!-- TODO: _nouses like in http://svn.apache.org/repos/asf/commons/proper/commons-parent/trunk/pom.xml ? -->
 						<Bundle-DocURL>${project.url}</Bundle-DocURL>
@@ -438,7 +440,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Description>${project.description}</Bundle-Description>
 						<Implementation-Title>${project.name}</Implementation-Title>
-						<Implementation-Version>${project.version}</Implementation-Version><!-- TODO: What to do with validation builds? -->
+						<Implementation-Version>${project.version}</Implementation-Version><!-- TODO: What to do with post-release builds? -->
 						<Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
 						<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
 						<Implementation-URL>${project.url}</Implementation-URL>
@@ -488,6 +490,47 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 	</build>
 
 	<profiles>
+		<!--
+			This profile is not active by default.
+			Activate in ~/.m2/settings.xml to use post-release builds as dependencies:
+			<profile>
+				<id>POST-SNAPSHOT</id>
+				<activation>
+					<activeByDefault>true</activeByDefault>
+				</activation>
+				<properties>
+					<POST-SNAPSHOT>-POST-SNAPSHOT</POST-SNAPSHOT>
+				</properties>
+			</profile>
+
+			This profile must not be active while performing a release.  Deactivate with:
+			mvn -Prelease,'!POST-SNAPSHOT' …
+
+			Post-release builds happen after a release and before a new -SNAPSHOT is
+			started.  They are used to ensure that previous releases still compile
+			against newer dependencies.
+
+			Furthermore, post-release builds may contain the following changes without
+			being promoted to the next -SNAPSHOT version:
+			1) Updated parent POM
+			2) Updated POM
+			3) Updated Java version (without any source code changes)
+			4) Updated dependencies
+			5) Updated javadocs
+			6) Updated documentation
+
+			Post-release builds also allow NetBeans to correctly connect projects
+			together for those who are actively developing multiple modules.
+
+			Those who are only using the dependency can use the regular release to
+			avoid the overhead of the daily check for updates.
+		-->
+		<profile>
+			<id>POST-SNAPSHOT</id>
+			<properties>
+				<POST-SNAPSHOT>-POST-SNAPSHOT</POST-SNAPSHOT>
+			</properties>
+		</profile>
 		<!-- Add bootclasspath when profile enabled -->
 		<profile>
 			<id>bootclasspaths</id>
