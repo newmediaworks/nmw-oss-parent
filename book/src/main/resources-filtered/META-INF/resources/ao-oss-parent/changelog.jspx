@@ -36,7 +36,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2019-06-23T04:13:18-0500"
+		dateModified="2019-06-23T12:02:41-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-oss-parent:pom.version}" />
@@ -86,7 +86,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						Post-release builds happen after a release and before a new -SNAPSHOT is
 						started.  They are used to ensure that previous releases still compile
 						against newer dependencies.
-					<p>
+					</p>
 					<p>
 						Furthermore, post-release builds may contain the following changes without
 						being promoted to the next -SNAPSHOT version:
