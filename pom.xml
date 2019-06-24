@@ -67,7 +67,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<!-- Related Projects section for javadocs -->
 		<javadoc.relatedProjects><!-- Default is none --></javadoc.relatedProjects>
 		<!-- Google Analytics tracking code for the javadocs -->
-		<google.analytics.trackingId>TODO</google.analytics.trackingId>
+		<google.analytics.trackingId>UA-177004-2</google.analytics.trackingId>
 		<!-- Optional Main-Class for JAR manifest -->
 		<osgi.mainClass><!-- Default is none --></osgi.mainClass>
 		<!-- Set to "-POST-SNAPSHOT" by activating the "POST-SNAPSHOT" profile to use post-release dependencies -->
@@ -700,7 +700,6 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 	</div>
 </div>]]>
 							</top>
-							<!-- TODO: Once have Google Analytics tracking id:
 							<bottom>
 <![CDATA[Copyright &#169; {inceptionYear}&#x2013;{currentYear} {organizationName}. All rights reserved.
 <script type="text/javascript">
@@ -714,7 +713,6 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 
 </script>]]>
 							</bottom>
-							-->
 						</configuration>
 						<executions>
 							<execution>
