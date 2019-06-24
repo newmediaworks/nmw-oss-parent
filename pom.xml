@@ -515,9 +515,10 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			1) Updated parent POM
 			2) Updated POM
 			3) Updated Java version (without any source code changes)
-			4) Updated dependencies
+			4) Updated dependency versions
 			5) Updated javadocs
 			6) Updated documentation
+			7) Other changes to white-space or comments
 
 			Post-release builds also allow NetBeans to correctly connect projects
 			together for those who are actively developing multiple modules.
