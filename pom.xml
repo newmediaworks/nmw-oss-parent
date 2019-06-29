@@ -424,7 +424,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<configuration>
 					<instructions>
 						<!-- Built-By defaults to ${user.name} - skip it -->
-						<_removeheaders>Built-By</_removeheaders>
+						<_removeheaders>Built-By,POST-SNAPSHOT</_removeheaders>
 						<!-- TODO: What to do with post-release builds regarding Bundle-Version? -->
 						<!-- TODO: ao-badges for OSGI? -->
 						<!-- TODO: _nouses like in http://svn.apache.org/repos/asf/commons/proper/commons-parent/trunk/pom.xml ? -->
