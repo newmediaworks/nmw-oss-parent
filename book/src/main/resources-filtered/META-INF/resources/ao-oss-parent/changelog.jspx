@@ -36,7 +36,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2019-08-11T04:32:37-0500"
+		dateModified="2019-08-11T05:22:54-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-oss-parent:pom.version}" />
@@ -51,23 +51,32 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				groupId="@{documented.groupId}"
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{documented.scm.url}"
-			>
-				<ul>
-					<li>
-						<p>
-							Set delimiters for <ao:a href="https://maven.apache.org/plugins/maven-war-plugin/">maven-war-plugin</ao:a>
-							to match the configuration of <ao:a href="https://maven.apache.org/plugins/maven-resources-plugin/">maven-resources-plugin</ao:a>,
-							using <code>@{*}</code>.
-						</p>
-						<p>
-							Also enabled <ao:a href="https://maven.apache.org/plugins/maven-war-plugin/war-mojo.html#filteringDeploymentDescriptors">filteringDeploymentDescriptors</ao:a>
-							by default.
-						</p>
-					</li>
-					<li>Updated plugin versions.</li>
-				</ul>
-			</changelog:release>
+			/>
 		</c:if>
+
+		<changelog:release
+			projectName="@{documented.name}"
+			version="1.4.0"
+			datePublished="2019-08-11T05:22:54-0500"
+			groupId="@{documented.groupId}"
+			artifactId="@{documented.artifactId}"
+			scmUrl="@{documented.scm.url}"
+		>
+			<ul>
+				<li>
+					<p>
+						Set delimiters for <ao:a href="https://maven.apache.org/plugins/maven-war-plugin/">maven-war-plugin</ao:a>
+						to match the configuration of <ao:a href="https://maven.apache.org/plugins/maven-resources-plugin/">maven-resources-plugin</ao:a>,
+						using <code>@{*}</code>.
+					</p>
+					<p>
+						Also enabled <ao:a href="https://maven.apache.org/plugins/maven-war-plugin/war-mojo.html#filteringDeploymentDescriptors">filteringDeploymentDescriptors</ao:a>
+						by default.
+					</p>
+				</li>
+				<li>Updated plugin versions.</li>
+			</ul>
+		</changelog:release>
 
 		<changelog:release
 			projectName="@{documented.name}"
