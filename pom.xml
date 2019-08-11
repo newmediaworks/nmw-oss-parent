@@ -281,15 +281,10 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId><version>3.1.0</version>
 				</plugin>
 				<plugin>
-					<!--
-						Leave at 3.0.0 until bug fixed:
-						[MJAVADOC-539] Upgrading plugin from 3.0.0 to 3.0.1 and 3.1.0 breaks certain external javadoc links
-						https://issues.apache.org/jira/browse/MJAVADOC-539
-					-->
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.0.0</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.1.1</version>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId><version>3.7.1</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId><version>3.8.2</version>
 				</plugin>
 				<!-- Plugins used by some project-specific pom.xml -->
 				<plugin>
