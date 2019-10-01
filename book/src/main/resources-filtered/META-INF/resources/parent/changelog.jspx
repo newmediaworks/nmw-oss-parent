@@ -36,7 +36,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T19:05:12-0500"
-		dateModified="2019-10-01T15:30:38-0500"
+		dateModified="2019-10-01T18:05:43-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.newmediaworks:nmw-oss-parent:pom.version}" />
@@ -51,19 +51,28 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				groupId="@{documented.groupId}"
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{documented.scm.url}"
-			>
-				<ul>
-					<li>Java updates:
-						<ol>
-							<li>Java 12 is now end-of-life</li>
-							<li>Java 13 is now current stable</li>
-							<li>Java 14 is new beta</li>
-						</ol>
-					</li>
-					<li>Updated plugin versions.</li>
-				</ul>
-			</changelog:release>
+			/>
 		</c:if>
+
+		<changelog:release
+			projectName="@{documented.name}"
+			version="1.3.0"
+			datePublished="2019-10-01T18:05:43-0500"
+			groupId="@{documented.groupId}"
+			artifactId="@{documented.artifactId}"
+			scmUrl="@{documented.scm.url}"
+		>
+			<ul>
+				<li>Java updates:
+					<ol>
+						<li>Java 12 is now end-of-life</li>
+						<li>Java 13 is now current stable</li>
+						<li>Java 14 is new beta</li>
+					</ol>
+				</li>
+				<li>Updated plugin versions.</li>
+			</ul>
+		</changelog:release>
 
 		<changelog:release
 			projectName="@{documented.name}"
