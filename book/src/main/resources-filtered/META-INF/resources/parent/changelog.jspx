@@ -52,16 +52,16 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{documented.scm.url}"
 			>
-				<ol>
+				<ul>
 					<li>Java updates:
-						<ol type="a">
+						<ol>
 							<li>Java 12 is now end-of-life</li>
 							<li>Java 13 is now current stable</li>
 							<li>Java 14 is new beta</li>
 						</ol>
 					</li>
 					<li>Updated plugin versions.</li>
-				</ol>
+				</ul>
 			</changelog:release>
 		</c:if>
 
