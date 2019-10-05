@@ -522,7 +522,9 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			5) Updated javadocs
 			6) Updated documentation
 			7) Updated unit tests
-			8) Other changes to white-space or comments
+			8) Deprecated methods and classes
+			9) Renamed private fields and local variables
+			10) Other changes to white-space or comments
 
 			Post-release builds also allow NetBeans to correctly connect projects
 			together for those who are actively developing multiple modules.
