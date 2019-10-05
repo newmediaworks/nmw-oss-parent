@@ -36,7 +36,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T19:05:12-0500"
-		dateModified="2019-10-01T18:05:43-0500"
+		dateModified="2019-10-05T18:43:35-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.newmediaworks:nmw-oss-parent:pom.version}" />
@@ -159,6 +159,8 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<li>Updated javadocs</li>
 						<li>Updated documentation</li>
 						<li>Updated unit tests</li>
+						<li>Deprecated methods and classes</li>
+						<li>Renamed private fields and local variables</li>
 						<li>Other changes to white-space or comments</li>
 					</ol>
 					<p>
