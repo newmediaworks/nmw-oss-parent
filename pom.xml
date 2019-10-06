@@ -711,6 +711,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 	</div>
 </div>]]>
 							</top>
+							<!-- TODO: Global site tag (gtag.js) once HTML 5 -->
 							<bottom>
 <![CDATA[Copyright &#169; {inceptionYear}&#x2013;{currentYear} {organizationName}. All rights reserved.
 <script type="text/javascript">
