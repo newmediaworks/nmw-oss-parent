@@ -54,7 +54,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			>
 				<ul>
 					<li>
-						To significantly reduce the size of Javadocs, using new <core:link book="/ao-java-resources" page="/index.jspx" />
+						To significantly reduce the size of Javadocs, using new <core:link book="/ao-javadoc-resources" page="/index.jspx" />
 						project instead of <code>data:</code> URLs.
 					</li>
 				</ul>
