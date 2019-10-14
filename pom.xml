@@ -674,7 +674,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							</links>
 							<resourcesArtifacts>
 								<resourcesArtifact>
-									<groupId>com.aoindustries</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.0-POST-SNAPSHOT</version>
+									<groupId>com.aoindustries</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.0<!-- -POST-SNAPSHOT --></version>
 								</resourcesArtifact>
 							</resourcesArtifacts>
 							<top>
