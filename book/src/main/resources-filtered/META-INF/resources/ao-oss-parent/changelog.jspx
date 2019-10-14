@@ -36,7 +36,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2019-10-13T05:19:53-0500"
+		dateModified="2019-10-14T02:41:14-0500"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-oss-parent:pom.version}" />
@@ -51,15 +51,24 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				groupId="@{documented.groupId}"
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{documented.scm.url}"
-			>
-				<ul>
-					<li>
-						To significantly reduce the size of Javadocs, using new <core:link book="/ao-javadoc-resources" page="/index.jspx" />
-						project instead of <code>data:</code> URLs.
-					</li>
-				</ul>
-			</changelog:release>
+			/>
 		</c:if>
+
+		<changelog:release
+			projectName="@{documented.name}"
+			version="1.6.0"
+			datePublished="2019-10-14T02:41:14-0500"
+			groupId="@{documented.groupId}"
+			artifactId="@{documented.artifactId}"
+			scmUrl="@{documented.scm.url}"
+		>
+			<ul>
+				<li>
+					To significantly reduce the size of Javadocs, using new <core:link book="/ao-javadoc-resources" page="/index.jspx" />
+					project instead of <code>data:</code> URLs.
+				</li>
+			</ul>
+		</changelog:release>
 
 		<changelog:release
 			projectName="@{documented.name}"
