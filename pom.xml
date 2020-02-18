@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 ao-oss-parent - Parent POM for all AO open-source projects.
-Copyright (C) 2016, 2017, 2018, 2019  AO Industries, Inc.
+Copyright (C) 2016, 2017, 2018, 2019, 2020  AO Industries, Inc.
     support@aoindustries.com
     7262 Bull Pen Cir
     Mobile, AL 36695
@@ -674,7 +674,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							</links>
 							<resourcesArtifacts>
 								<resourcesArtifact>
-									<groupId>com.aoindustries</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.0-POST-SNAPSHOT</version>
+									<groupId>com.aoindustries</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.0${POST-SNAPSHOT}</version>
 								</resourcesArtifact>
 							</resourcesArtifacts>
 							<top>
