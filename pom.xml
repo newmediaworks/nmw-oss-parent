@@ -24,7 +24,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.4.0-POST-SNAPSHOT</version>
+	<groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.5.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -222,6 +222,27 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 								<outputDirectory>${project.build.directory}/resources-filtered</outputDirectory>
 							</configuration>
 						</execution>
+						<!--
+							maven-war-plugin requires the src/main/webapp-filtered directory, which we only add to
+							projects as-needed.  To workaround this, we first filter into target/webapp-filtered,
+							then create the directory if not already present.
+						-->
+						<execution>
+							<id>filter-webapp</id>
+							<phase>process-resources</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<resources>
+									<resource>
+										<directory>src/main/webapp-filtered</directory>
+										<filtering>true</filtering>
+									</resource>
+								</resources>
+								<outputDirectory>${project.build.directory}/webapp-filtered</outputDirectory>
+							</configuration>
+						</execution>
 					</executions>
 				</plugin>
 				<plugin>
@@ -387,6 +408,11 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<delimiter>@{*}</delimiter>
 					</delimiters>
 					<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+					<webResources>
+						<resource>
+							<directory>target/webapp-filtered</directory>
+						</resource>
+					</webResources>
 					<archive>
 						<manifest>
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
@@ -405,6 +431,9 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			<!--
 				The second copy of resources-filtered is required for maven-bundle-plugin, even if empty.
 				Otherwise the bundle packaging will fail.
+
+				Furthermore, the webapp-filtered is required, even if empty.
+				Otherwise, the war packaging will fail.
 			-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
@@ -416,6 +445,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<target>
 								<mkdir dir="${project.build.directory}/classes" />
 								<mkdir dir="${project.build.directory}/resources-filtered" />
+								<mkdir dir="${project.build.directory}/webapp-filtered" />
 							</target>
 						</configuration>
 						<goals>
