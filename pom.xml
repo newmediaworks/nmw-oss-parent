@@ -31,6 +31,8 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- The version of JDK used, such as 1.7, 1.8, 9, 10, 11, 12, 13, 14, ... -->
 		<javaVersion>1.7</javaVersion>
+		<maven.compiler.source>${javaVersion}</maven.compiler.source>
+		<maven.compiler.target>${javaVersion}</maven.compiler.target>
 		<!-- This should be set in your ~/.m2/settings.xml and activated -->
 		<compiler.bootclasspath>${bootclasspath.jdk7}</compiler.bootclasspath>
 		<!--
@@ -220,27 +222,6 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 								<outputDirectory>${project.build.directory}/resources-filtered</outputDirectory>
 							</configuration>
 						</execution>
-						<!--
-							maven-war-plugin requires the src/main/webapp-filtered directory, which we only add to
-							projects as-needed.  To workaround this, we first filter into target/webapp-filtered,
-							then create the directory if not already present.
-						-->
-						<execution>
-							<id>filter-webapp</id>
-							<phase>process-resources</phase>
-							<goals>
-								<goal>copy-resources</goal>
-							</goals>
-							<configuration>
-								<resources>
-									<resource>
-										<directory>src/main/webapp-filtered</directory>
-										<filtering>true</filtering>
-									</resource>
-								</resources>
-								<outputDirectory>${project.build.directory}/webapp-filtered</outputDirectory>
-							</configuration>
-						</execution>
 					</executions>
 				</plugin>
 				<plugin>
@@ -406,11 +387,6 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<delimiter>@{*}</delimiter>
 					</delimiters>
 					<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
-					<webResources>
-						<resource>
-							<directory>target/webapp-filtered</directory>
-						</resource>
-					</webResources>
 					<archive>
 						<manifest>
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
@@ -429,9 +405,6 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			<!--
 				The second copy of resources-filtered is required for maven-bundle-plugin, even if empty.
 				Otherwise the bundle packaging will fail.
-
-				Furthermore, the webapp-filtered is required, even if empty.
-				Otherwise, the war packaging will fail.
 			-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
@@ -443,7 +416,6 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<target>
 								<mkdir dir="${project.build.directory}/classes" />
 								<mkdir dir="${project.build.directory}/resources-filtered" />
-								<mkdir dir="${project.build.directory}/webapp-filtered" />
 							</target>
 						</configuration>
 						<goals>
