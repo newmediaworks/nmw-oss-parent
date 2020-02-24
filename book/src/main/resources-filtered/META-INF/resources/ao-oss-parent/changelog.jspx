@@ -36,7 +36,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2020-02-18T23:52:26-0600"
+		dateModified="2020-02-23T19:28:37-0600"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-oss-parent:pom.version}" />
@@ -54,6 +54,10 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			>
 				<ul>
 					<li>Now setting build properties <code>maven.compiler.source</code> and <code>maven.compiler.target</code>.</li>
+					<li>
+						Now setting build property <code>javac.link.javamailApi</code> in parent POM
+						instead of on a per-project basis.
+					</li>
 				</ul>
 			</changelog:release>
 		</c:if>
