@@ -53,6 +53,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<javac.link.javaApi.jdk14>https://download.java.net/java/early_access/jdk14/docs/api/</javac.link.javaApi.jdk14>
 		<javac.link.javaApi>${javac.link.javaApi.jdk7}</javac.link.javaApi>
 		<!-- The Java EE apidocs to link to, preferring https -->
+		<javac.link.javamailApi>https://javaee.github.io/javamail/docs/api/</javac.link.javamailApi>
 		<javac.link.javaeeApi.5>https://docs.oracle.com/javaee/5/api/</javac.link.javaeeApi.5>
 		<javac.link.javaeeApi.6>https://docs.oracle.com/javaee/6/api/</javac.link.javaeeApi.6>
 		<javac.link.javaeeApi.7>https://docs.oracle.com/javaee/7/api/</javac.link.javaeeApi.7>
