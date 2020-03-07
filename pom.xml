@@ -29,35 +29,45 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- The version of JDK used, such as 1.7, 1.8, 9, 10, 11, 12, 13, 14, ... -->
-		<javaVersion>1.7</javaVersion>
-		<maven.compiler.source>${javaVersion}</maven.compiler.source>
-		<maven.compiler.target>${javaVersion}</maven.compiler.target>
-		<!-- This should be set in your ~/.m2/settings.xml and activated -->
-		<compiler.bootclasspath>${bootclasspath.jdk7}</compiler.bootclasspath>
-		<!--
-			Java 1.8 javadoc bug: https://bugs.openjdk.java.net/browse/JDK-8041628
-			Java 1.9: Set this back to jdk7.
-		-->
-		<javac.bootclasspath>${bootclasspath.jdk8}</javac.bootclasspath>
+
 		<!-- The version of Java apidocs to link to, preferring https -->
-		<javac.link.javaApi.jdk5>https://docs.oracle.com/javase/1.5.0/docs/api/</javac.link.javaApi.jdk5>
-		<javac.link.javaApi.jdk6>https://docs.oracle.com/javase/6/docs/api/</javac.link.javaApi.jdk6>
-		<javac.link.javaApi.jdk7>https://docs.oracle.com/javase/7/docs/api/</javac.link.javaApi.jdk7>
-		<javac.link.javaApi.jdk8>https://docs.oracle.com/javase/8/docs/api/</javac.link.javaApi.jdk8>
-		<javac.link.javaApi.jdk9>https://docs.oracle.com/javase/9/docs/api/</javac.link.javaApi.jdk9>
-		<javac.link.javaApi.jdk10>https://docs.oracle.com/javase/10/docs/api/</javac.link.javaApi.jdk10>
-		<javac.link.javaApi.jdk11>https://docs.oracle.com/en/java/javase/11/docs/api/</javac.link.javaApi.jdk11>
-		<javac.link.javaApi.jdk12>https://docs.oracle.com/en/java/javase/12/docs/api/</javac.link.javaApi.jdk12>
-		<javac.link.javaApi.jdk13>https://docs.oracle.com/en/java/javase/13/docs/api/</javac.link.javaApi.jdk13>
-		<javac.link.javaApi.jdk14>https://download.java.net/java/early_access/jdk14/docs/api/</javac.link.javaApi.jdk14>
-		<javac.link.javaApi>${javac.link.javaApi.jdk7}</javac.link.javaApi>
+		<javadoc.link.javase.5>https://docs.oracle.com/javase/1.5.0/docs/api/</javadoc.link.javase.5>
+		<javadoc.link.javase.6>https://docs.oracle.com/javase/6/docs/api/</javadoc.link.javase.6>
+		<javadoc.link.javase.7>https://docs.oracle.com/javase/7/docs/api/</javadoc.link.javase.7>
+		<javadoc.link.javase.8>https://docs.oracle.com/javase/8/docs/api/</javadoc.link.javase.8>
+		<javadoc.link.javase.9>https://docs.oracle.com/javase/9/docs/api/</javadoc.link.javase.9>
+		<javadoc.link.javase.10>https://docs.oracle.com/javase/10/docs/api/</javadoc.link.javase.10>
+		<javadoc.link.javase.11>https://docs.oracle.com/en/java/javase/11/docs/api/</javadoc.link.javase.11>
+		<javadoc.link.javase.12>https://docs.oracle.com/en/java/javase/12/docs/api/</javadoc.link.javase.12>
+		<javadoc.link.javase.13>https://docs.oracle.com/en/java/javase/13/docs/api/</javadoc.link.javase.13>
+		<javadoc.link.javase.14>https://download.java.net/java/early_access/jdk14/docs/api/</javadoc.link.javase.14>
+
 		<!-- The Java EE apidocs to link to, preferring https -->
-		<javac.link.javamailApi>https://javaee.github.io/javamail/docs/api/</javac.link.javamailApi>
-		<javac.link.javaeeApi.5>https://docs.oracle.com/javaee/5/api/</javac.link.javaeeApi.5>
-		<javac.link.javaeeApi.6>https://docs.oracle.com/javaee/6/api/</javac.link.javaeeApi.6>
-		<javac.link.javaeeApi.7>https://docs.oracle.com/javaee/7/api/</javac.link.javaeeApi.7>
-		<javac.link.javaeeApi.8>https://javaee.github.io/javaee-spec/javadocs/</javac.link.javaeeApi.8>
+		<javadoc.link.javamail>https://javaee.github.io/javamail/docs/api/</javadoc.link.javamail>
+		<javadoc.link.javaee.5>https://docs.oracle.com/javaee/5/api/</javadoc.link.javaee.5>
+		<javadoc.link.javaee.6>https://docs.oracle.com/javaee/6/api/</javadoc.link.javaee.6>
+		<javadoc.link.javaee.7>https://docs.oracle.com/javaee/7/api/</javadoc.link.javaee.7>
+		<javadoc.link.javaee.8>https://javaee.github.io/javaee-spec/javadocs/</javadoc.link.javaee.8>
+
+		<!-- Java SE version -->
+		<javase.version>1.8</javase.version>
+		<javadoc.link.javase>${javadoc.link.javase.8}</javadoc.link.javase>
+		<!-- This should be set in your ~/.m2/settings.xml and activated -->
+		<javase.bootclasspath>${javase.bootclasspath.8}</javase.bootclasspath>
+		<!-- These values are copied from the project being documented -->
+		<documented.javase.version>1.8</documented.javase.version>
+		<documented.javadoc.link.javase>${javadoc.link.javase.8}</documented.javadoc.link.javase>
+
+		<!-- Java EE version -->
+		<javaee.version>6</javaee.version>
+		<javadoc.link.javaee>${javadoc.link.javaee.6}</javadoc.link.javaee>
+		<!-- These values are copied from the project being documented -->
+		<documented.javaee.version>6</documented.javaee.version>
+		<documented.javadoc.link.javaee>${documented.javadoc.link.javaee.6}</documented.javadoc.link.javaee>
+
+		<!-- Maven Java version -->
+		<maven.compiler.source>${javase.version}</maven.compiler.source>
+		<maven.compiler.target>${javase.version}</maven.compiler.target>
 		<!-- The breadcrumbs for the javadocs -->
 		<javadoc.breadcrumbs><![CDATA[<a target="_top" href="https://oss.newmediaworks.com/">NMW OSS</a>
 / <a target="_top" href="${project.url}">${shortTitle}</a>]]></javadoc.breadcrumbs>
@@ -157,8 +167,8 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						</compilerArgs>
 						<showDeprecation>true</showDeprecation>
 						<showWarnings>true</showWarnings>
-						<source>${javaVersion}</source>
-						<target>${javaVersion}</target>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -372,8 +382,8 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<!-- Built-By defaults to ${user.name} - hide it -->
 							<Built-By />
 							<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
-							<X-Compile-Source-JDK>${javaVersion}</X-Compile-Source-JDK>
-							<X-Compile-Target-JDK>${javaVersion}</X-Compile-Target-JDK>
+							<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+							<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
 						</manifestEntries>
 					</archive>
 				</configuration>
@@ -399,8 +409,8 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<!-- Built-By defaults to ${user.name} - hide it -->
 							<Built-By />
 							<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
-							<X-Compile-Source-JDK>${javaVersion}</X-Compile-Source-JDK>
-							<X-Compile-Target-JDK>${javaVersion}</X-Compile-Target-JDK>
+							<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+							<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
 						</manifestEntries>
 					</archive>
 				</configuration>
@@ -470,8 +480,8 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<!-- Instructions not found in docs, and adapted by what found in https://github.com/mybatis/parent/blob/master/pom.xml -->
 						<!-- TODO: Necessary?  Helpful? -->
 						<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
-						<X-Compile-Source-JDK>${javaVersion}</X-Compile-Source-JDK>
-						<X-Compile-Target-JDK>${javaVersion}</X-Compile-Target-JDK>
+						<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+						<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
 						<!-- Optional Main-Class, as seen at https://github.com/FasterXML/oss-parent/blob/master/pom.xml -->
 						<Main-Class>${osgi.mainClass}</Main-Class>
 					</instructions>
@@ -545,7 +555,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		</profile>
 		<!-- Add bootclasspath when profile enabled -->
 		<profile>
-			<id>bootclasspaths</id>
+			<id>javase.bootclasspath</id>
 			<build>
 				<pluginManagement>
 					<plugins>
@@ -553,14 +563,14 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId>
 							<configuration>
 								<compilerArguments>
-									<bootclasspath>${compiler.bootclasspath}</bootclasspath>
+									<bootclasspath>${javase.bootclasspath}</bootclasspath>
 								</compilerArguments>
 							</configuration>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 							<configuration>
-								<bootclasspath>${javac.bootclasspath}</bootclasspath>
+								<bootclasspath>${javase.bootclasspath}</bootclasspath>
 							</configuration>
 						</plugin>
 					</plugins>
@@ -654,8 +664,8 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 											<!-- Built-By defaults to ${user.name} - hide it -->
 											<Built-By />
 											<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
-											<X-Compile-Source-JDK>${javaVersion}</X-Compile-Source-JDK>
-											<X-Compile-Target-JDK>${javaVersion}</X-Compile-Target-JDK>
+											<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+											<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
 										</manifestEntries>
 									</archive>
 								</configuration>
@@ -675,7 +685,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<!-- Links to JDK docs are added manually to the https version on a per-project basis -->
 							<detectJavaApiLink>false</detectJavaApiLink>
 							<links>
-								<link>${javac.link.javaApi}</link>
+								<link>${javadoc.link.javase}</link>
 							</links>
 							<resourcesArtifacts>
 								<resourcesArtifact>
@@ -747,8 +757,8 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 											<!-- Built-By defaults to ${user.name} - hide it -->
 											<Built-By />
 											<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
-											<X-Compile-Source-JDK>${javaVersion}</X-Compile-Source-JDK>
-											<X-Compile-Target-JDK>${javaVersion}</X-Compile-Target-JDK>
+											<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+											<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
 										</manifestEntries>
 									</archive>
 								</configuration>
