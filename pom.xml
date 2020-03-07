@@ -107,9 +107,9 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 	</developers>
 
 	<scm>
-		<connection>scm:git:git://github.com/newmediaworks/${project.artifactId}.git</connection>
-		<developerConnection>scm:git:git@github.com:newmediaworks/${project.artifactId}.git</developerConnection>
-		<url>https://github.com/newmediaworks/${project.artifactId}</url>
+		<connection>scm:git:git://github.com/newmediaworks/nmw-oss-parent.git</connection>
+		<developerConnection>scm:git:git@github.com:newmediaworks/nmw-oss-parent.git</developerConnection>
+		<url>https://github.com/newmediaworks/nmw-oss-parent</url>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -679,7 +679,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							</links>
 							<resourcesArtifacts>
 								<resourcesArtifact>
-									<groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.0${POST-SNAPSHOT}</version>
+									<groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.1-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 								</resourcesArtifact>
 							</resourcesArtifacts>
 							<top>
