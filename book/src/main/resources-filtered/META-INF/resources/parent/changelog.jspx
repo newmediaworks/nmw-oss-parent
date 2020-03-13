@@ -37,7 +37,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T19:05:12-0500"
-		dateModified="2020-03-07T08:38:21-0600"
+		dateModified="2020-03-13T02:19:21-05:00"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.newmediaworks:nmw-oss-parent:pom.version}" />
@@ -88,6 +88,18 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						</ol>
 					</li>
 					<li>Renamed profile <code>bootclasspaths</code> to <code>javase.bootclasspath</code>.</li>
+					<li>Added build properties for Java EE:
+						<ol>
+							<li><code>javaee.version</code>,default <code>6</code></li>
+							<li><code>javadoc.link.javaee</code>, default <code>\${javadoc.link.javaee.6}</code></li>
+							<li><code>documented.javaee.version</code>, default <code>6</code></li>
+							<li><code>documented.javadoc.link.javaee</code>, default <code>\${javadoc.link.javaee.6}</code></li>
+						</ol>
+					</li>
+					<li>
+						Added <ao:a href="http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html#source"><![CDATA[&lt;source&gt;]]></ao:a>
+						configuration to <ao:a href="http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html">maven-javadoc-plugin</ao:a> to build correctly in Java 11.
+					</li>
 				</ul>
 			</changelog:release>
 		</c:if>
