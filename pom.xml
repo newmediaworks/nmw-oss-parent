@@ -777,14 +777,10 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 									<goal>sign</goal>
 								</goals>
 								<configuration>
+									<lockMode>multiple</lockMode>
+									<homedir>${gpg.oss-newmediaworks-com.homedir}</homedir>
 									<keyname>${gpg.oss-newmediaworks-com.keyname}</keyname>
 									<passphrase>${gpg.oss-newmediaworks-com.passphrase}</passphrase>
-									<defaultKeyring>${gpg.oss-newmediaworks-com.defaultKeyring}</defaultKeyring>
-									<useAgent>${gpg.oss-newmediaworks-com.useagent}</useAgent>
-									<lockMode>${gpg.oss-newmediaworks-com.lockMode}</lockMode>
-									<homedir>${gpg.oss-newmediaworks-com.homedir}</homedir>
-									<publicKeyring>${gpg.oss-newmediaworks-com.publicKeyring}</publicKeyring>
-									<secretKeyring>${gpg.oss-newmediaworks-com.secretKeyring}</secretKeyring>
 								</configuration>
 							</execution>
 						</executions>
