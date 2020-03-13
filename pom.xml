@@ -568,6 +568,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 							<configuration>
+								<source>${maven.compiler.source}</source>
 								<bootclasspath>${javase.bootclasspath}</bootclasspath>
 							</configuration>
 						</plugin>
