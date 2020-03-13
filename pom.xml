@@ -776,14 +776,10 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 									<goal>sign</goal>
 								</goals>
 								<configuration>
+									<lockMode>multiple</lockMode>
+									<homedir>${gpg.support-aoindustries-com.homedir}</homedir>
 									<keyname>${gpg.support-aoindustries-com.keyname}</keyname>
 									<passphrase>${gpg.support-aoindustries-com.passphrase}</passphrase>
-									<defaultKeyring>${gpg.support-aoindustries-com.defaultKeyring}</defaultKeyring>
-									<useAgent>${gpg.support-aoindustries-com.useagent}</useAgent>
-									<lockMode>${gpg.support-aoindustries-com.lockMode}</lockMode>
-									<homedir>${gpg.support-aoindustries-com.homedir}</homedir>
-									<publicKeyring>${gpg.support-aoindustries-com.publicKeyring}</publicKeyring>
-									<secretKeyring>${gpg.support-aoindustries-com.secretKeyring}</secretKeyring>
 								</configuration>
 							</execution>
 						</executions>
