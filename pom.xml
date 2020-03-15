@@ -50,12 +50,13 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<javadoc.link.javaee.8>https://javaee.github.io/javaee-spec/javadocs/</javadoc.link.javaee.8>
 
 		<!-- Java SE version -->
-		<javase.version>1.8</javase.version>
+		<javase.version>1.8</javase.version><!-- 1.6, 1.7, 1.8, 9, 10, 11, ... -->
+		<javase.release>8</javase.release><!-- 6, 7, 8, 9, 10, 11, ... -->
 		<javadoc.link.javase>${javadoc.link.javase.8}</javadoc.link.javase>
-		<!-- This should be set in your ~/.m2/settings.xml and activated -->
+		<!-- This must be set in your ~/.m2/settings.xml when building with JDK < 9 -->
 		<javase.bootclasspath>${javase.bootclasspath.8}</javase.bootclasspath>
 		<!-- These values are copied from the project being documented -->
-		<documented.javase.version>1.8</documented.javase.version>
+		<documented.javase.version>1.8</documented.javase.version><!-- 1.6, 1.7, 1.8, 9, 10, 11, ... -->
 		<documented.javadoc.link.javase>${javadoc.link.javase.8}</documented.javadoc.link.javase>
 
 		<!-- Java EE version -->
@@ -296,6 +297,9 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.1.1</version>
+					<configuration>
+						<source>${maven.compiler.source}</source>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId><version>3.8.2</version>
@@ -553,9 +557,12 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<POST-SNAPSHOT>-POST-SNAPSHOT</POST-SNAPSHOT>
 			</properties>
 		</profile>
-		<!-- Add bootclasspath when profile enabled -->
+		<!-- Use bootclasspath in JDK < 9 -->
 		<profile>
 			<id>javase.bootclasspath</id>
+			<activation>
+				<jdk>(,9)</jdk>
+			</activation>
 			<build>
 				<pluginManagement>
 					<plugins>
@@ -570,8 +577,35 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 							<configuration>
-								<source>${maven.compiler.source}</source>
 								<bootclasspath>${javase.bootclasspath}</bootclasspath>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+		<!-- Use release in JDK >= 9 -->
+		<profile>
+			<id>javase.release</id>
+			<activation>
+				<jdk>[9,)</jdk>
+			</activation>
+			<properties>
+				<maven.compiler.release>${javase.release}</maven.compiler.release>
+			</properties>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId>
+							<configuration>
+								<release>${maven.compiler.release}</release>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
+							<configuration>
+								<release>${maven.compiler.release}</release>
 							</configuration>
 						</plugin>
 					</plugins>
