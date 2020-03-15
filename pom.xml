@@ -173,7 +173,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId><version>3.0.0-M2</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId><version>3.0.0-M3</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-resources-plugin</artifactId><version>3.1.0</version>
@@ -239,12 +239,12 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</executions>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>2.22.2</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.0.0-M4</version>
 				</plugin>
 				<!-- We need newer dependency plugin for Java 8 compatibility -->
 				<!-- See https://issues.apache.org/jira/browse/MDEP-439 -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId><version>3.1.1</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId><version>3.1.2</version>
 				</plugin>
 				<!-- Supporting packaging of "bundle" for OSGI bundles -->
 				<plugin>
@@ -252,7 +252,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</plugin>
 				<!-- Other plugins used below -->
 				<plugin>
-					<groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId><version>3.0.0</version>
+					<groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId><version>3.1.0</version>
 				</plugin>
 				<plugin>
 					<groupId>io.reformanda.semper</groupId><artifactId>dependencyversion-maven-plugin</artifactId><version>1.0.1</version>
@@ -261,7 +261,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId><version>1.6.8</version>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-release-plugin</artifactId><version>2.5.3</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-release-plugin</artifactId><version>3.0.0-M1</version>
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId><artifactId>versions-maven-plugin</artifactId><version>2.7</version>
@@ -281,19 +281,19 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-clean-plugin</artifactId><version>3.1.0</version>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId><version>2.8.2</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId><version>3.0.0-M1</version>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-install-plugin</artifactId><version>2.5.2</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-install-plugin</artifactId><version>3.0.0-M1</version>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.1.2</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.2.0</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId><version>3.2.3</version>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId><version>3.1.0</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId><version>3.2.1</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.1.1</version>
@@ -302,14 +302,14 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId><version>3.8.2</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId><version>3.9.0</version>
 				</plugin>
 				<!-- Plugins used by some project-specific pom.xml -->
 				<plugin>
 					<groupId>org.apache.tomcat.maven</groupId><artifactId>tomcat7-maven-plugin</artifactId><version>2.2</version>
 				</plugin>
 				<plugin>
-					<groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId><version>9.4.21.v20190926</version>
+					<groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId><version>9.4.27.v20200227</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
