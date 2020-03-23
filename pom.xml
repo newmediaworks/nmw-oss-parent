@@ -611,7 +611,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</pluginManagement>
 			</build>
 		</profile>
-		<!-- Disable doclint and allow-script-in-comments in Java 1.8+ -->
+		<!-- Configure doclint and allow-script-in-comments in Java 1.8+ -->
 		<profile>
 			<id>java8-javadoc</id>
 			<activation>
@@ -624,7 +624,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 							<configuration>
 								<additionalOptions>--allow-script-in-comments</additionalOptions>
-								<doclint>none</doclint>
+								<doclint>all,-missing</doclint>
 							</configuration>
 						</plugin>
 					</plugins>
