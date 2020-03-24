@@ -25,7 +25,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.7.1-POST-SNAPSHOT</version>
+		<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.7.1<!-- -POST-SNAPSHOT --></version>
 	</parent>
 
 	<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent-book</artifactId><version>1.7.1-SNAPSHOT</version>
@@ -97,7 +97,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		</dependency>
 		<!-- Dependency for dependencyversion-maven-plugin only -->
 		<dependency>
-			<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.7.1-POST-SNAPSHOT</version>
+			<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.7.1<!-- -POST-SNAPSHOT --></version>
 			<type>pom</type>
 			<scope>provided</scope>
 			<optional>true</optional>
