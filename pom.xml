@@ -24,7 +24,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.5.0-POST-SNAPSHOT</version>
+	<groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.5.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -743,7 +743,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			<li><a target="_top" href="${project.url}changelog">Changelog</a></li>
 			${javadoc.taglibReference}
 			<li><a target="_top" href="${project.url}apidocs/">API Docs</a></li>
-			<li><a target="_top" href="https://search.maven.org/#search%7Cgav%7C1%7Cg:%22${project.groupId}%22%20AND%20a:%22${project.artifactId}%22">Maven Central Repository</a></li>
+			<li><a target="_top" href="https://search.maven.org/artifact/${project.groupId}/${project.artifactId}">Maven Central Repository</a></li>
 			<li><a target="_top" href="${project.scm.url}">GitHub</a></li>
 		</ul>
 	</div>
