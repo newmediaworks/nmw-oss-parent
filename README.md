@@ -23,7 +23,7 @@ Parent POM for all AO open-source projects.
 ## Project Links
 * [Project Home](https://aoindustries.com/ao-oss-parent/)
 * [Changelog](https://aoindustries.com/ao-oss-parent/changelog)
-* [Maven Central Repository](https://search.maven.org/#search%7Cgav%7C1%7Cg:%22com.aoindustries%22%20AND%20a:%22ao-oss-parent%22)
+* [Maven Central Repository](https://search.maven.org/artifact/com.aoindustries/ao-oss-parent)
 * [GitHub](https://github.com/aoindustries/ao-oss-parent)
 
 ## Contact Us
