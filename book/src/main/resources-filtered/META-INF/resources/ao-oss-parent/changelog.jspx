@@ -52,7 +52,11 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				groupId="@{project.groupId}"
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{project.scm.url}"
-			/>
+			>
+				<ul>
+					<li>Fixed last release referenced <code>-SNAPSHOT</code> version of <code>ao-javadoc-resources</code>.</li>
+				</ul>
+			</changelog:release>
 		</c:if>
 
 		<changelog:release
