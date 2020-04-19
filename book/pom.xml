@@ -25,10 +25,10 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.7.2-POST-SNAPSHOT</version>
+		<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.8.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent-book</artifactId><version>1.7.2-POST-SNAPSHOT</version>
+	<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent-book</artifactId><version>1.8.0-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 
 	<properties>
@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<documented.name>AO OSS Parent</documented.name>
 		<documented.description>Parent POM for all AO open-source projects.</documented.description>
 
-		<description.html><![CDATA[Documentation for <a target="_top" href="${project.url}">${documented.name}</a> in <a target="_top" href="https://semanticcms.com/">SemanticCMS</a> format.]]></description.html>
+		<description.html><![CDATA[Documentation for <a target="${javadoc.target}" href="${project.url}">${documented.name}</a> in <a target="${javadoc.target}" href="https://semanticcms.com/">SemanticCMS</a> format.]]></description.html>
 	</properties>
 
 	<name>AO OSS Parent Book</name>
@@ -109,7 +109,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		</dependency>
 		<!-- Dependency for dependencyversion-maven-plugin only -->
 		<dependency>
-			<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.7.2-POST-SNAPSHOT</version>
+			<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.8.0-SNAPSHOT</version>
 			<type>pom</type>
 			<scope>provided</scope>
 			<optional>true</optional>

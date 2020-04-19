@@ -24,7 +24,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.7.2-POST-SNAPSHOT</version>
+	<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.8.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -70,8 +70,10 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<!-- Maven Java version -->
 		<maven.compiler.source>${javase.version}</maven.compiler.source>
 		<maven.compiler.target>${javase.version}</maven.compiler.target>
+		<!-- The frame target for links from javadocs: "_self" for JDK >= 9 -->
+		<javadoc.target>_self</javadoc.target>
 		<!-- The breadcrumbs for the javadocs -->
-		<javadoc.breadcrumbs><![CDATA[<a target="_top" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
+		<javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
 		<!-- The HTML format of the description -->
 		<description.html>${project.description}</description.html>
 		<!-- Taglib reference line for javadocs -->
@@ -561,6 +563,16 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<POST-SNAPSHOT>-POST-SNAPSHOT</POST-SNAPSHOT>
 			</properties>
 		</profile>
+		<!-- The frame target for links from javadocs: "_top" for JDK < 9 -->
+		<profile>
+			<id>javadoc.target</id>
+			<activation>
+				<jdk>(,9)</jdk>
+			</activation>
+			<properties>
+				<javadoc.target>_top</javadoc.target>
+			</properties>
+		</profile>
 		<!-- Use bootclasspath in JDK < 9 -->
 		<profile>
 			<id>javase.bootclasspath</id>
@@ -716,8 +728,8 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 						<configuration>
 							<!-- TODO: Here and all javadocs, support canonical URL links in generated docs -->
-							<packagesheader><![CDATA[<a target="_top" href="${project.url}">${project.name} ${project.version}</a>]]></packagesheader>
-							<header><![CDATA[<a target="_top" href="${project.url}">${project.name} ${project.version}</a>]]></header>
+							<packagesheader><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${project.version}</a>]]></packagesheader>
+							<header><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${project.version}</a>]]></header>
 							<keywords>true</keywords><!-- Help internal search systems -->
 							<quiet>true</quiet>
 							<docfilessubdirs>true</docfilessubdirs>
@@ -732,9 +744,9 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 								</resourcesArtifact>
 							</resourcesArtifacts>
 							<top>
-<![CDATA[<div style="position:absolute; top:0; right:0"><a target="_top" href="${project.scm.url}"><img src="{@docRoot}/ao-javadoc-resources/fork-me.png" style="border:0" width="149" height="149" alt="Fork me on GitHub" /></a></div>
+<![CDATA[<div style="position:absolute; top:0; right:0"><a target="${javadoc.target}" href="${project.scm.url}"><img src="{@docRoot}/ao-javadoc-resources/fork-me.png" style="border:0" width="149" height="149" alt="Fork me on GitHub" /></a></div>
 <div style="margin: 0.5em 0">
-	<h1 style="margin: 0 1em"><a target="_top" href="https://aoindustries.com/"><img style="display:inline-block; vertical-align:middle; line-height:40px" src="{@docRoot}/ao-javadoc-resources/ao-logo.png" alt="AO Logo" width="35" height="40" /></a>
+	<h1 style="margin: 0 1em"><a target="${javadoc.target}" href="https://aoindustries.com/"><img style="display:inline-block; vertical-align:middle; line-height:40px" src="{@docRoot}/ao-javadoc-resources/ao-logo.png" alt="AO Logo" width="35" height="40" /></a>
 	${javadoc.breadcrumbs}</h1>
 	<p style="margin-left: 1em; margin-right: 1em">
 		${description.html}
@@ -742,12 +754,12 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 	<div style="float:left; margin: 0 1em">
 		<h2 style="margin-top: 0em">Project Links</h2>
 		<ul>
-			<li><a target="_top" href="${project.url}">Project Home</a></li>
-			<li><a target="_top" href="${project.url}changelog">Changelog</a></li>
+			<li><a target="${javadoc.target}" href="${project.url}">Project Home</a></li>
+			<li><a target="${javadoc.target}" href="${project.url}changelog">Changelog</a></li>
 			${javadoc.taglibReference}
-			<li><a target="_top" href="${project.url}apidocs/">API Docs</a></li>
-			<li><a target="_top" href="https://search.maven.org/artifact/${project.groupId}/${project.artifactId}">Maven Central Repository</a></li>
-			<li><a target="_top" href="${project.scm.url}">GitHub</a></li>
+			<li><a target="${javadoc.target}" href="${project.url}apidocs/">API Docs</a></li>
+			<li><a target="${javadoc.target}" href="https://search.maven.org/artifact/${project.groupId}/${project.artifactId}">Maven Central Repository</a></li>
+			<li><a target="${javadoc.target}" href="${project.scm.url}">GitHub</a></li>
 		</ul>
 	</div>
 	${javadoc.modules}
@@ -755,13 +767,13 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 	<div style="float:left; margin: 0 1em">
 		<h2 style="margin-top: 0em">Contact Us</h2>
 		<p>
-			For questions or support, please <a target="_top" href="https://aoindustries.com/contact">contact us</a>:
+			For questions or support, please <a target="${javadoc.target}" href="https://aoindustries.com/contact">contact us</a>:
 		</p>
 		<p>
-			Email: <a target="_top" href="mailto:support@aoindustries.com">support@aoindustries.com</a><br />
-			Phone: <a target="_top" href="tel:1-800-519-9541">1-800-519-9541</a><br />
-			Phone: <a target="_top" href="tel:+1-251-607-9556">+1-251-607-9556</a><br />
-			Web: <a target="_top" href="https://aoindustries.com/contact">https://aoindustries.com/contact</a>
+			Email: <a target="${javadoc.target}" href="mailto:support@aoindustries.com">support@aoindustries.com</a><br />
+			Phone: <a target="${javadoc.target}" href="tel:1-800-519-9541">1-800-519-9541</a><br />
+			Phone: <a target="${javadoc.target}" href="tel:+1-251-607-9556">+1-251-607-9556</a><br />
+			Web: <a target="${javadoc.target}" href="https://aoindustries.com/contact">https://aoindustries.com/contact</a>
 		</p>
 	</div>
 </div>]]>
