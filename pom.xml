@@ -24,7 +24,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.8.0-POST-SNAPSHOT</version>
+	<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.9.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -162,6 +162,9 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 	<build>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.apache.axis2</groupId><artifactId>axis2-aar-maven-plugin</artifactId><version>1.7.9</version>
+				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>3.0.0</version>
 				</plugin>
@@ -381,6 +384,24 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.axis2</groupId><artifactId>axis2-aar-maven-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+						</manifest>
+						<manifestEntries>
+							<Built-By>${project.organization.name}</Built-By>
+							<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+							<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+							<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId>
 				<configuration>
 					<archive>
@@ -389,8 +410,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
 						</manifest>
 						<manifestEntries>
-							<!-- Built-By defaults to ${user.name} - hide it -->
-							<Built-By />
+							<Built-By>${project.organization.name}</Built-By>
 							<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
 							<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
 							<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
