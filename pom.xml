@@ -430,6 +430,8 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<delimiter>@{*}</delimiter>
 					</delimiters>
 					<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+					<!-- Make the classes available as a separate artifact -->
+					<attachClasses>true</attachClasses>
 					<archive>
 						<manifest>
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
