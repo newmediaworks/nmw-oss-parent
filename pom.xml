@@ -456,7 +456,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<phase>process-resources</phase>
 						<configuration>
 							<target>
-								<mkdir dir="${project.build.directory}/classes" />
+								<mkdir dir="${project.build.outputDirectory}" />
 								<mkdir dir="${project.build.directory}/resources-filtered" />
 							</target>
 						</configuration>
