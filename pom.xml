@@ -160,6 +160,26 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 	</distributionManagement>
 
 	<build>
+		<resources>
+			<!-- Default Resources -->
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources-filtered</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<testResources>
+			<!-- Default Test Resources -->
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+			<testResource>
+				<directory>src/test/resources-filtered</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -211,25 +231,6 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						</delimiters>
 					</configuration>
 					<executions>
-						<execution>
-							<id>default-resources</id>
-							<phase>process-resources</phase>
-							<goals>
-								<goal>copy-resources</goal>
-							</goals>
-							<configuration>
-								<resources>
-									<resource>
-										<directory>src/main/resources</directory>
-									</resource>
-									<resource>
-										<directory>src/main/resources-filtered</directory>
-										<filtering>true</filtering>
-									</resource>
-								</resources>
-								<outputDirectory>${project.build.outputDirectory}</outputDirectory>
-							</configuration>
-						</execution>
 						<!--
 							maven-bundle-plugin does not use the filtered resources from project.build.outputDirectory.
 							To workaround this limitation, we perform a second filtering into a separate directory
@@ -417,6 +418,18 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						</manifestEntries>
 					</archive>
 				</configuration>
+				<executions>
+					<execution>
+						<!-- Add tests as a secondary artifact -->
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+						<configuration>
+							<!-- Unless empty -->
+							<skipIfEmpty>true</skipIfEmpty>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId>
@@ -430,8 +443,22 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<delimiter>@{*}</delimiter>
 					</delimiters>
 					<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
-					<!-- Make the classes available as a separate artifact -->
-					<attachClasses>true</attachClasses>
+					<warSourceDirectory>src/main/webapp</warSourceDirectory>
+					<warSourceExcludes>
+						<!-- This file only exists so NetBeans knows the path to deploy the application. -->
+						META-INF/context.xml
+					</warSourceExcludes>
+					<webResources>
+						<!-- Default Web Resources -->
+						<resource>
+							<directory>src/main/webapp-filtered</directory>
+							<filtering>true</filtering>
+						</resource>
+					</webResources>
+					<packagingExcludes>
+						<!-- META-INF/context.xml is used for local development deployment only -->
+						META-INF/context.xml
+					</packagingExcludes>
 					<archive>
 						<manifest>
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
@@ -704,51 +731,58 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			</build>
 		</profile>
 		<profile>
+			<id>war-attachClasses</id>
+			<activation>
+				<file><exists>src/main/java</exists></file>
+			</activation>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId>
+							<configuration>
+								<!-- Make the classes available as a separate artifact -->
+								<attachClasses>true</attachClasses>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+		<profile>
 			<id>release</id>
 			<build>
 				<plugins>
-					<!-- Include the unfiltered form of resources-filtered in the source artifact -->
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>add-resources-filtered-source</id>
-								<phase>generate-sources</phase>
-								<goals>
-									<goal>add-source</goal>
-								</goals>
-								<configuration>
-									<sources>
-										<source>src/main/resources-filtered</source>
-									</sources>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
 					<!-- Attach sources only during release builds -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId>
+						<configuration>
+							<archive>
+								<manifest>
+									<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+									<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+								</manifest>
+								<manifestEntries>
+									<Built-By>${project.organization.name}</Built-By>
+									<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+									<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+									<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+								</manifestEntries>
+							</archive>
+						</configuration>
 						<executions>
 							<execution>
 								<id>attach-sources</id>
 								<goals>
 									<goal>jar-no-fork</goal>
 								</goals>
-								<configuration>
-									<archive>
-										<manifest>
-											<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-											<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-										</manifest>
-										<manifestEntries>
-											<!-- Built-By defaults to ${user.name} - hide it -->
-											<Built-By />
-											<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
-											<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
-											<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
-										</manifestEntries>
-									</archive>
-								</configuration>
+							</execution>
+							<execution>
+								<!-- Add tests as a secondary artifact -->
+								<id>attach-test-sources</id>
+								<goals>
+									<goal>test-jar-no-fork</goal>
+								</goals>
 							</execution>
 						</executions>
 					</plugin>
