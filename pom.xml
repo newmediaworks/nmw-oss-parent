@@ -781,6 +781,18 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 						<configuration>
+							<archive>
+								<manifest>
+									<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+									<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+								</manifest>
+								<manifestEntries>
+									<Built-By>${project.organization.name}</Built-By>
+									<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+									<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+									<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+								</manifestEntries>
+							</archive>
 							<!-- TODO: Here and all javadocs, support canonical URL links in generated docs -->
 							<packagesheader><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${project.version}</a>]]></packagesheader>
 							<header><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${project.version}</a>]]></header>
@@ -852,20 +864,13 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 								<goals>
 									<goal>jar</goal>
 								</goals>
-								<configuration>
-									<archive>
-										<manifest>
-											<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-											<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-										</manifest>
-										<manifestEntries>
-											<Built-By>${project.organization.name}</Built-By>
-											<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
-											<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
-											<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
-										</manifestEntries>
-									</archive>
-								</configuration>
+							</execution>
+							<execution>
+								<!-- Add tests as a secondary artifact -->
+								<id>attach-test-javadocs</id>
+								<goals>
+									<goal>test-jar</goal>
+								</goals>
 							</execution>
 						</executions>
 					</plugin>
