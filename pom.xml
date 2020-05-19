@@ -806,7 +806,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							</links>
 							<resourcesArtifacts>
 								<resourcesArtifact>
-									<groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.1${POST-SNAPSHOT}</version>
+									<groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.1<!-- ${POST-SNAPSHOT} --></version>
 								</resourcesArtifact>
 							</resourcesArtifacts>
 							<top>
