@@ -24,7 +24,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.7.0-POST-SNAPSHOT</version>
+	<groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.7.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -65,7 +65,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<javadoc.link.javaee>${javadoc.link.javaee.6}</javadoc.link.javaee>
 		<!-- These values are copied from the project being documented -->
 		<documented.javaee.version>6</documented.javaee.version>
-		<documented.javadoc.link.javaee>${documented.javadoc.link.javaee.6}</documented.javadoc.link.javaee>
+		<documented.javadoc.link.javaee>${javadoc.link.javaee.6}</documented.javadoc.link.javaee>
 
 		<!-- Maven Java version -->
 		<maven.compiler.source>${javase.version}</maven.compiler.source>
