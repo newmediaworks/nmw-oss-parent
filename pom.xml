@@ -31,6 +31,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- The version of Java apidocs to link to, preferring https -->
+		<!-- Note: This list matches TagReferenceInitializer -->
 		<javadoc.link.javase.5>https://docs.oracle.com/javase/1.5.0/docs/api/</javadoc.link.javase.5>
 		<javadoc.link.javase.6>https://docs.oracle.com/javase/6/docs/api/</javadoc.link.javase.6>
 		<javadoc.link.javase.7>https://docs.oracle.com/javase/7/docs/api/</javadoc.link.javase.7>
@@ -44,6 +45,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<javadoc.link.javase.15>https://download.java.net/java/early_access/jdk15/docs/api/</javadoc.link.javase.15>
 
 		<!-- The Java EE apidocs to link to, preferring https -->
+		<!-- Note: This list matches semanticcms-tag-reference -->
 		<javadoc.link.javamail>https://javaee.github.io/javamail/docs/api/</javadoc.link.javamail>
 		<javadoc.link.javaee.5>https://docs.oracle.com/javaee/5/api/</javadoc.link.javaee.5>
 		<javadoc.link.javaee.6>https://docs.oracle.com/javaee/6/api/</javadoc.link.javaee.6>
