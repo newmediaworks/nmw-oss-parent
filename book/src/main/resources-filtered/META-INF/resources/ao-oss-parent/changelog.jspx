@@ -57,7 +57,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<li>Corrected the default value for the Maven build property <code>documented.javadoc.link.javaee</code>.</li>
 					<li>
 						<p>
-							Set <code><![CDATA[&lt;detectJavaApiLink&gt;false&lt;/detectJavaApiLink&gt;]]></code>
+							Set <code><![CDATA[&lt;detectOfflineLinks&gt;false&lt;/detectOfflineLinks&gt;]]></code>
 							on <ao:a href="https://maven.apache.org/plugins/maven-javadoc-plugin/">maven-javadoc-plugin</ao:a>.
 						</p>
 						<p>
