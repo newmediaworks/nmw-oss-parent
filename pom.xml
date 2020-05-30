@@ -803,6 +803,8 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<docfilessubdirs>true</docfilessubdirs>
 							<!-- Links to JDK docs are added manually to the https version on a per-project basis -->
 							<detectJavaApiLink>false</detectJavaApiLink>
+							<!-- Links between projects are added manually on a per-project basis -->
+							<detectOfflineLinks>false</detectOfflineLinks>
 							<links>
 								<link>${javadoc.link.javase}</link>
 							</links>
