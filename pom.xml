@@ -204,6 +204,9 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</configuration>
 				</plugin>
 				<plugin>
+					<groupId>org.codehaus.mojo</groupId><artifactId>exec-maven-plugin</artifactId><version>1.6.0</version>
+				</plugin>
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>3.0.0</version>
 				</plugin>
 				<!-- Default to using -Xlint and showing warnings -->
@@ -249,11 +252,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							goes back over a decade - we're not holding our breath.
 						-->
 						<execution>
-							<id>filter-resources</id>
-							<phase>process-resources</phase>
-							<goals>
-								<goal>copy-resources</goal>
-							</goals>
+							<id>filter-resources</id><phase>process-resources</phase><goals><goal>copy-resources</goal></goals>
 							<configuration>
 								<resources>
 									<resource>
@@ -277,10 +276,58 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<!-- See https://issues.apache.org/jira/browse/MDEP-439 -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId><version>3.1.2</version>
+					<configuration>
+						<silent>true</silent>
+					</configuration>
 				</plugin>
 				<!-- Supporting packaging of "bundle" for OSGI bundles -->
 				<plugin>
 					<groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId><version>4.2.1</version>
+					<configuration>
+						<instructions>
+							<!-- Built-By defaults to ${user.name} - skip it -->
+							<_removeheaders>Built-By,POST-SNAPSHOT</_removeheaders>
+							<!-- TODO: What to do with post-release builds regarding Bundle-Version? -->
+							<!-- TODO: ao-badges for OSGI? -->
+							<!-- TODO: _nouses like in http://svn.apache.org/repos/asf/commons/proper/commons-parent/trunk/pom.xml ? -->
+							<Bundle-DocURL>${project.url}</Bundle-DocURL>
+							<!--
+								Other values seen at http://maven.reprezen.com/repository/releases/com/fasterxml/oss-parent/11/oss-parent-11.pom
+								With documentation found at https://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html
+								Also from https://maven.apache.org/shared/maven-archiver/
+							-->
+							<Bundle-Name>${project.name}</Bundle-Name>
+							<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+							<Bundle-Description>${project.description}</Bundle-Description>
+							<Implementation-Title>${project.name}</Implementation-Title>
+							<Implementation-Version>${project.version}</Implementation-Version><!-- TODO: What to do with post-release builds? -->
+							<Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+							<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+							<Implementation-URL>${project.url}</Implementation-URL>
+							<Include-Resource>
+								{maven-resources},
+								target/resources-filtered
+							</Include-Resource>
+							<Specification-Title>${project.name}</Specification-Title>
+							<!--
+								TODO: The Specification-Version is not being set to major.minor as expected.
+									Could be related to being in parent pom?
+								Possibly related:
+									https://issues.apache.org/jira/browse/FELIX-3392
+									https://stackoverflow.com/questions/12279952/mercurial-changeset-in-osgi-bundle-manifest-with-maven
+								Not important enought to put any more time into this, at least for now.
+							-->
+							<Specification-Version>${project.artifact.selectedVersion.majorVersion}.${project.artifact.selectedVersion.minorVersion}</Specification-Version>
+							<Specification-Vendor>${project.organization.name}</Specification-Vendor>
+							<!-- Instructions not found in docs, and adapted by what found in https://github.com/mybatis/parent/blob/master/pom.xml -->
+							<!-- TODO: Necessary?  Helpful? -->
+							<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+							<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+							<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+							<!-- Optional Main-Class, as seen at https://github.com/FasterXML/oss-parent/blob/master/pom.xml -->
+							<Main-Class>${osgi.mainClass}</Main-Class>
+						</instructions>
+					</configuration>
 				</plugin>
 				<!-- Other plugins used below -->
 				<plugin>
@@ -291,9 +338,19 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</plugin>
 				<plugin>
 					<groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId><version>1.6.8</version>
+					<configuration>
+						<serverId>ossrh-newmediaworks</serverId>
+						<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+						<autoReleaseAfterClose>true</autoReleaseAfterClose>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-release-plugin</artifactId><version>3.0.0-M1</version>
+					<configuration>
+						<useReleaseProfile>false</useReleaseProfile>
+						<releaseProfiles>release</releaseProfiles>
+						<goals>deploy</goals>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId><artifactId>versions-maven-plugin</artifactId><version>2.7</version>
@@ -303,6 +360,12 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId><version>1.6</version>
+					<configuration>
+						<lockMode>multiple</lockMode>
+						<homedir>${gpg.oss-newmediaworks-com.homedir}</homedir>
+						<keyname>${gpg.oss-newmediaworks-com.keyname}</keyname>
+						<passphrase>${gpg.oss-newmediaworks-com.passphrase}</passphrase>
+					</configuration>
 				</plugin>
 				<!--
 					Setup a few global plugin versions so we don't have to specify elsewhere.
@@ -320,17 +383,173 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.2.0</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+								<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							</manifest>
+							<manifestEntries>
+								<Built-By>${project.organization.name}</Built-By>
+								<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+								<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+								<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+							</manifestEntries>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId><version>1.7.0</version>
+					<configuration>
+						<useDefaultFilterDelimiters>false</useDefaultFilterDelimiters>
+						<filterDelimiters>
+							<!-- ${*} is JSP EL and shell scripts, so avoiding it -->
+							<!-- #{*} is JSP EL deferred syntax, so avoiding it -->
+							<!-- @{*} selected over @*@, as it gives our developers a more
+								 consistent representation with JSP EL and shell scripts -->
+							<filterDelimiter>@{*}</filterDelimiter>
+						</filterDelimiters>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId><version>3.2.3</version>
+					<configuration>
+						<useDefaultDelimiters>false</useDefaultDelimiters>
+						<delimiters>
+							<!-- ${*} is JSP EL and shell scripts, so avoiding it -->
+							<!-- #{*} is JSP EL deferred syntax, so avoiding it -->
+							<!-- @{*} selected over @*@, as it gives our developers a more
+								 consistent representation with JSP EL and shell scripts -->
+							<delimiter>@{*}</delimiter>
+						</delimiters>
+						<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+						<warSourceDirectory>src/main/webapp</warSourceDirectory>
+						<warSourceExcludes>
+							<!-- This file only exists so NetBeans knows the path to deploy the application. -->
+							META-INF/context.xml
+						</warSourceExcludes>
+						<webResources>
+							<!-- Default Web Resources -->
+							<resource>
+								<directory>src/main/webapp-filtered</directory>
+								<filtering>true</filtering>
+							</resource>
+						</webResources>
+						<packagingExcludes>
+							<!-- META-INF/context.xml is used for local development deployment only -->
+							META-INF/context.xml
+						</packagingExcludes>
+						<archive>
+							<manifest>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+								<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							</manifest>
+							<manifestEntries>
+								<!-- Built-By defaults to ${user.name} - hide it -->
+								<Built-By />
+								<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+								<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+								<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+							</manifestEntries>
+						</archive>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId><version>3.2.1</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+								<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							</manifest>
+							<manifestEntries>
+								<Built-By>${project.organization.name}</Built-By>
+								<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+								<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+								<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+							</manifestEntries>
+						</archive>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.2.0</version>
 					<configuration>
 						<source>${maven.compiler.source}</source>
+						<archive>
+							<manifest>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+								<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							</manifest>
+							<manifestEntries>
+								<Built-By>${project.organization.name}</Built-By>
+								<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+								<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+								<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+							</manifestEntries>
+						</archive>
+						<!-- TODO: Here and all javadocs, support canonical URL links in generated docs -->
+						<packagesheader><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${project.version}</a>]]></packagesheader>
+						<header><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${project.version}</a>]]></header>
+						<keywords>true</keywords><!-- Help internal search systems -->
+						<quiet>true</quiet>
+						<docfilessubdirs>true</docfilessubdirs>
+						<!-- Links to JDK docs are added manually to the https version on a per-project basis -->
+						<detectJavaApiLink>false</detectJavaApiLink>
+						<!-- Links between projects are added manually on a per-project basis -->
+						<detectOfflineLinks>false</detectOfflineLinks>
+						<resourcesArtifacts>
+							<resourcesArtifact>
+								<groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.1${POST-SNAPSHOT}</version>
+							</resourcesArtifact>
+						</resourcesArtifacts>
+						<top>
+<![CDATA[<div style="position:absolute; top:0; right:0"><a target="${javadoc.target}" href="${project.scm.url}"><img src="{@docRoot}/nmw-javadoc-resources/fork-me.png" style="border:0" width="149" height="149" alt="Fork me on GitHub" /></a></div>
+<div style="margin: 0.5em 0">
+	<h1 style="margin: 0 1em"><a target="${javadoc.target}" href="https://newmediaworks.com/"><img style="display:inline-block; vertical-align:middle; line-height:40px" src="{@docRoot}/nmw-javadoc-resources/nmw-logo.png" alt="New Media Works Logo" width="40" height="40" /></a>
+	${javadoc.breadcrumbs}</h1>
+	<p style="margin-left: 1em; margin-right: 1em">
+		${description.html}
+	</p>
+	<div style="float:left; margin: 0 1em">
+		<h2 style="margin-top: 0em">Project Links</h2>
+		<ul>
+			<li><a target="${javadoc.target}" href="${project.url}">Project Home</a></li>
+			<li><a target="${javadoc.target}" href="${project.url}changelog">Changelog</a></li>
+			${javadoc.taglibReference}
+			<li><a target="${javadoc.target}" href="${project.url}apidocs/">API Docs</a></li>
+			<li><a target="${javadoc.target}" href="https://search.maven.org/artifact/${project.groupId}/${project.artifactId}">Maven Central Repository</a></li>
+			<li><a target="${javadoc.target}" href="${project.scm.url}">GitHub</a></li>
+		</ul>
+	</div>
+	${javadoc.modules}
+	${javadoc.relatedProjects}
+	<div style="float:left; margin: 0 1em">
+		<h2 style="margin-top: 0em">Contact Us</h2>
+		<p>
+			For questions or support, please <a target="${javadoc.target}" href="https://www.newmediaworks.com/html/contact.html">contact us</a>:
+		</p>
+		<p>
+			Email: <a target="${javadoc.target}" href="mailto:info@newmediaworks.com">info@newmediaworks.com</a><br />
+			Phone: <a target="${javadoc.target}" href="tel:+1-707-252-7700">+1-707-252-7700</a><br />
+			Web: <a target="${javadoc.target}" href="https://www.newmediaworks.com/html/contact.html">https://www.newmediaworks.com/html/contact.html</a>
+		</p>
+	</div>
+</div>]]>
+						</top>
+						<!-- TODO: Global site tag (gtag.js) once HTML 5 -->
+						<bottom>
+<![CDATA[Copyright &#169; {inceptionYear}&#x2013;{currentYear} {organizationName}. All rights reserved.
+<script type="application/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '${google.analytics.trackingId}', 'auto');
+  ga('send', 'pageview');
+
+</script>]]>
+						</bottom>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -350,10 +569,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>enforce-maven</id>
-						<goals>
-							<goal>enforce</goal>
-						</goals>
+						<id>enforce-maven</id><goals><goal>enforce</goal></goals>
 						<configuration>
 							<rules>
 								<requireMavenVersion>
@@ -370,10 +586,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>parse-version</id>
-						<goals>
-							<goal>parse-version</goal>
-						</goals>
+						<id>parse-version</id><goals><goal>parse-version</goal></goals>
 					</execution>
 				</executions>
 			</plugin>
@@ -382,11 +595,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<groupId>org.codehaus.mojo</groupId><artifactId>buildnumber-maven-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>build.currentYear</id>
-						<phase>initialize</phase>
-						<goals>
-							<goal>create-timestamp</goal>
-						</goals>
+						<id>build.currentYear</id><phase>initialize</phase><goals><goal>create-timestamp</goal></goals>
 						<configuration>
 							<timestampFormat>yyyy</timestampFormat>
 							<timestampPropertyName>build.currentYear</timestampPropertyName>
@@ -399,83 +608,22 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<groupId>io.reformanda.semper</groupId><artifactId>dependencyversion-maven-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>set-all</id>
-						<goals>
-							<goal>set-version</goal>
-						</goals>
+						<id>set-all</id><goals><goal>set-version</goal></goals>
 					</execution>
 				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-						</manifest>
-						<manifestEntries>
-							<Built-By>${project.organization.name}</Built-By>
-							<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
-							<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
-							<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
-						</manifestEntries>
-					</archive>
-				</configuration>
 				<executions>
 					<execution>
 						<!-- Add tests as a secondary artifact -->
-						<goals>
-							<goal>test-jar</goal>
-						</goals>
+						<id>attach-tests</id><goals><goal>test-jar</goal></goals>
 						<configuration>
 							<!-- Unless empty -->
 							<skipIfEmpty>true</skipIfEmpty>
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<useDefaultDelimiters>false</useDefaultDelimiters>
-					<delimiters>
-						<!-- ${*} is JSP EL and shell scripts, so avoiding it -->
-						<!-- #{*} is JSP EL deferred syntax, so avoiding it -->
-						<!-- @{*} selected over @*@, as it gives our developers a more
-							 consistent representation with JSP EL and shell scripts -->
-						<delimiter>@{*}</delimiter>
-					</delimiters>
-					<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
-					<warSourceDirectory>src/main/webapp</warSourceDirectory>
-					<warSourceExcludes>
-						<!-- This file only exists so NetBeans knows the path to deploy the application. -->
-						META-INF/context.xml
-					</warSourceExcludes>
-					<webResources>
-						<!-- Default Web Resources -->
-						<resource>
-							<directory>src/main/webapp-filtered</directory>
-							<filtering>true</filtering>
-						</resource>
-					</webResources>
-					<packagingExcludes>
-						<!-- META-INF/context.xml is used for local development deployment only -->
-						META-INF/context.xml
-					</packagingExcludes>
-					<archive>
-						<manifest>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-						</manifest>
-						<manifestEntries>
-							<Built-By>${project.organization.name}</Built-By>
-							<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
-							<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
-							<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
-						</manifestEntries>
-					</archive>
-				</configuration>
 			</plugin>
 			<!--
 				The second copy of resources-filtered is required for maven-bundle-plugin, even if empty.
@@ -485,17 +633,13 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>create-resources-filtered-output</id>
-						<phase>process-resources</phase>
+						<id>create-resources-filtered-output</id><phase>process-resources</phase><goals><goal>run</goal></goals>
 						<configuration>
 							<target>
 								<mkdir dir="${project.build.outputDirectory}" />
 								<mkdir dir="${project.build.directory}/resources-filtered" />
 							</target>
 						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
 					</execution>
 				</executions>
 			 </plugin>
@@ -503,68 +647,10 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			<plugin>
 				<groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
-				<configuration>
-					<instructions>
-						<!-- Built-By defaults to ${user.name} - skip it -->
-						<_removeheaders>Built-By,POST-SNAPSHOT</_removeheaders>
-						<!-- TODO: What to do with post-release builds regarding Bundle-Version? -->
-						<!-- TODO: ao-badges for OSGI? -->
-						<!-- TODO: _nouses like in http://svn.apache.org/repos/asf/commons/proper/commons-parent/trunk/pom.xml ? -->
-						<Bundle-DocURL>${project.url}</Bundle-DocURL>
-						<!--
-							Other values seen at http://maven.reprezen.com/repository/releases/com/fasterxml/oss-parent/11/oss-parent-11.pom
-							With documentation found at https://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html
-							Also from https://maven.apache.org/shared/maven-archiver/
-						-->
-						<Bundle-Name>${project.name}</Bundle-Name>
-						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
-						<Bundle-Description>${project.description}</Bundle-Description>
-						<Implementation-Title>${project.name}</Implementation-Title>
-						<Implementation-Version>${project.version}</Implementation-Version><!-- TODO: What to do with post-release builds? -->
-						<Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
-						<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
-						<Implementation-URL>${project.url}</Implementation-URL>
-						<Include-Resource>
-							{maven-resources},
-							target/resources-filtered
-						</Include-Resource>
-						<Specification-Title>${project.name}</Specification-Title>
-						<!--
-							TODO: The Specification-Version is not being set to major.minor as expected.
-								Could be related to being in parent pom?
-							Possibly related:
-								https://issues.apache.org/jira/browse/FELIX-3392
-								https://stackoverflow.com/questions/12279952/mercurial-changeset-in-osgi-bundle-manifest-with-maven
-							Not important enought to put any more time into this, at least for now.
-						-->
-						<Specification-Version>${project.artifact.selectedVersion.majorVersion}.${project.artifact.selectedVersion.minorVersion}</Specification-Version>
-						<Specification-Vendor>${project.organization.name}</Specification-Vendor>
-						<!-- Instructions not found in docs, and adapted by what found in https://github.com/mybatis/parent/blob/master/pom.xml -->
-						<!-- TODO: Necessary?  Helpful? -->
-						<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
-						<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
-						<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
-						<!-- Optional Main-Class, as seen at https://github.com/FasterXML/oss-parent/blob/master/pom.xml -->
-						<Main-Class>${osgi.mainClass}</Main-Class>
-					</instructions>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
 				<extensions>true</extensions>
-				<configuration>
-					<serverId>ossrh-newmediaworks</serverId>
-					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-					<autoReleaseAfterClose>true</autoReleaseAfterClose>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-release-plugin</artifactId>
-				<configuration>
-					<useReleaseProfile>false</useReleaseProfile>
-					<releaseProfiles>release</releaseProfiles>
-					<goals>deploy</goals>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId><artifactId>versions-maven-plugin</artifactId>
@@ -707,15 +793,10 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId>
 							<executions>
 								<execution>
-									<id>default-war</id>
-									<phase>none</phase>
+									<id>default-war</id><phase>none</phase>
 								</execution>
 								<execution>
-									<id>war-exploded</id>
-									<phase>package</phase>
-									<goals>
-										<goal>exploded</goal>
-									</goals>
+									<id>war-exploded</id><phase>package</phase><goals><goal>exploded</goal></goals>
 								</execution>
 							</executions>
 						</plugin>
@@ -724,10 +805,8 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			</build>
 		</profile>
 		<profile>
-			<id>war-attachClasses</id>
-			<activation>
-				<file><exists>src/main/java</exists></file>
-			</activation>
+			<!-- Sadly, cannot use Maven properties in profile activation: ${project.build.sourceDirectory} -->
+			<id>war-attachClasses</id><activation><file><exists>src/main/java</exists></file></activation>
 			<build>
 				<pluginManagement>
 					<plugins>
@@ -743,135 +822,82 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			</build>
 		</profile>
 		<profile>
+			<!-- Sadly, cannot use Maven properties in profile activation: ${project.build.sourceDirectory} -->
+			<!-- Sadly, cannot also activate on src/test/java, for when there are tests without main -->
+			<id>offlineLinks</id><activation><file><exists>src/main/java</exists></file></activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
+						<dependencies>
+							<dependency>
+								<groupId>com.aoindustries</groupId><artifactId>ao-javadoc-offline</artifactId><version>1.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+							</dependency>
+						</dependencies>
+						<executions>
+							<execution>
+								<id>process.offlineLinks</id><phase>generate-sources</phase><goals><goal>process</goal></goals>
+								<configuration>
+									<attachToMain>false</attachToMain><attachToTest>false</attachToTest>
+									<resourceBundles>
+										<resourceBundle>com.aoindustries:ao-javadoc-offline:1.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></resourceBundle>
+									</resourceBundles>
+									<outputDirectory>${project.build.directory}/offlineLinks</outputDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.2.0</version>
+						<configuration>
+							<offlineLinks>
+								<offlineLink>
+									<url>${javadoc.link.javase}</url>
+									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/javase/${javase.release}</location>
+								</offlineLink>
+								<!-- Java EE -->
+								<offlineLink>
+									<url>${javadoc.link.javamail}</url><!-- Must be before javadoc.link.javaee -->
+									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/com.sun.mail/javax.mail</location>
+								</offlineLink>
+								<offlineLink>
+									<url>${javadoc.link.javaee}</url>
+									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/javaee/${javaee.version}</location>
+								</offlineLink>
+								<!-- TODO: All other items included in ao-javadoc-offline? -->
+							</offlineLinks>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
 			<id>release</id>
 			<build>
 				<plugins>
 					<!-- Attach sources only during release builds -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId>
-						<configuration>
-							<archive>
-								<manifest>
-									<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-									<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-								</manifest>
-								<manifestEntries>
-									<Built-By>${project.organization.name}</Built-By>
-									<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
-									<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
-									<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
-								</manifestEntries>
-							</archive>
-						</configuration>
 						<executions>
 							<execution>
-								<id>attach-sources</id>
-								<goals>
-									<goal>jar-no-fork</goal>
-								</goals>
+								<id>attach-sources</id><goals><goal>jar-no-fork</goal></goals>
 							</execution>
 							<execution>
 								<!-- Add tests as a secondary artifact -->
-								<id>attach-test-sources</id>
-								<goals>
-									<goal>test-jar-no-fork</goal>
-								</goals>
+								<id>attach-test-sources</id><goals><goal>test-jar-no-fork</goal></goals>
 							</execution>
 						</executions>
 					</plugin>
 					<!-- Create javadocs only during release builds -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
-						<configuration>
-							<archive>
-								<manifest>
-									<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-									<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-								</manifest>
-								<manifestEntries>
-									<Built-By>${project.organization.name}</Built-By>
-									<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
-									<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
-									<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
-								</manifestEntries>
-							</archive>
-							<!-- TODO: Here and all javadocs, support canonical URL links in generated docs -->
-							<packagesheader><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${project.version}</a>]]></packagesheader>
-							<header><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${project.version}</a>]]></header>
-							<keywords>true</keywords><!-- Help internal search systems -->
-							<quiet>true</quiet>
-							<docfilessubdirs>true</docfilessubdirs>
-							<!-- Links to JDK docs are added manually to the https version on a per-project basis -->
-							<detectJavaApiLink>false</detectJavaApiLink>
-							<!-- Links between projects are added manually on a per-project basis -->
-							<detectOfflineLinks>false</detectOfflineLinks>
-							<resourcesArtifacts>
-								<resourcesArtifact>
-									<groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.1${POST-SNAPSHOT}</version>
-								</resourcesArtifact>
-							</resourcesArtifacts>
-							<top>
-<![CDATA[<div style="position:absolute; top:0; right:0"><a target="${javadoc.target}" href="${project.scm.url}"><img src="{@docRoot}/nmw-javadoc-resources/fork-me.png" style="border:0" width="149" height="149" alt="Fork me on GitHub" /></a></div>
-<div style="margin: 0.5em 0">
-	<h1 style="margin: 0 1em"><a target="${javadoc.target}" href="https://newmediaworks.com/"><img style="display:inline-block; vertical-align:middle; line-height:40px" src="{@docRoot}/nmw-javadoc-resources/nmw-logo.png" alt="New Media Works Logo" width="40" height="40" /></a>
-	${javadoc.breadcrumbs}</h1>
-	<p style="margin-left: 1em; margin-right: 1em">
-		${description.html}
-	</p>
-	<div style="float:left; margin: 0 1em">
-		<h2 style="margin-top: 0em">Project Links</h2>
-		<ul>
-			<li><a target="${javadoc.target}" href="${project.url}">Project Home</a></li>
-			<li><a target="${javadoc.target}" href="${project.url}changelog">Changelog</a></li>
-			${javadoc.taglibReference}
-			<li><a target="${javadoc.target}" href="${project.url}apidocs/">API Docs</a></li>
-			<li><a target="${javadoc.target}" href="https://search.maven.org/artifact/${project.groupId}/${project.artifactId}">Maven Central Repository</a></li>
-			<li><a target="${javadoc.target}" href="${project.scm.url}">GitHub</a></li>
-		</ul>
-	</div>
-	${javadoc.modules}
-	${javadoc.relatedProjects}
-	<div style="float:left; margin: 0 1em">
-		<h2 style="margin-top: 0em">Contact Us</h2>
-		<p>
-			For questions or support, please <a target="${javadoc.target}" href="https://www.newmediaworks.com/html/contact.html">contact us</a>:
-		</p>
-		<p>
-			Email: <a target="${javadoc.target}" href="mailto:info@newmediaworks.com">info@newmediaworks.com</a><br />
-			Phone: <a target="${javadoc.target}" href="tel:+1-707-252-7700">+1-707-252-7700</a><br />
-			Web: <a target="${javadoc.target}" href="https://www.newmediaworks.com/html/contact.html">https://www.newmediaworks.com/html/contact.html</a>
-		</p>
-	</div>
-</div>]]>
-							</top>
-							<!-- TODO: Global site tag (gtag.js) once HTML 5 -->
-							<bottom>
-<![CDATA[Copyright &#169; {inceptionYear}&#x2013;{currentYear} {organizationName}. All rights reserved.
-<script type="application/javascript">
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', '${google.analytics.trackingId}', 'auto');
-  ga('send', 'pageview');
-
-</script>]]>
-							</bottom>
-						</configuration>
 						<executions>
 							<execution>
-								<id>attach-javadocs</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
+								<id>attach-javadocs</id><goals><goal>jar</goal></goals>
 							</execution>
 							<execution>
 								<!-- Add tests as a secondary artifact -->
-								<id>attach-test-javadocs</id>
-								<goals>
-									<goal>test-jar</goal>
-								</goals>
+								<id>attach-test-javadocs</id><goals><goal>test-jar</goal></goals>
 							</execution>
 						</executions>
 					</plugin>
@@ -880,17 +906,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-								<configuration>
-									<lockMode>multiple</lockMode>
-									<homedir>${gpg.oss-newmediaworks-com.homedir}</homedir>
-									<keyname>${gpg.oss-newmediaworks-com.keyname}</keyname>
-									<passphrase>${gpg.oss-newmediaworks-com.passphrase}</passphrase>
-								</configuration>
+								<id>sign-artifacts</id><phase>verify</phase><goals><goal>sign</goal></goals>
 							</execution>
 						</executions>
 					</plugin>
