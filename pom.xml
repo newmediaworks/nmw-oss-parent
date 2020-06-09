@@ -285,8 +285,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId><version>4.2.1</version>
 					<configuration>
 						<instructions>
-							<!-- Built-By defaults to ${user.name} - skip it -->
-							<_removeheaders>Built-By,POST-SNAPSHOT</_removeheaders>
+							<_removeheaders>POST-SNAPSHOT</_removeheaders>
 							<!-- TODO: What to do with post-release builds regarding Bundle-Version? -->
 							<!-- TODO: ao-badges for OSGI? -->
 							<!-- TODO: _nouses like in http://svn.apache.org/repos/asf/commons/proper/commons-parent/trunk/pom.xml ? -->
@@ -321,6 +320,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<Specification-Vendor>${project.organization.name}</Specification-Vendor>
 							<!-- Instructions not found in docs, and adapted by what found in https://github.com/mybatis/parent/blob/master/pom.xml -->
 							<!-- TODO: Necessary?  Helpful? -->
+							<Built-By>${project.organization.name}</Built-By>
 							<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
 							<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
 							<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
@@ -445,8 +445,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 								<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
 							</manifest>
 							<manifestEntries>
-								<!-- Built-By defaults to ${user.name} - hide it -->
-								<Built-By />
+								<Built-By>${project.organization.name}</Built-By>
 								<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
 								<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
 								<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
@@ -473,11 +472,6 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.2.0</version>
-					<dependencies>
-						<dependency>
-							<groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.1${POST-SNAPSHOT}</version>
-						</dependency>
-					</dependencies>
 					<configuration>
 						<source>${maven.compiler.source}</source>
 						<archive>
@@ -502,11 +496,6 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<detectJavaApiLink>false</detectJavaApiLink>
 						<!-- Links between projects are added manually on a per-project basis -->
 						<detectOfflineLinks>false</detectOfflineLinks>
-						<resourcesArtifacts>
-							<resourcesArtifact>
-								<groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.1${POST-SNAPSHOT}</version>
-							</resourcesArtifact>
-						</resourcesArtifacts>
 						<top>
 <![CDATA[<div style="position:absolute; top:0; right:0"><a target="${javadoc.target}" href="${project.scm.url}"><img src="{@docRoot}/nmw-javadoc-resources/fork-me.png" style="border:0" width="149" height="149" alt="Fork me on GitHub" /></a></div>
 <div style="margin: 0.5em 0">
@@ -586,12 +575,33 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</execution>
 				</executions>
 			</plugin>
-			<!-- Make the components of the current version available as parsedVersion.* properties -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId>
 				<executions>
+					<!-- Make the components of the current version available as parsedVersion.* properties -->
 					<execution>
 						<id>parse-version</id><goals><goal>parse-version</goal></goals>
+					</execution>
+					<!-- Support generated resources on all projects -->
+					<execution>
+						<id>add-generated-resources</id><goals><goal>add-resource</goal></goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>${project.build.directory}/generated-resources</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>add-generated-test-resources</id><goals><goal>add-test-resource</goal></goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>${project.build.directory}/generated-test-resources</directory>
+								</resource>
+							</resources>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -647,7 +657,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						</configuration>
 					</execution>
 				</executions>
-			 </plugin>
+			</plugin>
 			<!-- Supporting packaging of "bundle" for OSGI bundles -->
 			<plugin>
 				<groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId>
@@ -873,6 +883,30 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/javaee/${javaee.version}</location>
 								</offlineLink>
 							</offlineLinks>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<!-- Sadly, cannot use Maven properties in profile activation: ${project.build.sourceDirectory} -->
+			<!-- Sadly, cannot also activate on src/test/java, for when there are tests without main -->
+			<id>javadoc-resources</id><activation><file><exists>src/main/java</exists></file></activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
+						<dependencies>
+							<dependency>
+								<groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.1${POST-SNAPSHOT}</version>
+							</dependency>
+						</dependencies>
+						<configuration>
+							<resourcesArtifacts>
+								<resourcesArtifact>
+									<groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.1${POST-SNAPSHOT}</version>
+								</resourcesArtifact>
+							</resourcesArtifacts>
 						</configuration>
 					</plugin>
 				</plugins>
