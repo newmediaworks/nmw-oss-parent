@@ -882,11 +882,31 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<configuration>
 							<offlineLinks>
 								<!-- Direct -->
+								<!-- Note: Note: This list matches ao-javadoc-offline:download.sh -->
+								<offlineLink>
+									<url>http://sendmail-jilter.sourceforge.net/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/com.sendmail/jilter</location>
+								</offlineLink>
+								<offlineLink>
+									<url>http://www.servlets.com/cos/javadoc/</url>
+									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/com.servlets/cos</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://hc.apache.org/httpclient-3.x/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/commons-httpclient/commons-httpclient</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://axis.apache.org/axis/java/apiDocs/</url>
+									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/org.apache.axis/axis</location>
+								</offlineLink>
 								<offlineLink>
 									<url>${javadoc.link.javamail}</url>
 									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/com.sun.mail/javax.mail</location>
 								</offlineLink>
-								<!-- TODO: All other items included in ao-javadoc-offline? -->
+								<offlineLink>
+									<url>https://ostermiller.org/utils/doc/</url>
+									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/org.ostermiller/utils</location>
+								</offlineLink>
 								<!-- Java SE -->
 								<offlineLink>
 									<url>${javadoc.link.javase}</url>
