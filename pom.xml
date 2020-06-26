@@ -92,6 +92,23 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<osgi.mainClass><!-- Default is none --></osgi.mainClass>
 		<!-- Set to "-POST-SNAPSHOT" by activating the "POST-SNAPSHOT" profile to use post-release dependencies -->
 		<POST-SNAPSHOT><!-- -POST-SNAPSHOT --></POST-SNAPSHOT>
+
+		<!-- NetBeans Editor -->
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.continuationIndentSize>4</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.continuationIndentSize>
+		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.enable-indent>true</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.enable-indent>
+		<org-netbeans-modules-editor-indent.CodeStyle.project.text-line-wrap>none</org-netbeans-modules-editor-indent.CodeStyle.project.text-line-wrap>
+		<org-netbeans-modules-editor-indent.CodeStyle.project.indent-shift-width>4</org-netbeans-modules-editor-indent.CodeStyle.project.indent-shift-width>
+		<org-netbeans-modules-editor-indent.CodeStyle.project.spaces-per-tab>4</org-netbeans-modules-editor-indent.CodeStyle.project.spaces-per-tab>
+		<org-netbeans-modules-editor-indent.CodeStyle.project.tab-size>4</org-netbeans-modules-editor-indent.CodeStyle.project.tab-size>
+		<org-netbeans-modules-editor-indent.CodeStyle.project.text-limit-width>120</org-netbeans-modules-editor-indent.CodeStyle.project.text-limit-width>
+		<org-netbeans-modules-editor-indent.CodeStyle.project.expand-tabs>false</org-netbeans-modules-editor-indent.CodeStyle.project.expand-tabs>
+		<org-netbeans-modules-editor-indent.CodeStyle.usedProfile>project</org-netbeans-modules-editor-indent.CodeStyle.usedProfile>
+
+		<!-- NetBeans Line Endings -->
+		<com-junichi11-netbeans-changelf.show-dialog>true</com-junichi11-netbeans-changelf.show-dialog>
+		<com-junichi11-netbeans-changelf.enable>true</com-junichi11-netbeans-changelf.enable>
+		<com-junichi11-netbeans-changelf.use-project>true</com-junichi11-netbeans-changelf.use-project>
+		<com-junichi11-netbeans-changelf.use-global>false</com-junichi11-netbeans-changelf.use-global>
 	</properties>
 
 	<name>NMW OSS Parent</name>
