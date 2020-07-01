@@ -241,7 +241,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>org.codehaus.mojo</groupId><artifactId>exec-maven-plugin</artifactId><version>1.6.0</version>
+					<groupId>org.codehaus.mojo</groupId><artifactId>exec-maven-plugin</artifactId><version>3.0.0</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>3.0.0</version>
@@ -303,7 +303,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</executions>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.0.0-M4</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.0.0-M5</version>
 					<configuration>
 						<!-- Show full stack traces to help debugging -->
 						<trimStackTrace>false</trimStackTrace>
@@ -368,7 +368,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</plugin>
 				<!-- Other plugins used below -->
 				<plugin>
-					<groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId><version>3.1.0</version>
+					<groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId><version>3.2.0</version>
 				</plugin>
 				<plugin>
 					<groupId>io.reformanda.semper</groupId><artifactId>dependencyversion-maven-plugin</artifactId><version>1.0.1</version>
@@ -449,7 +449,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId><version>3.2.3</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId><version>3.3.0</version>
 					<configuration>
 						<useDefaultDelimiters>false</useDefaultDelimiters>
 						<delimiters>
@@ -584,14 +584,14 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId><version>3.9.0</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId><version>3.9.1</version>
 				</plugin>
 				<!-- Plugins used by some project-specific pom.xml -->
 				<plugin>
 					<groupId>org.apache.tomcat.maven</groupId><artifactId>tomcat7-maven-plugin</artifactId><version>2.2</version>
 				</plugin>
 				<plugin>
-					<groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId><version>9.4.28.v20200408</version>
+					<groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId><version>9.4.30.v20200611</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
