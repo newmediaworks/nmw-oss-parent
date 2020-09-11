@@ -56,6 +56,8 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<ul>
 					<li>Added default NetBeans server settings.</li>
 					<li>Added default NetBeans hint settings.</li>
+					<!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
+					<!-- TODO: Remove empty src/test/java and src/test during builds, NetBeans making them? -->
 				</ul>
 			</changelog:release>
 		</c:if>
