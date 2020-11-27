@@ -122,7 +122,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</p>
 					<p>
 						Projects are built and released on an individual basis, and thus we manually link
-						between projects to not rely on reactor / aggregator builds to get achieve proper linking.
+						between projects to not rely on reactor / aggregator builds to achieve proper linking.
 					</p>
 					<p>
 						Furthermore, we maximize the use of offline links from javadoc artifacts.
@@ -258,7 +258,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						API docs with <code>target="_self"</code> for <![CDATA[JDK &gt;= 9]]>.
 					</p>
 					<p>
-						We still supporting building with older JDK versions,
+						We still support building with older JDK versions,
 						in which <code>target="_top"</code> is used so that links
 						can escape the frames.
 					</p>
@@ -567,10 +567,10 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<li>Changed default Java version from 1.6 to 1.7</li>
 						<li>Renamed Maven build property names to not conflict with newer versions of Java:
 							<ol type="a">
-								<li><code>*.jdk15</code> -&gt; <code>*.jdk5</code></li>
-								<li><code>*.jdk16</code> -&gt; <code>*.jdk6</code></li>
-								<li><code>*.jdk17</code> -&gt; <code>*.jdk7</code></li>
-								<li><code>*.jdk18</code> -&gt; <code>*.jdk8</code></li>
+								<li><code>*.jdk15</code> → <code>*.jdk5</code></li>
+								<li><code>*.jdk16</code> → <code>*.jdk6</code></li>
+								<li><code>*.jdk17</code> → <code>*.jdk7</code></li>
+								<li><code>*.jdk18</code> → <code>*.jdk8</code></li>
 							</ol>
 						</li>
 					</ol>
