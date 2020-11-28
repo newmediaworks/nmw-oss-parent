@@ -37,7 +37,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2019-05-24T19:05:12-0500"
-		dateModified="2020-11-17T02:03:12-06:00"
+		dateModified="2020-11-27T22:36:15-06:00"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.newmediaworks:nmw-oss-parent:pom.version}" />
@@ -110,7 +110,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</p>
 					<p>
 						Projects are built and released on an individual basis, and thus we manually link
-						between projects to not rely on reactor / aggregator builds to get achieve proper linking.
+						between projects to not rely on reactor / aggregator builds to achieve proper linking.
 					</p>
 					<p>
 						Furthermore, we maximize the use of offline links from javadoc artifacts.
