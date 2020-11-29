@@ -524,7 +524,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<extensions>
 			<!-- Enabling the use of SSH for repository access -->
 			<extension>
-				<groupId>org.apache.maven.wagon</groupId><artifactId>wagon-ssh-external</artifactId><version>3.4.1</version>
+				<groupId>org.apache.maven.wagon</groupId><artifactId>wagon-ssh-external</artifactId><version>3.4.2</version>
 			</extension>
 		</extensions>
 		<resources>
