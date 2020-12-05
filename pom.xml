@@ -24,7 +24,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.10.0-POST-SNAPSHOT</version>
+	<groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.11.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -73,8 +73,13 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<!-- Maven Java version -->
 		<maven.compiler.source>${javase.version}</maven.compiler.source>
 		<maven.compiler.target>${javase.version}</maven.compiler.target>
-		<!-- The frame target for links from javadocs: "_self" for JDK >= 9 -->
-		<javadoc.target>_self</javadoc.target>
+		<!--
+			The frame target for links from javadocs:
+				Can be "_self" for JDK >= 9, since the apidocs do not use frames.
+				Must be "_top" for JDK < 9, due to frames.
+			Using "_top" for all Java versions so links can escape frames at javado.io.
+		-->
+		<javadoc.target>_top</javadoc.target>
 		<!-- The breadcrumbs for the javadocs -->
 		<javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="https://oss.newmediaworks.com/">NMW OSS</a>
 / <a target="${javadoc.target}" href="${project.url}">${shortTitle}</a>]]></javadoc.breadcrumbs>
@@ -1079,16 +1084,6 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			<id>POST-SNAPSHOT</id>
 			<properties>
 				<POST-SNAPSHOT>-POST-SNAPSHOT</POST-SNAPSHOT>
-			</properties>
-		</profile>
-		<!-- The frame target for links from javadocs: "_top" for JDK < 9 -->
-		<profile>
-			<id>javadoc.target</id>
-			<activation>
-				<jdk>(,9)</jdk>
-			</activation>
-			<properties>
-				<javadoc.target>_top</javadoc.target>
 			</properties>
 		</profile>
 		<!-- Use bootclasspath in JDK < 9 -->
