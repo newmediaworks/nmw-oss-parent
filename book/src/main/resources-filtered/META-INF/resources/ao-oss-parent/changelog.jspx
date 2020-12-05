@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2020-11-29T05:45:58-06:00"
+		dateModified="2020-12-05T05:01:07-06:00"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-oss-parent:pom.version}" />
@@ -55,6 +55,17 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			>
 				<ul>
 					<li>Updated plugin versions.</li>
+					<li>
+						<p>
+							Switched back to generating Javadocs links with <code>target="_top"</code> on all versions of
+							Java.  Eventhough the API Docs are generate without frames as of Java 9, they may still be used
+							within frames in other contexts, such as when viewed at <ao:a href="https://javadoc.io/" />.
+						</p>
+						<p>
+							Furthermore, browsers are increasingly blocking or issuing warnings when a link tries to go
+							to a different site within a frame.  This change ensures links always escape frames.
+						</p>
+					</li>
 				</ul>
 				<!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
 				<!-- TODO: Remove empty src/test/java and src/test during builds, NetBeans making them? -->
