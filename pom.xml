@@ -24,7 +24,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.13.0-POST-SNAPSHOT</version>
+	<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.14.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -948,6 +948,52 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<!-- Make the components of the current version available as parsedVersion.* properties -->
 					<execution>
 						<id>parse-version</id><goals><goal>parse-version</goal></goals>
+					</execution>
+					<!--
+						Set boolean properties "build.isSnapshot" and "build.noSnapshot" based on is a snapshot build,
+						see https://stackoverflow.com/a/39139979
+					-->
+					<execution>
+						<id>build.isSnapshot</id><goals><goal>regex-properties</goal></goals>
+						<configuration>
+							<regexPropertySettings>
+								<regexPropertySetting>
+									<name>build.isSnapshot</name>
+									<value>${project.version}</value>
+									<regex>.*-SNAPSHOT$</regex>
+									<replacement>true</replacement>
+									<failIfNoMatch>false</failIfNoMatch>
+								</regexPropertySetting>
+								<regexPropertySetting>
+									<name>build.notSnapshot</name>
+									<value>${project.version}</value>
+									<regex>.*-SNAPSHOT$</regex>
+									<replacement>false</replacement>
+									<failIfNoMatch>false</failIfNoMatch>
+								</regexPropertySetting>
+							</regexPropertySettings>
+						</configuration>
+					</execution>
+					<execution>
+						<id>build.notSnapshot</id><goals><goal>regex-properties</goal></goals>
+						<configuration>
+							<regexPropertySettings>
+								<regexPropertySetting>
+									<name>build.isSnapshot</name>
+									<value>${build.isSnapshot}</value>
+									<regex>^((?!^true$).)*$</regex>
+									<replacement>false</replacement>
+									<failIfNoMatch>false</failIfNoMatch>
+								</regexPropertySetting>
+								<regexPropertySetting>
+									<name>build.notSnapshot</name>
+									<value>${build.notSnapshot}</value>
+									<regex>^((?!^false$).)*$</regex>
+									<replacement>true</replacement>
+									<failIfNoMatch>false</failIfNoMatch>
+								</regexPropertySetting>
+							</regexPropertySettings>
+						</configuration>
 					</execution>
 					<!-- Support generated resources on all projects -->
 					<execution>
