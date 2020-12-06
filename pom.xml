@@ -952,6 +952,52 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<execution>
 						<id>parse-version</id><goals><goal>parse-version</goal></goals>
 					</execution>
+					<!--
+						Set boolean properties "build.isSnapshot" and "build.noSnapshot" based on is a snapshot build,
+						see https://stackoverflow.com/a/39139979
+					-->
+					<execution>
+						<id>build.isSnapshot</id><goals><goal>regex-properties</goal></goals>
+						<configuration>
+							<regexPropertySettings>
+								<regexPropertySetting>
+									<name>build.isSnapshot</name>
+									<value>${project.version}</value>
+									<regex>.*-SNAPSHOT$</regex>
+									<replacement>true</replacement>
+									<failIfNoMatch>false</failIfNoMatch>
+								</regexPropertySetting>
+								<regexPropertySetting>
+									<name>build.notSnapshot</name>
+									<value>${project.version}</value>
+									<regex>.*-SNAPSHOT$</regex>
+									<replacement>false</replacement>
+									<failIfNoMatch>false</failIfNoMatch>
+								</regexPropertySetting>
+							</regexPropertySettings>
+						</configuration>
+					</execution>
+					<execution>
+						<id>build.notSnapshot</id><goals><goal>regex-properties</goal></goals>
+						<configuration>
+							<regexPropertySettings>
+								<regexPropertySetting>
+									<name>build.isSnapshot</name>
+									<value>${build.isSnapshot}</value>
+									<regex>^((?!^true$).)*$</regex>
+									<replacement>false</replacement>
+									<failIfNoMatch>false</failIfNoMatch>
+								</regexPropertySetting>
+								<regexPropertySetting>
+									<name>build.notSnapshot</name>
+									<value>${build.notSnapshot}</value>
+									<regex>^((?!^false$).)*$</regex>
+									<replacement>true</replacement>
+									<failIfNoMatch>false</failIfNoMatch>
+								</regexPropertySetting>
+							</regexPropertySettings>
+						</configuration>
+					</execution>
 					<!-- Support generated resources on all projects -->
 					<execution>
 						<id>add-generated-resources</id><goals><goal>add-resource</goal></goals>
