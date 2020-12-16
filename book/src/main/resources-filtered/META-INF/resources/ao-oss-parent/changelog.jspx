@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2020-12-14T07:22:49-06:00"
+		dateModified="2020-12-15T22:39:10-06:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -49,6 +49,11 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			>
 				<ul>
 					<li>Updated plugin versions.</li>
+					<li>
+						Removed offline Javadocs for <code>com.servlets:cos</code>, since we have eradicated it from all projects in favor of
+						<ao:a rel="nofollow" href="@{javadoc.link.javaee}javax/servlet/http/HttpServletRequest.html#getParts()">the standard file upload API</ao:a>
+						and <ao:a href="https://javaee.github.io/javamail/">JavaMail</ao:a>.
+					</li>
 				</ul>
 				<!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
 				<!-- TODO: Remove empty src/test/java and src/test during builds, NetBeans making them? -->
