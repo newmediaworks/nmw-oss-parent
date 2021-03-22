@@ -601,6 +601,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<delimiters>
 							<!-- ${*} is JSP EL and shell scripts, so avoiding it -->
 							<!-- #{*} is JSP EL deferred syntax, so avoiding it -->
+							<!-- %{*} is Struts forced expression evaluation syntax, so avoiding it -->
 							<!-- @{*} selected over @*@, as it gives our developers a more
 							     consistent representation with JSP EL and shell scripts -->
 							<delimiter>@{*}</delimiter>
@@ -774,6 +775,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<filterDelimiters>
 							<!-- ${*} is JSP EL and shell scripts, so avoiding it -->
 							<!-- #{*} is JSP EL deferred syntax, so avoiding it -->
+							<!-- %{*} is Struts forced expression evaluation syntax, so avoiding it -->
 							<!-- @{*} selected over @*@, as it gives our developers a more
 								 consistent representation with JSP EL and shell scripts -->
 							<filterDelimiter>@{*}</filterDelimiter>
@@ -787,6 +789,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<delimiters>
 							<!-- ${*} is JSP EL and shell scripts, so avoiding it -->
 							<!-- #{*} is JSP EL deferred syntax, so avoiding it -->
+							<!-- %{*} is Struts forced expression evaluation syntax, so avoiding it -->
 							<!-- @{*} selected over @*@, as it gives our developers a more
 								 consistent representation with JSP EL and shell scripts -->
 							<delimiter>@{*}</delimiter>
