@@ -36,8 +36,8 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		title="@{documented.name} Changelog"
 		shortTitle="Changelog"
 		tocLevels="1"
-		datePublished="2016-10-29T20:54:46-0500"
-		dateModified="2021-03-20T10:05:37-05:00"
+		datePublished="2016-10-29T20:54:46-05:00"
+		dateModified="2021-05-20T14:36:30-05:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -49,6 +49,17 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			>
 				<!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
 				<!-- TODO: Remove empty src/test/java and src/test during builds, NetBeans making them? -->
+				<ul>
+					<li>
+						Enabled <ao:a href="https://sonatype.github.io/ossindex-maven/maven-plugin/">dependency audits</ao:a>
+						on builds.  The behavior is affected by the active profiles:
+						<ul>
+							<li><code>development</code> - <ao:a href="https://sonatype.github.io/ossindex-maven/maven-plugin/ossindex-audit/#skip">Skip audit</ao:a></li>
+							<li><code>release</code> - Perform audit, <ao:a href="https://sonatype.github.io/ossindex-maven/maven-plugin/ossindex-audit/#fail">fail the build</ao:a> when vulnerable components are found</li>
+							<li>(default) - Perform audit, <ao:a href="https://sonatype.github.io/ossindex-maven/maven-plugin/ossindex-audit/#fail">warn-only</ao:a> (do not fail the build) for reproducible builds</li>
+						</ul>
+					</li>
+				</ul>
 			</changelog:release>
 		</c:if>
 
