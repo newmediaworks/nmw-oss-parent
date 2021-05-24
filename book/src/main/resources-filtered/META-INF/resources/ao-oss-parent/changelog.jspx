@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-05:00"
-		dateModified="2021-05-20T14:36:30-05:00"
+		dateModified="2021-05-22T13:07:02-05:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -58,6 +58,17 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<li><code>release</code> - Perform audit, <ao:a href="https://sonatype.github.io/ossindex-maven/maven-plugin/ossindex-audit/#fail">fail the build</ao:a> when vulnerable components are found</li>
 							<li>(default) - Perform audit, <ao:a href="https://sonatype.github.io/ossindex-maven/maven-plugin/ossindex-audit/#fail">warn-only</ao:a> (do not fail the build) for reproducible builds</li>
 						</ul>
+					</li>
+					<li>Java™ EE updates:
+						<ol>
+							<li>
+								Default version changed from <ao:a href="https://docs.oracle.com/javaee/6/api/">Java™ EE 6</ao:a>
+								to <ao:a href="https://docs.oracle.com/javaee/7/api/">Java™ EE 7</ao:a>
+							</li>
+							<li>Updated apidocs URL for <ao:a href="https://jakarta.ee/specifications/platform/8/apidocs/">Jakarta EE 8</ao:a></li>
+							<li>Added <ao:a href="https://jakarta.ee/specifications/platform/9/apidocs/">Jakarta EE 9</ao:a></li>
+							<li>Added <ao:a href="https://jakarta.ee/specifications/platform/9.1/apidocs/">Jakarta EE 9.1</ao:a></li>
+						</ol>
 					</li>
 				</ul>
 			</changelog:release>
@@ -464,7 +475,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<changelog:release
 			projectName="@{documented.name}"
 			version="1.6.0"
-			datePublished="2019-10-14T02:41:14-0500"
+			datePublished="2019-10-14T02:41:14-05:00"
 			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			scmUrl="@{project.scm.url}"
@@ -480,7 +491,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<changelog:release
 			projectName="@{documented.name}"
 			version="1.5.0"
-			datePublished="2019-10-01T16:50:40-0500"
+			datePublished="2019-10-01T16:50:40-05:00"
 			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			scmUrl="@{project.scm.url}"
@@ -500,7 +511,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<changelog:release
 			projectName="@{documented.name}"
 			version="1.4.0"
-			datePublished="2019-08-11T05:22:54-0500"
+			datePublished="2019-08-11T05:22:54-05:00"
 			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			scmUrl="@{project.scm.url}"
@@ -524,7 +535,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<changelog:release
 			projectName="@{documented.name}"
 			version="1.3.1"
-			datePublished="2019-06-29T18:10:15-0500"
+			datePublished="2019-06-29T18:10:15-05:00"
 			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			scmUrl="@{project.scm.url}"
@@ -540,7 +551,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<changelog:release
 			projectName="@{documented.name}"
 			version="1.3.0"
-			datePublished="2019-06-23T10:39:52-0500"
+			datePublished="2019-06-23T10:39:52-05:00"
 			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			scmUrl="@{project.scm.url}"
@@ -601,7 +612,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<changelog:release
 			projectName="@{documented.name}"
 			version="1.2.0"
-			datePublished="2019-06-19T02:07:16-0500"
+			datePublished="2019-06-19T02:07:16-05:00"
 			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			scmUrl="@{project.scm.url}"
@@ -638,7 +649,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<changelog:release
 			projectName="@{documented.name}"
 			version="1.1.0"
-			datePublished="2019-04-18T00:37:10-0500"
+			datePublished="2019-04-18T00:37:10-05:00"
 			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			scmUrl="@{project.scm.url}"
@@ -683,7 +694,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<changelog:release
 			projectName="@{documented.name}"
 			version="1.0.3"
-			datePublished="2017-07-26T22:58:21-0500"
+			datePublished="2017-07-26T22:58:21-05:00"
 			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			scmUrl="@{project.scm.url}"
@@ -701,7 +712,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<changelog:release
 			projectName="@{documented.name}"
 			version="1.0.2"
-			datePublished="2017-07-19T14:27:39-0500"
+			datePublished="2017-07-19T14:27:39-05:00"
 			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			scmUrl="@{project.scm.url}"
@@ -733,7 +744,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<changelog:release
 			projectName="@{documented.name}"
 			version="1.0.1"
-			datePublished="2016-11-15T10:50:44-0600"
+			datePublished="2016-11-15T10:50:44-06:00"
 			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			scmUrl="@{project.scm.url}"
@@ -746,7 +757,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<changelog:release
 			projectName="@{documented.name}"
 			version="1.0.0"
-			datePublished="2016-11-15T02:32:38-0600"
+			datePublished="2016-11-15T02:32:38-06:00"
 			groupId="@{project.groupId}"
 			artifactId="@{documented.artifactId}"
 			scmUrl="@{project.scm.url}"
