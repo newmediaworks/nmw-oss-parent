@@ -52,7 +52,9 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<javadoc.link.javaee.5>https://docs.oracle.com/javaee/5/api/</javadoc.link.javaee.5>
 		<javadoc.link.javaee.6>https://docs.oracle.com/javaee/6/api/</javadoc.link.javaee.6>
 		<javadoc.link.javaee.7>https://docs.oracle.com/javaee/7/api/</javadoc.link.javaee.7>
-		<javadoc.link.javaee.8>https://javaee.github.io/javaee-spec/javadocs/</javadoc.link.javaee.8>
+		<javadoc.link.javaee.8>https://jakarta.ee/specifications/platform/8/apidocs/</javadoc.link.javaee.8>
+		<javadoc.link.javaee.9>https://jakarta.ee/specifications/platform/9/apidocs/</javadoc.link.javaee.9>
+		<javadoc.link.javaee.9.1>https://jakarta.ee/specifications/platform/9.1/apidocs/</javadoc.link.javaee.9.1>
 
 		<!-- Java SE version -->
 		<javase.version>1.8</javase.version><!-- 1.6, 1.7, 1.8, 9, 10, 11, ... -->
@@ -65,11 +67,11 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<documented.javadoc.link.javase>${javadoc.link.javase.8}</documented.javadoc.link.javase>
 
 		<!-- Java EE version -->
-		<javaee.version>6</javaee.version>
-		<javadoc.link.javaee>${javadoc.link.javaee.6}</javadoc.link.javaee>
+		<javaee.version>7</javaee.version>
+		<javadoc.link.javaee>${javadoc.link.javaee.7}</javadoc.link.javaee>
 		<!-- These values are copied from the project being documented -->
-		<documented.javaee.version>6</documented.javaee.version>
-		<documented.javadoc.link.javaee>${javadoc.link.javaee.6}</documented.javadoc.link.javaee>
+		<documented.javaee.version>7</documented.javaee.version>
+		<documented.javadoc.link.javaee>${javadoc.link.javaee.7}</documented.javadoc.link.javaee>
 
 		<!-- Maven Java version -->
 		<maven.compiler.source>${javase.version}</maven.compiler.source>
@@ -1281,7 +1283,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
 						<dependencies>
 							<dependency>
-								<groupId>com.aoindustries</groupId><artifactId>ao-javadoc-offline</artifactId><version>2.0.1${POST-SNAPSHOT}</version>
+								<groupId>com.aoindustries</groupId><artifactId>ao-javadoc-offline</artifactId><version>2.1.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 							</dependency>
 						</dependencies>
 						<executions>
@@ -1290,7 +1292,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 								<configuration>
 									<attachToMain>false</attachToMain><attachToTest>false</attachToTest>
 									<resourceBundles>
-										<resourceBundle>com.aoindustries:ao-javadoc-offline:2.0.1${POST-SNAPSHOT}</resourceBundle>
+										<resourceBundle>com.aoindustries:ao-javadoc-offline:2.1.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></resourceBundle>
 									</resourceBundles>
 									<outputDirectory>${project.build.directory}/offlineLinks</outputDirectory>
 								</configuration>
@@ -1349,13 +1351,13 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 						<dependencies>
 							<dependency>
-								<groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.1${POST-SNAPSHOT}</version>
+								<groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.2-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 							</dependency>
 						</dependencies>
 						<configuration>
 							<resourcesArtifacts>
 								<resourcesArtifact>
-									<groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.1${POST-SNAPSHOT}</version>
+									<groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.2-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 								</resourcesArtifact>
 							</resourcesArtifacts>
 						</configuration>
