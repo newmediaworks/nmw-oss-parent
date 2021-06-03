@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-ao-oss-parent - Parent POM for all AO open-source projects.
+ao-oss-parent - Parent POM for all AO open-source software projects.
 Copyright (C) 2016, 2017, 2018, 2019, 2020, 2021  AO Industries, Inc.
     support@aoindustries.com
     7262 Bull Pen Cir
@@ -24,7 +24,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.16.0-SNAPSHOT</version>
+	<groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.16.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -81,8 +81,6 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				Can be "_self" for JDK >= 9, since the apidocs do not use frames.
 				Must be "_top" for JDK < 9, due to frames. Using "_top" for all Java versions so links can escape frames at javado.io. -->
 		<javadoc.target>_top</javadoc.target>
-		<!-- The breadcrumbs for the javadocs -->
-		<javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
 		<!-- The HTML format of the description -->
 		<description.html>${project.description}</description.html>
 		<!-- Taglib reference line for javadocs -->
@@ -92,7 +90,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<!-- Related Projects section for javadocs -->
 		<javadoc.relatedProjects><!-- Default is none --></javadoc.relatedProjects>
 		<!-- Google Analytics tracking code for the javadocs -->
-		<google.analytics.trackingId>UA-86871646-1</google.analytics.trackingId>
+		<google.analytics.trackingId>G-RYD4Z0W4YW</google.analytics.trackingId>
 		<!-- Optional Main-Class for JAR manifest -->
 		<osgi.mainClass><!-- Default is none --></osgi.mainClass>
 		<!-- Set to "-POST-SNAPSHOT" by activating the "POST-SNAPSHOT" profile to use post-release dependencies -->
@@ -444,8 +442,8 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 	</properties>
 
 	<name>AO OSS Parent</name>
-	<url>https://aoindustries.com/ao-oss-parent/</url>
-	<description>Parent POM for all AO open-source projects.</description>
+	<url>https://oss.aoapps.com/parent/</url>
+	<description>Parent POM for all AO open-source software projects.</description>
 	<inceptionYear>2016</inceptionYear>
 
 	<licenses>
@@ -495,6 +493,17 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<enabled>true</enabled>
 			</snapshots>
 		</pluginRepository>
+		<pluginRepository>
+			<id>sonatype-nexus-snapshots-s01</id>
+			<name>Sonatype Nexus Snapshots S01</name>
+			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
 	</pluginRepositories>
 
 	<repositories>
@@ -509,19 +518,30 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>sonatype-nexus-snapshots-s01</id>
+			<name>Sonatype Nexus Snapshots S01</name>
+			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh-aoindustries</id>
 			<name>ossrh-aoindustries</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 		<!-- Unused for Nexus plugin
 		<repository>
 			<id>ossrh-aoindustries</id>
 			<name>ossrh-aoindustries</name>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 		-->
 	</distributionManagement>
@@ -719,7 +739,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId><version>1.6.8</version>
 					<configuration>
 						<serverId>ossrh-aoindustries</serverId>
-						<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+						<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
 						<autoReleaseAfterClose>true</autoReleaseAfterClose>
 					</configuration>
 				</plugin>
@@ -1290,6 +1310,40 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<profile>
 			<!-- Sadly, cannot use Maven properties in profile activation: ${project.build.sourceDirectory} -->
 			<!-- Sadly, cannot also activate on src/test/java, for when there are tests without main -->
+			<id>default-javadoc.breadcrumbs</id><activation><file><missing>src/main/java</missing></file></activation>
+			<properties>
+				<!-- Provides default breadcrumbs for when src/main/java not present -->
+				<javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
+			</properties>
+		</profile>
+		<profile>
+			<!-- Sadly, cannot use Maven properties in profile activation: ${project.build.sourceDirectory} -->
+			<!-- Sadly, cannot also activate on src/test/java, for when there are tests without main -->
+			<id>require-javadoc.breadcrumbs</id><activation><file><exists>src/main/java</exists></file></activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>require-javadoc.breadcrumbs</id><goals><goal>enforce</goal></goals>
+								<configuration>
+									<rules>
+										<requireProperty>
+											<property>javadoc.breadcrumbs</property>
+											<message>Property 'javadoc.breadcrumbs' is required when src/main/java exists.</message>
+										</requireProperty>
+									</rules>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<!-- Sadly, cannot use Maven properties in profile activation: ${project.build.sourceDirectory} -->
+			<!-- Sadly, cannot also activate on src/test/java, for when there are tests without main -->
 			<id>offlineLinks</id><activation><file><exists>src/main/java</exists></file></activation>
 			<build>
 				<plugins>
@@ -1297,7 +1351,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
 						<dependencies>
 							<dependency>
-								<groupId>com.aoindustries</groupId><artifactId>ao-javadoc-offline</artifactId><version>2.1.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+								<groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId><version>2.1.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 							</dependency>
 						</dependencies>
 						<executions>
@@ -1306,7 +1360,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 								<configuration>
 									<attachToMain>false</attachToMain><attachToTest>false</attachToTest>
 									<resourceBundles>
-										<resourceBundle>com.aoindustries:ao-javadoc-offline:2.1.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></resourceBundle>
+										<resourceBundle>com.aoapps:ao-javadoc-offline:2.1.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></resourceBundle>
 									</resourceBundles>
 									<outputDirectory>${project.build.directory}/offlineLinks</outputDirectory>
 								</configuration>
@@ -1321,33 +1375,33 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 								<!-- Note: Note: This list matches ao-javadoc-offline:download.sh -->
 								<offlineLink>
 									<url>http://sendmail-jilter.sourceforge.net/apidocs/</url>
-									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/com.sendmail/jilter</location>
+									<location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/com.sendmail/jilter</location>
 								</offlineLink>
 								<offlineLink>
 									<url>https://hc.apache.org/httpclient-3.x/apidocs/</url>
-									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/commons-httpclient/commons-httpclient</location>
+									<location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/commons-httpclient/commons-httpclient</location>
 								</offlineLink>
 								<offlineLink>
 									<url>https://axis.apache.org/axis/java/apiDocs/</url>
-									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/org.apache.axis/axis</location>
+									<location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/org.apache.axis/axis</location>
 								</offlineLink>
 								<offlineLink>
 									<url>${javadoc.link.javamail}</url>
-									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/com.sun.mail/javax.mail</location>
+									<location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/com.sun.mail/javax.mail</location>
 								</offlineLink>
 								<offlineLink>
 									<url>https://ostermiller.org/utils/doc/</url>
-									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/org.ostermiller/utils</location>
+									<location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/org.ostermiller/utils</location>
 								</offlineLink>
 								<!-- Java SE -->
 								<offlineLink>
 									<url>${javadoc.link.javase}</url>
-									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/javase/${javase.release}</location>
+									<location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/javase/${javase.release}</location>
 								</offlineLink>
 								<!-- Java EE -->
 								<offlineLink>
 									<url>${javadoc.link.javaee}</url>
-									<location>${project.build.directory}/offlineLinks/com/aoindustries/javadoc/offline/javaee/${javaee.version}</location>
+									<location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/javaee/${javaee.version}</location>
 								</offlineLink>
 							</offlineLinks>
 						</configuration>
@@ -1365,13 +1419,13 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 						<dependencies>
 							<dependency>
-								<groupId>com.aoindustries</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.2-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+								<groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.2-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 							</dependency>
 						</dependencies>
 						<configuration>
 							<resourcesArtifacts>
 								<resourcesArtifact>
-									<groupId>com.aoindustries</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.2-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+									<groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.2-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 								</resourcesArtifact>
 							</resourcesArtifacts>
 						</configuration>
