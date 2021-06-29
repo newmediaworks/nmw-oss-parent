@@ -91,6 +91,12 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<javadoc.relatedProjects><!-- Default is none --></javadoc.relatedProjects>
 		<!-- Google Analytics tracking code for the javadocs -->
 		<google.analytics.trackingId>UA-177004-2</google.analytics.trackingId>
+		<!--
+			The Java module name, defaulting to the value previously used for "Bundle-SymbolicName" in Java < 9.
+			All projects should set this to match the module name defined in "module-info.java".
+			Furthermore, projects without "module-info.java" should also add the "Automatic-Module-Name" manifest entry.
+		-->
+		<module.name>${project.groupId}.${project.artifactId}</module.name>
 		<!-- Optional Main-Class for JAR manifest -->
 		<osgi.mainClass><!-- Default is none --></osgi.mainClass>
 		<!-- Set to "-POST-SNAPSHOT" by activating the "POST-SNAPSHOT" profile to use post-release dependencies -->
@@ -598,12 +604,15 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>3.0.0</version>
 				</plugin>
-				<!-- Default to using -Xlint and showing warnings -->
+				<!--
+					Default to using -Xlint (without "exports") and showing warnings.
+					We exclude "exports" since we proactively declare all directly used dependencies, matching the Maven build system.
+				-->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.8.1</version>
 					<configuration>
 						<compilerArgs>
-							<arg>-Xlint</arg>
+							<arg>-Xlint:-exports</arg>
 						</compilerArgs>
 						<showDeprecation>true</showDeprecation>
 						<showWarnings>true</showWarnings>
@@ -670,6 +679,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<!-- We need newer dependency plugin for Java 8 compatibility -->
 				<!-- See https://issues.apache.org/jira/browse/MDEP-439 -->
 				<plugin>
+					<!-- Skip 3.2.0 until issue 753 resolved: https://issues.apache.org/jira/browse/MDEP-753 -->
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId><version>3.1.2</version>
 					<configuration>
 						<silent>true</silent>
@@ -691,7 +701,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 								Also from https://maven.apache.org/shared/maven-archiver/
 							-->
 							<Bundle-Name>${project.name}</Bundle-Name>
-							<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+							<Bundle-SymbolicName>${module.name}</Bundle-SymbolicName>
 							<Bundle-Description>${project.description}</Bundle-Description>
 							<Implementation-Title>${project.name}</Implementation-Title>
 							<Implementation-Version>${project.version}</Implementation-Version><!-- TODO: What to do with post-release builds? -->
@@ -746,7 +756,6 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-release-plugin</artifactId><version>3.0.0-M4</version>
 					<configuration>
-						<useReleaseProfile>false</useReleaseProfile>
 						<releaseProfiles>release</releaseProfiles>
 						<goals>deploy</goals>
 					</configuration>
@@ -872,7 +881,22 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.3.0</version>
+					<!--
+						3.1.0 through 3.3.0: Works when building directly, using "-module-path", but fails in reactor build with "error: module not found" since uses "-class-path"
+						3.0.1: Works both directly and in reactor build, but can't link to "element-list"
+
+						TODO: Find plugin version that works correctly before next production release, or some other workaround.
+
+						See https://stackoverflow.com/a/66371984
+						See https://issues.apache.org/jira/projects/MJAVADOC/issues/MJAVADOC-673
+					-->
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.0.1</version>
+					<dependencies>
+						<!-- For plugin 3.0.1, resolves "Unsupported class file major version 55" -->
+						<dependency>
+							<groupId>org.ow2.asm</groupId><artifactId>asm</artifactId><version>9.2</version>
+						</dependency>
+					</dependencies>
 					<configuration>
 						<source>${maven.compiler.source}</source>
 						<archive>
@@ -961,7 +985,7 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<groupId>org.apache.tomcat.maven</groupId><artifactId>tomcat7-maven-plugin</artifactId><version>2.2</version>
 				</plugin>
 				<plugin>
-					<groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId><version>11.0.3</version>
+					<groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId><version>11.0.5</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -1097,9 +1121,21 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<execution>
 						<id>audit-dependencies</id><phase>validate</phase><goals><goal>audit</goal></goals>
 						<configuration>
-							<!-- Perform audit, warn-only (do not fail the build) -->
-							<fail>false</fail>
+							<!-- Perform audit, fail the build when vulnerable components are found -->
+							<fail>true</fail>
 							<!--<skip>false</skip>-->
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<!-- Analyze dependencies, fail the build when problems found -->
+					<execution>
+						<id>analyze</id><goals><goal>analyze-only</goal></goals>
+						<configuration>
+							<failOnWarning>true</failOnWarning>
 						</configuration>
 					</execution>
 				</executions>
@@ -1133,12 +1169,45 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							</target>
 						</configuration>
 					</execution>
+					<!--
+						maven-javadoc-plugin:3.0.1: Works both directly and in reactor build, but can't link to "element-list"
+
+						TODO: Find plugin version that works correctly before next production release, or some other workaround.
+					-->
+					<execution>
+						<id>copy-element-list-to-package-list-before-javadoc</id><phase>prepare-package</phase><goals><goal>run</goal></goals>
+						<configuration>
+							<target xmlns:if="ant:if">
+								<available file="${project.build.directory}/offlineLinks" type="dir" property="offlineLinks.present"/>
+								<copy if:set="offlineLinks.present" todir="${project.build.directory}/offlineLinks">
+									<fileset dir="${project.build.directory}/offlineLinks" includes="**/element-list" />
+									<globmapper from="*/element-list" to="*/package-list"/>
+								</copy>
+							</target>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 			<!-- Supporting packaging of "bundle" for OSGI bundles -->
 			<plugin>
 				<groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<!-- Create javadocs -->
+					<execution>
+						<id>attach-javadocs</id><goals><goal>jar</goal></goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!--
+					Workaround "versions:display-plugin-updates" failing when "development" profile active.
+					See https://github.com/mojohaus/versions-maven-plugin/issues/354
+				-->
+				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
 			</plugin>
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
@@ -1268,6 +1337,24 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</pluginManagement>
 			</build>
 		</profile>
+		<!-- When module-info.java is present, declare default package as Private-Package to avoid build warnings -->
+		<profile>
+			<id>private-package-for-module-info</id><activation><file><exists>src/main/java/module-info.java</exists></file></activation>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId>
+							<configuration>
+								<instructions>
+									<Private-Package>.;-split-package:=merge-first,{local-packages}</Private-Package>
+								</instructions>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
 		<!-- Do not pack the war in "skip-war" profile -->
 		<profile>
 			<id>skip-war</id>
@@ -1304,6 +1391,29 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						</plugin>
 					</plugins>
 				</pluginManagement>
+			</build>
+		</profile>
+		<profile>
+			<!--
+				Javadoc generation may be skipped by the presence of a file.
+				This is primary used for book/ and devel/ projects.
+				This may be also be used for any project that no public API but still has a module-info.java file, as
+				this results in error "No public or protected classes found to document."
+			-->
+			<id>maven.javadoc.skip</id><activation><file><exists>profile.d/maven.javadoc.skip</exists></file></activation>
+			<properties>
+				<!-- Provides default breadcrumbs for when profile.d/maven.javadoc.skip exists -->
+				<javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+				</plugins>
 			</build>
 		</profile>
 		<profile>
@@ -1433,6 +1543,57 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			</build>
 		</profile>
 		<profile>
+			<!--
+				Local repository install may be skipped by the presence of a file.
+				This is primarily used for projects that are executed directly in NetBeans only.
+			-->
+			<id>maven.install.skip</id><activation><file><exists>profile.d/maven.install.skip</exists></file></activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-install-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<!--
+				Deployment may be skipped by the presence of a file.
+				This is primary used for devel/ projects and for projects that are executed directly in NetBeans only.
+			-->
+			<id>maven.deploy.skip</id><activation><file><exists>profile.d/maven.deploy.skip</exists></file></activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<!--
+				Staging may be skipped by the presence of a file.
+				This is primary used for devel/ projects and for projects that are executed directly in NetBeans only.
+			-->
+			<id>skipNexusStagingDeployMojo</id><activation><file><exists>profile.d/skipNexusStagingDeployMojo</exists></file></activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
+						<configuration>
+							<skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
 			<id>versions-rules</id><activation><file><exists>versions-rules.xml</exists></file></activation>
 			<build>
 				<plugins>
@@ -1453,14 +1614,26 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
 						<executions>
 							<execution>
+								<!-- Skip dependency bytecode version check -->
 								<id>enforce-bytecode-version</id><goals><goal>enforce</goal></goals>
 								<configuration>
-									<!-- Skip dependency bytecode version check -->
 									<skip>true</skip>
+								</configuration>
+							</execution>
+							<execution>
+								<id>enforce-snapshot-version</id><goals><goal>enforce</goal></goals>
+								<configuration>
+									<rules>
+										<requireSnapshotVersion>
+											<message>"development" profile may only be used for *-SNAPSHOT versions.</message>
+										</requireSnapshotVersion>
+									</rules>
+									<fail>true</fail>
 								</configuration>
 							</execution>
 						</executions>
 					</plugin>
+					<!-- Skip audit -->
 					<plugin>
 						<!-- See https://sonatype.github.io/ossindex-maven/maven-plugin/ -->
 						<groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId>
@@ -1468,12 +1641,75 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<execution>
 								<id>audit-dependencies</id><phase>validate</phase><goals><goal>audit</goal></goals>
 								<configuration>
-									<!-- Skip audit -->
-									<!--<fail>false</fail>-->
 									<skip>true</skip>
 								</configuration>
 							</execution>
 						</executions>
+					</plugin>
+					<!-- Skip tests for quick development builds -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<skipTests>true</skipTests>
+						</configuration>
+					</plugin>
+					<!-- Skip analyze dependencies -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>analyze</id><goals><goal>analyze-only</goal></goals>
+								<configuration>
+									<skip>true</skip>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Skip javadocs on development builds -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id><goals><goal>jar</goal></goals>
+								<configuration>
+									<skip>true</skip>
+								</configuration>
+							</execution>
+							<execution>
+								<id>attach-test-javadocs</id><goals><goal>test-jar</goal></goals>
+								<configuration>
+									<skip>true</skip>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Never attach sources to development builds -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId>
+						<configuration>
+							<skipSource>true</skipSource>
+						</configuration>
+					</plugin>
+					<!-- Never sign development builds -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+					<!-- Never deploy development builds -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+					<!-- Never stage development builds -->
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
+						<configuration>
+							<skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>
@@ -1483,28 +1719,27 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			<build>
 				<plugins>
 					<plugin>
-						<!-- See https://sonatype.github.io/ossindex-maven/maven-plugin/ -->
-						<groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>audit-dependencies</id><phase>validate</phase><goals><goal>audit</goal></goals>
+								<id>enforce-release-version</id><goals><goal>enforce</goal></goals>
 								<configuration>
-									<!-- Perform audit, fail the build when vulnerable components are found -->
+									<rules>
+										<requireReleaseVersion>
+											<message>"release" profile may not be used for *-SNAPSHOT versions.</message>
+										</requireReleaseVersion>
+									</rules>
 									<fail>true</fail>
-									<!--<skip>false</skip>-->
 								</configuration>
 							</execution>
 						</executions>
 					</plugin>
-					<!-- Analyze dependencies during release builds -->
+					<!-- Create test javadocs during release builds -->
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>analyze</id><goals><goal>analyze-only</goal></goals>
-								<configuration>
-									<failOnWarning>true</failOnWarning>
-								</configuration>
+								<id>attach-test-javadocs</id><goals><goal>test-jar</goal></goals>
 							</execution>
 						</executions>
 					</plugin>
@@ -1518,19 +1753,6 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<execution>
 								<!-- Add tests as a secondary artifact -->
 								<id>attach-test-sources</id><goals><goal>test-jar-no-fork</goal></goals>
-							</execution>
-						</executions>
-					</plugin>
-					<!-- Create javadocs only during release builds -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>attach-javadocs</id><goals><goal>jar</goal></goals>
-							</execution>
-							<execution>
-								<!-- Add tests as a secondary artifact -->
-								<id>attach-test-javadocs</id><goals><goal>test-jar</goal></goals>
 							</execution>
 						</executions>
 					</plugin>
