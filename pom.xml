@@ -887,8 +887,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 
 						TODO: Find plugin version that works correctly before next production release, or some other workaround.
 
-						See https://stackoverflow.com/a/66371984
-						See https://issues.apache.org/jira/projects/MJAVADOC/issues/MJAVADOC-673
+						See https://issues.apache.org/jira/projects/MJAVADOC/issues/MJAVADOC-682
 					-->
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.0.1</version>
 					<dependencies>
