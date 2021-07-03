@@ -1520,13 +1520,13 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 						<dependencies>
 							<dependency>
-								<groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.2-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+								<groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.2${POST-SNAPSHOT}</version>
 							</dependency>
 						</dependencies>
 						<configuration>
 							<resourcesArtifacts>
 								<resourcesArtifact>
-									<groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.2-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+									<groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.2${POST-SNAPSHOT}</version>
 								</resourcesArtifact>
 							</resourcesArtifacts>
 						</configuration>
