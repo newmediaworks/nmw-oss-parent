@@ -24,7 +24,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.16.0-POST-SNAPSHOT</version>
+	<groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.16.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -99,6 +99,8 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<osgi.mainClass><!-- Default is none --></osgi.mainClass>
 		<!-- Set to "-POST-SNAPSHOT" by activating the "POST-SNAPSHOT" profile to use post-release dependencies -->
 		<POST-SNAPSHOT><!-- -POST-SNAPSHOT --></POST-SNAPSHOT>
+		<!-- com.aoapps is on new Sonatype Nexus Repository Manager -->
+		<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
 
 		<!-- NetBeans Editor -->
 		<org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.continuationIndentSize>4</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.continuationIndentSize>
@@ -539,13 +541,13 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<snapshotRepository>
 			<id>ossrh-aoindustries</id>
 			<name>ossrh-aoindustries</name>
-			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+			<url>${nexusUrl}content/repositories/snapshots</url>
 		</snapshotRepository>
 		<!-- Unused for Nexus plugin
 		<repository>
 			<id>ossrh-aoindustries</id>
 			<name>ossrh-aoindustries</name>
-			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<url>${nexusUrl}service/local/staging/deploy/maven2/</url>
 		</repository>
 		-->
 	</distributionManagement>
@@ -747,7 +749,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId><version>1.6.8</version>
 					<configuration>
 						<serverId>ossrh-aoindustries</serverId>
-						<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+						<nexusUrl>${nexusUrl}</nexusUrl>
 						<autoReleaseAfterClose>true</autoReleaseAfterClose>
 					</configuration>
 				</plugin>
