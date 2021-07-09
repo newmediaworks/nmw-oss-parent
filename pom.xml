@@ -582,6 +582,31 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<pluginManagement>
 			<plugins>
 				<plugin>
+					<groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId><version>1.14.0</version>
+					<configuration>
+						<quiet>true</quiet>
+						<verifyAtypical>true</verifyAtypical>
+						<verifyPluginDependencies>true</verifyPluginDependencies>
+						<verifyPlugins>true</verifyPlugins>
+						<verifyReactorDependencies>true</verifyReactorDependencies>
+						<verifySnapshots>true</verifySnapshots>
+						<keysMapLocations>
+							<!-- See https://github.com/s4u/pgp-keys-map -->
+							<keysMapLocation>/pgp-keys-map.list</keysMapLocation>
+							<keysMapLocation>/com/aoapps/pgp/keys/map/pgp-keys-map.list</keysMapLocation>
+						</keysMapLocations>
+					</configuration>
+					<dependencies>
+						<!-- See https://github.com/s4u/pgp-keys-map -->
+						<dependency>
+							<groupId>org.simplify4u</groupId><artifactId>pgp-keys-map</artifactId><version>2021.07.03-SNAPSHOT</version>
+						</dependency>
+						<dependency>
+							<groupId>com.aoapps</groupId><artifactId>pgp-keys-map</artifactId><version>1.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
 					<groupId>org.apache.axis2</groupId><artifactId>axis2-aar-maven-plugin</artifactId><version>1.7.9</version>
 					<configuration>
 						<archive>
@@ -991,6 +1016,14 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		</pluginManagement>
 		<plugins>
 			<plugin>
+				<groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>pgpverify-check</id><goals><goal>check</goal></goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
 				<executions>
 					<execution>
@@ -1102,6 +1135,15 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<timestampFormat>yyyy</timestampFormat>
 							<timestampPropertyName>build.currentYear</timestampPropertyName>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Sign all builds -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id><phase>verify</phase><goals><goal>sign</goal></goals>
 					</execution>
 				</executions>
 			</plugin>
@@ -1712,13 +1754,6 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<skipSource>true</skipSource>
 						</configuration>
 					</plugin>
-					<!-- Never sign development builds -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId>
-						<configuration>
-							<skip>true</skip>
-						</configuration>
-					</plugin>
 					<!-- Never deploy development builds -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
@@ -1775,15 +1810,6 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 							<execution>
 								<!-- Add tests as a secondary artifact -->
 								<id>attach-test-sources</id><goals><goal>test-jar-no-fork</goal></goals>
-							</execution>
-						</executions>
-					</plugin>
-					<!-- Sign all release jars -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id><phase>verify</phase><goals><goal>sign</goal></goals>
 							</execution>
 						</executions>
 					</plugin>
