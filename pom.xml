@@ -601,7 +601,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 					<dependencies>
 						<!-- See https://github.com/s4u/pgp-keys-map -->
 						<dependency>
-							<groupId>org.simplify4u</groupId><artifactId>pgp-keys-map</artifactId><version>2021.07.03-SNAPSHOT</version>
+							<groupId>org.simplify4u</groupId><artifactId>pgp-keys-map</artifactId><version>2021.07.12</version>
 						</dependency>
 					</dependencies>
 				</plugin>

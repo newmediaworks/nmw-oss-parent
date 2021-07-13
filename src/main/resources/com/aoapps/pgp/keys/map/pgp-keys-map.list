@@ -30,9 +30,6 @@
 # Within each block, rules are ordered by hexadecimal signature then by groupId:artifactId
 #
 
-# TODO: Remove once no longer using the SNAPSHOT:
-org.simplify4u:pgp-keys-map:2021.07.03-SNAPSHOT = noSig
-
 #
 # Artifacts manually installed to maven.aisummarizer.com
 # from old versions used before the move to Maven
@@ -192,8 +189,6 @@ org.apache.axis:axis:1.4        = 0xB7574789F5018690043E6DD9C212662E12F3E1DD
 org.libreoffice:libreoffice     = 0xC2839ECAD9408FBE9531C3E9F434A1EFAFEEAEA3
 
 com.stripe:stripe-java          = 0xC33033E4B583FE612EDE877C05D02D3D57ABFF46
-
-com.google.code.gson:gson       = 0xC7BE5BCC9FEC15518CFDA882B0F3710FA64900E7
 
 com.sun.activation:jakarta.activation = \
                                   0xCAE38BC93D90B852D88465DD3A1959EEF8726006
