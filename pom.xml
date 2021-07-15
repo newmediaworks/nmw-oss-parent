@@ -491,6 +491,11 @@ along with nmw-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		<url>https://github.com/newmediaworks/nmw-oss-parent/issues</url>
 	</issueManagement>
 
+	<ciManagement>
+		<system>GitHub Actions</system>
+		<url>https://github.com/newmediaworks/nmw-oss-parent/actions</url>
+	</ciManagement>
+
 	<pluginRepositories>
 		<pluginRepository>
 			<id>sonatype-nexus-snapshots</id>
