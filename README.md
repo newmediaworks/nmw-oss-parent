@@ -7,6 +7,7 @@
 [![license: LGPL v3](https://oss.newmediaworks.com/ao-badges/license-lgpl-3.0.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 
 [![Build](https://github.com/newmediaworks/nmw-oss-parent/workflows/Build/badge.svg?branch=master)](https://github.com/newmediaworks/nmw-oss-parent/actions?query=workflow%3ABuild)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.newmediaworks/nmw-oss-parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.newmediaworks/nmw-oss-parent)
 
 Parent POM for all New Media Works open-source software projects.
 
