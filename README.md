@@ -8,6 +8,11 @@
 
 [![Build](https://github.com/newmediaworks/nmw-oss-parent/workflows/Build/badge.svg?branch=master)](https://github.com/newmediaworks/nmw-oss-parent/actions?query=workflow%3ABuild)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.newmediaworks/nmw-oss-parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.newmediaworks/nmw-oss-parent)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.newmediaworks%3Anmw-oss-parent&metric=alert_status)](https://sonarcloud.io/dashboard?branch=master&id=com.newmediaworks%3Anmw-oss-parent)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.newmediaworks%3Anmw-oss-parent&metric=ncloc)](https://sonarcloud.io/component_measures?branch=master&id=com.newmediaworks%3Anmw-oss-parent&metric=ncloc)  
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.newmediaworks%3Anmw-oss-parent&metric=reliability_rating)](https://sonarcloud.io/component_measures?branch=master&id=com.newmediaworks%3Anmw-oss-parent&metric=Reliability)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.newmediaworks%3Anmw-oss-parent&metric=security_rating)](https://sonarcloud.io/component_measures?branch=master&id=com.newmediaworks%3Anmw-oss-parent&metric=Security)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.newmediaworks%3Anmw-oss-parent&metric=sqale_rating)](https://sonarcloud.io/component_measures?branch=master&id=com.newmediaworks%3Anmw-oss-parent&metric=Maintainability)
 
 Parent POM for all New Media Works open-source software projects.
 
