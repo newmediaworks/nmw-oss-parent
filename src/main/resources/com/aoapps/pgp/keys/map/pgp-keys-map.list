@@ -214,14 +214,22 @@ org.webjars.npm:jquery          = 0xFA1703B1D287CAEA3A60F931E0130A3ED5A2079E
 org.webjars.npm:lodash          = 0xFA1703B1D287CAEA3A60F931E0130A3ED5A2079E
 
 #
-# TODO: Contribute to s4u/pgp-keys-map
+# Additional artifacts reviewed and contributed to s4u/pgp-keys-map
 #
-javax.xml.bind:jaxb-api         = 0x7B5F40D24C57D2ECE51959315CD3EBC8E510EB66
+# TODO: Remove on next s4u/pgp-keys-map release
+#
+
 com.sun.xml.bind:jaxb-impl      = 0x4F332021E20F59100C978257021E3BE573F727ED
 com.sun.xml.bind:jaxb-xjc       = 0x4F332021E20F59100C978257021E3BE573F727ED
+
 com.sun.xml.ws:jaxws-tools      = 0xE74D86E924B8C8873BF13A6BDCFC3946615AC718
+
 commons-fileupload:commons-fileupload = 0xB6E73D84EA4FCC47166087253FAAD2CD5ECBB314
+
 jalopy:jalopy:1.5rc3            = noSig
+
+javax.xml.bind:jaxb-api         = 0x7B5F40D24C57D2ECE51959315CD3EBC8E510EB66
+
 log4j:log4j:1.2.15              = 0xA1A2B5546D4331B2A41E1C07BE16C95D2E114322
 log4j:log4j:pom:1.2.15          = noSig
 
@@ -229,16 +237,24 @@ org.apache.geronimo.specs:geronimo-activation_1.1_spec = 0xEA23DB1360D9029481E7F
 org.apache.geronimo.specs:geronimo-jta_1.1_spec = 0x9056B710F1E332780DE7AF34CBAEBE39A46C4CA1
 org.apache.geronimo.specs:geronimo-stax-api_1.0_spec = noSig
 org.apache.geronimo.specs:geronimo-ws-metadata_2.0_spec = 0xEA23DB1360D9029481E7F2EFECDFEA3CB4493B94
+
 org.apache.james:apache-mime4j-core = \
                                   0x16786C85121310443EBE4F4B0E1C43C3FB35B6CE, \
                                   0x7E22D50A7EBD9D2CD269B2D4056ACA74D46000BF
+
 org.apache.neethi:neethi        = 0x51B52DC5DD452F92BE342CC2858FC4C4F43856A3
+
 org.apache.woden:woden-core     = 0x2D3C43AC36E5BCFC9696F996CE13E82AEE08B906
+
 org.apache.ws.commons.axiom:axiom-api = 0x2D3C43AC36E5BCFC9696F996CE13E82AEE08B906
 org.apache.ws.commons.axiom:axiom-dom = 0x2D3C43AC36E5BCFC9696F996CE13E82AEE08B906
 org.apache.ws.commons.axiom:axiom-impl = 0x2D3C43AC36E5BCFC9696F996CE13E82AEE08B906
 org.apache.ws.commons.axiom:axiom-jaxb = 0x2D3C43AC36E5BCFC9696F996CE13E82AEE08B906
+
 org.apache.ws.xmlschema:xmlschema-core = 0xDB45ECD19B97514F727105AE67BF80B10AD53983
+
 org.apache.xmlbeans:xmlbeans    = 0x2AFAD8F5F972D31FB5358DF078BE85D9669C4AB5
+
 org.codehaus.woodstox:woodstox-core-asl = 0x2A21DE22697E264345A764832D1F2506C6ECEDF4
+
 wsdl4j:wsdl4j                   = 0xE0F0B2635D0423169D92664FFB633DE8F5CBAE6B
