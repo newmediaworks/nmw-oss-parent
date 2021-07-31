@@ -224,6 +224,8 @@ com.sun.xml.bind:jaxb-xjc       = 0x4F332021E20F59100C978257021E3BE573F727ED
 
 com.sun.xml.ws:jaxws-tools      = 0xE74D86E924B8C8873BF13A6BDCFC3946615AC718
 
+com.thoughtworks.qdox:qdox:1.12 = noSig
+
 commons-fileupload:commons-fileupload = 0xB6E73D84EA4FCC47166087253FAAD2CD5ECBB314
 
 jalopy:jalopy:1.5rc3            = noSig
@@ -253,8 +255,15 @@ org.apache.ws.commons.axiom:axiom-jaxb = 0x2D3C43AC36E5BCFC9696F996CE13E82AEE08B
 
 org.apache.ws.xmlschema:xmlschema-core = 0xDB45ECD19B97514F727105AE67BF80B10AD53983
 
+org.apache.xbean:xbean-reflect:3.4 = 0xEA23DB1360D9029481E7F2EFECDFEA3CB4493B94
+
 org.apache.xmlbeans:xmlbeans    = 0x2AFAD8F5F972D31FB5358DF078BE85D9669C4AB5
 
+org.codehaus.gmaven.*           = 0x045B3D6AE9500CE0F930DFE48D948CAF35543C27
+
 org.codehaus.woodstox:woodstox-core-asl = 0x2A21DE22697E264345A764832D1F2506C6ECEDF4
+
+org.sonatype.gossip:gossip:1.2  = 0xDE45C032E8D246D675003184BC20477D4C4559D2
+org.sonatype.gshell:gshell-io:2.4 = 0xDE45C032E8D246D675003184BC20477D4C4559D2
 
 wsdl4j:wsdl4j                   = 0xE0F0B2635D0423169D92664FFB633DE8F5CBAE6B
