@@ -219,6 +219,8 @@ org.webjars.npm:lodash          = 0xFA1703B1D287CAEA3A60F931E0130A3ED5A2079E
 # TODO: Remove on next s4u/pgp-keys-map release
 #
 
+com.servlets:cos                = noSig
+
 com.sun.xml.bind:jaxb-impl      = 0x4F332021E20F59100C978257021E3BE573F727ED
 com.sun.xml.bind:jaxb-xjc       = 0x4F332021E20F59100C978257021E3BE573F727ED
 
