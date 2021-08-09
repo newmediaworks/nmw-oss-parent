@@ -105,7 +105,10 @@ com.github.virtuald:curvesapi   = 0x1D657819C1D8DE42D96881C1D5C6377EDE50786B
 com.hynnet:jacob                = 0x1E31CD81EFF9A0D43E59BA026D346B32FC3FC9CF
 
 org.apache.poi                  = 0x24188560524400B142BE3386A93E1C4B26062CE3
-org.apache.xmlbeans:xmlbeans    = 0x24188560524400B142BE3386A93E1C4B26062CE3
+org.apache.xmlbeans:xmlbeans    = \
+                                  0x24188560524400B142BE3386A93E1C4B26062CE3, \
+                                  0x2AFAD8F5F972D31FB5358DF078BE85D9669C4AB5, \
+                                  0x6BA4DA8B1C88A49428A29C3D0C69C1EF41181E13
 
 org.lucee:xalan                 = 0x26BA3E8B6A185070F538B1C15C3F925A060D5930
 org.lucee:xalan-serializer      = 0x26BA3E8B6A185070F538B1C15C3F925A060D5930
@@ -219,6 +222,8 @@ org.webjars.npm:lodash          = 0xFA1703B1D287CAEA3A60F931E0130A3ED5A2079E
 # TODO: Remove on next s4u/pgp-keys-map release
 #
 
+com.google.googlejavaformat:google-java-format:1.7 = 0xE77417AC194160A3FABD04969A259C7EE636C5ED
+
 com.servlets:cos                = noSig
 
 com.sun.xml.bind:jaxb-impl      = 0x4F332021E20F59100C978257021E3BE573F727ED
@@ -228,14 +233,20 @@ com.sun.xml.ws:jaxws-tools      = 0xE74D86E924B8C8873BF13A6BDCFC3946615AC718
 
 com.thoughtworks.qdox:qdox:1.12 = noSig
 
+commons-cli:commons-cli:1.4 = 0xCD5464315F0B98C77E6E8ECD9DAADC1C9FCC82D0
+
 commons-fileupload:commons-fileupload = 0xB6E73D84EA4FCC47166087253FAAD2CD5ECBB314
 
 jalopy:jalopy:1.5rc3            = noSig
+
+javax.transaction:javax.transaction-api:1.3 = 0xA4664D6FA36D88138DEF3D1AA077240BC1422FB9
 
 javax.xml.bind:jaxb-api         = 0x7B5F40D24C57D2ECE51959315CD3EBC8E510EB66
 
 log4j:log4j:1.2.15              = 0xA1A2B5546D4331B2A41E1C07BE16C95D2E114322
 log4j:log4j:pom:1.2.15          = noSig
+
+org.apache.axis2 = 0x2DE77CF47E529C5357A38D7BD4E81F01116FFC04
 
 org.apache.geronimo.specs:geronimo-activation_1.1_spec = 0xEA23DB1360D9029481E7F2EFECDFEA3CB4493B94
 org.apache.geronimo.specs:geronimo-jta_1.1_spec = 0x9056B710F1E332780DE7AF34CBAEBE39A46C4CA1
@@ -254,16 +265,20 @@ org.apache.ws.commons.axiom:axiom-api = 0x2D3C43AC36E5BCFC9696F996CE13E82AEE08B9
 org.apache.ws.commons.axiom:axiom-dom = 0x2D3C43AC36E5BCFC9696F996CE13E82AEE08B906
 org.apache.ws.commons.axiom:axiom-impl = 0x2D3C43AC36E5BCFC9696F996CE13E82AEE08B906
 org.apache.ws.commons.axiom:axiom-jaxb = 0x2D3C43AC36E5BCFC9696F996CE13E82AEE08B906
+org.apache.ws.commons.axiom:axiom-api:1.3.0 = 0x2DE77CF47E529C5357A38D7BD4E81F01116FFC04
+org.apache.ws.commons.axiom:axiom-dom:1.3.0 = 0x2DE77CF47E529C5357A38D7BD4E81F01116FFC04
+org.apache.ws.commons.axiom:axiom-impl:1.3.0 = 0x2DE77CF47E529C5357A38D7BD4E81F01116FFC04
 
 org.apache.ws.xmlschema:xmlschema-core = 0xDB45ECD19B97514F727105AE67BF80B10AD53983
 
 org.apache.xbean:xbean-reflect:3.4 = 0xEA23DB1360D9029481E7F2EFECDFEA3CB4493B94
 
-org.apache.xmlbeans:xmlbeans    = 0x2AFAD8F5F972D31FB5358DF078BE85D9669C4AB5
-
 org.codehaus.gmaven.*           = 0x045B3D6AE9500CE0F930DFE48D948CAF35543C27
 
 org.codehaus.woodstox:woodstox-core-asl = 0x2A21DE22697E264345A764832D1F2506C6ECEDF4
+
+org.jibx:jibx-bind:1.3.3 = 0x3B8193C7FCCD41A77F055B6D8F147D14613F136D
+org.jibx:jibx-run:1.3.3 = 0x3B8193C7FCCD41A77F055B6D8F147D14613F136D
 
 org.sonatype.gossip:gossip:1.2  = 0xDE45C032E8D246D675003184BC20477D4C4559D2
 org.sonatype.gshell:gshell-io:2.4 = 0xDE45C032E8D246D675003184BC20477D4C4559D2
