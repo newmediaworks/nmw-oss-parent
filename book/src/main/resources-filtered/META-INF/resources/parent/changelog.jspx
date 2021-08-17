@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-05:00"
-		dateModified="2021-08-09T23:23:49-05:00"
+		dateModified="2021-08-17T13:06:23-05:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -50,16 +50,26 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 			>
 				<!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
 				<!-- TODO: Remove empty src/test/java and src/test during builds, NetBeans making them? -->
-				<ul>
-					<li>
-						Updated to latest releases of <ao:a href="https://github.com/s4u/pgp-keys-map">PGP keys map to maven artifacts</ao:a>
-						and <ao:a href="https://oss.aoapps.com/pgp-keys-map/">AO PGP Keys Map</ao:a>.
-					</li>
-					<li>Updated to <ao:a href="https://axis.apache.org/axis2/java/core/release-notes/1.8.0.html">Apache Axis2 1.8.0</ao:a>.</li>
-					<li>Updated plugin versions.</li>
-				</ul>
 			</changelog:release>
 		</c:if>
+
+		<changelog:release
+			projectName="@{documented.name}"
+			version="1.17.1"
+			datePublished="2021-08-17T13:06:23-05:00"
+			groupId="@{project.groupId}"
+			artifactId="@{documented.artifactId}"
+			scmUrl="@{project.scm.url}"
+		>
+			<ul>
+				<li>
+					Updated to latest releases of <ao:a href="https://github.com/s4u/pgp-keys-map">PGP keys map to maven artifacts</ao:a>
+					and <ao:a href="https://oss.aoapps.com/pgp-keys-map/">AO PGP Keys Map</ao:a>.
+				</li>
+				<li>Updated to <ao:a href="https://axis.apache.org/axis2/java/core/release-notes/1.8.0.html">Apache Axis2 1.8.0</ao:a>.</li>
+				<li>Updated plugin versions.</li>
+			</ul>
+		</changelog:release>
 
 		<changelog:release
 			projectName="@{documented.name}"
