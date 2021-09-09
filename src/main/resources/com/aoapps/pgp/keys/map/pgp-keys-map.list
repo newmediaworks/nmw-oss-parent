@@ -65,3 +65,9 @@ net.lnxhosting                  = 0x97BD5C5BCA326B8CC0DBA46C9AE796CDE258480A
 com.ewatchly                    = 0xA1D03BC816C98DC118F563722E2729E811C03E72
 
 com.danshome                    = 0xA8B251555863D0BD0577B858824F0514E7D509BD
+
+# TODO: Move to s4u/pgp-keys-map
+org.codehaus.gmaven:gmaven-adapter-api:2.1.1  = 0x0DCF749D41A80E58041AAE1728F57F70167C0B3A
+org.codehaus.gmaven:gmaven-adapter-impl:2.1.1 = 0x0DCF749D41A80E58041AAE1728F57F70167C0B3A
+org.codehaus.gmaven:groovy-maven-plugin:2.1.1 = 0x0DCF749D41A80E58041AAE1728F57F70167C0B3A
+jline:jline:2.12                = 0x045B3D6AE9500CE0F930DFE48D948CAF35543C27
