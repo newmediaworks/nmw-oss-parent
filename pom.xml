@@ -1452,12 +1452,13 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 				</pluginManagement>
 			</build>
 		</profile>
-		<!-- Do not pack the war in "skip-war" profile -->
+		<!-- Optimize for fastest possible development build -->
 		<profile>
 			<id>skip-war</id>
 			<build>
 				<pluginManagement>
 					<plugins>
+						<!-- Do not pack the war -->
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId>
 							<executions>
@@ -1471,6 +1472,48 @@ along with ao-oss-parent.  If not, see <http://www.gnu.org/licenses />.
 						</plugin>
 					</plugins>
 				</pluginManagement>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>skip-war-enforce-profiles</id><goals><goal>enforce</goal></goals>
+								<configuration>
+									<rules>
+										<requireActiveProfile>
+											<message>"skip-war" requires "development" profile</message>
+											<profiles>development</profiles>
+										</requireActiveProfile>
+									</rules>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Skip artifact PGP verification -->
+					<plugin>
+						<groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>pgpverify-check</id><goals><goal>check</goal></goals>
+								<configuration>
+									<skip>true</skip>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Skip GPG signing -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id><phase>verify</phase><goals><goal>sign</goal></goals>
+								<configuration>
+									<skip>true</skip>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
 			</build>
 		</profile>
 		<profile>
