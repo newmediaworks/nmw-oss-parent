@@ -1362,6 +1362,25 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 				<directory>${alt.build.dir}</directory>
 			</build>
 		</profile>
+		<!-- Allow changing surefire reports directory by property -->
+		<profile>
+			<id>alternateReportsDir</id>
+			<activation>
+				<property>
+					<name>alt.reports.dir</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<reportsDirectory>${alt.reports.dir}</reportsDirectory>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 		<!-- Use bootclasspath in JDK < 9 -->
 		<profile>
 			<id>javase.bootclasspath</id>
