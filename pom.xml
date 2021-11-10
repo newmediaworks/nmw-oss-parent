@@ -780,6 +780,14 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 						<serverId>ossrh-newmediaworks</serverId>
 						<nexusUrl>${nexusUrl}</nexusUrl>
 						<autoReleaseAfterClose>true</autoReleaseAfterClose>
+						<!--
+							Use direct deployment instead of deferred for two reasons:
+							1) Total deploy time is significantly reduced because artifact uploads happen in parallel
+							   during the builds.  With deferred deployment, the artifact uploads are sequential.
+							2) When the reactor happens to end on a project with skipNexusStagingDeployMojo=true, the
+							   staging will not occur.
+						-->
+						<skipLocalStaging>true</skipLocalStaging>
 					</configuration>
 				</plugin>
 				<plugin>
