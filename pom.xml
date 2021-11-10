@@ -508,6 +508,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 			<releases>
 				<enabled>false</enabled>
 			</releases>
+			<snapshots>
+				<checksumPolicy>fail</checksumPolicy>
+			</snapshots>
 		</pluginRepository>
 		<pluginRepository>
 			<id>sonatype-nexus-snapshots-s01</id>
@@ -516,6 +519,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 			<releases>
 				<enabled>false</enabled>
 			</releases>
+			<snapshots>
+				<checksumPolicy>fail</checksumPolicy>
+			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
 
@@ -527,6 +533,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 			<releases>
 				<enabled>false</enabled>
 			</releases>
+			<snapshots>
+				<checksumPolicy>fail</checksumPolicy>
+			</snapshots>
 		</repository>
 		<repository>
 			<id>sonatype-nexus-snapshots-s01</id>
@@ -535,6 +544,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 			<releases>
 				<enabled>false</enabled>
 			</releases>
+			<snapshots>
+				<checksumPolicy>fail</checksumPolicy>
+			</snapshots>
 		</repository>
 	</repositories>
 
