@@ -496,9 +496,15 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 	</issueManagement>
 
 	<ciManagement>
+		<system>Jenkins</system>
+		<url>https://jenkins.aoindustries.com/job/ao/job/oss/job/parent/</url>
+	</ciManagement>
+	<!-- Only one allowed in POM:
+	<ciManagement>
 		<system>GitHub Actions</system>
 		<url>https://github.com/ao-apps/ao-oss-parent/actions</url>
 	</ciManagement>
+	-->
 
 	<pluginRepositories>
 		<pluginRepository>
@@ -647,7 +653,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.8.1</version>
 					<configuration>
 						<compilerArgs>
-							<arg>-Xlint:-exports</arg>
+							<arg>-Xlint</arg>
 						</compilerArgs>
 						<showDeprecation>true</showDeprecation>
 						<showWarnings>true</showWarnings>
@@ -771,6 +777,15 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 							<Main-Class>${osgi.mainClass}</Main-Class>
 						</instructions>
 					</configuration>
+					<executions>
+						<!-- Do not install to any OBR repositories -->
+						<execution>
+							<id>default-install</id><phase>none</phase>
+						</execution>
+						<execution>
+							<id>default-deploy</id><phase>none</phase>
+						</execution>
+					</executions>
 				</plugin>
 				<!-- Other plugins used below -->
 				<plugin>
@@ -1169,7 +1184,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 						<configuration>
 							<!-- Perform audit, fail the build when vulnerable components are found -->
 							<fail>true</fail>
-							<!--<skip>false</skip>-->
 						</configuration>
 					</execution>
 				</executions>
@@ -1179,7 +1193,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 				<executions>
 					<!-- Analyze dependencies, fail the build when problems found -->
 					<execution>
-						<id>analyze</id><goals><goal>analyze-only</goal></goals>
+						<id>analyze-dependencies</id><goals><goal>analyze-only</goal></goals>
 						<configuration>
 							<failOnWarning>true</failOnWarning>
 						</configuration>
@@ -1299,6 +1313,26 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 			<properties>
 				<POST-SNAPSHOT>-POST-SNAPSHOT</POST-SNAPSHOT>
 			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>require-POST-SNAPSHOT-is-snapshot-version</id><goals><goal>enforce</goal></goals>
+								<configuration>
+									<rules>
+										<requireSnapshotVersion>
+											<message>"POST-SNAPSHOT" profile may only be used for *-SNAPSHOT versions.</message>
+										</requireSnapshotVersion>
+									</rules>
+									<fail>true</fail>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 		<!-- When the keys map file is present, we are building com.aoapps:pgp-keys-map, use file directly to avoid cyclic dependency -->
 		<profile>
@@ -1423,6 +1457,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId>
 							<configuration>
+								<compilerArgs>
+									<arg>-Xlint:-exports</arg>
+								</compilerArgs>
 								<release>${maven.compiler.release}</release>
 							</configuration>
 						</plugin>
@@ -1516,10 +1553,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 						<groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>pgpverify-check</id><goals><goal>check</goal></goals>
-								<configuration>
-									<skip>true</skip>
-								</configuration>
+								<id>pgpverify-check</id><phase>none</phase>
 							</execution>
 						</executions>
 					</plugin>
@@ -1528,10 +1562,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>sign-artifacts</id><phase>verify</phase><goals><goal>sign</goal></goals>
-								<configuration>
-									<skip>true</skip>
-								</configuration>
+								<id>sign-artifacts</id><phase>none</phase>
 							</execution>
 						</executions>
 					</plugin>
@@ -1746,9 +1777,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-install-plugin</artifactId>
-						<configuration>
-							<skip>true</skip>
-						</configuration>
+						<configuration><skip>true</skip></configuration>
 					</plugin>
 				</plugins>
 			</build>
@@ -1820,7 +1849,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 			</build>
 		</profile>
 		<profile>
-			<id>development</id>
+			<id>development</id><activation><file><exists>profile.d/development</exists></file></activation>
 			<properties>
 				<!-- Never stage development builds -->
 				<nexus.skipNexusStagingDeployMojo>true</nexus.skipNexusStagingDeployMojo>
@@ -1831,88 +1860,225 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
 						<executions>
 							<execution>
-								<!-- Skip dependency bytecode version check -->
-								<id>enforce-bytecode-version</id><goals><goal>enforce</goal></goals>
-								<configuration>
-									<skip>true</skip>
-								</configuration>
+								<!-- Skip dependency bytecode version check (unless reactivated in "jenkins" profile below) -->
+								<id>enforce-bytecode-version</id><phase>none</phase>
 							</execution>
 							<execution>
-								<id>enforce-snapshot-version</id><goals><goal>enforce</goal></goals>
+								<id>development-enforce-profiles</id><goals><goal>enforce</goal></goals>
 								<configuration>
 									<rules>
-										<requireSnapshotVersion>
-											<message>"development" profile may only be used for *-SNAPSHOT versions.</message>
-										</requireSnapshotVersion>
+										<requireActiveProfile>
+											<message>"development" requires "POST-SNAPSHOT" profile</message>
+											<profiles>POST-SNAPSHOT</profiles>
+										</requireActiveProfile>
 									</rules>
 									<fail>true</fail>
 								</configuration>
 							</execution>
 						</executions>
 					</plugin>
-					<!-- Skip audit -->
+					<!-- Skip audit (unless reactivated in "jenkins" profile below) -->
 					<plugin>
 						<!-- See https://sonatype.github.io/ossindex-maven/maven-plugin/ -->
 						<groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>audit-dependencies</id><phase>validate</phase><goals><goal>audit</goal></goals>
-								<configuration>
-									<skip>true</skip>
-								</configuration>
+								<id>audit-dependencies</id><phase>none</phase>
 							</execution>
 						</executions>
 					</plugin>
-					<!-- Skip tests for quick development builds -->
+					<!-- Skip tests for quick development builds (unless reactivated in "jenkins" profile below) -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<skipTests>true</skipTests>
-						</configuration>
+						<configuration><skipTests>true</skipTests></configuration>
 					</plugin>
-					<!-- Skip analyze dependencies -->
+					<!-- Skip analyze dependencies (unless reactivated in "jenkins" profile below) -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>analyze</id><goals><goal>analyze-only</goal></goals>
-								<configuration>
-									<skip>true</skip>
-								</configuration>
+								<id>analyze-dependencies</id><phase>none</phase>
 							</execution>
 						</executions>
 					</plugin>
-					<!-- Skip javadocs on development builds -->
+					<!-- Skip javadocs on development builds (unless reactivated in "jenkins" profile below) -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>attach-javadocs</id><goals><goal>jar</goal></goals>
-								<configuration>
-									<skip>true</skip>
-								</configuration>
+								<id>attach-javadocs</id><phase>none</phase>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Never deploy development builds (unless reactivated in "jenkins" profile below) -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
+						<configuration><skip>true</skip></configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>jenkins</id>
+			<properties>
+				<!-- Never stage Jenkins builds -->
+				<nexus.skipNexusStagingDeployMojo>true</nexus.skipNexusStagingDeployMojo>
+			</properties>
+			<build>
+				<plugins>
+					<!-- Do not verify snapshots within Jenkins builds, since they are only used internal to Jenkins and not signed -->
+					<plugin>
+						<groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId>
+						<configuration>
+							<verifySnapshots>false</verifySnapshots>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+						<executions>
+							<execution>
+								<!-- Always enforce in Jekins builds -->
+								<id>enforce-bytecode-version</id><phase>validate</phase>
 							</execution>
 							<execution>
-								<id>attach-test-javadocs</id><goals><goal>test-jar</goal></goals>
+								<id>jenkins-enforce-profiles</id><goals><goal>enforce</goal></goals>
 								<configuration>
-									<skip>true</skip>
+									<rules>
+										<requireActiveProfile>
+											<message>"jenkins" requires "POST-SNAPSHOT" profile</message>
+											<profiles>POST-SNAPSHOT</profiles>
+										</requireActiveProfile>
+									</rules>
+									<fail>true</fail>
 								</configuration>
 							</execution>
 						</executions>
 					</plugin>
-					<!-- Never attach sources to development builds -->
+					<!-- Always audit in Jenkins builds -->
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId>
-						<configuration>
-							<skipSource>true</skipSource>
-						</configuration>
+						<groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>audit-dependencies</id><phase>validate</phase>
+							</execution>
+						</executions>
 					</plugin>
-					<!-- Never deploy development builds -->
+					<!-- Always test Jenkins builds -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId>
+						<configuration><skipTests>false</skipTests></configuration>
+					</plugin>
+					<!-- Always analyze dependencies in Jenkins builds -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>analyze-dependencies</id><phase>verify</phase>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Always generate javadocs for Jenkins builds -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id><phase>package</phase>
+							</execution>
+							<execution>
+								<id>attach-test-javadocs</id><goals><goal>test-jar</goal></goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Skip GPG signing -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id><phase>none</phase>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Do not install to per-workspace .m2/repository -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-install-plugin</artifactId>
+						<configuration><skip>true</skip></configuration>
+					</plugin>
+					<!-- Always deploy Jenkins builds -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
+						<configuration><skip>false</skip></configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>jenkins-deploy</id>
+			<!--
+				Useful to determine what to skip:
+				mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT
+				mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development
+				mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,jenkins
+				mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development,jenkins
+				mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,jenkins,jenkins-deploy
+				mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development,jenkins,jenkins-deploy
+			-->
+			<build>
+				<plugins>
+					<!-- Already verified during "Build" phase -->
+					<plugin>
+						<groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>pgpverify-check</id><phase>none</phase>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+						<executions>
+							<execution>
+								<!-- Already enforced during "Build" phase -->
+								<id>enforce-maven</id><phase>none</phase>
+							</execution>
+							<execution>
+								<!-- Already enforced during "Build" phase -->
+								<id>enforce-bytecode-version</id><phase>none</phase>
+							</execution>
+							<execution>
+								<id>jenkins-deploy-enforce-profiles</id><goals><goal>enforce</goal></goals>
+								<configuration>
+									<rules>
+										<requireActiveProfile>
+											<message>"jenkins-deploy" requires "jenkins" profile</message>
+											<profiles>jenkins</profiles>
+										</requireActiveProfile>
+									</rules>
+									<fail>true</fail>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Already audited during "Build" phase -->
+					<plugin>
+						<groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>audit-dependencies</id><phase>none</phase>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Already compiled during "Build" phase -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId>
 						<configuration>
+							<skipMain>true</skipMain>
 							<skip>true</skip>
 						</configuration>
+					</plugin>
+					<!-- Already tested during "Test" phase -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId>
+						<configuration><skipTests>true</skipTests></configuration>
 					</plugin>
 				</plugins>
 			</build>
@@ -1956,6 +2122,31 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 							<execution>
 								<!-- Add tests as a secondary artifact -->
 								<id>attach-test-sources</id><goals><goal>test-jar-no-fork</goal></goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>publish</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>publish-enforce-profiles</id><goals><goal>enforce</goal></goals>
+								<configuration>
+									<rules>
+										<!-- TODO: How to disallow "development" profile when publish? -->
+										<requireActiveProfile>
+											<message>"publish" requires "POST-SNAPSHOT" profile</message>
+											<profiles>POST-SNAPSHOT</profiles>
+										</requireActiveProfile>
+									</rules>
+									<fail>true</fail>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>
