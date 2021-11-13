@@ -82,9 +82,15 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 	</issueManagement>
 
 	<ciManagement>
+		<system>Jenkins</system>
+		<url>https://jenkins.aoindustries.com/job/nmw/job/oss/job/parent-book/</url>
+	</ciManagement>
+	<!-- Only one allowed in POM:
+	<ciManagement>
 		<system>GitHub Actions</system>
 		<url>https://github.com/newmediaworks/nmw-oss-parent/actions</url>
 	</ciManagement>
+	-->
 
 	<build>
 		<plugins>
