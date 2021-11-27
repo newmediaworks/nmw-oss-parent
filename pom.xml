@@ -1239,19 +1239,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 							</target>
 						</configuration>
 					</execution>
-					<!-- maven-javadoc-plugin:3.0.1: Works both directly and in reactor build, but can't link to "element-list" -->
-					<execution>
-						<id>copy-element-list-to-package-list-before-javadoc</id><phase>prepare-package</phase><goals><goal>run</goal></goals>
-						<configuration>
-							<target xmlns:if="ant:if">
-								<available file="${project.build.directory}/offlineLinks" type="dir" property="offlineLinks.present" />
-								<copy if:set="offlineLinks.present" todir="${project.build.directory}/offlineLinks">
-									<fileset dir="${project.build.directory}/offlineLinks" includes="**/element-list" />
-									<globmapper from="*/element-list" to="*/package-list" />
-								</copy>
-							</target>
-						</configuration>
-					</execution>
 				</executions>
 			</plugin>
 			<!-- Supporting packaging of "bundle" for OSGI bundles -->
@@ -1628,6 +1615,23 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 										<resourceBundle>com.aoapps:ao-javadoc-offline:3.0.1${POST-SNAPSHOT}</resourceBundle>
 									</resourceBundles>
 									<outputDirectory>${project.build.directory}/offlineLinks</outputDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<!-- maven-javadoc-plugin:3.0.1: Works both directly and in reactor build, but can't link to "element-list" -->
+							<execution>
+								<id>copy-element-list-to-package-list-before-javadoc</id><phase>prepare-package</phase><goals><goal>run</goal></goals>
+								<configuration>
+									<target>
+										<copy todir="${project.build.directory}/offlineLinks">
+											<fileset dir="${project.build.directory}/offlineLinks" includes="**/element-list" />
+											<globmapper from="*/element-list" to="*/package-list" />
+										</copy>
+									</target>
 								</configuration>
 							</execution>
 						</executions>
