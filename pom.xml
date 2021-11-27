@@ -1614,7 +1614,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 						</dependencies>
 						<executions>
 							<execution>
-								<id>process.offlineLinks</id><phase>generate-sources</phase><goals><goal>process</goal></goals>
+								<id>process.offlineLinks</id><phase>prepare-package</phase><goals><goal>process</goal></goals>
 								<configuration>
 									<attachToMain>false</attachToMain><attachToTest>false</attachToTest>
 									<resourceBundles>
