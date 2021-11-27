@@ -1581,29 +1581,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 			</build>
 		</profile>
 		<profile>
-			<!--
-				Javadoc generation may be skipped by the presence of a file.
-				This is primary used for book/ and devel/ projects.
-				This may be also be used for any project that no public API but still has a module-info.java file, as
-				this results in error "No public or protected classes found to document."
-			-->
-			<id>maven.javadoc.skip</id><activation><file><exists>profile.d/maven.javadoc.skip</exists></file></activation>
-			<properties>
-				<!-- Provides default breadcrumbs for when profile.d/maven.javadoc.skip exists -->
-				<javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
-			</properties>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
-						<configuration>
-							<skip>true</skip>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
 			<!-- Sadly, cannot use Maven properties in profile activation: ${project.build.sourceDirectory} -->
 			<!-- Sadly, cannot also activate on src/test/java, for when there are tests without main -->
 			<id>default-javadoc.breadcrumbs</id><activation><file><missing>src/main/java</missing></file></activation>
@@ -1741,6 +1718,46 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 									<groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.2${POST-SNAPSHOT}</version>
 								</resourcesArtifact>
 							</resourcesArtifacts>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<!--
+				Javadoc generation may be skipped by the presence of a file.
+				This is primary used for book/ and devel/ projects.
+				This may be also be used for any project that no public API but still has a module-info.java file, as
+				this results in error "No public or protected classes found to document."
+			-->
+			<id>maven.javadoc.skip</id><activation><file><exists>profile.d/maven.javadoc.skip</exists></file></activation>
+			<properties>
+				<!-- Provides default breadcrumbs for when profile.d/maven.javadoc.skip exists -->
+				<javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>process.offlineLinks</id><phase>none</phase>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<!-- maven-javadoc-plugin:3.0.1: Works both directly and in reactor build, but can't link to "element-list" -->
+							<execution>
+								<id>copy-element-list-to-package-list-before-javadoc</id><phase>none</phase>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
 						</configuration>
 					</plugin>
 				</plugins>
