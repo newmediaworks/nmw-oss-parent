@@ -1216,6 +1216,13 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<!--
+					maven-javadoc-plugin:3.0.1: Must be defined before "maven-antrun-plugin" workaround
+					"copy-element-list-to-package-list-before-javadoc" so extracted element-list files are copied, too.
+				-->
+				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
+			</plugin>
 			<!--
 				The second copy of resources-filtered is required for maven-bundle-plugin, even if empty.
 				Otherwise the bundle packaging will fail.
