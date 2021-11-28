@@ -65,3 +65,8 @@ net.lnxhosting                  = 0x97BD5C5BCA326B8CC0DBA46C9AE796CDE258480A
 com.ewatchly                    = 0xA1D03BC816C98DC118F563722E2729E811C03E72
 
 com.danshome                    = 0xA8B251555863D0BD0577B858824F0514E7D509BD
+
+# TODO: Get merged into upstream pgp-keys-map, then rollback ao-pgp-keys-map to version 1.1.0
+org.apache.directory.api        = 0x63CE676698B26D3A36D77527223BD93328686142
+org.apache.mina                 = 0x4D2DB2916149BAA9D0C92F3731474E5E7C6B7034
+org.apache.servicemix.bundles   = 0x1AA8CF92D409A73393D0B736BFF2EE42C8282E76
