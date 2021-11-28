@@ -601,7 +601,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId><version>1.14.1</version>
+					<groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId><version>1.15.0</version>
 					<configuration>
 						<quiet>true</quiet>
 						<verifyAtypical>true</verifyAtypical>
@@ -866,7 +866,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId><version>3.3.1</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId><version>3.3.2</version>
 					<configuration>
 						<useDefaultDelimiters>false</useDefaultDelimiters>
 						<delimiters>
@@ -1029,7 +1029,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 					<groupId>org.apache.tomcat.maven</groupId><artifactId>tomcat7-maven-plugin</artifactId><version>2.2</version>
 				</plugin>
 				<plugin>
-					<groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId><version>11.0.6</version>
+					<groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId><version>11.0.7</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
