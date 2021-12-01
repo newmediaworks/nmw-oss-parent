@@ -1897,13 +1897,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 			</properties>
 			<build>
 				<plugins>
-					<!-- Do not verify snapshots within Jenkins builds, since they are only used internal to Jenkins and not signed -->
-					<plugin>
-						<groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId>
-						<configuration>
-							<verifySnapshots>false</verifySnapshots>
-						</configuration>
-					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
 						<executions>
@@ -1960,14 +1953,14 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 							</execution>
 						</executions>
 					</plugin>
-					<!-- Skip GPG signing -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id><phase>none</phase>
-							</execution>
-						</executions>
+						<configuration>
+							<lockMode>multiple</lockMode>
+							<homedir>${gpg.jenkins-aoindustries-com.homedir}</homedir>
+							<keyname>${gpg.jenkins-aoindustries-com.keyname}</keyname>
+							<passphrase>${gpg.jenkins-aoindustries-com.passphrase}</passphrase>
+						</configuration>
 					</plugin>
 					<!-- Do not install to per-workspace .m2/repository -->
 					<plugin>
