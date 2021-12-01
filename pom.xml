@@ -1846,18 +1846,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 								<!-- Skip dependency bytecode version check (unless reactivated in "jenkins" profile below) -->
 								<id>enforce-bytecode-version</id><phase>none</phase>
 							</execution>
-							<execution>
-								<id>development-enforce-profiles</id><goals><goal>enforce</goal></goals>
-								<configuration>
-									<rules>
-										<requireActiveProfile>
-											<message>"development" requires "POST-SNAPSHOT" profile</message>
-											<profiles>POST-SNAPSHOT</profiles>
-										</requireActiveProfile>
-									</rules>
-									<fail>true</fail>
-								</configuration>
-							</execution>
 						</executions>
 					</plugin>
 					<!-- Skip audit (unless reactivated in "jenkins" profile below) -->
