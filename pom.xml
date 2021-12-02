@@ -1756,9 +1756,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
-						<configuration>
-							<skip>true</skip>
-						</configuration>
+						<configuration><skip>true</skip></configuration>
 					</plugin>
 				</plugins>
 			</build>
@@ -1790,7 +1788,25 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 				<plugins>
 					<plugin>
 						<groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
+						<!--
+						Not using as extension, since it blocks maven-deploy-plugin in the jenkins-deploy profile:
 						<extensions>true</extensions>
+						-->
+						<executions>
+							<execution>
+								<!-- Manually added since nexus-staging-maven-plugin is not used as extension -->
+								<id>default-deploy</id><phase>deploy</phase><goals><goal>deploy</goal></goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
+						<executions>
+							<execution>
+								<!-- Manually disabled since nexus-staging-maven-plugin is not used as extension -->
+								<id>default-deploy</id><phase>none</phase>
+							</execution>
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
@@ -1820,9 +1836,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
-						<configuration>
-							<skip>true</skip>
-						</configuration>
+						<configuration><skip>true</skip></configuration>
 					</plugin>
 				</plugins>
 			</build>
@@ -1926,7 +1940,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 							</execution>
 						</executions>
 					</plugin>
-					<!-- Never deploy development builds (unless reactivated in "jenkins" profile below) -->
+					<!-- Never deploy development builds -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
 						<configuration><skip>true</skip></configuration>
@@ -1936,10 +1950,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 		</profile>
 		<profile>
 			<id>jenkins</id>
-			<properties>
-				<!-- Never stage Jenkins builds -->
-				<nexus.skipNexusStagingDeployMojo>true</nexus.skipNexusStagingDeployMojo>
-			</properties>
 			<build>
 				<plugins>
 					<plugin>
@@ -2012,11 +2022,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-install-plugin</artifactId>
 						<configuration><skip>true</skip></configuration>
 					</plugin>
-					<!-- Always deploy Jenkins builds -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
-						<configuration><skip>false</skip></configuration>
-					</plugin>
 				</plugins>
 			</build>
 		</profile>
@@ -2052,6 +2057,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 											<message>"jenkins-deploy" requires "jenkins" profile</message>
 											<profiles>jenkins</profiles>
 										</requireActiveProfile>
+										<requireActiveProfile>
+											<message>"jenkins-deploy" requires "nexus" profile</message>
+											<profiles>nexus</profiles>
+										</requireActiveProfile>
 									</rules>
 									<fail>true</fail>
 								</configuration>
@@ -2079,6 +2088,19 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId>
 						<configuration><skipTests>true</skipTests></configuration>
+					</plugin>
+					<!-- Always deploy Jenkins builds to local private repositories-->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>jenkins-deploy</id><phase>deploy</phase><goals><goal>deploy</goal></goals>
+								<configuration>
+									<skip>false</skip>
+									<altDeploymentRepository>local-private-distribution::default::file:///var/maven2</altDeploymentRepository>
+								</configuration>
+							</execution>
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
