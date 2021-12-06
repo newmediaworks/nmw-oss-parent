@@ -69,7 +69,7 @@ com.danshome                    = 0xA8B251555863D0BD0577B858824F0514E7D509BD
 #
 # SNAPSHOT artifacts built by AO Jenkins.
 #
-# Requires pgpverify-maven-plugin >= 1.5.1:
+# Requires pgpverify-maven-plugin >= 1.15.1:
 #
 com.aisummarizer:*:~.*-SNAPSHOT$ = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 org.aorepo:*:~.*-SNAPSHOT$       = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
@@ -78,7 +78,7 @@ com.ewatchly:*:~.*-SNAPSHOT$     = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.danshome:*:~.*-SNAPSHOT$     = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 
 # TODO: Get merged into upstream pgp-keys-map
-# Requires pgpverify-maven-plugin >= 1.5.1:
+# Requires pgpverify-maven-plugin >= 1.15.1:
 com.aoapps:*:~.*-SNAPSHOT$          = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.aoapps.platform:*:~.*-SNAPSHOT$ = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.aoindustries:*:~.*-SNAPSHOT$    = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
