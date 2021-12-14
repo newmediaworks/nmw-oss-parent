@@ -88,3 +88,4 @@ com.semanticcms:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)     = 0xA10BFD39C3ADFC8B61199
 
 # TODO: Get merged into upstream pgp-keys-map
 org.apache.logging.log4j        = 0x748F15B2CF9BA8F024155E6ED7C92B70FA1C814D
+org.jdom:jdom2                  = 0x78DF98EF7F95578FD545B9A159A7C2A1BD98C013
