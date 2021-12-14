@@ -85,3 +85,6 @@ com.aoindustries:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)    = 0xA10BFD39C3ADFC8B61199
 com.newmediaworks:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.pragmatickm:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)     = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.semanticcms:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)     = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
+
+# TODO: Get merged into upstream pgp-keys-map
+org.apache.logging.log4j        = 0x748F15B2CF9BA8F024155E6ED7C92B70FA1C814D
