@@ -649,10 +649,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>3.0.0</version>
 				</plugin>
-				<!--
-					Default to using -Xlint (without "exports") and showing warnings.
-					We exclude "exports" since we proactively declare all directly used dependencies, matching the Maven build system.
-				-->
+				<!-- Default to using -Xlint and showing warnings -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.8.1</version>
 					<configuration>
@@ -1408,6 +1405,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 							<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId>
 							<configuration>
 								<compilerArgs>
+									<!-- We exclude "exports" since we proactively declare all directly used dependencies, matching the Maven build system. -->
 									<arg>-Xlint:-exports</arg>
 								</compilerArgs>
 								<release>${maven.compiler.release}</release>
