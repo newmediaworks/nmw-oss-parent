@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 ao-oss-parent - Parent POM for all AO open-source software projects.
-Copyright (C) 2016, 2017, 2018, 2019, 2020, 2021  AO Industries, Inc.
+Copyright (C) 2016, 2017, 2018, 2019, 2020, 2021, 2022  AO Industries, Inc.
     support@aoindustries.com
     7262 Bull Pen Cir
     Mobile, AL 36695
@@ -618,7 +618,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 					<dependencies>
 						<!-- See https://github.com/s4u/pgp-keys-map -->
 						<dependency>
-							<groupId>org.simplify4u</groupId><artifactId>pgp-keys-map</artifactId><version>2021.11.20-SNAPSHOT</version>
+							<groupId>org.simplify4u</groupId><artifactId>pgp-keys-map</artifactId><version>2021.12.28</version>
 						</dependency>
 					</dependencies>
 				</plugin>
