@@ -601,7 +601,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId><version>1.15.1-SNAPSHOT</version>
+					<groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId><version>1.16.0</version>
 					<configuration>
 						<quiet>true</quiet>
 						<verifyAtypical>true</verifyAtypical>
