@@ -793,7 +793,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 				</plugin>
 				<plugin>
 					<!-- See https://sonatype.github.io/ossindex-maven/maven-plugin/ -->
-					<groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId><version>3.1.0</version>
+					<groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId><version>3.2.0</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-release-plugin</artifactId><version>3.0.0-M4</version>
