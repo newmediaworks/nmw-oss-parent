@@ -69,25 +69,16 @@ com.danshome                    = 0xA8B251555863D0BD0577B858824F0514E7D509BD
 #
 # SNAPSHOT artifacts built by AO Jenkins.
 #
-# Requires pgpverify-maven-plugin >= 1.15.1:
+# Requires pgpverify-maven-plugin >= 1.16.0:
 #
-com.aisummarizer:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+) = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-org.aorepo:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)       = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-net.lnxhosting:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-com.ewatchly:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)     = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-com.danshome:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)     = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-
-# TODO: Get merged into upstream pgp-keys-map
-# Requires pgpverify-maven-plugin >= 1.15.1:
+com.aisummarizer:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)    = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.aoapps:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)          = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.aoapps.platform:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+) = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.aoindustries:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)    = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
+com.danshome:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)        = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
+com.ewatchly:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)        = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.newmediaworks:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.pragmatickm:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)     = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.semanticcms:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)     = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-
-# TODO: Get merged into upstream pgp-keys-map
-org.apache.logging.log4j        = 0x748F15B2CF9BA8F024155E6ED7C92B70FA1C814D
-org.jdom:jdom2                  = 0x78DF98EF7F95578FD545B9A159A7C2A1BD98C013
-org.libreoffice:libreoffice     = 0x1C67D33B45FF883CF72675872B72BCDB418E6BC6
-mysql:mysql-connector-java:[8.0.28,) = 0x859BE8D7C586F538430B19C2467B942D3A79BD29
+net.lnxhosting:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
+org.aorepo:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)          = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
