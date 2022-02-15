@@ -562,13 +562,11 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 			<name>ossrh-newmediaworks</name>
 			<url>${nexusUrl}content/repositories/snapshots</url>
 		</snapshotRepository>
-		<!-- Unused for Nexus plugin
 		<repository>
 			<id>ossrh-newmediaworks</id>
 			<name>ossrh-newmediaworks</name>
 			<url>${nexusUrl}service/local/staging/deploy/maven2/</url>
 		</repository>
-		-->
 	</distributionManagement>
 
 	<build>
