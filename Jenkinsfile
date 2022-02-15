@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 /*
  * nmw-oss-parent - Parent POM for all New Media Works open-source software projects.
- * Copyright (C) 2021  New Media Works
+ * Copyright (C) 2021, 2022  New Media Works
  *     info@newmediaworks.com
  *     703 2nd Street #465
  *     Santa Rosa, CA 95404
@@ -151,6 +151,13 @@ def upstreamProjects = [
  *                                                                                        *
  * testWhenExpression   A closure determining when to run tests.                          *
  *                      Defaults to {return fileExists(projectDir + '/src/test')}         *
+ *                                                                                        *
+ * sonarqubeWhenExpression  A closure determining when to perform SonarQube analysis.     *
+ *                          Defaults to {                                                 *
+ *                            return !fileExists(                                         *
+ *                              projectDir + '/.github/workflows/build.yml'               *
+ *                            )                                                           *
+ *                          }                                                             *
  *                                                                                        *
  * failureEmailTo       The recipient of build failure emails.                            *
  *                      Defaults to 'support@aoindustries.com'                            *
@@ -469,6 +476,11 @@ if (!binding.hasVariable('testWhenExpression')) {
 		{return fileExists(projectDir + '/src/test')}
 	)
 }
+if (!binding.hasVariable('sonarqubeWhenExpression')) {
+	binding.setVariable('sonarqubeWhenExpression',
+		{return !fileExists(projectDir + '/.github/workflows/build.yml')}
+	)
+}
 if (!binding.hasVariable('failureEmailTo')) {
 	binding.setVariable('failureEmailTo', 'support@aoindustries.com')
 }
@@ -671,6 +683,40 @@ then
   exit 1
 fi
 """
+			}
+		}
+		stage('SonarQube analysis') {
+			when {
+				expression {
+					return sonarqubeWhenExpression.call()
+				}
+			}
+			steps {
+				sh "${niceCmd}git fetch --unshallow || true" // SonarQube does not currently support shallow fetch
+				dir(projectDir) {
+					withSonarQubeEnv(installationName: 'AO SonarQube') {
+						withMaven(
+							maven: maven,
+							mavenOpts: mavenOpts,
+							mavenLocalRepo: '.m2/repository',
+							jdk: "jdk-$deployJdk"
+						) {
+							sh "${niceCmd}$MVN_CMD $mvnCommon -Dalt.build.dir=target/jdk-$deployJdk -Dsonar.coverage.jacoco.xmlReportPaths=target/jdk-$deployJdk/site/jacoco/jacoco.xml sonar:sonar"
+						}
+					}
+				}
+			}
+		}
+		stage('Quality Gate') {
+			when {
+				expression {
+					return sonarqubeWhenExpression.call()
+				}
+			}
+			steps {
+				timeout(time: 1, unit: 'HOURS') {
+					waitForQualityGate(webhookSecretId: 'SONAR_WEBHOOK', abortPipeline: false)
+				}
 			}
 		}
 	}
