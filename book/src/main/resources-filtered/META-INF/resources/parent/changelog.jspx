@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-05:00"
-		dateModified="2022-02-15T23:21:55-06:00"
+		dateModified="2022-02-16T00:29:10-06:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -50,14 +50,24 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 			>
 				<!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
 				<!-- TODO: Remove empty src/test/java and src/test during builds, NetBeans making them? -->
-				<ul>
-					<li>
-						Configured missing <ao:a href="https://central.sonatype.org/publish/publish-maven/#manually-releasing-the-deployment-to-the-central-repository">automatic release during deployment</ao:a>.
-						Any release artifacts made with the previous parent requires manual "Release" in OSSRH Nexus Repository Manager.
-					</li>
-				</ul>
 			</changelog:release>
 		</c:if>
+
+		<changelog:release
+			projectName="@{documented.name}"
+			version="1.17.6"
+			datePublished="2022-02-16T00:29:10-06:00"
+			groupId="@{project.groupId}"
+			artifactId="@{documented.artifactId}"
+			scmUrl="@{project.scm.url}"
+		>
+			<ul>
+				<li>
+					Configured missing <ao:a href="https://central.sonatype.org/publish/publish-maven/#manually-releasing-the-deployment-to-the-central-repository">automatic release during deployment</ao:a>.
+					Any release artifacts made with the previous parent requires manual "Release" in OSSRH Nexus Repository Manager.
+				</li>
+			</ul>
+		</changelog:release>
 
 		<changelog:release
 			projectName="@{documented.name}"
