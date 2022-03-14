@@ -730,7 +730,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 				</plugin>
 				<!-- Supporting packaging of "bundle" for OSGI bundles -->
 				<plugin>
-					<groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId><version>5.1.2</version>
+					<groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId><version>5.1.4</version>
 					<configuration>
 						<instructions>
 							<_removeheaders>POST-SNAPSHOT</_removeheaders>
