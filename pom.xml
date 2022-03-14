@@ -1791,7 +1791,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 				<pluginManagement>
 					<plugins>
 						<plugin>
-							<groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId><version>1.6.8</version>
+							<groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId><version>1.6.12</version>
 							<configuration>
 								<serverId>ossrh-aoindustries</serverId>
 								<nexusUrl>${nexusUrl}</nexusUrl>
