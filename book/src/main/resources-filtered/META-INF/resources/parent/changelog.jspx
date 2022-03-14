@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-29T20:54:46-05:00"
-		dateModified="2022-02-16T00:29:10-06:00"
+		dateModified="2022-03-14T04:49:36-05:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -50,6 +50,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 			>
 				<!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
 				<!-- TODO: Remove empty src/test/java and src/test during builds, NetBeans making them? -->
+				<ul>
+					<li>Updated plugin versions.</li>
+				</ul>
 			</changelog:release>
 		</c:if>
 
