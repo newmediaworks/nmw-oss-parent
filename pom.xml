@@ -647,10 +647,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>3.0.0</version>
 				</plugin>
-				<!-- Default to using -Xlint and showing warnings -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.10.1</version>
 					<configuration>
+						<!-- Default to using -Xlint and showing warnings -->
 						<compilerArgs>
 							<arg>-Xlint</arg>
 						</compilerArgs>
@@ -658,6 +658,14 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 						<showWarnings>true</showWarnings>
 						<source>${maven.compiler.source}</source>
 						<target>${maven.compiler.target}</target>
+						<!--
+							At least in maven-compiler-plugin-3.10.1, missing package-info.class are left as Java 9+ in
+							our Java <= 8 builds that include a second compilation stage in Java >= 9 solely to include
+							a module-info.class.  We do not care about incremental build performance, so are reverting
+							to Java's default behavior of not generating empty package-info.class files.
+							See https://issues.apache.org/jira/browse/MCOMPILER-205
+						-->
+						<createMissingPackageInfoClass>false</createMissingPackageInfoClass>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -1416,31 +1424,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 							<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 							<configuration>
 								<release>${maven.compiler.release}</release>
-							</configuration>
-						</plugin>
-					</plugins>
-				</pluginManagement>
-			</build>
-		</profile>
-		<!--
-			At least in maven-compiler-plugin-3.10.1, missing package-info.class are left as Java 9+ in
-			our Java <= 8 builds that include a second compilation stage in Java >= 9 solely to include
-			a module-info.class.  We do not care about incremental build performance, so are reverting
-			to Java's default behavior of not generating empty package-info.class files.
-			See https://issues.apache.org/jira/browse/MCOMPILER-205
-		-->
-		<profile>
-			<id>disable-createMissingPackageInfoClass</id>
-			<activation>
-				<jdk>(,9)</jdk>
-			</activation>
-			<build>
-				<pluginManagement>
-					<plugins>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId>
-							<configuration>
-								<createMissingPackageInfoClass>false</createMissingPackageInfoClass>
 							</configuration>
 						</plugin>
 					</plugins>
