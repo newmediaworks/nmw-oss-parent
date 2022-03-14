@@ -788,7 +788,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 				</plugin>
 				<!-- Other plugins used below -->
 				<plugin>
-					<groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId><version>3.2.0</version>
+					<groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId><version>3.3.0</version>
 				</plugin>
 				<plugin>
 					<groupId>io.reformanda.semper</groupId><artifactId>dependencyversion-maven-plugin</artifactId><version>1.0.1</version>
