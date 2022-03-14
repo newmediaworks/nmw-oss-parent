@@ -649,7 +649,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 				</plugin>
 				<!-- Default to using -Xlint and showing warnings -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.8.1</version>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.10.1</version>
 					<configuration>
 						<compilerArgs>
 							<arg>-Xlint</arg>
