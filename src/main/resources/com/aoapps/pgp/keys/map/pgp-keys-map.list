@@ -82,3 +82,7 @@ com.pragmatickm:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)     = 0xA10BFD39C3ADFC8B61199
 com.semanticcms:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)     = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 net.lnxhosting:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 org.aorepo:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)          = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
+
+# TODO: Get merged into s4u/pgp-keys-map
+org.eclipse.jetty               = 0x8B096546B1A8F02656B15D3B1677D141BCF3584D
+org.eclipse.jetty.websocket     = 0x8B096546B1A8F02656B15D3B1677D141BCF3584D
