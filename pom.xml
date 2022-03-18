@@ -1006,20 +1006,12 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 						<bottom>
 <![CDATA[Copyright &#169; {inceptionYear}&#x2013;{currentYear} {organizationName}. All rights reserved.
 <script type="application/javascript">
-  /* Workaround "undefined" in URL during search when project has no modules: https://stackoverflow.com/a/57284322 */
-  if(typeof useModuleDirectories !== 'undefined') {
-    useModuleDirectories=false;
-  }
-</script>
-<script type="application/javascript">
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
   ga('create', '${google.analytics.trackingId}', 'auto');
   ga('send', 'pageview');
-
 </script>]]>
 						</bottom>
 					</configuration>
@@ -1488,6 +1480,45 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 							<configuration>
 								<additionalJOption>--allow-script-in-comments</additionalJOption>
 								<doclint>all,-missing</doclint>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+		<!--
+			Workaround JDK-8215291 in JDK < 12 for projects without any module-info.java:
+			https://bugs.openjdk.java.net/browse/JDK-8215291
+		-->
+		<profile>
+			<id>workaround-JDK-8215291</id>
+			<activation>
+				<jdk>(,12)</jdk>
+				<file><missing>src/main/java/module-info.java</missing></file>
+			</activation>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
+							<configuration>
+								<bottom>
+<![CDATA[Copyright &#169; {inceptionYear}&#x2013;{currentYear} {organizationName}. All rights reserved.
+<script type="application/javascript">
+  /* Workaround "undefined" in URL during search when project has no modules: https://stackoverflow.com/a/57284322 */
+  if(typeof useModuleDirectories !== 'undefined') {
+    useModuleDirectories=false;
+  }
+</script>
+<script type="application/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '${google.analytics.trackingId}', 'auto');
+  ga('send', 'pageview');
+</script>]]>
+								</bottom>
 							</configuration>
 						</plugin>
 					</plugins>
