@@ -2135,7 +2135,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 								<id>jenkins-deploy</id><phase>deploy</phase><goals><goal>deploy</goal></goals>
 								<configuration>
 									<skip>false</skip>
-									<altDeploymentRepository>local-private-distribution::default::file:///var/maven2</altDeploymentRepository>
+									<altDeploymentRepository>local-private-distribution::file:///var/maven2</altDeploymentRepository>
 								</configuration>
 							</execution>
 						</executions>
