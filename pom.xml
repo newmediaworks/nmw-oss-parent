@@ -82,6 +82,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 				Can be "_self" for JDK >= 9, since the apidocs do not use frames.
 				Must be "_top" for JDK < 9, due to frames. Using "_top" for all Java versions so links can escape frames at javado.io. -->
 		<javadoc.target>_top</javadoc.target>
+		<!-- Fix the scroll position in Java 11 javadoc -->
+		<javadoc.html.style />
 		<!-- The HTML format of the description -->
 		<description.html>${project.description}</description.html>
 		<!-- Taglib reference line for javadocs -->
@@ -968,15 +970,64 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 						<detectOfflineLinks>false</detectOfflineLinks>
 						<!-- Java 17: Use -legal-notices with the project's license: https://bugs.openjdk.java.net/browse/JDK-8259530 -->
 						<top>
-<![CDATA[<div style="position:absolute; top:0; right:0"><a target="${javadoc.target}" href="${project.scm.url}"><img src="{@docRoot}/ao-javadoc-resources/fork-me.png" style="border:0" width="149" height="149" alt="Fork me on GitHub" /></a></div>
-<div style="margin: 0.5em 0">
-	<h1 style="margin: 0 1em"><a target="${javadoc.target}" href="https://aoindustries.com/"><img style="display:inline-block; vertical-align:middle; line-height:40px" src="{@docRoot}/ao-javadoc-resources/ao-logo.png" alt="AO Logo" width="35" height="40" /></a>
+<![CDATA[<style>
+	${javadoc.html.style}
+	div#ao-javadoc-resources-fork-me {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 149px;
+		height: 149px;
+	}
+	div#ao-javadoc-resources-fork-me img {
+		border: 0;
+	}
+	div#ao-javadoc-resources-top {
+		font-size: 10px;
+		margin: 0.5em 0;
+	}
+	div#ao-javadoc-resources-top h1 {
+		font-size: 18px;
+		margin: 0 1em;
+	}
+	div#ao-javadoc-resources-top h1 img {
+		display: inline-block;
+		vertical-align: middle;
+		line-height: 30px;
+	}
+	div#ao-javadoc-resources-top h2 {
+		font-size: 12px;
+		margin-top: 0em;
+		margin-bottom: 6px;
+	}
+	div#ao-javadoc-resources-top > p {
+		font-size: 12px;
+		margin-left: 1em;
+		margin-right: 1em;
+	}
+	div#ao-javadoc-resources-top > div {
+		float: left;
+		margin: 0 1em;
+	}
+	div#ao-javadoc-resources-top p,
+	div#ao-javadoc-resources-top ul {
+		margin-top: 6px;
+		margin-bottom: 6px;
+	}
+</style>
+<div id="ao-javadoc-resources-fork-me">
+	<a target="${javadoc.target}" href="${project.scm.url}">
+		<img src="{@docRoot}/ao-javadoc-resources/fork-me.png" width="149" height="149" alt="Fork me on GitHub" />
+	</a>
+</div>
+<div id="ao-javadoc-resources-top">
+	<h1><a target="${javadoc.target}" href="https://aoindustries.com/"><img src="{@docRoot}/ao-javadoc-resources/ao-logo.png" alt="AO Logo" width="26" height="30" /></a>
 	${javadoc.breadcrumbs}</h1>
-	<p style="margin-left: 1em; margin-right: 1em">
+	<p>
 		${description.html}
 	</p>
-	<div style="float:left; margin: 0 1em">
-		<h2 style="margin-top: 0em">Project Links</h2>
+	<div>
+		<h2>Project Links</h2>
 		<ul>
 			<li><a target="${javadoc.target}" href="${project.url}">Project Home</a></li>
 			<li><a target="${javadoc.target}" href="${project.url}changelog">Changelog</a></li>
@@ -988,8 +1039,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 	</div>
 	${javadoc.modules}
 	${javadoc.relatedProjects}
-	<div style="float:left; margin: 0 1em">
-		<h2 style="margin-top: 0em">Contact Us</h2>
+	<div>
+		<h2>Contact Us</h2>
 		<p>
 			For questions or support, please <a target="${javadoc.target}" href="https://aoindustries.com/contact">contact us</a>:
 		</p>
@@ -1485,6 +1536,16 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 					</plugins>
 				</pluginManagement>
 			</build>
+		</profile>
+		<!-- Fix the scroll position in Java 11 javadoc -->
+		<profile>
+			<id>ao-javadoc-resources-addStylesheet-java-11</id>
+			<activation>
+				<jdk>11</jdk>
+			</activation>
+			<properties>
+				<javadoc.html.style>html {scroll-padding-top: 120px;}</javadoc.html.style>
+			</properties>
 		</profile>
 		<!--
 			Workaround JDK-8215291 in JDK < 12 for projects without any module-info.java:
