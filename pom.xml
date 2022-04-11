@@ -24,7 +24,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.17.7-SNAPSHOT</version>
+	<groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.18.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -1070,6 +1070,34 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 					</configuration>
 				</plugin>
 				<plugin>
+					<groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>4.6.0.0</version>
+					<dependencies>
+						<dependency>
+							<groupId>com.github.spotbugs</groupId><artifactId>spotbugs</artifactId><version>4.6.0</version>
+						</dependency>
+					</dependencies>
+					<configuration>
+						<!-- TODO: http://fb-contrib.sourceforge.net/ ? -->
+						<!-- TODO: https://find-sec-bugs.github.io/ ? -->
+						<!-- TODO: Try findsecbugs-plugin:
+						<plugins>
+							<plugin>
+								<groupId>com.h3xstream.findsecbugs</groupId><artifactId>findsecbugs-plugin</artifactId><version>1.12.0</version>
+							</plugin>
+						</plugins>
+						-->
+						<!-- TODO: Jenkins -->
+						<!-- TODO: SonarQube:
+							https://spotbugs.readthedocs.io/en/stable/use-plugin-on-sonarqube.html
+							https://docs.sonarqube.org/latest/analysis/external-issues/
+						-->
+						<failOnError>true</failOnError>
+						<!-- TODO: How to set properties?
+						<findbugs.maskedfields.locals>true</findbugs.maskedfields.locals>
+						-->
+					</configuration>
+				</plugin>
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId><version>3.11.0</version>
 				</plugin>
 				<plugin>
@@ -1858,6 +1886,39 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 						<configuration><skip>true</skip></configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<!--
+				SpotBugs analysis may be skipped by the presence of a file.
+				This will typically be used for any project that no public API but still has a module-info.java file, as
+				this results in error "No files to analyze could be opened"
+			-->
+			<id>spotbugs.skip</id><activation><file><exists>profile.d/spotbugs.skip</exists></file></activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>spotbugs</id><activation><file><exists>src/main/java</exists></file></activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>spotbugs</id><phase>verify</phase><goals><goal>check</goal></goals>
+							</execution>
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
