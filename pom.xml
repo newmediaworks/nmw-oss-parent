@@ -45,7 +45,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 		<javadoc.link.javase.15>https://docs.oracle.com/en/java/javase/15/docs/api/</javadoc.link.javase.15>
 		<javadoc.link.javase.16>https://docs.oracle.com/en/java/javase/16/docs/api/</javadoc.link.javase.16>
 		<javadoc.link.javase.17>https://docs.oracle.com/en/java/javase/17/docs/api/</javadoc.link.javase.17>
-		<javadoc.link.javase.18>https://download.java.net/java/early_access/jdk18/docs/api/</javadoc.link.javase.18>
+		<javadoc.link.javase.18>https://docs.oracle.com/en/java/javase/18/docs/api/</javadoc.link.javase.18>
+		<javadoc.link.javase.19>https://download.java.net/java/early_access/jdk19/docs/api/</javadoc.link.javase.19>
 
 		<!-- The Java EE apidocs to link to, preferring https -->
 		<!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->
