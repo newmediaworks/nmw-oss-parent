@@ -1091,6 +1091,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 						</plugins>
 						-->
 						<!-- TODO: Jenkins -->
+						<xmlOutput>true</xmlOutput>
 						<!-- TODO: SonarQube:
 							https://spotbugs.readthedocs.io/en/stable/use-plugin-on-sonarqube.html
 							https://docs.sonarqube.org/latest/analysis/external-issues/
@@ -1344,6 +1345,14 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 			</plugin>
 		</plugins>
 	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-project-info-reports-plugin</artifactId><version>3.2.2</version>
+			</plugin>
+		</plugins>
+	</reporting>
 
 	<profiles>
 		<!--
@@ -1879,6 +1888,13 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 					</plugin>
 				</plugins>
 			</build>
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>4.6.0.0</version>
+					</plugin>
+				</plugins>
+			</reporting>
 		</profile>
 		<profile>
 			<id>nexus</id>
