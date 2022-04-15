@@ -67,6 +67,7 @@ def upstreamProjects = [
 	// No Jenkins: <groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId>
 	'javadoc-offline', // <groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId>
 	'javadoc-resources', // <groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId>
+	'checkstyle-config', // <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId>
 	// No Jenkins: <groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
 ]
 
