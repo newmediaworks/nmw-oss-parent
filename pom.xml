@@ -1074,6 +1074,21 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 					</configuration>
 				</plugin>
 				<plugin>
+					<groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>3.1.2</version>
+					<dependencies>
+						<dependency>
+							<groupId>com.puppycrawl.tools</groupId><artifactId>checkstyle</artifactId><version>10.1</version>
+						</dependency>
+					</dependencies>
+					<configuration>
+						<!-- TODO: https://checkstyle-addons.thomasjensen.com/ ? -->
+						<!-- TODO: https://sevntu-checkstyle.github.io/sevntu.checkstyle/ ? -->
+						<!-- TODO: Jenkins -->
+						<!-- TODO: SonarQube -->
+						<includeTestSourceDirectory>true</includeTestSourceDirectory>
+					</configuration>
+				</plugin>
+				<plugin>
 					<groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>4.6.0.0</version>
 					<dependencies>
 						<dependency>
@@ -1857,22 +1872,72 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 			</build>
 		</profile>
 		<profile>
-			<!--
-				SpotBugs analysis may be skipped by the presence of a file.
-				This will typically be used for any project that no public API but still has a module-info.java file, as
-				this results in error "No files to analyze could be opened"
-			-->
-			<id>spotbugs.skip</id><activation><file><exists>profile.d/spotbugs.skip</exists></file></activation>
+			<id>checkstyle</id><activation><file><exists>src/main/java</exists></file></activation>
+			<properties>
+				<netbeans.checkstyle.format>true</netbeans.checkstyle.format>
+			</properties>
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId>
+						<dependencies>
+							<dependency>
+								<groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+							</dependency>
+						</dependencies>
+						<configuration>
+							<!-- See https://stackoverflow.com/a/49210574 -->
+							<violationSeverity>warning</violationSeverity>
+							<consoleOutput>true</consoleOutput>
+							<configLocation>ao-checkstyle-config/checkstyle-configuration.xml</configLocation>
+						</configuration>
+						<executions>
+							<execution>
+								<id>checkstyle</id><phase>verify</phase><goals><goal>check</goal></goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>3.1.2</version>
+					</plugin>
+				</plugins>
+			</reporting>
+		</profile>
+		<profile>
+			<!-- Checkstyle analysis may be skipped by the presence of a file. -->
+			<id>checkstyle.skip</id><activation><file><exists>profile.d/checkstyle.skip</exists></file></activation>
+			<properties>
+				<netbeans.checkstyle.format>false</netbeans.checkstyle.format>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+						<executions>
+							<execution>
+								<id>checkstyle</id><phase>none</phase>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>3.1.2</version>
 						<configuration>
 							<skip>true</skip>
 						</configuration>
 					</plugin>
 				</plugins>
-			</build>
+			</reporting>
 		</profile>
 		<profile>
 			<id>spotbugs</id><activation><file><exists>src/main/java</exists></file></activation>
@@ -1892,6 +1957,39 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 				<plugins>
 					<plugin>
 						<groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>4.6.0.0</version>
+					</plugin>
+				</plugins>
+			</reporting>
+		</profile>
+		<profile>
+			<!--
+				SpotBugs analysis may be skipped by the presence of a file.
+				This will typically be used for any project that no public API but still has a module-info.java file, as
+				this results in error "No files to analyze could be opened"
+			-->
+			<id>spotbugs.skip</id><activation><file><exists>profile.d/spotbugs.skip</exists></file></activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+						<executions>
+							<execution>
+								<id>spotbugs</id><phase>none</phase>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>4.6.0.0</version>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
 					</plugin>
 				</plugins>
 			</reporting>
