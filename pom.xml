@@ -1940,6 +1940,19 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 			</reporting>
 		</profile>
 		<profile>
+			<id>checkstyle-suppressions</id><activation><file><exists>checkstyle-suppressions.xml</exists></file></activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId>
+						<configuration>
+							<suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
 			<id>spotbugs</id><activation><file><exists>src/main/java</exists></file></activation>
 			<build>
 				<plugins>
@@ -1993,6 +2006,19 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 					</plugin>
 				</plugins>
 			</reporting>
+		</profile>
+		<profile>
+			<id>spotbugs-excludes</id><activation><file><exists>spotbugs-excludes.xml</exists></file></activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId>
+						<configuration>
+							<excludeFilterFile>spotbugs-excludes.xml</excludeFilterFile>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 		<profile>
 			<id>nexus</id>
