@@ -1873,9 +1873,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 		</profile>
 		<profile>
 			<id>checkstyle</id><activation><file><exists>src/main/java</exists></file></activation>
-			<properties>
-				<netbeans.checkstyle.format>true</netbeans.checkstyle.format>
-			</properties>
 			<build>
 				<plugins>
 					<plugin>
@@ -1910,9 +1907,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 		<profile>
 			<!-- Checkstyle analysis may be skipped by the presence of a file. -->
 			<id>checkstyle.skip</id><activation><file><exists>profile.d/checkstyle.skip</exists></file></activation>
-			<properties>
-				<netbeans.checkstyle.format>false</netbeans.checkstyle.format>
-			</properties>
 			<build>
 				<plugins>
 					<plugin>
