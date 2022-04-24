@@ -110,7 +110,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       TODO: Change to dryRunNoFork on next release of rewrite-maven-plugin > 4.22.2
       See https://github.com/openrewrite/rewrite-maven-plugin/issues/331
 
-      Also change redefinitions in "development" and "rewrite.skip" profiles below from "run" to "runNoFork".
+      Also change redefinitions in "development", "jenkins", and "rewrite.skip" profiles below
+      from "run" to "runNoFork".
 
       Will also be able to undo the changes for '<copy overwrite="true"' that workaround this issue.
       See git commit "Always overwrite copy for consistent builds"
@@ -2346,6 +2347,11 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     </profile>
     <profile>
       <id>jenkins</id>
+      <properties>
+        <!-- rewrite-maven-plugin -->
+        <rewrite.phase>verify</rewrite.phase>
+        <rewrite.goal>dryRun</rewrite.goal>
+      </properties>
       <build>
         <plugins>
           <plugin>
