@@ -1083,6 +1083,11 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId><version>4.22.2</version>
           <configuration>
             <failOnDryRunResults>true</failOnDryRunResults>
+            <!--
+              The ~/.rewrite-cache cache is not reliable, missing files, JVM stalling on exit requiring kill -9.
+              Disabling to see if the problem goes away.
+            -->
+            <pomCacheEnabled>false</pomCacheEnabled>
           </configuration>
         </plugin>
         <plugin>
