@@ -106,6 +106,15 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <POST-SNAPSHOT><!-- -POST-SNAPSHOT --></POST-SNAPSHOT>
     <!-- rewrite-maven-plugin -->
     <rewrite.phase>verify</rewrite.phase>
+    <!--
+      TODO: Change to dryRunNoFork on next release of rewrite-maven-plugin > 4.22.2
+      See https://github.com/openrewrite/rewrite-maven-plugin/issues/331
+
+      Also change redefinitions in "development" and "rewrite.skip" profiles below from "run" to "runNoFork".
+
+      Will also be able to undo the changes for '<copy overwrite="true"' that workaround this issue.
+      See git commit "Always overwrite copy for consistent builds"
+    -->
     <rewrite.goal>dryRun</rewrite.goal>
     <!-- com.newmediaworks is on original Sonatype Nexus Repository Manager -->
     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
