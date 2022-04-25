@@ -1095,6 +1095,13 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               Disabling to see if the problem goes away.
             -->
             <pomCacheEnabled>false</pomCacheEnabled>
+            <!--
+              Support builds without parent available on the relative path.  This happens in the Jenkins builds as well
+              as when checking-out individual projects outside of the overall project tree.  At least with
+              rewrite-maven-plugin 4.22.2, it appears the plugin might not correctly download the parent POM when
+              the relativePath points to a missing file.
+            -->
+            <skipMavenParsing>true</skipMavenParsing>
           </configuration>
         </plugin>
         <plugin>
