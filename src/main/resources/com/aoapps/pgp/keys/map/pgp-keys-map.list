@@ -91,6 +91,7 @@ org.apache.groovy:*:4.0.1       = 0x34441E504A937F43EB0DAEF96A65176A0FB1CD0B
 info.picocli                    = 0xAA417737BD805456DB3CBDDE6601E5C08DCCBB96
 org.reflections:reflections     = 0x3F2A008A91D11A7FAC4A0786F13D3E721D56BD54
 org.xmlresolver                 = 0x4C5F68D09D42BA7FAC888DF9A929EA2321FDBF8F
+org.antlr:antlr4-runtime        = 0x5719E50EAC5A4B1DD390B72C2A742740E08E7F8D
 
 # TODO: rewrite-maven-plugin: Get merged into s4u/pgp-keys-map
 de.danielbechler:java-object-diff:0.95 = 0x476E96B433F354264ED7C37848F3F13498FF6AF8
