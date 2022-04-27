@@ -1089,9 +1089,15 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <!-- TODO: Review if ao-java-style.yml is still required on rewrite-maven-plugin > 4.22.2 -->
           <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId><version>4.22.2</version>
           <configuration>
+            <activeRecipes>
+              <recipe>org.openrewrite.java.format.AutoFormat</recipe>
+              <recipe>org.openrewrite.java.cleanup.Cleanup</recipe>
+            </activeRecipes>
+            <activeStyles>
+              <style>org.openrewrite.java.GoogleJavaFormat</style>
+            </activeStyles>
             <failOnDryRunResults>true</failOnDryRunResults>
             <!--
               The ~/.rewrite-cache cache is not reliable, missing files, JVM stalling on exit requiring kill -9.
@@ -1946,14 +1952,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </dependency>
             </dependencies>
             <configuration>
-              <activeRecipes>
-                <recipe>org.openrewrite.java.format.AutoFormat</recipe>
-                <!-- TODO: Plugin version 4.22.2 is corrupting some Java sources, such as truncating module-info.java:
-                <recipe>org.openrewrite.java.cleanup.Cleanup</recipe>
-                -->
-              </activeRecipes>
               <activeStyles>
                 <style>org.openrewrite.java.GoogleJavaFormat</style>
+                <!-- TODO: Review if ao-java-style.yml is still required on rewrite-maven-plugin > 4.22.2 -->
                 <style>com.aoapps.checkstyle.config.AoJavaFormat</style>
               </activeStyles>
               <checkstyleConfigFile>${project.build.directory}/dependency/ao-checkstyle-config/checkstyle-configuration.xml</checkstyleConfigFile>
