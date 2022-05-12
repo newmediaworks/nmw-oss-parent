@@ -110,17 +110,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       maven-checkstyle-plugin.  Find a compatible configuration then re-enable rewrite-maven-plugin.
     -->
     <rewrite.phase>none<!-- TODO: verify --></rewrite.phase>
-    <!--
-      TODO: Change to dryRunNoFork on next release of rewrite-maven-plugin > 4.22.2
-      See https://github.com/openrewrite/rewrite-maven-plugin/issues/331
-
-      Also change redefinitions in "development", "jenkins", and "rewrite.skip" profiles below
-      from "run" to "runNoFork".
-
-      Will also be able to undo the changes for '<copy overwrite="true"' that workaround this issue.
-      See git commit "Always overwrite copy for consistent builds"
-    -->
-    <rewrite.goal>dryRun</rewrite.goal>
+    <rewrite.goal>dryRunNoFork</rewrite.goal>
     <!-- com.newmediaworks is on original Sonatype Nexus Repository Manager -->
     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
     <nexus.skipNexusStagingDeployMojo>false</nexus.skipNexusStagingDeployMojo>
@@ -1093,7 +1083,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId><version>4.22.2</version>
+          <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId><version>4.24.0</version>
           <configuration>
             <activeRecipes>
               <recipe>org.openrewrite.java.format.AutoFormat</recipe>
@@ -2249,7 +2239,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <properties>
         <!-- rewrite-maven-plugin -->
         <rewrite.phase>none<!-- TODO: process-sources --></rewrite.phase>
-        <rewrite.goal>run</rewrite.goal>
+        <rewrite.goal>runNoFork</rewrite.goal>
         <!-- Never stage development builds -->
         <nexus.skipNexusStagingDeployMojo>true</nexus.skipNexusStagingDeployMojo>
       </properties>
@@ -2310,7 +2300,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <properties>
         <!-- rewrite-maven-plugin -->
         <rewrite.phase>none</rewrite.phase>
-        <rewrite.goal>dryRun</rewrite.goal>
+        <rewrite.goal>dryRunNoFork</rewrite.goal>
       </properties>
     </profile>
     <profile>
@@ -2318,7 +2308,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <properties>
         <!-- rewrite-maven-plugin -->
         <rewrite.phase>none<!-- TODO: verify --></rewrite.phase>
-        <rewrite.goal>dryRun</rewrite.goal>
+        <rewrite.goal>dryRunNoFork</rewrite.goal>
       </properties>
       <build>
         <plugins>
