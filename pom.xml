@@ -105,11 +105,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <!-- Set to "-POST-SNAPSHOT" by activating the "POST-SNAPSHOT" profile to use post-release dependencies -->
     <POST-SNAPSHOT><!-- -POST-SNAPSHOT --></POST-SNAPSHOT>
     <!-- rewrite-maven-plugin -->
-    <!--
-      TODO: The formatting applied by rewrite-maven-plugin is inconsistent with the rules enforced by
-      maven-checkstyle-plugin.  Find a compatible configuration then re-enable rewrite-maven-plugin.
-    -->
-    <rewrite.phase>none<!-- TODO: verify --></rewrite.phase>
+    <rewrite.phase>verify</rewrite.phase>
     <rewrite.goal>dryRunNoFork</rewrite.goal>
     <!-- com.newmediaworks is on original Sonatype Nexus Repository Manager -->
     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
@@ -2240,7 +2236,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <id>development</id><activation><file><exists>profile.d/development</exists></file></activation>
       <properties>
         <!-- rewrite-maven-plugin -->
-        <rewrite.phase>none<!-- TODO: process-sources --></rewrite.phase>
+        <rewrite.phase>process-sources</rewrite.phase>
         <rewrite.goal>runNoFork</rewrite.goal>
         <!-- Never stage development builds -->
         <nexus.skipNexusStagingDeployMojo>true</nexus.skipNexusStagingDeployMojo>
@@ -2309,7 +2305,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <id>jenkins</id>
       <properties>
         <!-- rewrite-maven-plugin -->
-        <rewrite.phase>none<!-- TODO: verify --></rewrite.phase>
+        <rewrite.phase>verify</rewrite.phase>
         <rewrite.goal>dryRunNoFork</rewrite.goal>
       </properties>
       <build>
