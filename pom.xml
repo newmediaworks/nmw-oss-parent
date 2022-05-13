@@ -104,9 +104,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <osgi.mainClass><!-- Default is none --></osgi.mainClass>
     <!-- Set to "-POST-SNAPSHOT" by activating the "POST-SNAPSHOT" profile to use post-release dependencies -->
     <POST-SNAPSHOT><!-- -POST-SNAPSHOT --></POST-SNAPSHOT>
-    <!-- rewrite-maven-plugin -->
-    <rewrite.phase>verify</rewrite.phase>
-    <rewrite.goal>dryRunNoFork</rewrite.goal>
     <!-- com.aoapps is on new Sonatype Nexus Repository Manager -->
     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
     <nexus.skipNexusStagingDeployMojo>false</nexus.skipNexusStagingDeployMojo>
@@ -2279,9 +2276,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <profile>
       <id>development</id><activation><file><exists>profile.d/development</exists></file></activation>
       <properties>
-        <!-- rewrite-maven-plugin -->
-        <rewrite.phase>process-sources</rewrite.phase>
-        <rewrite.goal>runNoFork</rewrite.goal>
         <!-- Never stage development builds -->
         <nexus.skipNexusStagingDeployMojo>true</nexus.skipNexusStagingDeployMojo>
       </properties>
@@ -2338,20 +2332,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       </build>
     </profile>
     <profile>
-      <id>rewrite.skip</id><activation><file><exists>profile.d/rewrite.skip</exists></file></activation>
-      <properties>
-        <!-- rewrite-maven-plugin -->
-        <rewrite.phase>none</rewrite.phase>
-        <rewrite.goal>dryRunNoFork</rewrite.goal>
-      </properties>
-    </profile>
-    <profile>
       <id>jenkins</id>
-      <properties>
-        <!-- rewrite-maven-plugin -->
-        <rewrite.phase>verify</rewrite.phase>
-        <rewrite.goal>dryRunNoFork</rewrite.goal>
-      </properties>
       <build>
         <plugins>
           <plugin>
