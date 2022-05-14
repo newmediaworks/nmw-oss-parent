@@ -49,7 +49,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         scmUrl="@{project.scm.url}"
       >
         <!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
-        <!-- TODO: Remove empty src/test/java and src/test during builds, NetBeans making them? -->
         <ul>
           <li>Updated to latest release of <ao:a href="https://github.com/s4u/pgp-keys-map">PGP keys map to maven artifacts</ao:a>.</li>
           <li>Updated plugin versions.</li>
