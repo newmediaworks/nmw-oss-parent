@@ -1874,6 +1874,16 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
             <configuration>
               <offlineLinks>
+                <!-- Java EE -->
+                <offlineLink>
+                  <url>${javadoc.link.javaee}</url>
+                  <location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/javaee/${javaee.version}</location>
+                </offlineLink>
+                <!-- Java SE -->
+                <offlineLink>
+                  <url>${javadoc.link.javase}</url>
+                  <location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/javase/${javase.release}</location>
+                </offlineLink>
                 <!-- Direct -->
                 <!-- Note: Note: This list matches ao-javadoc-offline:download.sh -->
                 <offlineLink>
@@ -1899,16 +1909,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <offlineLink>
                   <url>https://ostermiller.org/utils/doc/</url>
                   <location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/org.ostermiller/utils</location>
-                </offlineLink>
-                <!-- Java SE -->
-                <offlineLink>
-                  <url>${javadoc.link.javase}</url>
-                  <location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/javase/${javase.release}</location>
-                </offlineLink>
-                <!-- Java EE -->
-                <offlineLink>
-                  <url>${javadoc.link.javaee}</url>
-                  <location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/javaee/${javaee.version}</location>
                 </offlineLink>
               </offlineLinks>
             </configuration>
