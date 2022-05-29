@@ -82,3 +82,6 @@ com.pragmatickm:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)     = 0xA10BFD39C3ADFC8B61199
 com.semanticcms:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)     = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 net.lnxhosting:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 org.aorepo:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)          = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
+
+# TODO: Add to upstream s4u/pgp-keys-map project:
+com.google.protobuf:protobuf-java = 0x2E5B73C6EFD2EB453104C2EAE6EC76B4C6D3AE8E
