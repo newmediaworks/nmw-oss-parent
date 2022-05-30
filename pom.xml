@@ -630,7 +630,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <groupId>org.simplify4u</groupId><artifactId>pgp-keys-map</artifactId><version>2022.05.12</version>
             </dependency>
             <dependency>
-              <groupId>com.aoapps</groupId><artifactId>pgp-keys-map</artifactId><version>1.2.1-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+              <groupId>com.aoapps</groupId><artifactId>pgp-keys-map</artifactId><version>1.2.1${POST-SNAPSHOT}</version>
             </dependency>
           </dependencies>
         </plugin>
