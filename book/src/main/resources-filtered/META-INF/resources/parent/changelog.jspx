@@ -37,7 +37,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2019-05-24T19:05:12-05:00"
-    dateModified="2022-05-29T23:20:13-05:00"
+    dateModified="2022-06-14T01:05:28-05:00"
   >
     <c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
       <changelog:release
@@ -49,6 +49,19 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         scmUrl="@{project.scm.url}"
       />
     </c:if>
+
+    <changelog:release
+      projectName="@{documented.name}"
+      version="1.16.2"
+      datePublished="2022-06-14T01:05:28-05:00"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>Updated to <ao:a href="https://axis.apache.org/axis2/java/core/release-notes/1.8.1.html">Apache Axis2 1.8.1</ao:a>.</li>
+      </ul>
+    </changelog:release>
 
     <changelog:release
       projectName="@{documented.name}"
