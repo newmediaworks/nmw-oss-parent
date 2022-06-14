@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2022-05-29T21:35:23-05:00"
+    dateModified="2022-06-13T23:02:39-05:00"
   >
     <c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
       <changelog:release
@@ -51,6 +51,19 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
       </changelog:release>
     </c:if>
+
+    <changelog:release
+      projectName="@{documented.name}"
+      version="1.19.2"
+      datePublished="2022-06-13T23:02:39-05:00"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>Updated to <ao:a href="https://axis.apache.org/axis2/java/core//release-notes/1.8.1.html">Apache Axis2 1.8.1</ao:a>.</li>
+      </ul>
+    </changelog:release>
 
     <changelog:release
       projectName="@{documented.name}"
