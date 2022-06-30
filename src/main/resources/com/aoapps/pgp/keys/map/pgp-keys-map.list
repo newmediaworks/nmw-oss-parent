@@ -90,3 +90,4 @@ org.aorepo:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)           = 0xA10BFD39C3ADFC8B6119
 com.google.protobuf:protobuf-java = \
                                   0x2E5B73C6EFD2EB453104C2EAE6EC76B4C6D3AE8E, \
                                   0x51608DEA69F297BEA56ADF9BAEAA0761DF8CA3A1
+com.paypal.sdk:rest-api-sdk     = 0xF757E7E141E0844E351734EDE9F2C86A0DE39B39
