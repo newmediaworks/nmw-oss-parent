@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2022-06-29T12:28:19-05:00"
+    dateModified="2022-07-02T15:01:57-05:00"
   >
     <c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
       <changelog:release
@@ -49,15 +49,25 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         scmUrl="@{project.scm.url}"
       >
         <!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
-        <ul>
-          <li>Updated to latest release of <ao:a href="https://github.com/s4u/pgp-keys-map">PGP keys map to maven artifacts</ao:a>.</li>
-          <li>
-            Additional client-specific groupId signed by <ao:a href="mailto:support@aoindustries.com" /> or AO Jenkins
-            (for *-SNAPSHOT only).
-          </li>
-        </ul>
       </changelog:release>
     </c:if>
+
+    <changelog:release
+      projectName="@{documented.name}"
+      version="1.19.3"
+      datePublished="2022-07-02T15:01:57-05:00"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>Updated to latest release of <ao:a href="https://github.com/s4u/pgp-keys-map">PGP keys map to maven artifacts</ao:a>.</li>
+        <li>
+          Additional client-specific groupId signed by <ao:a href="mailto:support@aoindustries.com" /> (for developers)
+          or <ao:a href="mailto:jenkins@aoindustries.com" /> (for Jenkins C.I. builds of *-SNAPSHOT only).
+        </li>
+      </ul>
+    </changelog:release>
 
     <changelog:release
       projectName="@{documented.name}"
