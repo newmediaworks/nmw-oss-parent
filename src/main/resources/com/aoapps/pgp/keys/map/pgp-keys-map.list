@@ -85,3 +85,6 @@ com.pragmatickm:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0xA10BFD39C3ADFC8B6119
 com.semanticcms:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 net.lnxhosting:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)       = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 org.aorepo:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)           = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
+
+# TODO: Get merged into upstream s4u/pgp-keys-map
+org.codehaus.mojo:extra-enforcer-rules = 0x84789D24DF77A32433CE1F079EB80E92EB2135B1
