@@ -633,7 +633,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </dependencies>
         </plugin>
         <plugin>
-          <groupId>org.apache.axis2</groupId><artifactId>axis2-aar-maven-plugin</artifactId><version>1.8.1</version>
+          <groupId>org.apache.axis2</groupId><artifactId>axis2-aar-maven-plugin</artifactId><version>1.8.2</version>
           <configuration>
             <archive>
               <manifest>
