@@ -91,3 +91,4 @@ org.codehaus.mojo:extra-enforcer-rules = 0x84789D24DF77A32433CE1F079EB80E92EB213
 com.google.protobuf:protobuf-java = 0xF9ACD39310B477B691F4E3F9971248996DF82053
 org.apache.maven:maven-archiver = 0x29BEA2A645F2D6CED7FB12E02B172E3E156466E8
 org.codehaus.plexus:plexus-archiver = 0x29BEA2A645F2D6CED7FB12E02B172E3E156466E8
+org.apache.maven.shared:maven-common-artifact-filters = 0x29BEA2A645F2D6CED7FB12E02B172E3E156466E8
