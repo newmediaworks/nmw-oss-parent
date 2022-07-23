@@ -1499,7 +1499,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </configuration>
               <dependencies>
                 <dependency>
-                  <groupId>com.aoapps</groupId><artifactId>pgp-keys-map</artifactId><version>1.3.2-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+                  <groupId>com.aoapps</groupId><artifactId>pgp-keys-map</artifactId><version>1.3.2<!-- ${POST-SNAPSHOT} --></version>
                 </dependency>
               </dependencies>
             </plugin>
@@ -1833,7 +1833,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId><version>3.2.0${POST-SNAPSHOT}</version>
+                <groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId><version>3.2.0<!-- ${POST-SNAPSHOT} --></version>
               </dependency>
             </dependencies>
             <executions>
@@ -1842,7 +1842,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <configuration>
                   <attachToMain>false</attachToMain><attachToTest>false</attachToTest>
                   <resourceBundles>
-                    <resourceBundle>com.aoapps:ao-javadoc-offline:3.2.0${POST-SNAPSHOT}</resourceBundle>
+                    <resourceBundle>com.aoapps:ao-javadoc-offline:3.2.0<!-- ${POST-SNAPSHOT} --></resourceBundle>
                   </resourceBundles>
                   <outputDirectory>${project.build.directory}/offlineLinks</outputDirectory>
                 </configuration>
@@ -1922,13 +1922,13 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.2${POST-SNAPSHOT}</version>
+                <groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.2<!-- ${POST-SNAPSHOT} --></version>
               </dependency>
             </dependencies>
             <configuration>
               <resourcesArtifacts>
                 <resourcesArtifact>
-                  <groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.2${POST-SNAPSHOT}</version>
+                  <groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId><version>1.0.2<!-- ${POST-SNAPSHOT} --></version>
                 </resourcesArtifact>
               </resourcesArtifacts>
             </configuration>
@@ -1992,7 +1992,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <configuration>
                   <artifactItems>
                     <artifactItem>
-                      <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0${POST-SNAPSHOT}</version>
+                      <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0<!-- ${POST-SNAPSHOT} --></version>
                       <type>jar</type>
                       <includes>ao-checkstyle-config/checkstyle-configuration.xml</includes>
                     </artifactItem>
@@ -2002,7 +2002,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             </executions>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0${POST-SNAPSHOT}</version>
+                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0<!-- ${POST-SNAPSHOT} --></version>
                 <type>jar</type>
               </dependency>
             </dependencies>
@@ -2011,7 +2011,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0${POST-SNAPSHOT}</version>
+                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0<!-- ${POST-SNAPSHOT} --></version>
               </dependency>
             </dependencies>
             <configuration>
@@ -2039,7 +2039,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0${POST-SNAPSHOT}</version>
+                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0<!-- ${POST-SNAPSHOT} --></version>
               </dependency>
             </dependencies>
             <configuration>
