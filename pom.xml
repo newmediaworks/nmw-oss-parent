@@ -867,7 +867,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId><version>1.7.0</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId><version>3.0.0</version>
           <configuration>
             <useDefaultFilterDelimiters>false</useDefaultFilterDelimiters>
             <filterDelimiters>
