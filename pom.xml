@@ -841,7 +841,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           This also keeps the output of versions:display-plugin-updates more meaningful.
         -->
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-clean-plugin</artifactId><version>3.1.0</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-clean-plugin</artifactId><version>3.2.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId><version>3.0.0-M2</version>
