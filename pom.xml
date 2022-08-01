@@ -2131,7 +2131,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <pluginManagement>
           <plugins>
             <plugin>
-              <groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId><version>1.6.12</version>
+              <groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId><version>1.6.13</version>
               <configuration>
                 <serverId>ossrh-newmediaworks</serverId>
                 <nexusUrl>${nexusUrl}</nexusUrl>
