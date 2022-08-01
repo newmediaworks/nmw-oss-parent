@@ -1077,7 +1077,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId><version>4.25.3</version>
+          <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId><version>4.30.0</version>
           <configuration>
             <activeRecipes>
               <recipe>org.openrewrite.java.format.AutoFormat</recipe>
