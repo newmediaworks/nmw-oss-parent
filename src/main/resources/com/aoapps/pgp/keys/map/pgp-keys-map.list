@@ -101,3 +101,4 @@ org.apache.maven.plugins:maven-install-plugin = 0x29BEA2A645F2D6CED7FB12E02B172E
 org.apache.velocity.tools:velocity-tools-generic = 0xCE4439C1BEF3DA83B1832F9DBEFEEF227A98B809
 io.github.x-stream:mxparser = 0x050A37A2E0577F4BAA095B52602EC18D20C4661C
 io.quarkus.gizmo:gizmo = 0x7119B89FEB81209430E65C62C2AD9C8A7D4E988A
+com.fasterxml.woodstox:woodstox-core = 0x28118C070CB22A0175A2E8D43D12CA2AC19F3181
