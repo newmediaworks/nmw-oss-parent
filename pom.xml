@@ -1120,7 +1120,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>4.7.1.1</version>
           <dependencies>
             <dependency>
-              <groupId>com.github.spotbugs</groupId><artifactId>spotbugs</artifactId><version>4.7.1</version>
+              <groupId>com.github.spotbugs</groupId><artifactId>spotbugs</artifactId><version>4.7.2</version>
             </dependency>
           </dependencies>
           <configuration>
