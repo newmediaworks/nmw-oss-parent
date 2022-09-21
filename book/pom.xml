@@ -25,10 +25,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.16.7-POST-SNAPSHOT</version>
+    <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.16.8-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent-book</artifactId><version>1.16.7-POST-SNAPSHOT</version>
+  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent-book</artifactId><version>1.16.8-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <properties>
