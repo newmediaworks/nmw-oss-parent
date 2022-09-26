@@ -103,6 +103,8 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <bundle.resources-filtered>target/resources-filtered</bundle.resources-filtered>
     <!-- Optional Main-Class for JAR manifest -->
     <osgi.mainClass><!-- Default is none --></osgi.mainClass>
+    <!-- Optional Permissions for JAR manifest -->
+    <osgi.permissions><!-- Default is none --></osgi.permissions>
     <!-- Set to "-POST-SNAPSHOT" by activating the "POST-SNAPSHOT" profile to use post-release dependencies -->
     <POST-SNAPSHOT><!-- -POST-SNAPSHOT --></POST-SNAPSHOT>
     <!-- com.newmediaworks is on original Sonatype Nexus Repository Manager -->
@@ -790,6 +792,8 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
               <!-- Optional Main-Class, as seen at https://github.com/FasterXML/oss-parent/blob/master/pom.xml -->
               <Main-Class>${osgi.mainClass}</Main-Class>
+              <!-- Optional Permissions -->
+              <Permissions>${osgi.permissions}</Permissions>
             </instructions>
           </configuration>
           <executions>
