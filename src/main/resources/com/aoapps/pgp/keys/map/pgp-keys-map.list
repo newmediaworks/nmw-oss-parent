@@ -96,19 +96,7 @@ com.producersrealtygroup:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0xA10BFD39C3A
 com.producersseedstocksales:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 
 # TODO: Get merged into upstream s4u/pgp-keys-map
-org.codehaus.mojo:extra-enforcer-rules = 0x84789D24DF77A32433CE1F079EB80E92EB2135B1
 com.google.protobuf:protobuf-java = 0xF9ACD39310B477B691F4E3F9971248996DF82053
-org.apache.maven:maven-archiver = 0x29BEA2A645F2D6CED7FB12E02B172E3E156466E8
-org.codehaus.plexus:plexus-archiver = 0x29BEA2A645F2D6CED7FB12E02B172E3E156466E8
-org.apache.maven.shared:maven-common-artifact-filters = 0x29BEA2A645F2D6CED7FB12E02B172E3E156466E8
-org.apache.maven.plugins:maven-remote-resources-plugin = 0x29BEA2A645F2D6CED7FB12E02B172E3E156466E8
-org.eclipse.jetty =             0xB59B67FD7904984367F931800818D9D68FB67BAC
-org.apache.maven.plugins:maven-deploy-plugin = 0x29BEA2A645F2D6CED7FB12E02B172E3E156466E8
 org.apache.commons:commons-digester3 = 0xA9F885A21BA0EFB7D0991E6CCAF5EC5919FEA27D
 com.github.cliftonlabs:json-simple = 0xD4173520C54781C310C6E10C4425263EB7F112F0
-org.apache.maven.plugins:maven-install-plugin = 0x29BEA2A645F2D6CED7FB12E02B172E3E156466E8
 org.apache.velocity.tools:velocity-tools-generic = 0xCE4439C1BEF3DA83B1832F9DBEFEEF227A98B809
-io.github.x-stream:mxparser = 0x050A37A2E0577F4BAA095B52602EC18D20C4661C
-io.quarkus.gizmo:gizmo = 0x7119B89FEB81209430E65C62C2AD9C8A7D4E988A
-com.fasterxml.woodstox:woodstox-core = 0x28118C070CB22A0175A2E8D43D12CA2AC19F3181
-org.slf4j = 0x60200AC4AE761F1614D6C46766D68DAA073BE985
