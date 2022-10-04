@@ -110,6 +110,15 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <!-- com.newmediaworks is on original Sonatype Nexus Repository Manager -->
     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
     <nexus.skipNexusStagingDeployMojo>false</nexus.skipNexusStagingDeployMojo>
+    <!-- WAR exclusions -->
+    <maven-war-plugin.warSourceExcludes.default>
+      <!-- This file only exists so NetBeans knows the path to deploy the application. -->
+      META-INF/context.xml
+    </maven-war-plugin.warSourceExcludes.default>
+    <maven-war-plugin.packagingExcludes.default>
+      <!-- META-INF/context.xml is used for local development deployment only -->
+      META-INF/context.xml
+    </maven-war-plugin.packagingExcludes.default>
     <!-- SonarQube -->
     <sonar.projectKey>${project.groupId}:${project.artifactId}</sonar.projectKey>
     <sonar.organization>newmediaworks</sonar.organization>
@@ -898,10 +907,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             </delimiters>
             <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
             <warSourceDirectory>src/main/webapp</warSourceDirectory>
-            <warSourceExcludes>
-              <!-- This file only exists so NetBeans knows the path to deploy the application. -->
-              META-INF/context.xml
-            </warSourceExcludes>
+            <warSourceExcludes>${maven-war-plugin.warSourceExcludes.default}</warSourceExcludes>
             <webResources>
               <!-- Default Web Resources -->
               <resource>
@@ -909,10 +915,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <filtering>true</filtering>
               </resource>
             </webResources>
-            <packagingExcludes>
-              <!-- META-INF/context.xml is used for local development deployment only -->
-              META-INF/context.xml
-            </packagingExcludes>
+            <packagingExcludes>${maven-war-plugin.packagingExcludes.default}</packagingExcludes>
             <archive>
               <manifest>
                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
