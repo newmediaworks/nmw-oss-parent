@@ -99,3 +99,4 @@ com.producersseedstocksales:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0xA10BFD39C3A
 org.apache.commons:commons-digester3 = 0xA9F885A21BA0EFB7D0991E6CCAF5EC5919FEA27D
 com.github.cliftonlabs:json-simple = 0xD4173520C54781C310C6E10C4425263EB7F112F0
 org.apache.velocity.tools = 0xCE4439C1BEF3DA83B1832F9DBEFEEF227A98B809
+com.mysql:mysql-connector-j = 0xF046369B06B761AC86D9849F71B329993BFFCFDD
