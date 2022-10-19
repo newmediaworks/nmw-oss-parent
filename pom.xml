@@ -639,7 +639,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <groupId>org.simplify4u</groupId><artifactId>pgp-keys-map</artifactId><version>2022.09.15</version>
             </dependency>
             <dependency>
-              <groupId>com.aoapps</groupId><artifactId>pgp-keys-map</artifactId><version>1.4.0<!-- ${POST-SNAPSHOT} --></version>
+              <groupId>com.aoapps</groupId><artifactId>pgp-keys-map</artifactId><version>1.4.0${POST-SNAPSHOT}</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -1805,7 +1805,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId><version>3.2.0<!-- ${POST-SNAPSHOT} --></version>
+                <groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId><version>3.2.0${POST-SNAPSHOT}</version>
               </dependency>
             </dependencies>
             <executions>
@@ -1814,7 +1814,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <configuration>
                   <attachToMain>false</attachToMain><attachToTest>false</attachToTest>
                   <resourceBundles>
-                    <resourceBundle>com.aoapps:ao-javadoc-offline:3.2.0<!-- ${POST-SNAPSHOT} --></resourceBundle>
+                    <resourceBundle>com.aoapps:ao-javadoc-offline:3.2.0${POST-SNAPSHOT}</resourceBundle>
                   </resourceBundles>
                   <outputDirectory>${project.build.directory}/offlineLinks</outputDirectory>
                 </configuration>
@@ -1894,13 +1894,13 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
             <dependencies>
               <dependency>
-                <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.2<!-- ${POST-SNAPSHOT} --></version>
+                <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.2${POST-SNAPSHOT}</version>
               </dependency>
             </dependencies>
             <configuration>
               <resourcesArtifacts>
                 <resourcesArtifact>
-                  <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.2<!-- ${POST-SNAPSHOT} --></version>
+                  <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.2${POST-SNAPSHOT}</version>
                 </resourcesArtifact>
               </resourcesArtifacts>
             </configuration>
@@ -1964,7 +1964,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <configuration>
                   <artifactItems>
                     <artifactItem>
-                      <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0<!-- ${POST-SNAPSHOT} --></version>
+                      <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0${POST-SNAPSHOT}</version>
                       <type>jar</type>
                       <includes>ao-checkstyle-config/checkstyle-configuration.xml</includes>
                     </artifactItem>
@@ -1974,7 +1974,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             </executions>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0<!-- ${POST-SNAPSHOT} --></version>
+                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0${POST-SNAPSHOT}</version>
                 <type>jar</type>
               </dependency>
             </dependencies>
@@ -1983,7 +1983,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0<!-- ${POST-SNAPSHOT} --></version>
+                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0${POST-SNAPSHOT}</version>
               </dependency>
             </dependencies>
             <configuration>
@@ -2006,7 +2006,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0<!-- ${POST-SNAPSHOT} --></version>
+                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.1.0${POST-SNAPSHOT}</version>
               </dependency>
             </dependencies>
             <configuration>
