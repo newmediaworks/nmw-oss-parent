@@ -62,11 +62,25 @@ def upstreamProjects = [
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
   // No Jenkins: <groupId>org.ow2.asm</groupId><artifactId>asm</artifactId>
+  // No Jenkins: <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId>
+  // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId>
+  // No Jenkins: <groupId>com.puppycrawl.tools</groupId><artifactId>checkstyle</artifactId>
+  // No Jenkins: <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId>
+  // No Jenkins: <groupId>com.github.spotbugs</groupId><artifactId>spotbugs</artifactId>
+  // No Jenkins: TODO: Try findsecbugs-plugin: <groupId>com.h3xstream.findsecbugs</groupId><artifactId>findsecbugs-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId>
+  // No Jenkins: <groupId>org.sonarsource.scanner.maven</groupId><artifactId>sonar-maven-plugin</artifactId>
+  // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-shade-plugin</artifactId>
+  // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jarsigner-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.tomcat.maven</groupId><artifactId>tomcat7-maven-plugin</artifactId>
+  // No Jenkins: <groupId>org.codehaus.mojo</groupId><artifactId>properties-maven-plugin</artifactId>
   // No Jenkins: <groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId>
+  // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-project-info-reports-plugin</artifactId>
   '../../ao/oss/javadoc-offline', // <groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId>
   'javadoc-resources', // <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId>
+  '../../ao/oss/checkstyle-config', // <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId>
+  // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId>
+  // No Jenkins: <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId>
   // No Jenkins: <groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
 ]
 
