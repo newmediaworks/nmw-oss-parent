@@ -24,7 +24,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.16.8-POST-SNAPSHOT</version>
+  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.16.9-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
@@ -46,7 +46,8 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <javadoc.link.javase.16>https://docs.oracle.com/en/java/javase/16/docs/api/</javadoc.link.javase.16>
     <javadoc.link.javase.17>https://docs.oracle.com/en/java/javase/17/docs/api/</javadoc.link.javase.17>
     <javadoc.link.javase.18>https://docs.oracle.com/en/java/javase/18/docs/api/</javadoc.link.javase.18>
-    <javadoc.link.javase.19>https://download.java.net/java/early_access/jdk19/docs/api/</javadoc.link.javase.19>
+    <javadoc.link.javase.19>https://docs.oracle.com/en/java/javase/19/docs/api/</javadoc.link.javase.19>
+    <javadoc.link.javase.20>https://download.java.net/java/early_access/jdk20/docs/api/</javadoc.link.javase.20>
 
     <!-- The Java EE apidocs to link to, preferring https -->
     <!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->
@@ -1805,7 +1806,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId><version>3.2.0${POST-SNAPSHOT}</version>
+                <groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId><version>3.3.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
               </dependency>
             </dependencies>
             <executions>
@@ -1814,7 +1815,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <configuration>
                   <attachToMain>false</attachToMain><attachToTest>false</attachToTest>
                   <resourceBundles>
-                    <resourceBundle>com.aoapps:ao-javadoc-offline:3.2.0${POST-SNAPSHOT}</resourceBundle>
+                    <resourceBundle>com.aoapps:ao-javadoc-offline:3.3.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></resourceBundle>
                   </resourceBundles>
                   <outputDirectory>${project.build.directory}/offlineLinks</outputDirectory>
                 </configuration>
