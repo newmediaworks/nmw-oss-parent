@@ -25,10 +25,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.19.8-POST-SNAPSHOT</version>
+    <groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.19.9-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent-book</artifactId><version>1.19.8-POST-SNAPSHOT</version>
+  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent-book</artifactId><version>1.19.9-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <properties>
@@ -159,7 +159,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <dependencies>
       <!-- Direct -->
       <dependency>
-        <groupId>com.aoapps</groupId><artifactId>ao-badges</artifactId><version>1.8.0${POST-SNAPSHOT}</version>
+        <groupId>com.aoapps</groupId><artifactId>ao-badges</artifactId><version>1.9.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
       </dependency>
       <dependency>
         <groupId>com.aoapps</groupId><artifactId>ao-taglib</artifactId><version>7.2.1${POST-SNAPSHOT}</version>
