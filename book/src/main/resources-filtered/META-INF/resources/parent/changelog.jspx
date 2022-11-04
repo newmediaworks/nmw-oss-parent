@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2022-11-03T05:57:39-05:00"
+    dateModified="2022-11-03T18:56:29-05:00"
   >
     <c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
       <changelog:release
@@ -51,6 +51,19 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
       </changelog:release>
     </c:if>
+
+    <changelog:release
+      projectName="@{documented.name}"
+      version="1.19.10"
+      datePublished="2022-11-03T18:56:29-05:00"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>Fixed mistake in release 1.19.9 that referenced snapshot version of ao-javadoc-offline.</li>
+      </ul>
+    </changelog:release>
 
     <changelog:release
       projectName="@{documented.name}"
