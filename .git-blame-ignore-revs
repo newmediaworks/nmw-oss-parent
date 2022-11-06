@@ -9,6 +9,12 @@
 # $ git config blame.ignoreRevsFile .git-blame-ignore-revs
 
 # Significant manual code formatting clean-up…
+a11c487c88bc81c7f3fc0e375208f2364f7e54c1
+
+# Replaced spaces with our standard tabs
+98941b9677851fa0ae527bc14eea1682424c6a23
+
+# Significant manual code formatting clean-up…
 8c2ef7bc9e20c07e93ae3ee59b1cce301f490391
 
 # Replaced spaces with our standard tabs
