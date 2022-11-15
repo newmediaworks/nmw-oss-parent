@@ -1263,6 +1263,35 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </regexPropertySettings>
             </configuration>
           </execution>
+          <!-- Determine the type of Java EE, either "javaee" or "jakartaee". -->
+          <execution>
+            <id>build.javadoc.link.javaee.type.javaee</id><goals><goal>regex-properties</goal></goals>
+            <configuration>
+              <regexPropertySettings>
+                <regexPropertySetting>
+                  <name>javadoc.link.javaee.type</name>
+                  <value>${javaee.version}</value>
+                  <regex>^(5|6|7)$</regex>
+                  <replacement>javaee</replacement>
+                  <failIfNoMatch>false</failIfNoMatch>
+                </regexPropertySetting>
+              </regexPropertySettings>
+            </configuration>
+          </execution>
+          <execution>
+            <id>build.javadoc.link.javaee.type.jakartaee</id><goals><goal>regex-properties</goal></goals>
+            <configuration>
+              <regexPropertySettings>
+                <regexPropertySetting>
+                  <name>javadoc.link.javaee.type</name>
+                  <value>${javadoc.link.javaee.type}</value>
+                  <regex>^((?!^javaee$).)*$</regex>
+                  <replacement>jakartaee</replacement>
+                  <failIfNoMatch>false</failIfNoMatch>
+                </regexPropertySetting>
+              </regexPropertySettings>
+            </configuration>
+          </execution>
           <!-- Support generated resources on all projects -->
           <execution>
             <id>add-generated-resources</id><goals><goal>add-resource</goal></goals>
@@ -1891,7 +1920,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <!-- Java EE -->
                 <offlineLink>
                   <url>${javadoc.link.javaee}</url>
-                  <location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/javaee/${javaee.version}</location>
+                  <location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/${javadoc.link.javaee.type}/${javaee.version}</location>
                 </offlineLink>
                 <!-- Java SE -->
                 <offlineLink>
