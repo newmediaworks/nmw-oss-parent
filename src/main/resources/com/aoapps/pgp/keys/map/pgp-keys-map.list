@@ -100,7 +100,5 @@ org.apache.commons:commons-digester3 = 0xA9F885A21BA0EFB7D0991E6CCAF5EC5919FEA27
 com.github.cliftonlabs:json-simple = 0xD4173520C54781C310C6E10C4425263EB7F112F0
 org.apache.velocity.tools = 0xCE4439C1BEF3DA83B1832F9DBEFEEF227A98B809
 com.google.protobuf:protobuf-java = 0xF9ACD39310B477B691F4E3F9971248996DF82053
-
-# TODO: Get merged into upstream s4u/pgp-keys-map (pull requests already submitted)
 com.mysql:mysql-connector-j = 0xF046369B06B761AC86D9849F71B329993BFFCFDD
 org.apache.commons:commons-compress = 0x8378BFAAD82FE5AA602AC356031EE010CA15D1EE
