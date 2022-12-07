@@ -94,3 +94,8 @@ com.producerscattleauction:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)    = 0xA10BFD39C3A
 com.producersequipmentauction:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+) = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.producersrealtygroup:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.producersseedstocksales:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
+
+#
+# TODO: Get merge to upstream s4u/pgp-keys-map project
+#
+com.google.protobuf:protobuf-java:3.21.10 = 0x6BA2C3EDB5D02D54BB5E9B25AA9DF09FC4071B72
