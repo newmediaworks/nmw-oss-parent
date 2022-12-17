@@ -98,4 +98,5 @@ com.producersseedstocksales:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0xA10BFD39C3A
 #
 # TODO: Get merge to upstream s4u/pgp-keys-map project
 #
-com.google.protobuf:protobuf-java:3.21.10 = 0x6BA2C3EDB5D02D54BB5E9B25AA9DF09FC4071B72
+com.google.protobuf:protobuf-java = 0x6BA2C3EDB5D02D54BB5E9B25AA9DF09FC4071B72
+com.google.protobuf:protobuf-java = 0x3C7C956B0ADCE8A006F392201E516D29843497DC
