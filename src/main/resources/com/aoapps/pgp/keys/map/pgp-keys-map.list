@@ -94,3 +94,6 @@ com.producerscattleauction:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)    = 0xA10BFD39C3A
 com.producersequipmentauction:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+) = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.producersrealtygroup:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.producersseedstocksales:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
+
+# TODO: Get merged into upstream s4u/pgp-keys-map
+org.apache.ant                  = 0x0A123C1ED3F13A6A0140E166C71FB765CD9DE313
