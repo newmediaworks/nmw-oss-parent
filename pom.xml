@@ -1126,7 +1126,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>4.7.1.1</version>
+          <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>4.7.3.0</version>
           <dependencies>
             <dependency>
               <groupId>com.github.spotbugs</groupId><artifactId>spotbugs</artifactId><version>4.7.3</version>
@@ -2121,7 +2121,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <reporting>
         <plugins>
           <plugin>
-            <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>4.7.1.1</version>
+            <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>4.7.3.0</version>
           </plugin>
         </plugins>
       </reporting>
@@ -2151,7 +2151,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <reporting>
         <plugins>
           <plugin>
-            <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>4.7.1.1</version>
+            <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>4.7.3.0</version>
             <configuration>
               <skip>true</skip>
             </configuration>
