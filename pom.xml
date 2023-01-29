@@ -620,9 +620,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId><version>1.16.0</version>
+          <groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId><version>1.17.0</version>
           <configuration>
             <quiet>true</quiet>
+            <suppressSignatureOkLogging>true</suppressSignatureOkLogging>
             <verifyAtypical>true</verifyAtypical>
             <verifyPluginDependencies>true</verifyPluginDependencies>
             <verifyPlugins>true</verifyPlugins>
