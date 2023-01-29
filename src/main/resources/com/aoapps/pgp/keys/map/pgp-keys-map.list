@@ -97,3 +97,5 @@ com.producersseedstocksales:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0xA10BFD39C3A
 
 # TODO: Get merged into upstream s4u/pgp-keys-map
 org.apache.ant                  = 0x0A123C1ED3F13A6A0140E166C71FB765CD9DE313
+# Used by maven-site-plugin-4.0.0-M4:
+org.jetbrains:annotations       = 0x2E3A1AFFE42B5F53AF19F780BCF4173966770193
