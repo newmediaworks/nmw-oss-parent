@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2023-01-28T11:49:53-06:00"
+    dateModified="2023-02-07T07:12:49-06:00"
   >
     <c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
       <changelog:release
@@ -49,12 +49,22 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         scmUrl="@{project.scm.url}"
       >
         <!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
-        <ul>
-          <li>Updated plugin versions.</li>
-          <li>Updated to latest release of <ao:a href="https://github.com/s4u/pgp-keys-map">PGP keys map to maven artifacts</ao:a>.</li>
-        </ul>
       </changelog:release>
     </c:if>
+
+    <changelog:release
+      projectName="@{documented.name}"
+      version="1.20.2"
+      datePublished="2023-02-07T07:12:49-06:00"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>Updated plugin versions.</li>
+        <li>Updated to latest release of <ao:a href="https://github.com/s4u/pgp-keys-map">PGP keys map to maven artifacts</ao:a>.</li>
+      </ul>
+    </changelog:release>
 
     <changelog:release
       projectName="@{documented.name}"
