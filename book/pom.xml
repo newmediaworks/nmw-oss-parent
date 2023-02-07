@@ -28,7 +28,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.20.2<!-- -POST-SNAPSHOT --></version>
   </parent>
 
-  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent-book</artifactId><version>1.20.2-SNAPSHOT</version>
+  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent-book</artifactId><version>1.20.2</version>
   <packaging>bundle</packaging>
 
   <properties>
@@ -73,7 +73,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <connection>scm:git:git://github.com/ao-apps/ao-oss-parent.git</connection>
     <developerConnection>scm:git:git@github.com:ao-apps/ao-oss-parent.git</developerConnection>
     <url>https://github.com/ao-apps/ao-oss-parent</url>
-    <tag>HEAD</tag>
+    <tag>ao-oss-parent-book-1.20.2</tag>
   </scm>
 
   <issueManagement>
