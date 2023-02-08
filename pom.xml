@@ -28,6 +28,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
   <packaging>pom</packaging>
 
   <properties>
+    <project.build.outputTimestamp>2023-02-08T21:06:04Z</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- The version of Java apidocs to link to, preferring https -->
