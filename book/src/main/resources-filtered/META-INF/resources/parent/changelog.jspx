@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2023-02-07T07:12:49-06:00"
+    dateModified="2023-02-09T18:15:11Z"
   >
     <c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
       <changelog:release
@@ -49,6 +49,13 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         scmUrl="@{project.scm.url}"
       >
         <!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
+        <ul>
+          <li>Enabled <ao:a href="https://maven.apache.org/guides/mini/guide-reproducible-builds.html">Reproducible Builds</ao:a>:
+            <ol>
+              <li>Removed <code>Implementation-Build-Date</code> from all manifest.</li>
+            </ol>
+          </li>
+        </ul>
       </changelog:release>
     </c:if>
 
