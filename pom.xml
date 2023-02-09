@@ -969,6 +969,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
               </manifestEntries>
             </archive>
+            <notimestamp>true</notimestamp>
             <!-- TODO: Here and all javadocs, support canonical URL links in generated docs -->
             <packagesheader><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${project.version}</a>]]></packagesheader>
             <header><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${project.version}</a>]]></header>
