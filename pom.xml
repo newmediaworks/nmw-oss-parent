@@ -24,11 +24,11 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.17.2-POST-SNAPSHOT</version>
+  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.18.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
-    <project.build.outputTimestamp>2023-02-08T21:06:04Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2023-02-09T19:02:31Z</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- The version of Java apidocs to link to, preferring https -->
@@ -657,7 +657,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </manifest>
               <manifestEntries>
                 <Built-By>${project.organization.name}</Built-By>
-                <Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
                 <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
                 <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
               </manifestEntries>
@@ -800,7 +799,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <!-- Instructions not found in docs, and adapted by what found in https://github.com/mybatis/parent/blob/master/pom.xml -->
               <!-- TODO: Necessary?  Helpful? -->
               <Built-By>${project.organization.name}</Built-By>
-              <Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
               <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
               <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
               <!-- Optional Main-Class, as seen at https://github.com/FasterXML/oss-parent/blob/master/pom.xml -->
@@ -876,7 +874,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </manifest>
               <manifestEntries>
                 <Built-By>${project.organization.name}</Built-By>
-                <Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
                 <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
                 <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
               </manifestEntries>
@@ -927,7 +924,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </manifest>
               <manifestEntries>
                 <Built-By>${project.organization.name}</Built-By>
-                <Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
                 <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
                 <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
               </manifestEntries>
@@ -944,7 +940,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </manifest>
               <manifestEntries>
                 <Built-By>${project.organization.name}</Built-By>
-                <Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
                 <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
                 <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
               </manifestEntries>
@@ -974,7 +969,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </manifest>
               <manifestEntries>
                 <Built-By>${project.organization.name}</Built-By>
-                <Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
                 <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
                 <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
               </manifestEntries>
