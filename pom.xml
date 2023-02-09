@@ -835,9 +835,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <groupId>org.codehaus.mojo</groupId><artifactId>versions-maven-plugin</artifactId><version>2.14.2</version>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId><artifactId>buildnumber-maven-plugin</artifactId><version>3.0.0</version>
-        </plugin>
-        <plugin>
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId><version>3.0.1</version>
           <configuration>
             <lockMode>multiple</lockMode>
@@ -1289,6 +1286,21 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </regexPropertySettings>
             </configuration>
           </execution>
+          <!-- Create build.currentYear property for filtering -->
+          <execution>
+            <id>build.currentYear</id><goals><goal>regex-properties</goal></goals>
+            <configuration>
+              <regexPropertySettings>
+                <regexPropertySetting>
+                  <name>build.currentYear</name>
+                  <value>${project.build.outputTimestamp}</value>
+                  <regex>^([0-9]+)-.*$</regex>
+                  <replacement>$1</replacement>
+                  <failIfNoMatch>true</failIfNoMatch>
+                </regexPropertySetting>
+              </regexPropertySettings>
+            </configuration>
+          </execution>
           <!-- Support generated resources on all projects -->
           <execution>
             <id>add-generated-resources</id><goals><goal>add-resource</goal></goals>
@@ -1308,19 +1320,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                   <directory>${project.build.directory}/generated-test-resources</directory>
                 </resource>
               </resources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <!-- Create build.currentYear property for filtering -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId><artifactId>buildnumber-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>build.currentYear</id><phase>initialize</phase><goals><goal>create-timestamp</goal></goals>
-            <configuration>
-              <timestampFormat>yyyy</timestampFormat>
-              <timestampPropertyName>build.currentYear</timestampPropertyName>
             </configuration>
           </execution>
         </executions>
