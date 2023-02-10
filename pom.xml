@@ -43,6 +43,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     -->
     <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
     <maven-javadoc-plugin.version.reactor>3.0.1</maven-javadoc-plugin.version.reactor>
+    <copy-element-list-to-package-list-before-javadoc.goal>none</copy-element-list-to-package-list-before-javadoc.goal>
 
     <!-- The version of Java apidocs to link to, preferring https -->
     <!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->
@@ -1856,6 +1857,23 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             </executions>
           </plugin>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <!-- maven-javadoc-plugin:3.0.1: Works both directly and in reactor build, but can't link to "element-list" -->
+              <execution>
+                <id>copy-element-list-to-package-list-before-javadoc</id><phase>prepare-package</phase><goals><goal>${copy-element-list-to-package-list-before-javadoc.goal}</goal></goals>
+                <configuration>
+                  <target>
+                    <copy todir="${project.build.directory}/offlineLinks">
+                      <fileset dir="${project.build.directory}/offlineLinks" includes="**/element-list" />
+                      <globmapper from="*/element-list" to="*/package-list" />
+                    </copy>
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
             <configuration>
               <offlineLinks>
@@ -1929,28 +1947,8 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <id>reactor</id>
       <properties>
         <maven-javadoc-plugin.version>${maven-javadoc-plugin.version.reactor}</maven-javadoc-plugin.version>
+        <copy-element-list-to-package-list-before-javadoc.goal>run</copy-element-list-to-package-list-before-javadoc.goal>
       </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-              <!-- maven-javadoc-plugin:3.0.1: Works both directly and in reactor build, but can't link to "element-list" -->
-              <execution>
-                <id>copy-element-list-to-package-list-before-javadoc</id><phase>prepare-package</phase><goals><goal>run</goal></goals>
-                <configuration>
-                  <target>
-                    <copy todir="${project.build.directory}/offlineLinks">
-                      <fileset dir="${project.build.directory}/offlineLinks" includes="**/element-list" />
-                      <globmapper from="*/element-list" to="*/package-list" />
-                    </copy>
-                  </target>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
     <profile>
       <!--
@@ -1963,6 +1961,8 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <properties>
         <!-- Provides default breadcrumbs for when profile.d/maven.javadoc.skip exists -->
         <javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
+        <!-- maven-javadoc-plugin:3.0.1: Works both directly and in reactor build, but can't link to "element-list" -->
+        <copy-element-list-to-package-list-before-javadoc.goal>none</copy-element-list-to-package-list-before-javadoc.goal>
       </properties>
       <build>
         <plugins>
@@ -1971,15 +1971,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <executions>
               <execution>
                 <id>process.offlineLinks</id><phase>none</phase>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-              <!-- maven-javadoc-plugin:3.0.1: Works both directly and in reactor build, but can't link to "element-list" -->
-              <execution>
-                <id>copy-element-list-to-package-list-before-javadoc</id><phase>none</phase>
               </execution>
             </executions>
           </plugin>
