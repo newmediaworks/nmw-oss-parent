@@ -43,7 +43,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     -->
     <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
     <maven-javadoc-plugin.version.reactor>3.0.1</maven-javadoc-plugin.version.reactor>
-    <copy-element-list-to-package-list-before-javadoc.goal>none</copy-element-list-to-package-list-before-javadoc.goal>
+    <copy-element-list-to-package-list-before-javadoc.phase>none</copy-element-list-to-package-list-before-javadoc.phase>
 
     <!-- The version of Java apidocs to link to, preferring https -->
     <!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->
@@ -1861,7 +1861,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <executions>
               <!-- maven-javadoc-plugin:3.0.1: Works both directly and in reactor build, but can't link to "element-list" -->
               <execution>
-                <id>copy-element-list-to-package-list-before-javadoc</id><phase>prepare-package</phase><goals><goal>${copy-element-list-to-package-list-before-javadoc.goal}</goal></goals>
+                <id>copy-element-list-to-package-list-before-javadoc</id><phase>${copy-element-list-to-package-list-before-javadoc.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target>
                     <copy todir="${project.build.directory}/offlineLinks">
@@ -1947,7 +1947,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <id>reactor</id>
       <properties>
         <maven-javadoc-plugin.version>${maven-javadoc-plugin.version.reactor}</maven-javadoc-plugin.version>
-        <copy-element-list-to-package-list-before-javadoc.goal>run</copy-element-list-to-package-list-before-javadoc.goal>
+        <copy-element-list-to-package-list-before-javadoc.phase>prepare-package</copy-element-list-to-package-list-before-javadoc.phase>
       </properties>
     </profile>
     <profile>
@@ -1962,7 +1962,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!-- Provides default breadcrumbs for when profile.d/maven.javadoc.skip exists -->
         <javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
         <!-- maven-javadoc-plugin:3.0.1: Works both directly and in reactor build, but can't link to "element-list" -->
-        <copy-element-list-to-package-list-before-javadoc.goal>none</copy-element-list-to-package-list-before-javadoc.goal>
+        <copy-element-list-to-package-list-before-javadoc.phase>none</copy-element-list-to-package-list-before-javadoc.phase>
       </properties>
       <build>
         <plugins>
