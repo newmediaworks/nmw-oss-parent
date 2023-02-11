@@ -40,6 +40,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       As a workaround, default to latest version, but change to version 3.0.1 under a new "reactor" profile.
       This "reactor" profile is activated only within developer scripts "mdr", "mir", and "mpr".  Version 3.0.1 does not
       produce reproducible builds, but these developer scripts are only used as a fall-back when Jenkins is inoperable.
+
+      This older version (accessed via this *.reactor property) is also used by projects that are module but revert to
+      Automatic-Module-Name in releases.  This is done when the project itself uses any unnamed modules.  Before
+      removing this properties, make sure to remove all uses of the properties across all projects.
     -->
     <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
     <maven-javadoc-plugin.version.reactor>3.0.1</maven-javadoc-plugin.version.reactor>
