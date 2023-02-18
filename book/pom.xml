@@ -25,14 +25,14 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.18.0-POST-SNAPSHOT</version>
+    <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.18.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent-book</artifactId><version>1.18.0-POST-SNAPSHOT</version>
+  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent-book</artifactId><version>1.18.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <properties>
-    <project.build.outputTimestamp>2023-02-11T17:48:56Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2023-02-18T19:43:26Z</project.build.outputTimestamp>
     <module.name>com.newmediaworks.oss.parent.book</module.name>
     <!-- These values are copied from the project being documented -->
     <documented.artifactId>nmw-oss-parent</documented.artifactId>
