@@ -45,7 +45,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       Automatic-Module-Name in releases.  This is done when the project itself uses any unnamed modules.  Before
       removing this properties, make sure to remove all uses of the properties across all projects.
     -->
-    <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
+    <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
     <maven-javadoc-plugin.version.reactor>3.0.1</maven-javadoc-plugin.version.reactor>
     <copy-element-list-to-package-list-before-javadoc.phase>none</copy-element-list-to-package-list-before-javadoc.phase>
 
