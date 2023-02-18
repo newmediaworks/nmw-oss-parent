@@ -96,6 +96,8 @@ com.producersrealtygroup:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0xA10BFD39C3A
 com.producersseedstocksales:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 
 # TODO: Get merged into upstream s4u/pgp-keys-map
+commons-fileupload              = 0xA9C5DF4D22E99998D9875A5110C01C5A2F6059E7
+io.micrometer.*                 = 0x48B086A7D843CFA258E83286928FBF39003C0425
 org.apache.ant                  = 0x0A123C1ED3F13A6A0140E166C71FB765CD9DE313
 # Used by maven-site-plugin-4.0.0-M4:
 org.jetbrains:annotations       = 0x2E3A1AFFE42B5F53AF19F780BCF4173966770193
