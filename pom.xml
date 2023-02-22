@@ -1316,6 +1316,21 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </regexPropertySettings>
             </configuration>
           </execution>
+          <!-- Create build.versionNoPostSnapshot property for version numbers without -POST-SNAPSHOT -->
+          <execution>
+            <id>build.versionNoPostSnapshot</id><goals><goal>regex-properties</goal></goals>
+            <configuration>
+              <regexPropertySettings>
+                <regexPropertySetting>
+                  <name>build.versionNoPostSnapshot</name>
+                  <value>${project.version}</value>
+                  <regex>^(.+?)(?:-POST-SNAPSHOT)?$</regex>
+                  <replacement>$1</replacement>
+                  <failIfNoMatch>true</failIfNoMatch>
+                </regexPropertySetting>
+              </regexPropertySettings>
+            </configuration>
+          </execution>
           <!-- Support generated resources on all projects -->
           <execution>
             <id>add-generated-resources</id><goals><goal>add-resource</goal></goals>
