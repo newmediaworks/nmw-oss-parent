@@ -1117,7 +1117,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>3.2.1</version>
           <dependencies>
             <dependency>
-              <groupId>com.puppycrawl.tools</groupId><artifactId>checkstyle</artifactId><version>10.7.0</version>
+              <groupId>com.puppycrawl.tools</groupId><artifactId>checkstyle</artifactId><version>10.8.0</version>
             </dependency>
           </dependencies>
           <configuration>
