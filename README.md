@@ -19,7 +19,7 @@ Parent POM for all New Media Works open-source software projects.
 ## Project Links
 * [Project Home](https://oss.newmediaworks.com/parent/)
 * [Changelog](https://oss.newmediaworks.com/parent/changelog)
-* [Maven Central Repository](https://search.maven.org/artifact/com.newmediaworks/nmw-oss-parent)
+* [Maven Central Repository](https://central.sonatype.com/search?namespace=com.newmediaworks&q=a%3Anmw-oss-parent)
 * [GitHub](https://github.com/newmediaworks/nmw-oss-parent)
 
 ## Contact Us
