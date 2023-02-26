@@ -1267,7 +1267,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <ul>
         <li>New parent pom for open-source projects to reduce duplication within pom.xml files</li>
         <li>Made the components of the current version available as <ao:a href="http://www.mojohaus.org/build-helper-maven-plugin/parse-version-mojo.html">parsedVersion.* properties</ao:a>.</li>
-        <li>Using <ao:a href="https://central.sonatype.com/search?namespace=io.reformanda.semper&q=a%3Adependencyversion-maven-plugin">dependencyversion-maven-plugin</ao:a> to get dependency versions as properties.</li>
+        <li>Using <ao:a href="https://central.sonatype.com/search?namespace=io.reformanda.semper&amp;q=a%3Adependencyversion-maven-plugin">dependencyversion-maven-plugin</ao:a> to get dependency versions as properties.</li>
       </ul>
     </changelog:release>
   </core:page>
