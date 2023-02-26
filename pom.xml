@@ -854,7 +854,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId><artifactId>versions-maven-plugin</artifactId><version>2.14.2</version>
+          <groupId>org.codehaus.mojo</groupId><artifactId>versions-maven-plugin</artifactId><version>2.15.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId><version>3.0.1</version>
