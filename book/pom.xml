@@ -28,11 +28,11 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.21.1<!-- -POST-SNAPSHOT --></version>
   </parent>
 
-  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent-book</artifactId><version>1.21.1-SNAPSHOT</version>
+  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent-book</artifactId><version>1.21.1</version>
   <packaging>bundle</packaging>
 
   <properties>
-    <project.build.outputTimestamp>2023-02-18T19:43:26Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2023-02-27T21:31:03Z</project.build.outputTimestamp>
     <module.name>com.aoapps.oss.parent.book</module.name>
     <!-- These values are copied from the project being documented -->
     <documented.artifactId>ao-oss-parent</documented.artifactId>
@@ -74,7 +74,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <connection>scm:git:git://github.com/ao-apps/ao-oss-parent.git</connection>
     <developerConnection>scm:git:git@github.com:ao-apps/ao-oss-parent.git</developerConnection>
     <url>https://github.com/ao-apps/ao-oss-parent</url>
-    <tag>HEAD</tag>
+    <tag>ao-oss-parent-book-1.21.1</tag>
   </scm>
 
   <issueManagement>
