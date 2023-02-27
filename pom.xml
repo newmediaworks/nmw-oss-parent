@@ -688,7 +688,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>3.1.0</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.10.1</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.11.0</version>
           <configuration>
             <!-- Default to using -Xlint and showing warnings -->
             <compilerArgs>
