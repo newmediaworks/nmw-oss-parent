@@ -146,353 +146,743 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.java.source>${javase.release}</sonar.java.source>
 
-    <!-- NetBeans Editor -->
-    <org-netbeans-modules-editor-indent.text.javascript.CodeStyle.project.continuationIndentSize>4</org-netbeans-modules-editor-indent.text.javascript.CodeStyle.project.continuationIndentSize>
-    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.continuationIndentSize>4</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.continuationIndentSize>
-    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.enable-indent>true</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.enable-indent>
-    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.importGroupsOrder>static *;*</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.importGroupsOrder>
-    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.separateStaticImports>true</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.separateStaticImports>
-    <org-netbeans-modules-editor-indent.text.x-json.CodeStyle.project.continuationIndentSize>4</org-netbeans-modules-editor-indent.text.x-json.CodeStyle.project.continuationIndentSize>
-    <org-netbeans-modules-editor-indent.CodeStyle.project.text-line-wrap>none</org-netbeans-modules-editor-indent.CodeStyle.project.text-line-wrap>
+    <!-- <NetBeans 17 → Project → Properties> -->
+    <!--   <Run> -->
+    <!--     Server -->
+    <org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>Tomcat</org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>
+    <!--   </Run> -->
+    <!--   <Formatting> -->
+    <!--     Use project specific options -->
+    <org-netbeans-modules-editor-indent.CodeStyle.usedProfile>project</org-netbeans-modules-editor-indent.CodeStyle.usedProfile>
+    <!--     <All Languages> -->
+    <!--       <Tabs And Indents> -->
+    <!--         Enable Indentation -->
+    <org-netbeans-modules-editor-indent.CodeStyle.project.enable-indent>true</org-netbeans-modules-editor-indent.CodeStyle.project.enable-indent>
+    <!--         Expand Tabs to Spaces -->
+    <org-netbeans-modules-editor-indent.CodeStyle.project.expand-tabs>true</org-netbeans-modules-editor-indent.CodeStyle.project.expand-tabs>
+    <!--         Number of Spaces per Indent -->
     <org-netbeans-modules-editor-indent.CodeStyle.project.indent-shift-width>2</org-netbeans-modules-editor-indent.CodeStyle.project.indent-shift-width>
     <org-netbeans-modules-editor-indent.CodeStyle.project.spaces-per-tab>2</org-netbeans-modules-editor-indent.CodeStyle.project.spaces-per-tab>
+    <!--         Tab Size -->
     <org-netbeans-modules-editor-indent.CodeStyle.project.tab-size>4</org-netbeans-modules-editor-indent.CodeStyle.project.tab-size>
+    <!--         Right Margin -->
     <org-netbeans-modules-editor-indent.CodeStyle.project.text-limit-width>120</org-netbeans-modules-editor-indent.CodeStyle.project.text-limit-width>
-    <org-netbeans-modules-editor-indent.CodeStyle.project.expand-tabs>true</org-netbeans-modules-editor-indent.CodeStyle.project.expand-tabs>
-    <org-netbeans-modules-editor-indent.CodeStyle.usedProfile>project</org-netbeans-modules-editor-indent.CodeStyle.usedProfile>
-
-    <!-- NetBeans Run → Server -->
-    <org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>Tomcat</org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>
-
-    <!-- NetBeans Hints (NetBeans 12.0: Editor hints are much faster when all settings are pom.xml-based) -->
+    <!--         Line Wrap -->
+    <org-netbeans-modules-editor-indent.CodeStyle.project.text-line-wrap>none</org-netbeans-modules-editor-indent.CodeStyle.project.text-line-wrap>
+    <!--       </Tabs And Indents> -->
+    <!--     </All Languages> -->
+    <!--     <JSON> -->
+    <!--       <Tabs And Indents> -->
+    <!--         Continuation Indentation -->
+    <org-netbeans-modules-editor-indent.text.x-json.CodeStyle.project.continuationIndentSize>4</org-netbeans-modules-editor-indent.text.x-json.CodeStyle.project.continuationIndentSize>
+    <!--       </Tabs And Indents> -->
+    <!--     </JSON> -->
+    <!--     <Java> -->
+    <!--       <Tabs And Indents> -->
+    <!--         Enable Indentation -->
+    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.enable-indent>true</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.enable-indent>
+    <!--         Expand Tabs to Spaces -->
+    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.expand-tabs>true</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.expand-tabs>
+    <!--         Number of Spaces per Indent -->
+    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.indent-shift-width>2</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.indent-shift-width>
+    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.spaces-per-tab>2</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.spaces-per-tab>
+    <!--         Tab Size -->
+    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.tab-size>4</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.tab-size>
+    <!--         Right Margin -->
+    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.text-limit-width>120</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.text-limit-width>
+    <!--         Line Wrap -->
+    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.text-line-wrap>none</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.text-line-wrap>
+    <!--         Continuation Indentation Size -->
+    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.continuationIndentSize>4</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.continuationIndentSize>
+    <!--         Label Indentation -->
+    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.labelIndent>0</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.labelIndent>
+    <!--         Absolute Label Indentation -->
+    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.absoluteLabelIndent>false</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.absoluteLabelIndent>
+    <!--         Indent Top Level Class Members -->
+    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.indentTopLevelClassMembers>true</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.indentTopLevelClassMembers>
+    <!--         Indent Case Statements In Switch -->
+    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.indentCasesFromSwitch>true</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.indentCasesFromSwitch>
+    <!--       </Tabs And Indents> -->
+    <!--       <Imports> -->
+    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.importGroupsOrder>static *;*</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.importGroupsOrder>
+    <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.separateStaticImports>true</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.separateStaticImports>
+    <!--       </Imports> -->
+    <!--     </Java> -->
+    <!--     <JavaScript> -->
+    <!--       <Tabs And Indents> -->
+    <!--         Continuation Indentation -->
+    <org-netbeans-modules-editor-indent.text.javascript.CodeStyle.project.continuationIndentSize>4</org-netbeans-modules-editor-indent.text.javascript.CodeStyle.project.continuationIndentSize>
+    <!--       </Tabs And Indents> -->
+    <!--     </JavaScript> -->
+    <!--   </Formatting> -->
+    <!--   <Hints> -->
+    <!--     <Implementation Note> -->
+    <!--       NetBeans 12.0: Editor hints are much faster when all settings are pom.xml-based (not overridden in any nb-configuration.xml) -->
+    <!--     </Implementation Note> -->
+    <!--     Use project-specific options -->
     <org-netbeans-spi-editor-hints-projects.perProjectHintSettingsEnabled>true</org-netbeans-spi-editor-hints-projects.perProjectHintSettingsEnabled>
-    <!-- Abstraction -->
+    <!--     <Java> -->
+    <!--       <Abstraction> -->
+    <!--         Type cast is too strong -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_suggestions_2e_TooStrongCast_2e_broadTypeCast.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_suggestions_2e_TooStrongCast_2e_broadTypeCast.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_suggestions_2e_TooStrongCast_2e_broadTypeCast.hintSeverity>HINT</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_suggestions_2e_TooStrongCast_2e_broadTypeCast.hintSeverity>
-    <!-- APIs -->
+    <!--       </Abstraction> -->
+    <!--       <APIs> -->
+    <!--         Be aware that this API will be optional in Java EE 7 platform. -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.OptionalEE7APIsHint.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.OptionalEE7APIsHint.enabled>
+    <!--         Exporting non-public type through public API -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ExportNonAccessibleElement.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ExportNonAccessibleElement.enabled>
-    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_UtilityClass_5f_1.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_UtilityClass_5f_1.enabled>
+    <!--         Utility class with visible constructor -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_UtilityClass_5f_2.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_UtilityClass_5f_2.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_UtilityClass_5f_2.hintSeverity>VERIFIER</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_UtilityClass_5f_2.hintSeverity>
-    <!-- Assignment Issues -->
+    <!--         Utility class without constructor -->
+    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_UtilityClass_5f_1.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_UtilityClass_5f_1.enabled>
+    <!--       </APIs> -->
+    <!--       <Assignment Issues> -->
+    <!--         Assignment replaceable with operator-assignment -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_replaceAssignWithOpAssign.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_replaceAssignWithOpAssign.enabled>
+    <!--         Assignment to catch-block parameter -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_assignmentToCatchBlockParameter.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_assignmentToCatchBlockParameter.enabled>
+    <!--         Assignment to for-loop parameter -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_assignmentToForLoopParam.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_assignmentToForLoopParam.enabled>
+    <!--         Assignment to method parameter -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_assignmentToMethodParam.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_assignmentToMethodParam.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_assignmentToMethodParam.hintSeverity>HINT</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_assignmentToMethodParam.hintSeverity>
+    <!--         Nested assignment -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_nestedAssignment.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_nestedAssignment.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_nestedAssignment.hintSeverity>HINT</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_nestedAssignment.hintSeverity>
+    <!--         Value of increment/decrement expression used -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_incrementDecrementUsed.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AssignmentIssues_2e_incrementDecrementUsed.enabled>
-    <!-- Bitwise Operations -->
+    <!--       </Assignment Issues> -->
+    <!--       <Bitwise Operations> -->
+    <!--         Incompatible mask -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_IncompatibleMask.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_IncompatibleMask.enabled>
+    <!--         Pointless bitwise operation -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_PointlessBitwiseExpression.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_PointlessBitwiseExpression.enabled>
+    <!--         Shift operation outside of the reasonable range -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ShiftOutOfRange.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ShiftOutOfRange.enabled>
-    <!-- Braces -->
+    <!--       </Bitwise Operations> -->
+    <!--       <Braces> -->
+    <!--         Do-While Loops Should Use Braces -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Braces_5f_DO_5f_WHILE_5f_LOOP.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Braces_5f_DO_5f_WHILE_5f_LOOP.enabled>
+    <!--         For Loops Should Use Braces -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Braces_5f_FOR_5f_LOOP.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Braces_5f_FOR_5f_LOOP.enabled>
+    <!--         If-Else Statements Should Use Braces -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Braces_5f_IF.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Braces_5f_IF.enabled>
+    <!--         While Loops Should Use Braces -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Braces_5f_WHILE_5f_LOOP.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Braces_5f_WHILE_5f_LOOP.enabled>
-    <!-- Class Structure -->
+    <!--       </Braces> -->
+    <!--       <Class Structure> -->
+    <!--         Class may be interface -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_classMayBeInterface.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_classMayBeInterface.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_classMayBeInterface.hintSeverity>HINT</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_classMayBeInterface.hintSeverity>
+    <!--         Final class -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_finalClass.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_finalClass.enabled>
+    <!--         Final method -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_finalMethod.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_finalMethod.enabled>
+    <!--         Final method in final class -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_finalMethodInFinalClass.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_finalMethodInFinalClass.enabled>
+    <!--         Final private method -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_finalPrivateMethod.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_finalPrivateMethod.enabled>
+    <!--         Initializer may be static -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_InitializerCanBeStatic.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_InitializerCanBeStatic.enabled>
+    <!--         Marker interface -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_markerInterface.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_markerInterface.enabled>
+    <!--         Multiple top-level classes in file -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_multipleTopLevelClassesInFile.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_multipleTopLevelClassesInFile.enabled>
+    <!--         No-op method in abstract class -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_noopMethodInAbstractClass.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_noopMethodInAbstractClass.enabled>
+    <!--         Organize members -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_OrganizeMembers.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_OrganizeMembers.enabled>
+    <!--         Protected member in final class -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_protectedMemberInFinalClass.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_protectedMemberInFinalClass.enabled>
+    <!--         Public constructor in non-public class -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_publicConstructorInNonPublicClass.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ClassStructure_2e_publicConstructorInNonPublicClass.enabled>
-    <!-- Code Maturity Issues -->
+    <!--       </Class Structure> -->
+    <!--       <Code Maturity Issues> -->
+    <!--         Obsolete Collection -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ObsoleteCollection.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ObsoleteCollection.enabled>
+    <!--         Print Stack Trace -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_PrintStackTrace.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_PrintStackTrace.enabled>
+    <!--         System out/err -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_SystemOut.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_SystemOut.enabled>
+    <!--         Thread Dump Stack -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ThreadDumpStack.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ThreadDumpStack.enabled>
-    <!-- Custom -->
+    <!--       </Code Maturity Issues> -->
+    <!--       <Custom> -->
+    <!--         Inspection -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Inspection_2e_hint.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.Inspection_2e_hint.enabled>
+    <!--         Inspection_1 -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Inspection_5f_1_2e_hint.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.Inspection_5f_1_2e_hint.enabled>
+    <!--         Inspection_2 -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Inspection_5f_2_2e_hint.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.Inspection_5f_2_2e_hint.enabled>
+    <!--         Inspection_3 -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Inspection_5f_3_2e_hint.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.Inspection_5f_3_2e_hint.enabled>
-    <!-- Empty Statements -->
+    <!--       </Custom> -->
+    <!--       <Empty Statements> -->
+    <!--         Empty statement -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.EmptyStatements_5f_BLOCK.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.EmptyStatements_5f_BLOCK.enabled>
+    <!--         Empty statement after 'do' -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.EmptyStatements_5f_DO_5f_WHILE_5f_LOOP.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.EmptyStatements_5f_DO_5f_WHILE_5f_LOOP.enabled>
+    <!--         Empty statement after 'for' -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.EmptyStatements_5f_FOR_5f_LOOP.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.EmptyStatements_5f_FOR_5f_LOOP.enabled>
+    <!--         Empty statement after 'if/else' -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.EmptyStatements_5f_IF.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.EmptyStatements_5f_IF.enabled>
+    <!--         Empty statement after 'while' -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.EmptyStatements_5f_WHILE_5f_LOOP.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.EmptyStatements_5f_WHILE_5f_LOOP.enabled>
-    <!-- Encapsulation -->
+    <!--       </Empty Statements> -->
+    <!--       <Encapsulation> -->
+    <!--         Access of Private Field of Another Object -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_FieldEncapsulation_2e_privateField.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_FieldEncapsulation_2e_privateField.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_FieldEncapsulation_2e_privateField.hintSeverity>HINT</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_FieldEncapsulation_2e_privateField.hintSeverity>
+    <!--         Assignment to Array Field from Parameter -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ParamEncapsulation_2e_array.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ParamEncapsulation_2e_array.enabled>
+    <!--         Assignment to Collection Field from Parameter -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ParamEncapsulation_2e_collection.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ParamEncapsulation_2e_collection.enabled>
+    <!--         Assignment to Date or Calendar Field from Parameter -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ParamEncapsulation_2e_date.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ParamEncapsulation_2e_date.enabled>
+    <!--         Package Field -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_FieldEncapsulation_2e_packageField.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_FieldEncapsulation_2e_packageField.enabled>
+    <!--         Package Visible Inner Class -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ClassEncapsulation_2e_packageCls.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ClassEncapsulation_2e_packageCls.enabled>
+    <!--         Protected Field -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_FieldEncapsulation_2e_protectedField.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_FieldEncapsulation_2e_protectedField.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_FieldEncapsulation_2e_protectedField.hintSeverity>HINT</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_FieldEncapsulation_2e_protectedField.hintSeverity>
+    <!--         Protected Inner Class -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ClassEncapsulation_2e_protectedCls.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ClassEncapsulation_2e_protectedCls.enabled>
+    <!--         Public Field -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_FieldEncapsulation_2e_publicField.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_FieldEncapsulation_2e_publicField.enabled>
+    <!--         Public Inner Class -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ClassEncapsulation_2e_publicCls.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ClassEncapsulation_2e_publicCls.enabled>
+    <!--         Return of Array Field -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ReturnEncapsulation_2e_array.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ReturnEncapsulation_2e_array.enabled>
+    <!--         Return of Collection Field -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ReturnEncapsulation_2e_collection.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ReturnEncapsulation_2e_collection.enabled>
+    <!--         Return of Date or Calendar Field -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ReturnEncapsulation_2e_date.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_encapsulation_2e_ReturnEncapsulation_2e_date.enabled>
-    <!-- Encapsulation -->
+    <!--       </Encapsulation> -->
+    <!--       <Error Fixes> -->
+    <!--         Create Field -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintCREATE_5f_FINAL_5f_FIELD_5f_CTOR.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintCREATE_5f_FINAL_5f_FIELD_5f_CTOR.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintCREATE_5f_FINAL_5f_FIELD_5f_CTOR.create-final-fields-from-ctor>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintCREATE_5f_FINAL_5f_FIELD_5f_CTOR.create-final-fields-from-ctor>
+    <!--         Create Local Variable -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintCREATE_5f_LOCAL_5f_VARIABLE.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintCREATE_5f_LOCAL_5f_VARIABLE.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintCREATE_5f_LOCAL_5f_VARIABLE.create-local-variables-in-place>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintCREATE_5f_LOCAL_5f_VARIABLE.create-local-variables-in-place>
+    <!--         Implementation of EJBContainer is missing on project's classpath -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.EmbeddableEJBContainer.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.EmbeddableEJBContainer.enabled>
+    <!--         Import Class -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintIMPORT_5f_CLASS.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintIMPORT_5f_CLASS.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintIMPORT_5f_CLASS.organize-import-class>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintIMPORT_5f_CLASS.organize-import-class>
+    <!--         Java EE API is missing on project classpath. -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.MissingJavaEEForUnitTestExecutionHint.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.MissingJavaEEForUnitTestExecutionHint.enabled>
+    <!--         <Surround with try-catch> -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintSURROUND_5f_WITH_5f_TRY_5f_CATCH.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintSURROUND_5f_WITH_5f_TRY_5f_CATCH.enabled>
+    <!--           Use org.openide.util.Exceptions.printStackTrace -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintSURROUND_5f_WITH_5f_TRY_5f_CATCH.surround-try-catch-org-openide-util-Exceptions>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintSURROUND_5f_WITH_5f_TRY_5f_CATCH.surround-try-catch-org-openide-util-Exceptions>
+    <!--           Use java.util.logging.Logger -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintSURROUND_5f_WITH_5f_TRY_5f_CATCH.surround-try-catch-java-util-logging-Logger>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintSURROUND_5f_WITH_5f_TRY_5f_CATCH.surround-try-catch-java-util-logging-Logger>
+    <!--           Use Exceptions.printStackTrace -->
+    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintSURROUND_5f_WITH_5f_TRY_5f_CATCH.surround-try-catch-printStackTrace>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintSURROUND_5f_WITH_5f_TRY_5f_CATCH.surround-try-catch-printStackTrace>
+    <!--           Use throw new RuntimeException(…) -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintSURROUND_5f_WITH_5f_TRY_5f_CATCH.surround-try-catch-rethrow-runtime>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintSURROUND_5f_WITH_5f_TRY_5f_CATCH.surround-try-catch-rethrow-runtime>
+    <!--           Use throw … -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintSURROUND_5f_WITH_5f_TRY_5f_CATCH.surround-try-catch-rethrow>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_errors_2e_ErrorFixesFakeHintSURROUND_5f_WITH_5f_TRY_5f_CATCH.surround-try-catch-rethrow>
-    <!-- Finalization -->
+    <!--         </Surround with try-catch> -->
+    <!--       </Error Fixes> -->
+    <!--       <Finalization> -->
+    <!--         finalize() called explicitly -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_finalize_2e_CallFinalize.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_finalize_2e_CallFinalize.enabled>
+    <!--         finalize() declared -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_finalize_2e_FinalizeDeclared.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_finalize_2e_FinalizeDeclared.enabled>
+    <!--         finalize() does not call super.finalize() -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_finalize_2e_FinalizeDoesNotCallSuper.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_finalize_2e_FinalizeDoesNotCallSuper.enabled>
+    <!--         finalize() not declared protected -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_finalize_2e_FinalizeNotProtected.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_finalize_2e_FinalizeNotProtected.enabled>
-    <!-- General -->
+    <!--       </Finalization> -->
+    <!--       <General> -->
+    <!--         .equals Method not Checking Type -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_EqualsMethodHint.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_EqualsMethodHint.enabled>
+    <!--         Accessing static via reference -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_StaticAccess.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_StaticAccess.enabled>
+    <!--         Assignment To Itself -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.AssignmentToItself.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.AssignmentToItself.enabled>
+    <!--         Check Regular Expression -->
+    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_CheckRegex.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_CheckRegex.enabled>
+    <!--         Comparing Strings using == or != -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Wrong_5f_String_5f_Comparison.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Wrong_5f_String_5f_Comparison.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.Wrong_5f_String_5f_Comparison.ternary-null-check>true</org-netbeans-spi-editor-hints-projects.text.x-java.Wrong_5f_String_5f_Comparison.ternary-null-check>
     <org-netbeans-spi-editor-hints-projects.text.x-java.Wrong_5f_String_5f_Comparison.string-literals-first>true</org-netbeans-spi-editor-hints-projects.text.x-java.Wrong_5f_String_5f_Comparison.string-literals-first>
-    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertTextBlockToString.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertTextBlockToString.enabled>
+    <!--         Field hides another field -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_HideField.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_HideField.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_HideField.warn-hidden-static-fields>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_HideField.warn-hidden-static-fields>
+    <!--         Generate missing hashCode or equals -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_MissingHashCode.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_MissingHashCode.enabled>
+    <!--         Incorrect @modules tag -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_openjdk_2e_jtreg_2e_ModulesHint.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_openjdk_2e_jtreg_2e_ModulesHint.enabled>
+    <!--         JSNI to @JavaScriptBody -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_editor_2e_htmlui_2e_JSNI2JavaScriptBody.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_editor_2e_htmlui_2e_JSNI2JavaScriptBody.enabled>
+    <!--         Local variable hides a field -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_HideFieldByVar.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_HideFieldByVar.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_HideFieldByVar.warn-hidden-static-fields>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_HideFieldByVar.warn-hidden-static-fields>
+    <!--         Missing Reference Output -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_openjdk_2e_jtreg_2e_MissingRefOutputHint.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_openjdk_2e_jtreg_2e_MissingRefOutputHint.enabled>
+    <!--         Redundant conditional expression -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_control_2e_RedundantConditional.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_control_2e_RedundantConditional.enabled>
+    <!--         Redundant if statement -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_control_2e_RedundantIf.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_control_2e_RedundantIf.enabled>
+    <!--         Remove Unnecessary Continue Statement -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_control_2e_RemoveUnnecessary_2e_unnecessaryContinue.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_control_2e_RemoveUnnecessary_2e_unnecessaryContinue.enabled>
+    <!--         Remove Unnecessary Label in break -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.unnecessaryBreakLabel.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.unnecessaryBreakLabel.enabled>
+    <!--         Remove Unnecessary Label in continue -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.unnecessaryContinueLabel.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.unnecessaryContinueLabel.enabled>
+    <!--         Remove Unnecessary Return Statement -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_RemoveUnnecessaryReturn.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_RemoveUnnecessaryReturn.enabled>
+    <!--         Tag Order -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_openjdk_2e_jtreg_2e_TagOrderHint.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_openjdk_2e_jtreg_2e_TagOrderHint.enabled>
+    <!--         Unnecessary Throwable.initCause -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ThrowableInitCause.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ThrowableInitCause.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ThrowableInitCause.strict>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ThrowableInitCause.strict>
+    <!--         Use Functional Operations -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_mapreduce_2e_ForLoopToFunctionalHint.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_mapreduce_2e_ForLoopToFunctionalHint.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_mapreduce_2e_ForLoopToFunctionalHint.hintSeverity>HINT</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_mapreduce_2e_ForLoopToFunctionalHint.hintSeverity>
+    <!--         Wrong -source -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_openjdk_2e_jtreg_2e_WrongSourceVersion.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_openjdk_2e_jtreg_2e_WrongSourceVersion.enabled>
+    <!--         Wrong Package -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_WrongPackageSuggestion.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_WrongPackageSuggestion.enabled>
-    <!-- Imports -->
+    <!--       </General> -->
+    <!--       <Imports> -->
+    <!--         Import From The Same Package -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Imports_5f_SAME_5f_PACKAGE.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Imports_5f_SAME_5f_PACKAGE.enabled>
+    <!--         Import From java.lang Package -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Imports_5f_DEFAULT_5f_PACKAGE.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Imports_5f_DEFAULT_5f_PACKAGE.enabled>
+    <!--         Import from Excluded -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Imports_5f_EXCLUDED.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Imports_5f_EXCLUDED.enabled>
+    <!--         Organize imports -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_OrganizeImports.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_OrganizeImports.enabled>
+    <!--         Star import -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Imports_5f_STAR.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Imports_5f_STAR.enabled>
+    <!--         Unused Import -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Imports_5f_UNUSED.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Imports_5f_UNUSED.enabled>
-    <!-- Initialization -->
+    <!--       </Imports> -->
+    <!--       <Initialization> -->
+    <!--         Passing suspicious parameter in the constructor -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_LeakingThisInConstructor.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_LeakingThisInConstructor.enabled>
+    <!--         Problematic call in the constructor -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_OverridableMethodCallInConstructor.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_OverridableMethodCallInConstructor.enabled>
+    <!--         Static non-final variable used during initialization -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_StaticNonFinalUsedInInitialization.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_StaticNonFinalUsedInInitialization.enabled>
-    <!-- JavaDoc -->
+    <!--       </Initialization> -->
+    <!--       <JavaDoc> -->
+    <!--         Create Jaavadoc -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.create-javadoc.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.create-javadoc.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.create-javadoc.scope>protected</org-netbeans-spi-editor-hints-projects.text.x-java.create-javadoc.scope>
     <org-netbeans-spi-editor-hints-projects.text.x-java.create-javadoc.availabilitytrue>false</org-netbeans-spi-editor-hints-projects.text.x-java.create-javadoc.availabilitytrue>
+    <!--         Error in Javadoc -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.error-in-javadoc.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.error-in-javadoc.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.error-in-javadoc.availabilityfalse>false</org-netbeans-spi-editor-hints-projects.text.x-java.error-in-javadoc.availabilityfalse>
     <org-netbeans-spi-editor-hints-projects.text.x-java.error-in-javadoc.scope>protected</org-netbeans-spi-editor-hints-projects.text.x-java.error-in-javadoc.scope>
-    <!-- Java EE → EJB: No EJB checks by default, activated in profile as-needed -->
+    <!--       </JavaDoc> -->
+    <!--       <Java EE> -->
+    <!--         <Enterprise Java Beans> -->
+    <!--           <Implementation Note> -->
+    <!--             No checks by default, activated in profile as-needed -->
+    <!--           </Implementation Note> -->
+    <!--           @Remote uses value in business interface -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_ValueNotSpecifiedForRemoteAnnotationInterface.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_ValueNotSpecifiedForRemoteAnnotationInterface.enabled>
+    <!--           Annotation @PostConstruct -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_AnnotationPostContruct.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_AnnotationPostContruct.enabled>
+    <!--           Asynchronous method invocation -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_AsynchronousMethodInvocation.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_AsynchronousMethodInvocation.enabled>
+    <!--           Bean doesn't implement business interface -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BeanImplementsBI.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BeanImplementsBI.enabled>
+    <!--           Inheritance of session beans -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SBSuperClassNotSB.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SBSuperClassNotSB.enabled>
+    <!--           Instantiation replaceable with @EJB injection -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_UseInjectionInsteadOfInstantionRule.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_UseInjectionInsteadOfInstantionRule.enabled>
+    <!--           Local and Remote business inteface together -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BeanHasDifferentLBIandRBI.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BeanHasDifferentLBIandRBI.enabled>
+    <!--           Method definition in local and remote interface -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BusinessMethodExposed.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BusinessMethodExposed.enabled>
+    <!--           Method not exposed in business interface. -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BMnotPartOfRBIandLBI.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BMnotPartOfRBIandLBI.enabled>
+    <!--           Modifiers of the EJB bean -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LegalModifiers.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LegalModifiers.enabled>
+    <!--           No-arg constructor in the EJB bean -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_HasNoArgContructor.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_HasNoArgContructor.enabled>
+    <!--           Persistent timer within EJB Lit -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_PersistentTimerInEjbLite.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_PersistentTimerInEjbLite.enabled>
+    <!--           SessionSynchronization implemted by non-SFSB -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SessionSynchImplementedBySFSBOnly.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SessionSynchImplementedBySFSBOnly.enabled>
+    <!--           Uncomplete LBI Session bean -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LocalAnnotatedBeanHasLBI.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LocalAnnotatedBeanHasLBI.enabled>
+    <!--           Uncomplete RBI Session bean -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_RemoteAnnotatedBeanHasRBI.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_RemoteAnnotatedBeanHasRBI.enabled>
+    <!--           WebService must be designated as session bean -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_WSisSLSB.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_WSisSLSB.enabled>
-    <!-- Java EE → JPA: No JPA checks by default, activated in profile as-needed -->
+    <!--         </Enterprise Java Beans> -->
+    <!--         <Java Persistence API> -->
+    <!--           <Implementation Note> -->
+    <!--             No checks by default, activated in profile as-needed -->
+    <!--           </Implementation Note> -->
+    <!--           Check access types for jpa classes -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_ConsistentAccessType.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_ConsistentAccessType.enabled>
+    <!--           Default public/protected constructor -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_HasNoArgConstructor.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_HasNoArgConstructor.enabled>
+    <!--           Entity implements Serializable verification -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_SerializableClass.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_SerializableClass.enabled>
+    <!--           Entity table name verification -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_ValidPrimaryTableName.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_ValidPrimaryTableName.enabled>
+    <!--           JPQL validation -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_JPQLValidation.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_JPQLValidation.enabled>
+    <!--           Presence of persistence.xml -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_PersistenceUnitPresent.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_PersistenceUnitPresent.enabled>
+    <!--           The IdClass must override equals(Object o) and hashCode() method. -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_IdClassOverridesEqualsAndHashCode.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_IdClassOverridesEqualsAndHashCode.enabled>
+    <!--           Verify @IdClass location -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_OnlyEntityOrMappedSuperclassCanUseIdClass.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_OnlyEntityOrMappedSuperclassCanUseIdClass.enabled>
+    <!--           Verify IdClass in entity subclass -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_NoIdClassOnEntitySubclass.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_NoIdClassOnEntitySubclass.enabled>
+    <!--           Verify access level for IdClass -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_PublicClass.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_PublicClass.enabled>
+    <!--           Verify attributes of jpa classes -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_ValidAttributes.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_ValidAttributes.enabled>
+    <!--           Verify combinations of jpa annitations -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_LegalCombinationOfAnnotations.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_LegalCombinationOfAnnotations.enabled>
+    <!--           Verify entity have defined promary key -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_IdDefinedInHierarchy.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_IdDefinedInHierarchy.enabled>
+    <!--           Verify entity name is unique -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_UniqueEntityName.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_UniqueEntityName.enabled>
+    <!--           Verify jpa annotations on accessors -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_JPAAnnotsOnlyOnAccesor.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_JPAAnnotsOnlyOnAccesor.enabled>
+    <!--           Verify jpa class is top level class -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_TopLevelClass.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_TopLevelClass.enabled>
+    <!--           Verify jpa class isn't final -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_NonFinalClass.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_NonFinalClass.enabled>
+    <!--           Verify named query location -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_QueriesProperlyDefined.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_QueriesProperlyDefined.enabled>
-    <!-- Java EE → JSF: No JSF checks by default, activated in profile as-needed -->
+    <!--         </Java Persistence API> -->
+    <!--         <JavaServer Faces> -->
+    <!--           <Implementation Note> -->
+    <!--             No checks by default, activated in profile as-needed -->
+    <!--           </Implementation Note> -->
+    <!--           @FlowScoped bean in the non-CDI capable project -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_web_2e_jsf_2e_hints_2e_FlowScopedBeanWithoutCdi.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_web_2e_jsf_2e_hints_2e_FlowScopedBeanWithoutCdi.enabled>
+    <!--           Classes of javax.faces.bean are gonna be deprecated -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_web_2e_jsf_2e_hints_2e_JavaxFacesBeanIsGonnaBeDeprecated.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_web_2e_jsf_2e_hints_2e_JavaxFacesBeanIsGonnaBeDeprecated.enabled>
-    <!-- JDK Migration Support -->
+    <!--         </JavaServer Faces> -->
+    <!--       </Java EE> -->
+    <!--       <JDK Migration Support> -->
+    <!--         AbstractProcessor.getSupportedAnnotationTypes() is overridden -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_AnnotationProcessors_2e_oGSA.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_AnnotationProcessors_2e_oGSA.enabled>
+    <!--         Add @Override Annotation -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AddOverrideAnnotation.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_AddOverrideAnnotation.enabled>
+    <!--         Add Underscores -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_AddUnderscores.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_AddUnderscores.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_AddUnderscores.hintSeverity>HINT</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_AddUnderscores.hintSeverity>
+    <!--         Boxed Primitive instantiation -->
+    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_boxedPrimitiveConstruction.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_boxedPrimitiveConstruction.enabled>
+    <!--         Can Use Diamond -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_canUseDiamond.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_canUseDiamond.enabled>
+    <!--         Convert Explicit Type to Var -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToVarHint.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToVarHint.enabled>
+    <!--         Convert Text block to String -->
+    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertTextBlockToString.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertTextBlockToString.enabled>
+    <!--         Convert Var to Explicit Type -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertVarToExplicitType.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertVarToExplicitType.enabled>
+    <!--         Convert switch to rule switch -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertSwitchToRuleSwitch.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertSwitchToRuleSwitch.enabled>
+    <!--         Convert to Lambda of Member Reference -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_canUseLambda.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_canUseLambda.enabled>
+    <!--         Convert to Text Block -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToTextBlock.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToTextBlock.enabled>
+    <!--         Convert to instanceof <pattern> -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToPatternInstanceOf.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToPatternInstanceOf.enabled>
+    <!--         Convert to instanceof <record pattern> -->
+    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToRecordPattern.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToRecordPattern.enabled>
+    <!--         Convert to nested record pattern -->
+    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToNestedRecordPattern.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToNestedRecordPattern.enabled>
+    <!--         Convert to switch pattern matching <pattern> -->
+    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToSwitchPatternInstanceOf.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToSwitchPatternInstanceOf.enabled>
+    <!--         Convert to try-with-resources -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToARM.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToARM.enabled>
+    <!--         Don't use Annotation as super interface -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.AnnotationAsSuperInterface.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.AnnotationAsSuperInterface.enabled>
+    <!--         Join catch sections using multicatch -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_JoinCatches.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_JoinCatches.enabled>
+    <!--         Missing or obsolete @SupportedSourceVersion -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.obsoleteAnnotationSupportedSource.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.obsoleteAnnotationSupportedSource.enabled>
+    <!--         Static imports -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_StaticImport.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_StaticImport.enabled>
+    <!--         String.indexOf can be replaced with String.contains -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_IndexOfToContains.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_IndexOfToContains.enabled>
+    <!--         Too broad 'catch' clause -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_BroadCatchBlock_2e_broadCatch.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_BroadCatchBlock_2e_broadCatch.enabled>
+    <!--         Unnecessary boxing -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_UnnecessaryBoxing_2e_run.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_UnnecessaryBoxing_2e_run.enabled>
+    <!--         Unnecessary unboxing -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_UnnecessaryUnboxing.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_UnnecessaryUnboxing.enabled>
+    <!--         Use Java 5 for-loop -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_IteratorToFor.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_IteratorToFor.enabled>
+    <!--         Use specific catch -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_UseSpecificCatch.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_UseSpecificCatch.enabled>
+    <!--         Use switch over Strings where possible. -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToStringSwitch.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToStringSwitch.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToStringSwitch.hintSeverity>HINT</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToStringSwitch.hintSeverity>
-    <!-- Logging -->
+    <!--       </JDK Migration Support> -->
+    <!--       <Logging> -->
+    <!--         Logger declaration is not static final -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_LoggerNotStaticFinal.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_LoggerNotStaticFinal.enabled>
+    <!--         Multiple loggers -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_MultipleLoggers.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_MultipleLoggers.enabled>
+    <!--         No loggers -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_NoLoggers.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_NoLoggers.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_NoLoggers.custom-loggers>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_NoLoggers.custom-loggers>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_NoLoggers.custom-loggers-list />
+    <!--         String concatenation in logger -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jackpot_2e_hintsimpl_2e_LoggerStringConcat.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jackpot_2e_hintsimpl_2e_LoggerStringConcat.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jackpot_2e_hintsimpl_2e_LoggerStringConcat.hintSeverity>HINT</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jackpot_2e_hintsimpl_2e_LoggerStringConcat.hintSeverity>
-    <!-- Maven -->
+    <!--       </Logging> -->
+    <!--       <Maven> -->
+    <!--         Resolve Missing Class Dependency -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.MAVEN_5f_SEARCH_5f_HINT.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.MAVEN_5f_SEARCH_5f_HINT.enabled>
-    <!-- Naming -->
+    <!--       </Maven> -->
+    <!--       <Naming> -->
+    <!--         Constant naming conventions -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_suggestions_2e_ConstantNameHint.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_suggestions_2e_ConstantNameHint.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_suggestions_2e_ConstantNameHint.hintSeverity>HINT</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_suggestions_2e_ConstantNameHint.hintSeverity>
-    <!-- NetBeans Development -->
+    <!--       </Naming> -->
+    <!--       <NetBeans Development> -->
+    <!--         Empty cancel() for cancelable tasks -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_IllegalInstanceOf.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_IllegalInstanceOf.enabled>
+    <!--         Illegal Use of instanceOf operator -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_EmptyCancelForCancellableTask.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_EmptyCancelForCancellableTask.enabled>
-    <!-- Performance -->
+    <!--       </NetBeans Development> -->
+    <!--       <Performance> -->
+    <!--         .getClass() replaceable with .class -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_getClassInsteadOfDotClass.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_getClassInsteadOfDotClass.enabled>
+    <!--         Boxing of already boxed value -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_BoxingOfBoxingValue.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_BoxingOfBoxingValue.enabled>
+    <!--         Collections without initial capacity -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_InitialCapacity_2e_collections.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_InitialCapacity_2e_collections.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_InitialCapacity_2e_collections.hintSeverity>HINT</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_InitialCapacity_2e_collections.hintSeverity>
+    <!--         Creating new Boolean -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_NoBooleanConstructor.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_NoBooleanConstructor.enabled>
+    <!--         Inefficient Collection.toArray -->
+    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_collectionsToArray.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_collectionsToArray.enabled>
+    <!--         Length one String in String.indexOf -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_lengthOneStringIndexOf.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_lengthOneStringIndexOf.enabled>
+    <!--         Manual array copy -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_ManualArrayCopy.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_ManualArrayCopy.enabled>
+    <!--         Map replaceable with EnumMap -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_enumMap.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_enumMap.enabled>
+    <!--         Redundant String.toString() -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_redundantToString.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_redundantToString.enabled>
+    <!--         Replace StringBuffer/StringBuilder by String -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_ReplaceBufferByString.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_ReplaceBufferByString.enabled>
+    <!--         Set replaceable with EnumSet -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_enumSet.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_enumSet.enabled>
+    <!--         String concatenation in StringBuilder.append -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.StringBuilderAppend.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.StringBuilderAppend.enabled>
+    <!--         String constructor -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_stringConstructor.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_stringConstructor.enabled>
+    <!--         String.equals("") -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_stringEqualsEmpty.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_stringEqualsEmpty.enabled>
+    <!--         String.intern() called on constant -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_constantIntern.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_constantIntern.enabled>
+    <!--         StringBuilder without initial capacity -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_InitialCapacity_2e_stringBuilder.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_InitialCapacity_2e_stringBuilder.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_InitialCapacity_2e_stringBuilder.hintSeverity>HINT</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_InitialCapacity_2e_stringBuilder.hintSeverity>
+    <!--         Unnecessary temporary during conversion from String -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_unnecessaryTempFromString.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_unnecessaryTempFromString.enabled>
+    <!--         Unnecessary temporary during conversion to String -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_unnecessaryTypeToString.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_unnecessaryTypeToString.enabled>
+    <!--         Usage of [Collection|Map].size() == 0 -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_SizeEqualsZero.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_SizeEqualsZero.enabled>
+    <!--         Useless use of StringBuffer -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_StringBuffer2Builder.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_StringBuffer2Builder.enabled>
-    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_collectionsToArray.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_perf_2e_Tiny_2e_collectionsToArray.enabled>
-    <!-- Probable Bugs -->
+    <!--       </Performance> -->
+    <!--       <Probable Bugs> -->
+    <!--         'finally' block suppresses exceptions -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_TryCatchFinally_2e_finallyDiscardsException.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_TryCatchFinally_2e_finallyDiscardsException.enabled>
+    <!--         'throw' inside 'finally' block -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_TryCatchFinally_2e_finallyThrowsException.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_TryCatchFinally_2e_finallyThrowsException.enabled>
+    <!--         .equals on Array -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_EqualsHint_2e_arrayEquals.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_EqualsHint_2e_arrayEquals.enabled>
+    <!--         .equals on Incompatible Types -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_EqualsHint.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_EqualsHint.enabled>
+    <!--         .equals(null) -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_equalsNull.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_equalsNull.enabled>
+    <!--         @CheckReturnValue -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CheckReturnValueHint.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CheckReturnValueHint.enabled>
+    <!--         Annotations without runtime Retention -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_AnnotationsNotRuntime.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_AnnotationsNotRuntime.enabled>
+    <!--         Assert with side effects -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_AssertWithSideEffects.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_AssertWithSideEffects.enabled>
+    <!--         Boxed value identity comparison -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_BoxedIdentityComparison.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_BoxedIdentityComparison.enabled>
+    <!--         Cloneable class does not implement clone(). -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CloneAndCloneable_2e_cloneableWithoutClone.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CloneAndCloneable_2e_cloneableWithoutClone.enabled>
+    <!--         Comparator.compare() does not use its parameter {0} -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_ComparatorParameterNotUsed_2e_run.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_ComparatorParameterNotUsed_2e_run.enabled>
+    <!--         Confusing identation -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_indentation.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_indentation.enabled>
+    <!--         Confusing primitive array passed to varargs method -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_ConfusingVarargsParameter_2e_primitiveArray.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_ConfusingVarargsParameter_2e_primitiveArray.enabled>
+    <!--         Created Throwable not thrown -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_ThrowableNotThrown_2e_newThrowable.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_ThrowableNotThrown_2e_newThrowable.enabled>
+    <!--         Dead Branch -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_UnusedAssignmentOrBranch_2e_deadBranch.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_UnusedAssignmentOrBranch_2e_deadBranch.enabled>
+    <!--         Incompatible cast/instanceof -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CastVSInstanceOf.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CastVSInstanceOf.enabled>
+    <!--         Incorrect column index in ResultSet -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_resultSet.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_resultSet.enabled>
+    <!--         Infinite recursion -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_InfiniteRecursion_2e_run.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_InfiniteRecursion_2e_run.enabled>
+    <!--         Malformed XPath expression -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_MalformedXPathExpression.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_MalformedXPathExpression.enabled>
+    <!--         Malformed format string -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_MalformedFormatString.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_MalformedFormatString.enabled>
+    <!--         Malformed regular expression -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Regexp.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Regexp.enabled>
+    <!--         Math.random() casted to int -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_MathRandomCast.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_MathRandomCast.enabled>
+    <!--         Null Pointer Dereference -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_NPECheck.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_NPECheck.enabled>
+    <!--         Possibly missing switch "cast" statement -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_switchCaseLabelMismatch.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_switchCaseLabelMismatch.enabled>
+    <!--         Result of new Object ignored -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_newObject.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_newObject.enabled>
-    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_stringReplaceAllDot.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_stringReplaceAllDot.enabled>
+    <!--         Single Char Regex -->
+    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_singleCharRegex.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_singleCharRegex.enabled>
+    <!--         StringBuffer constructor called with 'char" argument -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_StringBufferCharConstructor.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_StringBufferCharConstructor.enabled>
+    <!--         Suspicious Collections.toArray() call -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_SuspiciousToArray.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_SuspiciousToArray.enabled>
+    <!--         Suspicious Names Combination -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_SuspiciousNamesCombination.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_SuspiciousNamesCombination.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_SuspiciousNamesCombination.hintSeverity>HINT</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_SuspiciousNamesCombination.hintSeverity>
+    <!--         Suspicious invocation of System.arraycopy -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_systemArrayCopy.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_systemArrayCopy.enabled>
+    <!--         Suspicious method call -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CollectionRemove.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CollectionRemove.enabled>
+    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CollectionRemove.warn-for-castable>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CollectionRemove.warn-for-castable>
+    <!--         Synchronizing on this in anonymous class -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ThisInAnonymous.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_ThisInAnonymous.enabled>
+    <!--         Throwable method result is ignored -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_ThrowableNotThrown_2e_methodInvocation.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_ThrowableNotThrown_2e_methodInvocation.enabled>
+    <!--         Unbalanced read/write with arrays -->
+    <!--         NetBeans 17: Setting changes not saved -->
+    <!--         Unbalanced read/write with collections -->
+    <!--         NetBeans 17: Setting changes not saved -->
+    <!--         Unused Assignment -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_UnusedAssignmentOrBranch_2e_unusedAssignment.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_UnusedAssignmentOrBranch_2e_unusedAssignment.enabled>
+    <!--         Unused Compound Assignment -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_UnusedCompoundAssignment.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_UnusedCompoundAssignment.enabled>
+    <!--         Unused Element -->
+    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Unused.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Unused.enabled>
+    <!--         clone() does not call super.clone() -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CloneAndCloneable_2e_cloneWithoutSuperClone.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CloneAndCloneable_2e_cloneWithoutSuperClone.enabled>
+    <!--         clone() does not throw CloneNotSupportedException -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CloneAndCloneable_2e_cloneWithoutThrows.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CloneAndCloneable_2e_cloneWithoutThrows.enabled>
+    <!--         clone() in a non-Cloneable class -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CloneAndCloneable_2e_cloneInNonCloneableClass.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_CloneAndCloneable_2e_cloneInNonCloneableClass.enabled>
+    <!--         hashCode() used on array instance -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_hashCodeOnArray.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_Tiny_2e_hashCodeOnArray.enabled>
+    <!--         toString() used on array instance -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_ArrayStringConversions.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_bugs_2e_ArrayStringConversions.enabled>
-    <!-- Standard Javac Warnings -->
+    <!--       </Probable Bugs> -->
+    <!--       <Standard Javac Warnings> -->
+    <!--         Deprecated -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_DEPRECATED.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_DEPRECATED.enabled>
+    <!--         Division By Zero -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_DIVISION_5f_BY_5f_ZERO.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_DIVISION_5f_BY_5f_ZERO.enabled>
+    <!--         Empty Statement After If -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_EMPTY_5f_STATEMENT_5f_AFTER_5f_IF.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_EMPTY_5f_STATEMENT_5f_AFTER_5f_IF.enabled>
+    <!--         Fallthrough -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_FALLTHROUGH.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_FALLTHROUGH.enabled>
+    <!--         Finally -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_FINALLY.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_FINALLY.enabled>
+    <!--         Overrides -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_OVERRIDES.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_OVERRIDES.enabled>
+    <!--         Raw Types -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_RAWTYPES.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_RAWTYPES.enabled>
+    <!--         Serialization -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_SERIALIZATION.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_SERIALIZATION.enabled>
+    <!--         Unchecked -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_UNCHECKED.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_UNCHECKED.enabled>
+    <!--         Unnecessary Cast -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_UNNECESSARY_5f_CAST.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.Javac_5f_UNNECESSARY_5f_CAST.enabled>
-    <!-- Suggestions -->
+    <!--       </Standard Javac Warnings> -->
+    <!--       <Suggestions> -->
+    <!--         Can use Virtual Threads -->
+    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_CanUseVT.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_CanUseVT.enabled>
+    <!--         Inline Redundant Variable -->
+    <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_suggestions_2e_Tiny_2e_inlineRedundantVar.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_suggestions_2e_Tiny_2e_inlineRedundantVar.enabled>
+    <!--         Replace chain of ifs with switch -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_suggestions_2e_ConvertIfToSwitch.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_suggestions_2e_ConvertIfToSwitch.enabled>
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_suggestions_2e_ConvertIfToSwitch.hintSeverity>HINT</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_suggestions_2e_ConvertIfToSwitch.hintSeverity>
-    <!-- Testing -->
+    <!--       </Suggestions> -->
+    <!--       <Testing> -->
+    <!--         Inconvertible parameters of Assert.assertEquals -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_testing_2e_Tiny_2e_incovertibleTypes.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_testing_2e_Tiny_2e_incovertibleTypes.enabled>
+    <!--         Incorrect order of parameters of Assert.assertEquals -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_testing_2e_Tiny_2e_mismatchedConstantVSReal.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_testing_2e_Tiny_2e_mismatchedConstantVSReal.enabled>
+    <!--         assertEquals for array parameters -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_testing_2e_Tiny_2e_assertEqualsForArrays.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_testing_2e_Tiny_2e_assertEqualsForArrays.enabled>
-    <!-- Threading -->
+    <!--       </Testing> -->
+    <!--       <Threading> -->
+    <!--         .notify invoked outside a synchronized context -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_unsyncNotify.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_unsyncNotify.enabled>
+    <!--         .wait invoked outside a synchronized context -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_unsyncWait.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_unsyncWait.enabled>
+    <!--         Double-checked locking -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_DoubleCheck.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_DoubleCheck.enabled>
+    <!--         Empty synchronized block -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_emptySynchronized.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_emptySynchronized.enabled>
+    <!--         Field Can Be Final -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_canBeFinal.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_canBeFinal.enabled>
+    <!--         Invoking Condition.notify() -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_notifyOnCondition.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_notifyOnCondition.enabled>
+    <!--         Invoking Condition.wait() -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_waitOnCondition.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_waitOnCondition.enabled>
+    <!--         Invoking Thread.run() -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_threadRun.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_threadRun.enabled>
+    <!--         Invoking Thread.stop()/suspend()/resume() -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_threadSuspend.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_threadSuspend.enabled>
+    <!--         Invoking Thread.yield() -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_threadYield.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_threadYield.enabled>
+    <!--         Lock not unlocked in finally -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_UnlockOutsideFinally.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_UnlockOutsideFinally.enabled>
+    <!--         Nested synchronized blocks -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_nestedSynchronized.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_nestedSynchronized.enabled>
+    <!--         Starting Thread in constructor -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_threadStartInConstructor.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_threadStartInConstructor.enabled>
+    <!--         Synchronization on non-final field -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_SyncOnNonFinal.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_SyncOnNonFinal.enabled>
+    <!--         Synchronizing on Lock -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_synchronizedOnLock.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_synchronizedOnLock.enabled>
+    <!--         Thread.sleep in loop -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_sleepInLoop.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_sleepInLoop.enabled>
+    <!--         Thread.sleep in synchronized context -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_sleepInSync.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_sleepInSync.enabled>
+    <!--         Volatile array field -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_volatileArray.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_threading_2e_Tiny_2e_volatileArray.enabled>
-
-    <!-- NetBeans Line Endings -->
-    <com-junichi11-netbeans-changelf.show-dialog>true</com-junichi11-netbeans-changelf.show-dialog>
-    <com-junichi11-netbeans-changelf.enable>true</com-junichi11-netbeans-changelf.enable>
-    <com-junichi11-netbeans-changelf.use-project>true</com-junichi11-netbeans-changelf.use-project>
+    <!--       </Threading> -->
+    <!--     </Java> -->
+    <!--   </Hints> -->
+    <!--   <Line Endings> -->
+    <!--     Use project options -->
     <com-junichi11-netbeans-changelf.use-global>false</com-junichi11-netbeans-changelf.use-global>
+    <com-junichi11-netbeans-changelf.use-project>true</com-junichi11-netbeans-changelf.use-project>
+    <!--     Enable adjusting the line endings -->
+    <com-junichi11-netbeans-changelf.enable>true</com-junichi11-netbeans-changelf.enable>
+    <!--     Unix (LF) -->
+    <com-junichi11-netbeans-changelf.lf-kind>LF</com-junichi11-netbeans-changelf.lf-kind>
+    <!--     Show confirmation dialog before adjusting the line endings -->
+    <com-junichi11-netbeans-changelf.show-dialog>true</com-junichi11-netbeans-changelf.show-dialog>
+    <!--   </Line Endings> -->
+    <!-- </NetBeans 17 → Project → Properties> -->
   </properties>
 
   <name>AO OSS Parent</name>
@@ -2668,66 +3058,143 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <profile>
       <id>netbeans-hints-ejb</id><activation><file><exists>src/main/application</exists></file></activation>
       <properties>
-        <!-- Java EE → EJB -->
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_ValueNotSpecifiedForRemoteAnnotationInterface.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_ValueNotSpecifiedForRemoteAnnotationInterface.enabled>
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_AnnotationPostContruct.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_AnnotationPostContruct.enabled>
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_AsynchronousMethodInvocation.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_AsynchronousMethodInvocation.enabled>
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BeanImplementsBI.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BeanImplementsBI.enabled>
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SBSuperClassNotSB.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SBSuperClassNotSB.enabled>
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_UseInjectionInsteadOfInstantionRule.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_UseInjectionInsteadOfInstantionRule.enabled>
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BeanHasDifferentLBIandRBI.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BeanHasDifferentLBIandRBI.enabled>
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BusinessMethodExposed.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BusinessMethodExposed.enabled>
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BMnotPartOfRBIandLBI.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BMnotPartOfRBIandLBI.enabled>
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LegalModifiers.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LegalModifiers.enabled>
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_HasNoArgContructor.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_HasNoArgContructor.enabled>
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_PersistentTimerInEjbLite.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_PersistentTimerInEjbLite.enabled>
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SessionSynchImplementedBySFSBOnly.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SessionSynchImplementedBySFSBOnly.enabled>
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LocalAnnotatedBeanHasLBI.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LocalAnnotatedBeanHasLBI.enabled>
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_RemoteAnnotatedBeanHasRBI.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_RemoteAnnotatedBeanHasRBI.enabled>
-        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_WSisSLSB.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_WSisSLSB.enabled>
-        <!-- Encapsulation -->
+        <!-- <NetBeans 17 → Project → Properties> -->
+        <!--   <Hints> -->
+        <!--     <Java> -->
+        <!--       <Error Fixes> -->
+        <!--         Implementation of EJBContainer is missing on project's classpath -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.EmbeddableEJBContainer.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.EmbeddableEJBContainer.enabled>
+        <!--         Java EE API is missing on project classpath. -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.MissingJavaEEForUnitTestExecutionHint.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.MissingJavaEEForUnitTestExecutionHint.enabled>
+        <!--       </Error Fixes> -->
+        <!--       <Java EE> -->
+        <!--         <Enterprise Java Beans> -->
+        <!--           @Remote uses value in business interface -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_ValueNotSpecifiedForRemoteAnnotationInterface.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_ValueNotSpecifiedForRemoteAnnotationInterface.enabled>
+        <!--           Annotation @PostConstruct -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_AnnotationPostContruct.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_AnnotationPostContruct.enabled>
+        <!--           Asynchronous method invocation -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_AsynchronousMethodInvocation.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_AsynchronousMethodInvocation.enabled>
+        <!--           Bean doesn't implement business interface -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BeanImplementsBI.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BeanImplementsBI.enabled>
+        <!--           Inheritance of session beans -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SBSuperClassNotSB.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SBSuperClassNotSB.enabled>
+        <!--           Instantiation replaceable with @EJB injection -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_UseInjectionInsteadOfInstantionRule.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_UseInjectionInsteadOfInstantionRule.enabled>
+        <!--           Local and Remote business inteface together -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BeanHasDifferentLBIandRBI.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BeanHasDifferentLBIandRBI.enabled>
+        <!--           Method definition in local and remote interface -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BusinessMethodExposed.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BusinessMethodExposed.enabled>
+        <!--           Method not exposed in business interface. -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BMnotPartOfRBIandLBI.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_BMnotPartOfRBIandLBI.enabled>
+        <!--           Modifiers of the EJB bean -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LegalModifiers.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LegalModifiers.enabled>
+        <!--           No-arg constructor in the EJB bean -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_HasNoArgContructor.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_HasNoArgContructor.enabled>
+        <!--           Persistent timer within EJB Lit -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_PersistentTimerInEjbLite.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_PersistentTimerInEjbLite.enabled>
+        <!--           SessionSynchronization implemted by non-SFSB -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SessionSynchImplementedBySFSBOnly.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SessionSynchImplementedBySFSBOnly.enabled>
+        <!--           Uncomplete LBI Session bean -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LocalAnnotatedBeanHasLBI.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LocalAnnotatedBeanHasLBI.enabled>
+        <!--           Uncomplete RBI Session bean -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_RemoteAnnotatedBeanHasRBI.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_RemoteAnnotatedBeanHasRBI.enabled>
+        <!--           WebService must be designated as session bean -->
+        <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_WSisSLSB.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_WSisSLSB.enabled>
+        <!--         </Enterprise Java Beans> -->
+        <!--       </Java EE> -->
+        <!--     </Java> -->
+        <!--   </Hints> -->
+        <!-- </NetBeans 17 → Project → Properties> -->
       </properties>
     </profile>
     <profile>
       <id>netbeans-hints-jpa</id><activation><file><exists>src/main/resources/META-INF/persistence.xml</exists></file></activation>
       <properties>
-        <!-- Java EE → JPA -->
+        <!-- <NetBeans 17 → Project → Properties> -->
+        <!--   <Hints> -->
+        <!--     <Java> -->
+        <!--       <Java EE> -->
+        <!--         <Java Persistence API> -->
+        <!--           Check access types for jpa classes -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_ConsistentAccessType.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_ConsistentAccessType.enabled>
+        <!--           Default public/protected constructor -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_HasNoArgConstructor.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_HasNoArgConstructor.enabled>
+        <!--           Entity implements Serializable verification -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_SerializableClass.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_SerializableClass.enabled>
+        <!--           Entity table name verification -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_ValidPrimaryTableName.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_ValidPrimaryTableName.enabled>
+        <!--           JPQL validation -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_JPQLValidation.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_JPQLValidation.enabled>
+        <!--           Presence of persistence.xml -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_PersistenceUnitPresent.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_PersistenceUnitPresent.enabled>
+        <!--           The IdClass must override equals(Object o) and hashCode() method. -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_IdClassOverridesEqualsAndHashCode.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_IdClassOverridesEqualsAndHashCode.enabled>
+        <!--           Verify @IdClass location -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_OnlyEntityOrMappedSuperclassCanUseIdClass.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_OnlyEntityOrMappedSuperclassCanUseIdClass.enabled>
+        <!--           Verify IdClass in entity subclass -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_NoIdClassOnEntitySubclass.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_NoIdClassOnEntitySubclass.enabled>
+        <!--           Verify access level for IdClass -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_PublicClass.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_PublicClass.enabled>
+        <!--           Verify attributes of jpa classes -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_ValidAttributes.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_ValidAttributes.enabled>
+        <!--           Verify combinations of jpa annitations -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_LegalCombinationOfAnnotations.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_LegalCombinationOfAnnotations.enabled>
+        <!--           Verify entity have defined promary key -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_IdDefinedInHierarchy.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_IdDefinedInHierarchy.enabled>
+        <!--           Verify entity name is unique -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_UniqueEntityName.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_UniqueEntityName.enabled>
+        <!--           Verify jpa annotations on accessors -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_JPAAnnotsOnlyOnAccesor.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_JPAAnnotsOnlyOnAccesor.enabled>
+        <!--           Verify jpa class is top level class -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_TopLevelClass.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_TopLevelClass.enabled>
+        <!--           Verify jpa class isn't final -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_NonFinalClass.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_NonFinalClass.enabled>
+        <!--           Verify named query location -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_QueriesProperlyDefined.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_jpa_2e_verification_2e_QueriesProperlyDefined.enabled>
+        <!--         </Java Persistence API> -->
+        <!--       </Java EE> -->
+        <!--     </Java> -->
+        <!--   </Hints> -->
+        <!-- </NetBeans 17 → Project → Properties> -->
       </properties>
     </profile>
     <profile>
       <id>netbeans-hints-jsf-jar</id><activation><file><exists>src/main/resources/META-INF/faces-config.xml</exists></file></activation>
       <properties>
-        <!-- Java EE → JSF -->
+        <!-- <NetBeans 17 → Project → Properties> -->
+        <!--   <Hints> -->
+        <!--     <Java> -->
+        <!--       <Java EE> -->
+        <!--         <JavaServer Faces> -->
+        <!--           @FlowScoped bean in the non-CDI capable project -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_web_2e_jsf_2e_hints_2e_FlowScopedBeanWithoutCdi.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_web_2e_jsf_2e_hints_2e_FlowScopedBeanWithoutCdi.enabled>
+        <!--           Classes of javax.faces.bean are gonna be deprecated -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_web_2e_jsf_2e_hints_2e_JavaxFacesBeanIsGonnaBeDeprecated.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_web_2e_jsf_2e_hints_2e_JavaxFacesBeanIsGonnaBeDeprecated.enabled>
+        <!--         </JavaServer Faces> -->
+        <!--       </Java EE> -->
+        <!--     </Java> -->
+        <!--   </Hints> -->
+        <!-- </NetBeans 17 → Project → Properties> -->
       </properties>
     </profile>
     <profile>
       <id>netbeans-hints-jsf-war</id><activation><file><exists>src/main/webapp/WEB-INF/faces-config.xml</exists></file></activation>
       <properties>
-        <!-- Java EE → JSF -->
+        <!-- <NetBeans 17 → Project → Properties> -->
+        <!--   <Hints> -->
+        <!--     <Java> -->
+        <!--       <Java EE> -->
+        <!--         <JavaServer Faces> -->
+        <!--           @FlowScoped bean in the non-CDI capable project -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_web_2e_jsf_2e_hints_2e_FlowScopedBeanWithoutCdi.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_web_2e_jsf_2e_hints_2e_FlowScopedBeanWithoutCdi.enabled>
+        <!--           Classes of javax.faces.bean are gonna be deprecated -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_web_2e_jsf_2e_hints_2e_JavaxFacesBeanIsGonnaBeDeprecated.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_web_2e_jsf_2e_hints_2e_JavaxFacesBeanIsGonnaBeDeprecated.enabled>
+        <!--         </JavaServer Faces> -->
+        <!--       </Java EE> -->
+        <!--     </Java> -->
+        <!--   </Hints> -->
+        <!-- </NetBeans 17 → Project → Properties> -->
       </properties>
     </profile>
     <profile>
@@ -2737,8 +3204,16 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       -->
       <id>netbeans-hints-java14</id><activation><jdk>[14,)</jdk></activation>
       <properties>
-        <!-- JDK Migration Support -->
+        <!-- <NetBeans 17 → Project → Properties> -->
+        <!--   <Hints> -->
+        <!--     <Java> -->
+        <!--       <JDK Migration Support> -->
+        <!--         Convert to instanceof <pattern> -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToPatternInstanceOf.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.org_2e_netbeans_2e_modules_2e_java_2e_hints_2e_jdk_2e_ConvertToPatternInstanceOf.enabled>
+        <!--       </JDK Migration Support> -->
+        <!--     </Java> -->
+        <!--   </Hints> -->
+        <!-- </NetBeans 17 → Project → Properties> -->
       </properties>
     </profile>
   </profiles>
