@@ -2048,6 +2048,11 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </activeStyles>
               <checkstyleConfigFile>${project.build.directory}/dependency/ao-checkstyle-config/checkstyle-configuration.xml</checkstyleConfigFile>
             </configuration>
+            <executions>
+              <execution>
+                <id>rewrite</id><phase>${rewrite.phase}</phase><goals><goal>${rewrite.goal}</goal></goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
