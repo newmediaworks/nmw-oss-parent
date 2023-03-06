@@ -1567,7 +1567,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <groupId>org.codehaus.mojo</groupId><artifactId>properties-maven-plugin</artifactId><version>1.1.0</version>
         </plugin>
         <plugin>
-          <groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId><version>11.0.13</version>
+          <groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId><version>11.0.14</version>
         </plugin>
       </plugins>
     </pluginManagement>
