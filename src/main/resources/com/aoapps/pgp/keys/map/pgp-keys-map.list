@@ -90,10 +90,10 @@ com.pragmatickm:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)               = 0xA10BFD39C3A
 com.semanticcms:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)               = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 net.lnxhosting:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)                = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 org.aorepo:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)                    = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-com.producerscattleauction:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)    = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-com.producersequipmentauction:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+) = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-com.producersrealtygroup:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-com.producersseedstocksales:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
+com.producerscattleauction:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)    = 0x4F53D3B930239C69E14C656E748BC46BA17F171C
+com.producersequipmentauction:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+) = 0x4F53D3B930239C69E14C656E748BC46BA17F171C
+com.producersrealtygroup:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0x4F53D3B930239C69E14C656E748BC46BA17F171C
+com.producersseedstocksales:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0x4F53D3B930239C69E14C656E748BC46BA17F171C
 
 # TODO: Get merged into upstream s4u/pgp-keys-map
 commons-fileupload              = 0xA9C5DF4D22E99998D9875A5110C01C5A2F6059E7
