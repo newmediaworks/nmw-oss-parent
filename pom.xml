@@ -1444,7 +1444,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <li><a target="${javadoc.target}" href="${project.url}changelog">Changelog</a></li>
       ${javadoc.taglibReference}
       <li><a target="${javadoc.target}" href="${project.url}apidocs/">API Docs</a></li>
-      <li><a target="${javadoc.target}" href="https://central.sonatype.com/search?namespace=${project.groupId}&q=a%3A${project.artifactId}">Maven Central Repository</a></li>
+      <li><a target="${javadoc.target}" href="https://central.sonatype.com/artifact/${project.groupId}/${project.artifactId}">Maven Central Repository</a></li>
       <li><a target="${javadoc.target}" href="${project.scm.url}">GitHub</a></li>
     </ul>
   </div>
