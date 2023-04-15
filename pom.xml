@@ -1356,7 +1356,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <dependencies>
             <!-- For plugin maven-javadoc-plugin:3.0.1, resolves "Unsupported class file major version 55" -->
             <dependency>
-              <groupId>org.ow2.asm</groupId><artifactId>asm</artifactId><version>9.4</version>
+              <groupId>org.ow2.asm</groupId><artifactId>asm</artifactId><version>9.5</version>
             </dependency>
           </dependencies>
           <configuration>
