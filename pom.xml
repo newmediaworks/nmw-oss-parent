@@ -1504,7 +1504,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>3.2.1</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>3.2.2</version>
           <dependencies>
             <dependency>
               <groupId>com.puppycrawl.tools</groupId><artifactId>checkstyle</artifactId><version>10.9.3</version>
@@ -2519,7 +2519,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <reporting>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>3.2.1</version>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>3.2.2</version>
           </plugin>
         </plugins>
       </reporting>
@@ -2545,7 +2545,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <reporting>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>3.2.1</version>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>3.2.2</version>
             <configuration>
               <skip>true</skip>
             </configuration>
