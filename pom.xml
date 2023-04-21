@@ -1103,7 +1103,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </dependencies>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-resources-plugin</artifactId><version>3.3.0</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-resources-plugin</artifactId><version>3.3.1</version>
           <configuration>
             <useDefaultDelimiters>false</useDefaultDelimiters>
             <delimiters>
