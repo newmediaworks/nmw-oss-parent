@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2023-04-15T12:20:37Z"
+    dateModified="2023-04-22T23:32:40Z"
   >
     <c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
       <changelog:release
@@ -52,6 +52,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <ul>
           <li>Updated default project settings for <ao:a href="https://github.com/apache/netbeans/releases/tag/17">NetBeans 17</ao:a>.</li>
           <li>Updated plugin versions.</li>
+          <li>Updated to latest release of <ao:a href="https://github.com/s4u/pgp-keys-map">PGP keys map to maven artifacts</ao:a>.</li>
         </ul>
       </changelog:release>
     </c:if>
