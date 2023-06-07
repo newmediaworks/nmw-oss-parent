@@ -510,7 +510,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LegalModifiers.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LegalModifiers.enabled>
     <!--           No-arg constructor in the EJB bean -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_HasNoArgContructor.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_HasNoArgContructor.enabled>
-    <!--           Persistent timer within EJB Lit -->
+    <!--           Persistent timer within EJB Lite -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_PersistentTimerInEjbLite.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_PersistentTimerInEjbLite.enabled>
     <!--           SessionSynchronization implemted by non-SFSB -->
     <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SessionSynchImplementedBySFSBOnly.enabled>false</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SessionSynchImplementedBySFSBOnly.enabled>
@@ -3091,7 +3091,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LegalModifiers.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_LegalModifiers.enabled>
         <!--           No-arg constructor in the EJB bean -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_HasNoArgContructor.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_HasNoArgContructor.enabled>
-        <!--           Persistent timer within EJB Lit -->
+        <!--           Persistent timer within EJB Lite -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_PersistentTimerInEjbLite.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_PersistentTimerInEjbLite.enabled>
         <!--           SessionSynchronization implemted by non-SFSB -->
         <org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SessionSynchImplementedBySFSBOnly.enabled>true</org-netbeans-spi-editor-hints-projects.text.x-java.o_2e_n_2e_m_2e_j2ee_2e_ejbverification_2e_SessionSynchImplementedBySFSBOnly.enabled>
