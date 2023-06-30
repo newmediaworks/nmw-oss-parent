@@ -1102,7 +1102,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId><version>3.3.0</version>
           <dependencies>
             <dependency>
-              <groupId>org.codehaus.mojo</groupId><artifactId>extra-enforcer-rules</artifactId><version>1.6.2</version>
+              <groupId>org.codehaus.mojo</groupId><artifactId>extra-enforcer-rules</artifactId><version>1.7.0</version>
             </dependency>
           </dependencies>
         </plugin>
