@@ -1588,8 +1588,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <message>Maven &gt;= 3.6.0 required by org.simplify4u.plugins:pgpverify-maven-plugin</message>
-                  <version>[3.6.0,)</version>
+                  <message>Maven &gt;= 3.6.3 required by maven-help-plugin</message>
+                  <version>[3.6.3,)</version>
                 </requireMavenVersion>
               </rules>
             </configuration>
