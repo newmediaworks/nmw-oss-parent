@@ -1148,7 +1148,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </executions>
         </plugin>
         <plugin>
-          <groupId>org.jacoco</groupId><artifactId>jacoco-maven-plugin</artifactId><version>0.8.9</version>
+          <groupId>org.jacoco</groupId><artifactId>jacoco-maven-plugin</artifactId><version>0.8.10</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.1.2</version>
