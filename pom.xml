@@ -1558,7 +1558,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         </plugin>
         <!-- Plugins used by some project-specific pom.xml -->
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-shade-plugin</artifactId><version>3.4.1</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-shade-plugin</artifactId><version>3.5.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jarsigner-plugin</artifactId><version>3.0.0</version>
