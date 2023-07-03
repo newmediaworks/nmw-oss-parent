@@ -2452,7 +2452,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <configuration>
                   <artifactItems>
                     <artifactItem>
-                      <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.2.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+                      <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.2.0${POST-SNAPSHOT}</version>
                       <type>jar</type>
                       <includes>ao-checkstyle-config/checkstyle-configuration.xml</includes>
                     </artifactItem>
@@ -2462,7 +2462,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             </executions>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.2.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.2.0${POST-SNAPSHOT}</version>
                 <type>jar</type>
               </dependency>
             </dependencies>
@@ -2471,7 +2471,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.2.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.2.0${POST-SNAPSHOT}</version>
               </dependency>
             </dependencies>
             <configuration>
@@ -2499,7 +2499,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.2.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.2.0${POST-SNAPSHOT}</version>
               </dependency>
             </dependencies>
             <configuration>
