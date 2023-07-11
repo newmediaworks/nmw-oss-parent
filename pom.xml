@@ -24,7 +24,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.18.2-POST-SNAPSHOT</version>
+  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.18.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
@@ -66,7 +66,8 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <javadoc.link.javase.17>https://docs.oracle.com/en/java/javase/17/docs/api/</javadoc.link.javase.17>
     <javadoc.link.javase.18>https://docs.oracle.com/en/java/javase/18/docs/api/</javadoc.link.javase.18>
     <javadoc.link.javase.19>https://docs.oracle.com/en/java/javase/19/docs/api/</javadoc.link.javase.19>
-    <javadoc.link.javase.20>https://download.java.net/java/early_access/jdk20/docs/api/</javadoc.link.javase.20>
+    <javadoc.link.javase.20>https://docs.oracle.com/en/java/javase/20/docs/api/</javadoc.link.javase.20>
+    <javadoc.link.javase.21>https://download.java.net/java/early_access/jdk21/docs/api/</javadoc.link.javase.21>
 
     <!-- The Java EE apidocs to link to, preferring https -->
     <!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->
