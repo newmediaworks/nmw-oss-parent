@@ -1549,7 +1549,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId><version>4.0.0-M8</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId><version>4.0.0-M9</version>
         </plugin>
         <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId><artifactId>sonar-maven-plugin</artifactId><version>3.9.1.2184</version>
