@@ -98,7 +98,5 @@ com.producersseedstocksales:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0x4F53D3B9302
 # TODO: Get merged into upstream s4u/pgp-keys-map
 # Used by maven-site-plugin-4.0.0-M4:
 org.jetbrains:annotations       = 0x2E3A1AFFE42B5F53AF19F780BCF4173966770193
-# Used by rewrite-maven-plugin-4.44.0:
-it.unimi.dsi:fastutil           = 0x0CB5871FB7BF3B351614BBF6CA85FFE638D4407A
-one.util:streamex               = 0xDCC3D5116C91653E8A01EE1624C4E4EE1AC60DFB
+# Used by several projects
 com.google.protobuf:protobuf-java = 0xDF9299005AB063C9CDB8DAB8F224C90F0DEFB262
