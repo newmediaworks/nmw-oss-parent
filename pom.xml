@@ -1968,6 +1968,28 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         </pluginManagement>
       </build>
     </profile>
+    <!-- Support per-project pgp-keys-map.list -->
+    <profile>
+      <id>pgp-keys-map.list</id>
+      <activation><file><exists>pgp-keys-map.list</exists></file></activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId>
+              <configuration>
+                <keysMapLocations>
+                  <!-- See https://github.com/s4u/pgp-keys-map -->
+                  <keysMapLocation>/pgp-keys-map.list</keysMapLocation>
+                  <keysMapLocation>/com/aoapps/pgp/keys/map/pgp-keys-map.list</keysMapLocation>
+                  <keysMapLocation>${project.basedir}/pgp-keys-map.list</keysMapLocation>
+                </keysMapLocations>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
     <!-- Allow changing build directory by property: https://stackoverflow.com/a/12598554/7121505 -->
     <profile>
       <id>alternateBuildDir</id>
