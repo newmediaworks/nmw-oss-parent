@@ -120,7 +120,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <!-- Google Analytics tracking code for the javadocs -->
     <google.analytics.trackingId>G-RYD4Z0W4YW</google.analytics.trackingId>
     <!--
-      The Java module name, defaulting to the value previously used for "Bundle-SymbolicName" in Java < 9. All projects should set this to match the module name defined in "module-info.java". Furthermore, projects without "module-info.java" should also add the "Automatic-Module-Name" manifest entry. -->
+      The Java module name, defaulting to the value previously used for "Bundle-SymbolicName" in Java < 9. All projects
+      should set this to match the module name defined in "module-info.java". Furthermore, projects without
+      "module-info.java" should also add the "Automatic-Module-Name" manifest entry.
+    -->
     <module.name>${project.groupId}.${project.artifactId}</module.name>
     <!-- Default bundle resources-filtered, may be overridden as part of "alt.build.dir" property -->
     <bundle.resources-filtered>target/resources-filtered</bundle.resources-filtered>
@@ -1615,8 +1618,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <message>Maven &gt;= 3.6.3 required by maven-help-plugin</message>
-                  <version>[3.6.3,)</version>
+                  <message>Maven &gt;= 3.9.0 required for profile activation by packaging</message>
+                  <version>[3.9.0,)</version>
                 </requireMavenVersion>
               </rules>
             </configuration>
@@ -2046,6 +2049,35 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <configuration>
               <reportsDirectory>${alt.reports.dir}</reportsDirectory>
             </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- See https://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html#_adding_osgi_metadata_to_existing_projects_without_changing_the_packaging_type -->
+    <profile>
+      <id>packaging-jar</id>
+      <activation><property><name>packaging</name><value>jar</value></property></activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId>
+              <configuration>
+                <archive>
+                  <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                </archive>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>bundle-manifest</id><phase>process-classes</phase><goals><goal>manifest</goal></goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
