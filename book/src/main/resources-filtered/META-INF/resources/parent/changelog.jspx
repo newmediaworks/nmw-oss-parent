@@ -75,7 +75,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             </p>
             <p>
               These constant timestamps are incompatible with the automatic lastModified parameters added by
-              <p:link book="/servlet-last-modified" page="/index.jspx" /> when the resource
+              <core:link book="/servlet-last-modified" page="/index.jspx" /> when the resource
               is contained in a JAR file within <code>WEB-INF/lib</code>.  This has resulted in browsers using
               out-of-date cached content.
             </p>
