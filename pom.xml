@@ -1277,19 +1277,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.3.0</version>
-          <configuration>
-            <archive>
-              <manifest>
-                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-              </manifest>
-              <manifestEntries>
-                <Built-By>${project.organization.name}</Built-By>
-                <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
-                <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
-              </manifestEntries>
-            </archive>
-          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId><version>3.1.0</version>
@@ -1821,6 +1808,17 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <!-- Add tests as a secondary artifact -->
             <id>attach-tests</id><goals><goal>test-jar</goal></goals>
             <configuration>
+              <archive>
+                <manifest>
+                  <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                  <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                </manifest>
+                <manifestEntries>
+                  <Built-By>${project.organization.name}</Built-By>
+                  <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+                  <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+                </manifestEntries>
+              </archive>
               <!-- Unless empty -->
               <skipIfEmpty>true</skipIfEmpty>
             </configuration>
@@ -2055,6 +2053,37 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     </profile>
     <!-- See https://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html#_adding_osgi_metadata_to_existing_projects_without_changing_the_packaging_type -->
     <profile>
+      <id>packaging-not-jar</id>
+      <activation><property><name>packaging</name><value>!jar</value></property></activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>default-jar</id>
+                  <configuration>
+                    <archive>
+                      <manifest>
+                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                      </manifest>
+                      <manifestEntries>
+                        <Built-By>${project.organization.name}</Built-By>
+                        <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+                        <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+                      </manifestEntries>
+                    </archive>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+    <profile>
       <id>packaging-jar</id>
       <activation><property><name>packaging</name><value>jar</value></property></activation>
       <build>
@@ -2062,11 +2091,16 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <plugins>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId>
-              <configuration>
-                <archive>
-                  <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-                </archive>
-              </configuration>
+              <executions>
+                <execution>
+                  <id>default-jar</id>
+                  <configuration>
+                    <archive>
+                      <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                  </configuration>
+                </execution>
+              </executions>
             </plugin>
           </plugins>
         </pluginManagement>
