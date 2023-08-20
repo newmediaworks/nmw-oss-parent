@@ -2765,6 +2765,17 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
             <executions>
               <execution>
+                <id>require-development-is-snapshot-version</id><goals><goal>enforce</goal></goals>
+                <configuration>
+                  <rules>
+                    <requireSnapshotVersion>
+                      <message>"development" profile may only be used for *-SNAPSHOT versions.</message>
+                    </requireSnapshotVersion>
+                  </rules>
+                  <fail>true</fail>
+                </configuration>
+              </execution>
+              <execution>
                 <!-- Skip dependency bytecode version check (unless reactivated in "jenkins" profile below) -->
                 <id>enforce-bytecode-version</id><phase>none</phase>
               </execution>
