@@ -1123,33 +1123,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <delimiter>@{*}</delimiter>
             </delimiters>
           </configuration>
-          <executions>
-            <!--
-              maven-bundle-plugin does not use the filtered resources from project.build.outputDirectory.
-              To workaround this limitation, we perform a second filtering into a separate directory
-              that is then used in bundle creation.
-
-              We tried to avoid duplicate filtering by only filtering to target/resources-filtered
-              and not also into target/classes.  However, maven-jar-plugin used for default-jar
-              does not allow multiple source directories, and a second execution must be placed in
-              a different artifact classifier.
-
-              We hope for a better solution within maven-bundle-plugin in the future, but this issue
-              goes back over a decade - we're not holding our breath.
-            -->
-            <execution>
-              <id>filter-resources</id><phase>process-resources</phase><goals><goal>copy-resources</goal></goals>
-              <configuration>
-                <resources>
-                  <resource>
-                    <directory>src/main/resources-filtered</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-                <outputDirectory>${project.build.directory}/resources-filtered</outputDirectory>
-              </configuration>
-            </execution>
-          </executions>
         </plugin>
         <plugin>
           <groupId>org.jacoco</groupId><artifactId>jacoco-maven-plugin</artifactId><version>0.8.10</version>
@@ -1193,10 +1166,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
               <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
               <Implementation-URL>${project.url}</Implementation-URL>
-              <Include-Resource>
-                {maven-resources},
-                ${bundle.resources-filtered}
-              </Include-Resource>
               <Specification-Title>${project.name}</Specification-Title>
               <!--
                 TODO: The Specification-Version is not being set to major.minor as expected.
@@ -1830,24 +1799,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         -->
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
       </plugin>
-      <!--
-        The second copy of resources-filtered is required for maven-bundle-plugin, even if empty.
-        Otherwise the bundle packaging will fail.
-      -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>create-resources-filtered-output</id><phase>process-resources</phase><goals><goal>run</goal></goals>
-            <configuration>
-              <target>
-                <mkdir dir="${project.build.outputDirectory}" />
-                <mkdir dir="${project.build.directory}/resources-filtered" />
-              </target>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <!-- Supporting packaging of "bundle" for OSGI bundles -->
       <plugin>
         <groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId>
@@ -2044,6 +1995,77 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId>
             <configuration>
               <reportsDirectory>${alt.reports.dir}</reportsDirectory>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>packaging-bundle</id>
+      <activation><property><name>packaging</name><value>bundle</value></property></activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+          </plugins>
+        </pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <!--
+                maven-bundle-plugin does not use the filtered resources from project.build.outputDirectory.
+                To workaround this limitation, we perform a second filtering into a separate directory
+                that is then used in bundle creation.
+
+                We tried to avoid duplicate filtering by only filtering to target/resources-filtered
+                and not also into target/classes.  However, maven-jar-plugin used for default-jar
+                does not allow multiple source directories, and a second execution must be placed in
+                a different artifact classifier.
+
+                We hope for a better solution within maven-bundle-plugin in the future, but this issue
+                goes back over a decade - we're not holding our breath.
+              -->
+              <execution>
+                <id>filter-resources</id><phase>process-resources</phase><goals><goal>copy-resources</goal></goals>
+                <configuration>
+                  <resources>
+                    <resource>
+                      <directory>src/main/resources-filtered</directory>
+                      <filtering>true</filtering>
+                    </resource>
+                  </resources>
+                  <outputDirectory>${project.build.directory}/resources-filtered</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <!--
+            The second copy of resources-filtered is required for maven-bundle-plugin, even if empty.
+            Otherwise the bundle packaging will fail.
+          -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>create-resources-filtered-output</id><phase>process-resources</phase><goals><goal>run</goal></goals>
+                <configuration>
+                  <target>
+                    <mkdir dir="${project.build.outputDirectory}" />
+                    <mkdir dir="${project.build.directory}/resources-filtered" />
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId>
+            <configuration>
+              <instructions>
+                <Include-Resource>
+                  {maven-resources},
+                  ${bundle.resources-filtered}
+                </Include-Resource>
+              </instructions>
             </configuration>
           </plugin>
         </plugins>
