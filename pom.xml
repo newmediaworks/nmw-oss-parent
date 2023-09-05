@@ -85,8 +85,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <javase.version>11</javase.version><!-- 1.6, 1.7, 1.8, 9, 10, 11, ... -->
     <javase.release>11</javase.release><!-- 6, 7, 8, 9, 10, 11, ... -->
     <javadoc.link.javase>${javadoc.link.javase.11}</javadoc.link.javase>
-    <!-- This must be set in your ~/.m2/settings.xml when building with JDK < 9 -->
-    <javase.bootclasspath>${javase.bootclasspath.8}</javase.bootclasspath>
     <!-- These values are copied from the project being documented -->
     <documented.javase.version>11</documented.javase.version><!-- 1.6, 1.7, 1.8, 9, 10, 11, ... -->
     <documented.javadoc.link.javase>${javadoc.link.javase.11}</documented.javadoc.link.javase>
