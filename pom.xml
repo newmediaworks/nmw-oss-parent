@@ -31,6 +31,63 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <project.build.outputTimestamp>${git.commit.time}</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+    <!-- Extensions -->
+    <org.apache.maven.wagon:wagon-ssh-external.version>3.5.3</org.apache.maven.wagon:wagon-ssh-external.version>
+
+    <!-- Plugins -->
+    <org.simplify4u.plugins:pgpverify-maven-plugin.version>1.17.0</org.simplify4u.plugins:pgpverify-maven-plugin.version>
+    <org.apache.axis2:axis2-aar-maven-plugin.version>1.8.2</org.apache.axis2:axis2-aar-maven-plugin.version>
+    <org.codehaus.mojo:exec-maven-plugin.version>3.1.0</org.codehaus.mojo:exec-maven-plugin.version>
+    <io.github.git-commit-id:git-commit-id-maven-plugin.version>6.0.0</io.github.git-commit-id:git-commit-id-maven-plugin.version>
+    <org.apache.maven.plugins:maven-antrun-plugin.version>3.1.0</org.apache.maven.plugins:maven-antrun-plugin.version>
+    <org.apache.maven.plugins:maven-compiler-plugin.version>3.11.0</org.apache.maven.plugins:maven-compiler-plugin.version>
+    <org.apache.maven.plugins:maven-enforcer-plugin.version>3.4.0</org.apache.maven.plugins:maven-enforcer-plugin.version>
+    <org.apache.maven.plugins:maven-resources-plugin.version>3.3.1</org.apache.maven.plugins:maven-resources-plugin.version>
+    <org.jacoco:jacoco-maven-plugin.version>0.8.10</org.jacoco:jacoco-maven-plugin.version>
+    <org.apache.maven.plugins:maven-surefire-plugin.version>3.1.2</org.apache.maven.plugins:maven-surefire-plugin.version>
+    <org.apache.maven.plugins:maven-dependency-plugin.version>3.6.0</org.apache.maven.plugins:maven-dependency-plugin.version>
+    <org.apache.felix:maven-bundle-plugin.version>5.1.9</org.apache.felix:maven-bundle-plugin.version>
+    <org.codehaus.mojo:build-helper-maven-plugin.version>3.4.0</org.codehaus.mojo:build-helper-maven-plugin.version>
+    <io.reformanda.semper:dependencyversion-maven-plugin.version>1.0.1</io.reformanda.semper:dependencyversion-maven-plugin.version>
+    <org.sonatype.ossindex.maven:ossindex-maven-plugin.version>3.2.0</org.sonatype.ossindex.maven:ossindex-maven-plugin.version>
+    <org.apache.maven.plugins:maven-release-plugin.version>3.0.1</org.apache.maven.plugins:maven-release-plugin.version>
+    <org.codehaus.mojo:versions-maven-plugin.version>2.16.0</org.codehaus.mojo:versions-maven-plugin.version>
+    <org.apache.maven.plugins:maven-gpg-plugin.version>3.1.0</org.apache.maven.plugins:maven-gpg-plugin.version>
+    <org.apache.maven.plugins:maven-clean-plugin.version>3.3.1</org.apache.maven.plugins:maven-clean-plugin.version>
+    <org.apache.maven.plugins:maven-deploy-plugin.version>3.0.0-M2</org.apache.maven.plugins:maven-deploy-plugin.version>
+    <org.apache.maven.plugins:maven-install-plugin.version>3.1.1</org.apache.maven.plugins:maven-install-plugin.version>
+    <org.apache.maven.plugins:maven-jar-plugin.version>3.3.0</org.apache.maven.plugins:maven-jar-plugin.version>
+    <org.apache.maven.plugins:maven-remote-resources-plugin.version>3.1.0</org.apache.maven.plugins:maven-remote-resources-plugin.version>
+    <org.apache.maven.plugins:maven-war-plugin.version>3.4.0</org.apache.maven.plugins:maven-war-plugin.version>
+    <org.apache.maven.plugins:maven-source-plugin.version>3.3.0</org.apache.maven.plugins:maven-source-plugin.version>
+    <org.openrewrite.maven:rewrite-maven-plugin.version>5.5.0</org.openrewrite.maven:rewrite-maven-plugin.version>
+    <org.apache.maven.plugins:maven-checkstyle-plugin.version>3.3.0</org.apache.maven.plugins:maven-checkstyle-plugin.version>
+    <com.github.spotbugs:spotbugs-maven-plugin.version>4.7.3.5</com.github.spotbugs:spotbugs-maven-plugin.version>
+    <!-- TODO: Try findsecbugs-plugin:
+    <com.h3xstream.findsecbugs:findsecbugs-plugin.version>1.12.0</com.h3xstream.findsecbugs:findsecbugs-plugin.version>
+    -->
+    <org.apache.maven.plugins:maven-site-plugin.version>4.0.0-M9</org.apache.maven.plugins:maven-site-plugin.version>
+    <org.sonarsource.scanner.maven:sonar-maven-plugin.version>3.9.1.2184</org.sonarsource.scanner.maven:sonar-maven-plugin.version>
+    <org.apache.maven.plugins:maven-shade-plugin.version>3.5.0</org.apache.maven.plugins:maven-shade-plugin.version>
+    <org.apache.maven.plugins:maven-jarsigner-plugin.version>3.0.0</org.apache.maven.plugins:maven-jarsigner-plugin.version>
+    <org.apache.tomcat.maven:tomcat7-maven-plugin.version>2.2</org.apache.tomcat.maven:tomcat7-maven-plugin.version>
+    <org.codehaus.mojo:properties-maven-plugin.version>1.2.0</org.codehaus.mojo:properties-maven-plugin.version>
+    <org.eclipse.jetty:jetty-maven-plugin.version>11.0.16</org.eclipse.jetty:jetty-maven-plugin.version>
+    <org.apache.maven.plugins:maven-project-info-reports-plugin.version>3.4.5</org.apache.maven.plugins:maven-project-info-reports-plugin.version>
+    <org.sonatype.plugins:nexus-staging-maven-plugin.version>1.6.13</org.sonatype.plugins:nexus-staging-maven-plugin.version>
+
+    <!-- Plugin Dependencies -->
+    <org.simplify4u:pgp-keys-map.version>2023.06.24</org.simplify4u:pgp-keys-map.version>
+    <com.aoapps:pgp-keys-map.version>1.10.0${POST-SNAPSHOT}</com.aoapps:pgp-keys-map.version>
+    <org.codehaus.mojo:extra-enforcer-rules.version>1.7.0</org.codehaus.mojo:extra-enforcer-rules.version>
+    <org.ow2.asm:asm.version>9.5</org.ow2.asm:asm.version>
+    <com.puppycrawl.tools:checkstyle.version>10.12.3</com.puppycrawl.tools:checkstyle.version>
+    <com.github.spotbugs:spotbugs.version>4.7.3</com.github.spotbugs:spotbugs.version>
+    <com.aoapps:ao-javadoc-offline.version>3.4.1${POST-SNAPSHOT}</com.aoapps:ao-javadoc-offline.version>
+    <com.newmediaworks:nmw-javadoc-resources.version>1.0.2${POST-SNAPSHOT}</com.newmediaworks:nmw-javadoc-resources.version>
+    <com.aoapps:ao-checkstyle-config.version>1.2.0${POST-SNAPSHOT}</com.aoapps:ao-checkstyle-config.version>
+
+    <!-- Maven Javadoc Plugin -->
     <!--
       3.1.0 through 3.4.1: Works when building directly, using "-module-path", but fails in reactor build with "error: module not found" since uses "-class-path"
       3.0.1: Works both directly and in reactor build, but can't link to "element-list"
@@ -1004,7 +1061,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <extensions>
       <!-- Enabling the use of SSH for repository access -->
       <extension>
-        <groupId>org.apache.maven.wagon</groupId><artifactId>wagon-ssh-external</artifactId><version>3.5.3</version>
+        <groupId>org.apache.maven.wagon</groupId><artifactId>wagon-ssh-external</artifactId><version>${org.apache.maven.wagon:wagon-ssh-external.version}</version>
       </extension>
     </extensions>
     <resources>
@@ -1030,7 +1087,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId><version>1.17.0</version>
+          <groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId><version>${org.simplify4u.plugins:pgpverify-maven-plugin.version}</version>
           <configuration>
             <quiet>true</quiet>
             <suppressSignatureOkLogging>true</suppressSignatureOkLogging>
@@ -1049,15 +1106,15 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <dependencies>
             <!-- See https://github.com/s4u/pgp-keys-map -->
             <dependency>
-              <groupId>org.simplify4u</groupId><artifactId>pgp-keys-map</artifactId><version>2023.06.24</version>
+              <groupId>org.simplify4u</groupId><artifactId>pgp-keys-map</artifactId><version>${org.simplify4u:pgp-keys-map.version}</version>
             </dependency>
             <dependency>
-              <groupId>com.aoapps</groupId><artifactId>pgp-keys-map</artifactId><version>1.10.0${POST-SNAPSHOT}</version>
+              <groupId>com.aoapps</groupId><artifactId>pgp-keys-map</artifactId><version>${com.aoapps:pgp-keys-map.version}</version>
             </dependency>
           </dependencies>
         </plugin>
         <plugin>
-          <groupId>org.apache.axis2</groupId><artifactId>axis2-aar-maven-plugin</artifactId><version>1.8.2</version>
+          <groupId>org.apache.axis2</groupId><artifactId>axis2-aar-maven-plugin</artifactId><version>${org.apache.axis2:axis2-aar-maven-plugin.version}</version>
           <configuration>
             <archive>
               <manifest>
@@ -1073,16 +1130,16 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId><artifactId>exec-maven-plugin</artifactId><version>3.1.0</version>
+          <groupId>org.codehaus.mojo</groupId><artifactId>exec-maven-plugin</artifactId><version>${org.codehaus.mojo:exec-maven-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>io.github.git-commit-id</groupId><artifactId>git-commit-id-maven-plugin</artifactId><version>6.0.0</version>
+          <groupId>io.github.git-commit-id</groupId><artifactId>git-commit-id-maven-plugin</artifactId><version>${io.github.git-commit-id:git-commit-id-maven-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>3.1.0</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>${org.apache.maven.plugins:maven-antrun-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.11.0</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>${org.apache.maven.plugins:maven-compiler-plugin.version}</version>
           <configuration>
             <!-- Default to using -Xlint and showing warnings -->
             <compilerArgs>
@@ -1105,15 +1162,15 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId><version>3.4.0</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId><version>${org.apache.maven.plugins:maven-enforcer-plugin.version}</version>
           <dependencies>
             <dependency>
-              <groupId>org.codehaus.mojo</groupId><artifactId>extra-enforcer-rules</artifactId><version>1.7.0</version>
+              <groupId>org.codehaus.mojo</groupId><artifactId>extra-enforcer-rules</artifactId><version>${org.codehaus.mojo:extra-enforcer-rules.version}</version>
             </dependency>
           </dependencies>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-resources-plugin</artifactId><version>3.3.1</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-resources-plugin</artifactId><version>${org.apache.maven.plugins:maven-resources-plugin.version}</version>
           <configuration>
             <useDefaultDelimiters>false</useDefaultDelimiters>
             <delimiters>
@@ -1127,10 +1184,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.jacoco</groupId><artifactId>jacoco-maven-plugin</artifactId><version>0.8.10</version>
+          <groupId>org.jacoco</groupId><artifactId>jacoco-maven-plugin</artifactId><version>${org.jacoco:jacoco-maven-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.1.2</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>${org.apache.maven.plugins:maven-surefire-plugin.version}</version>
           <configuration>
             <!-- Show full stack traces to help debugging -->
             <trimStackTrace>false</trimStackTrace>
@@ -1140,14 +1197,14 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!-- See https://issues.apache.org/jira/browse/MDEP-439 -->
         <plugin>
           <!-- Skip 3.2.0 until issue 753 resolved: https://issues.apache.org/jira/browse/MDEP-753 -->
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId><version>3.6.0</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId><version>${org.apache.maven.plugins:maven-dependency-plugin.version}</version>
           <configuration>
             <silent>true</silent>
           </configuration>
         </plugin>
         <!-- Supporting packaging of "bundle" for OSGI bundles -->
         <plugin>
-          <groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId><version>5.1.9</version>
+          <groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId><version>${org.apache.felix:maven-bundle-plugin.version}</version>
           <configuration>
             <instructions>
               <_removeheaders>POST-SNAPSHOT</_removeheaders>
@@ -1202,27 +1259,27 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         </plugin>
         <!-- Other plugins used below -->
         <plugin>
-          <groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId><version>3.4.0</version>
+          <groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId><version>${org.codehaus.mojo:build-helper-maven-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>io.reformanda.semper</groupId><artifactId>dependencyversion-maven-plugin</artifactId><version>1.0.1</version>
+          <groupId>io.reformanda.semper</groupId><artifactId>dependencyversion-maven-plugin</artifactId><version>${io.reformanda.semper:dependencyversion-maven-plugin.version}</version>
         </plugin>
         <plugin>
           <!-- See https://sonatype.github.io/ossindex-maven/maven-plugin/ -->
-          <groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId><version>3.2.0</version>
+          <groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId><version>${org.sonatype.ossindex.maven:ossindex-maven-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-release-plugin</artifactId><version>3.0.1</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-release-plugin</artifactId><version>${org.apache.maven.plugins:maven-release-plugin.version}</version>
           <configuration>
             <releaseProfiles>release</releaseProfiles>
             <goals>deploy</goals>
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId><artifactId>versions-maven-plugin</artifactId><version>2.16.0</version>
+          <groupId>org.codehaus.mojo</groupId><artifactId>versions-maven-plugin</artifactId><version>${org.codehaus.mojo:versions-maven-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId><version>3.1.0</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId><version>${org.apache.maven.plugins:maven-gpg-plugin.version}</version>
           <configuration>
             <lockMode>multiple</lockMode>
             <homedir>${gpg.oss-newmediaworks-com.homedir}</homedir>
@@ -1236,19 +1293,19 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           This also keeps the output of versions:display-plugin-updates more meaningful.
         -->
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-clean-plugin</artifactId><version>3.3.1</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-clean-plugin</artifactId><version>${org.apache.maven.plugins:maven-clean-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId><version>3.0.0-M2</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId><version>${org.apache.maven.plugins:maven-deploy-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-install-plugin</artifactId><version>3.1.1</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-install-plugin</artifactId><version>${org.apache.maven.plugins:maven-install-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.3.0</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>${org.apache.maven.plugins:maven-jar-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId><version>3.1.0</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId><version>${org.apache.maven.plugins:maven-remote-resources-plugin.version}</version>
           <configuration>
             <useDefaultFilterDelimiters>false</useDefaultFilterDelimiters>
             <filterDelimiters>
@@ -1262,7 +1319,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId><version>3.4.0</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId><version>${org.apache.maven.plugins:maven-war-plugin.version}</version>
           <configuration>
             <useDefaultDelimiters>false</useDefaultDelimiters>
             <delimiters>
@@ -1298,7 +1355,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId><version>3.3.0</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId><version>${org.apache.maven.plugins:maven-source-plugin.version}</version>
           <configuration>
             <archive>
               <manifest>
@@ -1318,7 +1375,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <dependencies>
             <!-- For plugin maven-javadoc-plugin:3.0.1, resolves "Unsupported class file major version 55" -->
             <dependency>
-              <groupId>org.ow2.asm</groupId><artifactId>asm</artifactId><version>9.5</version>
+              <groupId>org.ow2.asm</groupId><artifactId>asm</artifactId><version>${org.ow2.asm:asm.version}</version>
             </dependency>
           </dependencies>
           <configuration>
@@ -1447,7 +1504,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId><version>5.5.0</version>
+          <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId><version>${org.openrewrite.maven:rewrite-maven-plugin.version}</version>
           <configuration>
             <activeRecipes>
               <recipe>org.openrewrite.java.format.AutoFormat</recipe>
@@ -1472,10 +1529,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>3.3.0</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>${org.apache.maven.plugins:maven-checkstyle-plugin.version}</version>
           <dependencies>
             <dependency>
-              <groupId>com.puppycrawl.tools</groupId><artifactId>checkstyle</artifactId><version>10.12.3</version>
+              <groupId>com.puppycrawl.tools</groupId><artifactId>checkstyle</artifactId><version>${com.puppycrawl.tools:checkstyle.version}</version>
             </dependency>
           </dependencies>
           <configuration>
@@ -1487,10 +1544,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>4.7.3.5</version>
+          <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>${com.github.spotbugs:spotbugs-maven-plugin.version}</version>
           <dependencies>
             <dependency>
-              <groupId>com.github.spotbugs</groupId><artifactId>spotbugs</artifactId><version>4.7.3</version>
+              <groupId>com.github.spotbugs</groupId><artifactId>spotbugs</artifactId><version>${com.github.spotbugs:spotbugs.version}</version>
             </dependency>
           </dependencies>
           <configuration>
@@ -1499,7 +1556,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <!-- TODO: Try findsecbugs-plugin:
             <plugins>
               <plugin>
-                <groupId>com.h3xstream.findsecbugs</groupId><artifactId>findsecbugs-plugin</artifactId><version>1.12.0</version>
+                <groupId>com.h3xstream.findsecbugs</groupId><artifactId>findsecbugs-plugin</artifactId><version>${com.h3xstream.findsecbugs:findsecbugs-plugin.version}</version>
               </plugin>
             </plugins>
             -->
@@ -1516,26 +1573,26 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId><version>4.0.0-M9</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId><version>${org.apache.maven.plugins:maven-site-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.sonarsource.scanner.maven</groupId><artifactId>sonar-maven-plugin</artifactId><version>3.9.1.2184</version>
+          <groupId>org.sonarsource.scanner.maven</groupId><artifactId>sonar-maven-plugin</artifactId><version>${org.sonarsource.scanner.maven:sonar-maven-plugin.version}</version>
         </plugin>
         <!-- Plugins used by some project-specific pom.xml -->
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-shade-plugin</artifactId><version>3.5.0</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-shade-plugin</artifactId><version>${org.apache.maven.plugins:maven-shade-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jarsigner-plugin</artifactId><version>3.0.0</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jarsigner-plugin</artifactId><version>${org.apache.maven.plugins:maven-jarsigner-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.tomcat.maven</groupId><artifactId>tomcat7-maven-plugin</artifactId><version>2.2</version>
+          <groupId>org.apache.tomcat.maven</groupId><artifactId>tomcat7-maven-plugin</artifactId><version>${org.apache.tomcat.maven:tomcat7-maven-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId><artifactId>properties-maven-plugin</artifactId><version>1.2.0</version>
+          <groupId>org.codehaus.mojo</groupId><artifactId>properties-maven-plugin</artifactId><version>${org.codehaus.mojo:properties-maven-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId><version>11.0.16</version>
+          <groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId><version>${org.eclipse.jetty:jetty-maven-plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -1827,7 +1884,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
   <reporting>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId><artifactId>maven-project-info-reports-plugin</artifactId><version>3.4.5</version>
+        <groupId>org.apache.maven.plugins</groupId><artifactId>maven-project-info-reports-plugin</artifactId><version>${org.apache.maven.plugins:maven-project-info-reports-plugin.version}</version>
       </plugin>
     </plugins>
   </reporting>
@@ -1898,6 +1955,57 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         </plugins>
       </build>
     </profile>
+    <!-- When the keys map file is present, we are building com.aoapps:pgp-keys-map, use file directly to avoid cyclic dependency -->
+    <!-- com.aoapps:pgp-keys-map does not have this as a parent:
+    <profile>
+      <id>pgp-keys-map-direct</id>
+      <activation><file><exists>src/main/resources/com/aoapps/pgp/keys/map/pgp-keys-map.list</exists></file></activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId>
+              <configuration>
+                <keysMapLocations>
+                  <!- - See https://github.com/s4u/pgp-keys-map - ->
+                  <keysMapLocation>/pgp-keys-map.list</keysMapLocation>
+                  <keysMapLocation>${project.basedir}/src/main/resources/com/aoapps/pgp/keys/map/pgp-keys-map.list</keysMapLocation>
+                </keysMapLocations>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+    -->
+    <!-- Otherwise, obtain the keys map file from the com.aoapps:pgp-keys-map artifact -->
+    <!-- com.aoapps:pgp-keys-map does not have this as a parent:
+    <profile>
+      <id>pgp-keys-map</id>
+      <activation><file><missing>src/main/resources/com/aoapps/pgp/keys/map/pgp-keys-map.list</missing></file></activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId>
+              <configuration>
+                <keysMapLocations>
+                  <!- - See https://github.com/s4u/pgp-keys-map - ->
+                  <keysMapLocation>/pgp-keys-map.list</keysMapLocation>
+                  <keysMapLocation>/com/aoapps/pgp/keys/map/pgp-keys-map.list</keysMapLocation>
+                </keysMapLocations>
+              </configuration>
+              <dependencies>
+                <dependency>
+                  <groupId>com.aoapps</groupId><artifactId>pgp-keys-map</artifactId><version>${com.aoapps:pgp-keys-map.version}</version>
+                </dependency>
+              </dependencies>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+    -->
     <!-- Support per-project pgp-keys-map.list -->
     <profile>
       <id>pgp-keys-map.list</id>
@@ -2303,7 +2411,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId><version>3.4.1${POST-SNAPSHOT}</version>
+                <groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId><version>${com.aoapps:ao-javadoc-offline.version}</version>
               </dependency>
             </dependencies>
             <executions>
@@ -2312,7 +2420,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <configuration>
                   <attachToMain>false</attachToMain><attachToTest>false</attachToTest>
                   <resourceBundles>
-                    <resourceBundle>com.aoapps:ao-javadoc-offline:3.4.1${POST-SNAPSHOT}</resourceBundle>
+                    <resourceBundle>com.aoapps:ao-javadoc-offline:${com.aoapps:ao-javadoc-offline.version}</resourceBundle>
                   </resourceBundles>
                   <outputDirectory>${project.build.directory}/offlineLinks</outputDirectory>
                 </configuration>
@@ -2392,13 +2500,13 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
             <dependencies>
               <dependency>
-                <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.2${POST-SNAPSHOT}</version>
+                <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>${com.newmediaworks:nmw-javadoc-resources.version}</version>
               </dependency>
             </dependencies>
             <configuration>
               <resourcesArtifacts>
                 <resourcesArtifact>
-                  <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>1.0.2${POST-SNAPSHOT}</version>
+                  <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId><version>${com.newmediaworks:nmw-javadoc-resources.version}</version>
                 </resourcesArtifact>
               </resourcesArtifacts>
             </configuration>
@@ -2462,7 +2570,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <configuration>
                   <artifactItems>
                     <artifactItem>
-                      <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.2.0${POST-SNAPSHOT}</version>
+                      <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>${com.aoapps:ao-checkstyle-config.version}</version>
                       <type>jar</type>
                       <includes>ao-checkstyle-config/checkstyle-configuration.xml</includes>
                     </artifactItem>
@@ -2472,7 +2580,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             </executions>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.2.0${POST-SNAPSHOT}</version>
+                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>${com.aoapps:ao-checkstyle-config.version}</version>
                 <type>jar</type>
               </dependency>
             </dependencies>
@@ -2481,7 +2589,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.2.0${POST-SNAPSHOT}</version>
+                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>${com.aoapps:ao-checkstyle-config.version}</version>
               </dependency>
             </dependencies>
             <configuration>
@@ -2509,7 +2617,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId>
             <dependencies>
               <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>1.2.0${POST-SNAPSHOT}</version>
+                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>${com.aoapps:ao-checkstyle-config.version}</version>
               </dependency>
             </dependencies>
             <configuration>
@@ -2529,7 +2637,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <reporting>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>3.3.0</version>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>${org.apache.maven.plugins:maven-checkstyle-plugin.version}</version>
           </plugin>
         </plugins>
       </reporting>
@@ -2555,7 +2663,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <reporting>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>3.3.0</version>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>${org.apache.maven.plugins:maven-checkstyle-plugin.version}</version>
             <configuration>
               <skip>true</skip>
             </configuration>
@@ -2593,7 +2701,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <reporting>
         <plugins>
           <plugin>
-            <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>4.7.3.5</version>
+            <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>${com.github.spotbugs:spotbugs-maven-plugin.version}</version>
           </plugin>
         </plugins>
       </reporting>
@@ -2623,7 +2731,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <reporting>
         <plugins>
           <plugin>
-            <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>4.7.3.5</version>
+            <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId><version>${com.github.spotbugs:spotbugs-maven-plugin.version}</version>
             <configuration>
               <skip>true</skip>
             </configuration>
