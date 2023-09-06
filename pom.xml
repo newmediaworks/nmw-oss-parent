@@ -1836,6 +1836,13 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <extensions>true</extensions>
       </plugin>
       <plugin>
+        <!--
+          Workaround "versions:display-plugin-updates" failing when "development" profile active.
+          See https://github.com/mojohaus/versions-maven-plugin/issues/354
+        -->
+        <groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId>
         <executions>
           <execution>
@@ -1874,13 +1881,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <id>attach-javadocs</id><goals><goal>jar</goal></goals>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <!--
-          Workaround "versions:display-plugin-updates" failing when "development" profile active.
-          See https://github.com/mojohaus/versions-maven-plugin/issues/354
-        -->
-        <groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
