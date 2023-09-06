@@ -32,7 +32,6 @@ def upstreamProjects = [
   // No Jenkins: <groupId>org.apache.axis2</groupId><artifactId>axis2-aar-maven-plugin</artifactId>
   // No Jenkins: <groupId>org.codehaus.mojo</groupId><artifactId>exec-maven-plugin</artifactId>
   // No Jenkins: <groupId>io.github.git-commit-id</groupId><artifactId>git-commit-id-maven-plugin</artifactId>
-  // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-resources-plugin</artifactId>
@@ -53,6 +52,8 @@ def upstreamProjects = [
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId>
+  // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
+  // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
   // No Jenkins: <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId>
   // No Jenkins: <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId>
@@ -77,9 +78,6 @@ def upstreamProjects = [
   'javadoc-offline', // <groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId>
   'javadoc-resources', // <groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId>
   'checkstyle-config', // <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId>
-
-  // Maven Javadoc Plugin
-  // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 ]
 
 /******************************************************************************************

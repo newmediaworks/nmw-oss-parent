@@ -39,7 +39,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.axis2:axis2-aar-maven-plugin.version>1.8.2</org.apache.axis2:axis2-aar-maven-plugin.version>
     <org.codehaus.mojo:exec-maven-plugin.version>3.1.0</org.codehaus.mojo:exec-maven-plugin.version>
     <io.github.git-commit-id:git-commit-id-maven-plugin.version>6.0.0</io.github.git-commit-id:git-commit-id-maven-plugin.version>
-    <org.apache.maven.plugins:maven-antrun-plugin.version>3.1.0</org.apache.maven.plugins:maven-antrun-plugin.version>
     <org.apache.maven.plugins:maven-compiler-plugin.version>3.11.0</org.apache.maven.plugins:maven-compiler-plugin.version>
     <org.apache.maven.plugins:maven-enforcer-plugin.version>3.4.0</org.apache.maven.plugins:maven-enforcer-plugin.version>
     <org.apache.maven.plugins:maven-resources-plugin.version>3.3.1</org.apache.maven.plugins:maven-resources-plugin.version>
@@ -60,6 +59,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.maven.plugins:maven-remote-resources-plugin.version>3.1.0</org.apache.maven.plugins:maven-remote-resources-plugin.version>
     <org.apache.maven.plugins:maven-war-plugin.version>3.4.0</org.apache.maven.plugins:maven-war-plugin.version>
     <org.apache.maven.plugins:maven-source-plugin.version>3.3.0</org.apache.maven.plugins:maven-source-plugin.version>
+    <org.apache.maven.plugins.maven-javadoc-plugin.version>3.5.0</org.apache.maven.plugins.maven-javadoc-plugin.version>
+    <org.apache.maven.plugins:maven-antrun-plugin.version>3.1.0</org.apache.maven.plugins:maven-antrun-plugin.version>
     <org.openrewrite.maven:rewrite-maven-plugin.version>5.5.0</org.openrewrite.maven:rewrite-maven-plugin.version>
     <org.apache.maven.plugins:maven-checkstyle-plugin.version>3.3.0</org.apache.maven.plugins:maven-checkstyle-plugin.version>
     <com.github.spotbugs:spotbugs-maven-plugin.version>4.7.3.5</com.github.spotbugs:spotbugs-maven-plugin.version>
@@ -102,8 +103,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       Automatic-Module-Name in releases.  This is done when the project itself uses any unnamed modules.  Before
       removing this properties, make sure to remove all uses of the properties across all projects.
     -->
-    <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
-    <maven-javadoc-plugin.version.reactor>3.0.1</maven-javadoc-plugin.version.reactor>
+    <org.apache.maven.plugins.maven-javadoc-plugin.version.reactor>3.0.1</org.apache.maven.plugins.maven-javadoc-plugin.version.reactor>
     <copy-element-list-to-package-list-before-javadoc.phase>none</copy-element-list-to-package-list-before-javadoc.phase>
 
     <!-- The version of Java apidocs to link to, preferring https -->
@@ -1140,9 +1140,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <groupId>io.github.git-commit-id</groupId><artifactId>git-commit-id-maven-plugin</artifactId><version>${io.github.git-commit-id:git-commit-id-maven-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>${org.apache.maven.plugins:maven-antrun-plugin.version}</version>
-        </plugin>
-        <plugin>
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>${org.apache.maven.plugins:maven-compiler-plugin.version}</version>
           <configuration>
             <!-- Default to using -Xlint and showing warnings -->
@@ -1374,7 +1371,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>${maven-javadoc-plugin.version}</version>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>${org.apache.maven.plugins.maven-javadoc-plugin.version}</version>
           <dependencies>
             <!-- For plugin maven-javadoc-plugin:3.0.1, resolves "Unsupported class file major version 55" -->
             <dependency>
@@ -1506,6 +1503,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 </script>]]>
             </bottom>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>${org.apache.maven.plugins:maven-antrun-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId><version>${org.openrewrite.maven:rewrite-maven-plugin.version}</version>
@@ -1873,6 +1873,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         -->
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
       </plugin>
+      <!-- Here to control plugin order -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
         <executions>
@@ -1881,6 +1885,20 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <id>attach-javadocs</id><goals><goal>jar</goal></goals>
           </execution>
         </executions>
+      </plugin>
+      <!--
+        Make sure everything else is packaged before timestamp manipulation.
+        This must be after the following plugins:
+          axis2-aar-maven-plugin
+          maven-bundle-plugin
+          maven-jar-plugin
+          maven-remote-resources-plugin
+          maven-war-plugin
+          maven-source-plugin
+          maven-javadoc-plugin
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
@@ -2517,7 +2535,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <profile>
       <id>reactor</id>
       <properties>
-        <maven-javadoc-plugin.version>${maven-javadoc-plugin.version.reactor}</maven-javadoc-plugin.version>
+        <org.apache.maven.plugins.maven-javadoc-plugin.version>${org.apache.maven.plugins.maven-javadoc-plugin.version.reactor}</org.apache.maven.plugins.maven-javadoc-plugin.version>
         <copy-element-list-to-package-list-before-javadoc.phase>prepare-package</copy-element-list-to-package-list-before-javadoc.phase>
       </properties>
     </profile>
