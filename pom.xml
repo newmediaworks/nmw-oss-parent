@@ -103,7 +103,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <!--
       The frame target for links from javadocs:
         Can be "_self" for JDK >= 9, since the apidocs do not use frames.
-        Must be "_top" for JDK < 9, due to frames. Using "_top" for all Java versions so links can escape frames at javado.io. -->
+        Must be "_top" for JDK < 9, due to frames. Using "_top" for all Java versions so links can escape frames at javadoc.io. -->
     <javadoc.target>_top</javadoc.target>
     <!-- Fix the scroll position in Java 11 javadoc -->
     <javadoc.html.style />
