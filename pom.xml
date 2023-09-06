@@ -1200,7 +1200,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!-- We need newer dependency plugin for Java 8 compatibility -->
         <!-- See https://issues.apache.org/jira/browse/MDEP-439 -->
         <plugin>
-          <!-- Skip 3.2.0 until issue 753 resolved: https://issues.apache.org/jira/browse/MDEP-753 -->
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId><version>${org.apache.maven.plugins:maven-dependency-plugin.version}</version>
           <configuration>
             <silent>true</silent>
