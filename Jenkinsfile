@@ -29,14 +29,12 @@ def upstreamProjects = [
 
   // Plugins
   // No Jenkins: <groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId>
-  // No Jenkins: <groupId>org.simplify4u</groupId><artifactId>pgp-keys-map</artifactId>
-  'pgp-keys-map', // <groupId>com.aoapps</groupId><artifactId>pgp-keys-map</artifactId>
   // No Jenkins: <groupId>org.apache.axis2</groupId><artifactId>axis2-aar-maven-plugin</artifactId>
   // No Jenkins: <groupId>org.codehaus.mojo</groupId><artifactId>exec-maven-plugin</artifactId>
+  // No Jenkins: <groupId>io.github.git-commit-id</groupId><artifactId>git-commit-id-maven-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
-  // No Jenkins: <groupId>org.codehaus.mojo</groupId><artifactId>extra-enforcer-rules</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-resources-plugin</artifactId>
   // No Jenkins: <groupId>org.jacoco</groupId><artifactId>jacoco-maven-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId>
@@ -47,7 +45,6 @@ def upstreamProjects = [
   // No Jenkins: <groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-release-plugin</artifactId>
   // No Jenkins: <groupId>org.codehaus.mojo</groupId><artifactId>versions-maven-plugin</artifactId>
-  // No Jenkins: <groupId>org.codehaus.mojo</groupId><artifactId>buildnumber-maven-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-clean-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
@@ -56,13 +53,9 @@ def upstreamProjects = [
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId>
-  // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
-  // No Jenkins: <groupId>org.ow2.asm</groupId><artifactId>asm</artifactId>
   // No Jenkins: <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId>
-  // No Jenkins: <groupId>com.puppycrawl.tools</groupId><artifactId>checkstyle</artifactId>
   // No Jenkins: <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId>
-  // No Jenkins: <groupId>com.github.spotbugs</groupId><artifactId>spotbugs</artifactId>
   // No Jenkins: TODO: Try findsecbugs-plugin: <groupId>com.h3xstream.findsecbugs</groupId><artifactId>findsecbugs-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId>
   // No Jenkins: <groupId>org.sonarsource.scanner.maven</groupId><artifactId>sonar-maven-plugin</artifactId>
@@ -72,12 +65,21 @@ def upstreamProjects = [
   // No Jenkins: <groupId>org.codehaus.mojo</groupId><artifactId>properties-maven-plugin</artifactId>
   // No Jenkins: <groupId>org.eclipse.jetty</groupId><artifactId>jetty-maven-plugin</artifactId>
   // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-project-info-reports-plugin</artifactId>
+  // No Jenkins: <groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
+
+  // Plugin Dependencies
+  // No Jenkins: <groupId>org.simplify4u</groupId><artifactId>pgp-keys-map</artifactId>
+  'pgp-keys-map', // <groupId>com.aoapps</groupId><artifactId>pgp-keys-map</artifactId>
+  // No Jenkins: <groupId>org.codehaus.mojo</groupId><artifactId>extra-enforcer-rules</artifactId>
+  // No Jenkins: <groupId>org.ow2.asm</groupId><artifactId>asm</artifactId>
+  // No Jenkins: <groupId>com.puppycrawl.tools</groupId><artifactId>checkstyle</artifactId>
+  // No Jenkins: <groupId>com.github.spotbugs</groupId><artifactId>spotbugs</artifactId>
   'javadoc-offline', // <groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId>
   'javadoc-resources', // <groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId>
   'checkstyle-config', // <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId>
-  // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId>
-  // No Jenkins: <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId>
-  // No Jenkins: <groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
+
+  // Maven Javadoc Plugin
+  // No Jenkins: <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 ]
 
 /******************************************************************************************
