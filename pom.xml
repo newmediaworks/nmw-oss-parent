@@ -213,6 +213,12 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       May be disabled in Maven command line property.
     -->
     <requireLastBuild>true</requireLastBuild>
+    <!--
+      Is this build reproducible for the zip-timestamp-merge Ant task?
+      Currently with axis2-aar-maven-plugin version 1.8.2, aar builds are not reproducible,
+      so this is disabled in packaging profile for "aar" packaging.
+    -->
+    <zip-timestamp-merge.buildReproducible>true</zip-timestamp-merge.buildReproducible>
 
     <!-- <NetBeans 17 → Project → Properties> -->
     <!--   <Run> -->
@@ -2128,6 +2134,18 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       </build>
     </profile>
     <profile>
+      <id>packaging-aar</id>
+      <activation><property><name>packaging</name><value>aar</value></property></activation>
+      <properties>
+        <!--
+          Is this build reproducible for the zip-timestamp-merge Ant task?
+          Currently with axis2-aar-maven-plugin version 1.8.2, aar builds are not reproducible,
+          so this is disabled in packaging profile for "aar" packaging.
+        -->
+        <zip-timestamp-merge.buildReproducible>false</zip-timestamp-merge.buildReproducible>
+      </properties>
+    </profile>
+    <profile>
       <id>packaging-bundle</id>
       <activation><property><name>packaging</name><value>bundle</value></property></activation>
       <build>
@@ -3189,7 +3207,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                     </taskdef>
                     <zip-timestamp-merge
                       outputTimestamp="${project.build.outputTimestamp}"
-                      buildReproducible="true"
+                      buildReproducible="${zip-timestamp-merge.buildReproducible}"
                       requireLastBuild="${requireLastBuild}"
                       lastBuildDirectory="${project.build.directory}/last-successful-artifacts"
                       buildDirectory="${project.build.directory}"
