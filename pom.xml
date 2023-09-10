@@ -79,7 +79,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
     <!-- Plugin Dependencies -->
     <org.simplify4u:pgp-keys-map.version>2023.06.24</org.simplify4u:pgp-keys-map.version>
-    <com.aoapps:pgp-keys-map.version>1.10.0${POST-SNAPSHOT}</com.aoapps:pgp-keys-map.version>
+    <com.aoapps:pgp-keys-map.version>1.11.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps:pgp-keys-map.version>
     <org.codehaus.mojo:extra-enforcer-rules.version>1.7.0</org.codehaus.mojo:extra-enforcer-rules.version>
     <org.ow2.asm:asm.version>9.5</org.ow2.asm:asm.version>
     <com.puppycrawl.tools:checkstyle.version>10.12.3</com.puppycrawl.tools:checkstyle.version>
@@ -87,6 +87,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <com.aoapps:ao-javadoc-offline.version>3.4.1${POST-SNAPSHOT}</com.aoapps:ao-javadoc-offline.version>
     <com.aoapps:ao-javadoc-resources.version>1.0.2${POST-SNAPSHOT}</com.aoapps:ao-javadoc-resources.version>
     <com.aoapps:ao-ant-tasks.version>1.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps:ao-ant-tasks.version>
+    <org.apache.commons:commons-compress.version>1.24.0</org.apache.commons:commons-compress.version>
     <com.aoapps:ao-checkstyle-config.version>1.2.0${POST-SNAPSHOT}</com.aoapps:ao-checkstyle-config.version>
 
     <!-- Maven Javadoc Plugin -->
@@ -1522,13 +1523,16 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>${org.apache.maven.plugins:maven-antrun-plugin.version}</version>
-          <!-- com.aoapps:ao-ant-tasks has this as a parent:
           <dependencies>
+            <!-- com.aoapps:ao-ant-tasks has this as a parent:
             <dependency>
               <groupId>com.aoapps</groupId><artifactId>ao-ant-tasks</artifactId><version>${com.aoapps:ao-ant-tasks.version}</version>
             </dependency>
+            -->
+            <dependency>
+              <groupId>org.apache.commons</groupId><artifactId>commons-compress</artifactId><version>${org.apache.commons:commons-compress.version}</version>
+            </dependency>
           </dependencies>
-          -->
         </plugin>
         <plugin>
           <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId><version>${org.openrewrite.maven:rewrite-maven-plugin.version}</version>
