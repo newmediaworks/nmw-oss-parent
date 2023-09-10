@@ -206,6 +206,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.java.source>${javase.release}</sonar.java.source>
 
+    <!-- Only activated in the "jenkins-deploy" profile -->
+    <zip-timestamp-merge.phase>none</zip-timestamp-merge.phase>
     <!--
       Is the last build required for the zip-timestamp-merge Ant task?
       Defaults to true and will typically only be false for either the first build
@@ -1523,16 +1525,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>${org.apache.maven.plugins:maven-antrun-plugin.version}</version>
-          <dependencies>
-            <!-- com.aoapps:ao-ant-tasks has this as a parent:
-            <dependency>
-              <groupId>com.aoapps</groupId><artifactId>ao-ant-tasks</artifactId><version>${com.aoapps:ao-ant-tasks.version}</version>
-            </dependency>
-            -->
-            <dependency>
-              <groupId>org.apache.commons</groupId><artifactId>commons-compress</artifactId><version>${org.apache.commons:commons-compress.version}</version>
-            </dependency>
-          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId><version>${org.openrewrite.maven:rewrite-maven-plugin.version}</version>
@@ -2088,7 +2080,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <!-- Obtain AO Ant Tasks from the com.aoapps:ao-ant-tasks artifact unless we are building com.aoapps:ao-ant-tasks to avoid cyclic dependency -->
     <profile>
       <id>ao-ant-tasks</id>
-      <activation><file><missing>src/main/resources/com/aoapps/ant/tasks/antlib.xml</missing></file></activation>
+      <activation>
+        <property><name>packaging</name><value>!pom</value></property>
+        <file><missing>src/main/resources/com/aoapps/ant/tasks/antlib.xml</missing></file>
+      </activation>
       <build>
         <pluginManagement>
           <plugins>
@@ -2284,6 +2279,51 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             </executions>
           </plugin>
         </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>packaging-not-pom</id>
+      <activation><property><name>packaging</name><value>!pom</value></property></activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <!-- Maintain created and last-modified times between builds -->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
+              <dependencies>
+                <!-- com.aoapps:ao-ant-tasks has this as a parent:
+                <dependency>
+                  <groupId>com.aoapps</groupId><artifactId>ao-ant-tasks</artifactId><version>${com.aoapps:ao-ant-tasks.version}</version>
+                </dependency>
+                -->
+                <dependency>
+                  <groupId>org.apache.commons</groupId><artifactId>commons-compress</artifactId><version>${org.apache.commons:commons-compress.version}</version>
+                </dependency>
+              </dependencies>
+              <executions>
+                <execution>
+                  <id>zip-timestamp-merge</id><phase>${zip-timestamp-merge.phase}</phase><goals><goal>run</goal></goals>
+                  <configuration>
+                    <target>
+                      <taskdef resource="com/aoapps/ant/tasks/antlib.xml">
+                        <classpath>
+                          <fileset dir="${project.build.directory}"><include name="ao-ant-tasks-*.jar"/></fileset>
+                        </classpath>
+                      </taskdef>
+                      <zip-timestamp-merge
+                        outputTimestamp="${project.build.outputTimestamp}"
+                        buildReproducible="${zip-timestamp-merge.buildReproducible}"
+                        requireLastBuild="${requireLastBuild}"
+                        lastBuildDirectory="${project.build.directory}/last-successful-artifacts"
+                        buildDirectory="${project.build.directory}"
+                      />
+                    </target>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
       </build>
     </profile>
     <!-- Fix the scroll position in Java 11 javadoc -->
@@ -3133,6 +3173,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,jenkins,jenkins-deploy
         mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development,jenkins,jenkins-deploy
       -->
+      <properties>
+        <zip-timestamp-merge.phase>package</zip-timestamp-merge.phase>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -3194,31 +3237,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId>
             <configuration><skipTests>true</skipTests></configuration>
-          </plugin>
-          <!-- Maintain created and last-modified times between builds -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>zip-timestamp-merge</id><phase>package</phase><goals><goal>run</goal></goals>
-                <configuration>
-                  <target>
-                    <taskdef resource="com/aoapps/ant/tasks/antlib.xml">
-                      <classpath>
-                        <fileset dir="${project.build.directory}"><include name="ao-ant-tasks-*.jar"/></fileset>
-                      </classpath>
-                    </taskdef>
-                    <zip-timestamp-merge
-                      outputTimestamp="${project.build.outputTimestamp}"
-                      buildReproducible="${zip-timestamp-merge.buildReproducible}"
-                      requireLastBuild="${requireLastBuild}"
-                      lastBuildDirectory="${project.build.directory}/last-successful-artifacts"
-                      buildDirectory="${project.build.directory}"
-                    />
-                  </target>
-                </configuration>
-              </execution>
-            </executions>
           </plugin>
           <!-- Always deploy Jenkins builds to local private repositories-->
           <plugin>
