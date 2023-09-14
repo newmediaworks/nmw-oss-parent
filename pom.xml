@@ -2342,6 +2342,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         lastBuildDirectory="${project.build.directory}/last-successful-artifacts"
                         buildDirectory="${project.build.directory}"
                       />
+                      <generate-javadoc-sitemap
+                        buildDirectory="${project.build.directory}"
+                        projectUrl="${project.url}"
+                      />
                     </target>
                   </configuration>
                 </execution>
