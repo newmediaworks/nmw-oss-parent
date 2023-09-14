@@ -2328,18 +2328,18 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                           <fileset dir="${project.build.directory}"><include name="ao-ant-tasks-*.jar"/></fileset>
                         </classpath>
                       </taskdef>
+                      <seo-javadoc-filter
+                        buildDirectory="${project.build.directory}"
+                        projectUrl="${project.url}"
+                        nofollow="${seo-javadoc-filter.nofollow}"
+                        follow="${seo-javadoc-filter.follow}"
+                      />
                       <zip-timestamp-merge
                         outputTimestamp="${project.build.outputTimestamp}"
                         buildReproducible="${zip-timestamp-merge.buildReproducible}"
                         requireLastBuild="${requireLastBuild}"
                         lastBuildDirectory="${project.build.directory}/last-successful-artifacts"
                         buildDirectory="${project.build.directory}"
-                      />
-                      <seo-javadoc-filter
-                        buildDirectory="${project.build.directory}"
-                        apidocsUrl="${project.url}apidocs/"
-                        nofollow="${seo-javadoc-filter.nofollow}"
-                        follow="${seo-javadoc-filter.follow}"
                       />
                     </target>
                   </configuration>
