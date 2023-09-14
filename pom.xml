@@ -211,8 +211,8 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.java.source>${javase.release}</sonar.java.source>
 
-    <!-- Only activated in the "jenkins-deploy" profile -->
-    <ao-ant-tasks.phase>none</ao-ant-tasks.phase>
+    <!-- Some steps are only performed in the "jenkins-deploy" profile -->
+    <ao-ant-tasks.isJenkinsDeploy>false</ao-ant-tasks.isJenkinsDeploy>
     <!--
       Is the last build required for the zip-timestamp-merge Ant task?
       Defaults to true and will typically only be false for either the first build
@@ -2319,9 +2319,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </dependencies>
               <executions>
                 <execution>
-                  <id>zip-timestamp-merge</id><phase>${ao-ant-tasks.phase}</phase><goals><goal>run</goal></goals>
+                  <id>ao-ant-tasks</id><phase>package</phase><goals><goal>run</goal></goals>
                   <configuration>
-                    <target>
+                    <target xmlns:if="ant:if">
                       <taskdef resource="com/aoapps/ant/tasks/antlib.xml">
                         <!-- com.aoapps:ao-ant-tasks does not have this as a parent:
                         <classpath>
@@ -2336,6 +2336,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         follow="${seo-javadoc-filter.follow}"
                       />
                       <zip-timestamp-merge
+                        if:true="ao-ant-tasks.isJenkinsDeploy"
                         outputTimestamp="${project.build.outputTimestamp}"
                         buildReproducible="${zip-timestamp-merge.buildReproducible}"
                         requireLastBuild="${requireLastBuild}"
@@ -2343,6 +2344,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         buildDirectory="${project.build.directory}"
                       />
                       <generate-javadoc-sitemap
+                        if:true="ao-ant-tasks.isJenkinsDeploy"
                         buildDirectory="${project.build.directory}"
                         projectUrl="${project.url}"
                       />
@@ -3203,7 +3205,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development,jenkins,jenkins-deploy
       -->
       <properties>
-        <ao-ant-tasks.phase>package</ao-ant-tasks.phase>
+        <ao-ant-tasks.isJenkinsDeploy>true</ao-ant-tasks.isJenkinsDeploy>
       </properties>
       <build>
         <plugins>
