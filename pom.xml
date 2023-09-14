@@ -88,6 +88,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <com.newmediaworks.nmw-javadoc-resources.version>1.0.2${POST-SNAPSHOT}</com.newmediaworks.nmw-javadoc-resources.version>
     <com.aoapps.ao-ant-tasks.version>1.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-ant-tasks.version>
     <org.apache.commons.commons-compress.version>1.24.0</org.apache.commons.commons-compress.version>
+    <commons-io.commons-io.version>2.13.0</commons-io.commons-io.version>
+    <org.apache.commons.commons-lang3.version>3.13.0</org.apache.commons.commons-lang3.version>
+    <org.apache.commons.commons-text.version>1.10.0</org.apache.commons.commons-text.version>
     <com.aoapps.ao-checkstyle-config.version>1.2.0${POST-SNAPSHOT}</com.aoapps.ao-checkstyle-config.version>
 
     <!-- Maven Javadoc Plugin -->
@@ -110,6 +113,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
     <!-- The version of Java apidocs to link to, preferring https -->
     <!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->
+    <!-- Note: These prefixes match ao-ant-tasks:SeoJavadocFilterTask.java default Java SE nofollow filters -->
     <javadoc.link.javase.5>https://docs.oracle.com/javase/1.5.0/docs/api/</javadoc.link.javase.5>
     <javadoc.link.javase.6>https://docs.oracle.com/javase/6/docs/api/</javadoc.link.javase.6>
     <javadoc.link.javase.7>https://docs.oracle.com/javase/7/docs/api/</javadoc.link.javase.7>
@@ -130,6 +134,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
     <!-- The Java EE apidocs to link to, preferring https -->
     <!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->
+    <!-- Note: These prefixes match ao-ant-tasks:SeoJavadocFilterTask.java default Java EE / Jakarta EE nofollow filters -->
     <javadoc.link.activation>https://jakarta.ee/specifications/activation/1.2/apidocs/</javadoc.link.activation>
     <javadoc.link.javamail>https://javaee.github.io/javamail/docs/api/</javadoc.link.javamail>
     <javadoc.link.javaee.5>https://docs.oracle.com/javaee/5/api/</javadoc.link.javaee.5>
@@ -207,7 +212,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <sonar.java.source>${javase.release}</sonar.java.source>
 
     <!-- Only activated in the "jenkins-deploy" profile -->
-    <zip-timestamp-merge.phase>none</zip-timestamp-merge.phase>
+    <ao-ant-tasks.phase>none</ao-ant-tasks.phase>
     <!--
       Is the last build required for the zip-timestamp-merge Ant task?
       Defaults to true and will typically only be false for either the first build
@@ -222,6 +227,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       so this is disabled in packaging profile for "aar" packaging.
     -->
     <zip-timestamp-merge.buildReproducible>true</zip-timestamp-merge.buildReproducible>
+    <!-- The nofollows URL prefixes for seo-javadoc-filter. -->
+    <seo-javadoc-filter.nofollow>default</seo-javadoc-filter.nofollow>
+    <!-- The follows URL prefixes for seo-javadoc-filter. -->
+    <seo-javadoc-filter.follow>*</seo-javadoc-filter.follow>
 
     <!-- <NetBeans 17 → Project → Properties> -->
     <!--   <Run> -->
@@ -2298,10 +2307,19 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <dependency>
                   <groupId>org.apache.commons</groupId><artifactId>commons-compress</artifactId><version>${org.apache.commons.commons-compress.version}</version>
                 </dependency>
+                <dependency>
+                  <groupId>commons-io</groupId><artifactId>commons-io</artifactId><version>${commons-io.commons-io.version}</version>
+                </dependency>
+                <dependency>
+                  <groupId>org.apache.commons</groupId><artifactId>commons-lang3</artifactId><version>${org.apache.commons.commons-lang3.version}</version>
+                </dependency>
+                <dependency>
+                  <groupId>org.apache.commons</groupId><artifactId>commons-text</artifactId><version>${org.apache.commons.commons-text.version}</version>
+                </dependency>
               </dependencies>
               <executions>
                 <execution>
-                  <id>zip-timestamp-merge</id><phase>${zip-timestamp-merge.phase}</phase><goals><goal>run</goal></goals>
+                  <id>zip-timestamp-merge</id><phase>${ao-ant-tasks.phase}</phase><goals><goal>run</goal></goals>
                   <configuration>
                     <target>
                       <taskdef resource="com/aoapps/ant/tasks/antlib.xml">
@@ -2317,6 +2335,12 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         requireLastBuild="${requireLastBuild}"
                         lastBuildDirectory="${project.build.directory}/last-successful-artifacts"
                         buildDirectory="${project.build.directory}"
+                      />
+                      <seo-javadoc-filter
+                        buildDirectory="${project.build.directory}"
+                        apidocsUrl="${project.url}apidocs/"
+                        nofollow="${seo-javadoc-filter.nofollow}"
+                        follow="${seo-javadoc-filter.follow}"
                       />
                     </target>
                   </configuration>
@@ -3175,7 +3199,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development,jenkins,jenkins-deploy
       -->
       <properties>
-        <zip-timestamp-merge.phase>package</zip-timestamp-merge.phase>
+        <ao-ant-tasks.phase>package</ao-ant-tasks.phase>
       </properties>
       <build>
         <plugins>
