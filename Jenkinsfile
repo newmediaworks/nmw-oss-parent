@@ -70,19 +70,19 @@ def upstreamProjects = [
 
   // Plugin Dependencies
   // No Jenkins: <groupId>org.simplify4u</groupId><artifactId>pgp-keys-map</artifactId>
-  'pgp-keys-map', // <groupId>com.aoapps</groupId><artifactId>pgp-keys-map</artifactId>
+  // Avoid cyclic dependency: 'pgp-keys-map', // <groupId>com.aoapps</groupId><artifactId>pgp-keys-map</artifactId>
   // No Jenkins: <groupId>org.codehaus.mojo</groupId><artifactId>extra-enforcer-rules</artifactId>
   // No Jenkins: <groupId>org.ow2.asm</groupId><artifactId>asm</artifactId>
   // No Jenkins: <groupId>com.puppycrawl.tools</groupId><artifactId>checkstyle</artifactId>
   // No Jenkins: <groupId>com.github.spotbugs</groupId><artifactId>spotbugs</artifactId>
-  'javadoc-offline', // <groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId>
-  'javadoc-resources', // <groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId>
-  'ant-tasks', // <groupId>com.aoapps</groupId><artifactId>ao-ant-tasks</artifactId>
+  // Avoid cyclic dependency: 'javadoc-offline', // <groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId>
+  // Avoid cyclic dependency: 'javadoc-resources', // <groupId>com.aoapps</groupId><artifactId>ao-javadoc-resources</artifactId>
+  // Avoid cyclic dependency: 'ant-tasks', // <groupId>com.aoapps</groupId><artifactId>ao-ant-tasks</artifactId>
   // No Jenkins: <groupId>org.apache.commons</groupId><artifactId>commons-compress</artifactId>
   // No Jenkins: <groupId>commons-io</groupId><artifactId>commons-io</artifactId>
   // No Jenkins: <groupId>org.apache.commons</groupId><artifactId>commons-lang3</artifactId>
   // No Jenkins: <groupId>org.apache.commons</groupId><artifactId>commons-text</artifactId>
-  'checkstyle-config', // <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId>
+  // Avoid cyclic dependency: 'checkstyle-config', // <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId>
 ]
 
 /******************************************************************************************
