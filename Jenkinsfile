@@ -76,7 +76,7 @@ def upstreamProjects = [
   // No Jenkins: <groupId>com.puppycrawl.tools</groupId><artifactId>checkstyle</artifactId>
   // No Jenkins: <groupId>com.github.spotbugs</groupId><artifactId>spotbugs</artifactId>
   '../../ao/oss/javadoc-offline', // <groupId>com.aoapps</groupId><artifactId>ao-javadoc-offline</artifactId>
-  'javadoc-resources', // <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId>
+  // Avoid cyclic dependency: 'javadoc-resources', // <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId>
   '../../ao/oss/ant-tasks', // <groupId>com.aoapps</groupId><artifactId>ao-ant-tasks</artifactId>
   // No Jenkins: <groupId>org.apache.commons</groupId><artifactId>commons-compress</artifactId>
   // No Jenkins: <groupId>commons-io</groupId><artifactId>commons-io</artifactId>
