@@ -1252,7 +1252,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <Bundle-SymbolicName>${module.name}</Bundle-SymbolicName>
               <Bundle-Description>${project.description}</Bundle-Description>
               <Implementation-Title>${project.name}</Implementation-Title>
-              <Implementation-Version>${project.version}</Implementation-Version><!-- TODO: What to do with post-release builds? -->
+              <Implementation-Version>${project.version}</Implementation-Version>
               <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
               <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
               <Implementation-URL>${project.url}</Implementation-URL>
