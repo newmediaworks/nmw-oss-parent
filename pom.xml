@@ -24,12 +24,12 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.20.1-SNAPSHOT</version>
+  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.20.1</version>
   <packaging>pom</packaging>
 
   <properties>
     <!-- Must be set to ${git.commit.time} for snapshots or ISO 8601 timestamp for releases. -->
-    <project.build.outputTimestamp>${git.commit.time}</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2023-09-17T11:19:05Z</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Extensions -->
@@ -186,8 +186,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <!-- Google Analytics tracking code for the javadocs -->
     <google.analytics.trackingId>UA-177004-2</google.analytics.trackingId>
     <!--
-      The Java module name, defaulting to the value previously used for "Bundle-SymbolicName" in Java < 9. All projects should set this to match the module name defined in "module-info.java". Furthermore, projects without "module-info.java" should also add the "Automatic-Module-Name" manifest entry.
-    -->
+      The Java module name, defaulting to the value previously used for "Bundle-SymbolicName" in Java < 9. All projects should set this to match the module name defined in "module-info.java". Furthermore, projects without "module-info.java" should also add the "Automatic-Module-Name" manifest entry. -->
     <module.name>${project.groupId}.${project.artifactId}</module.name>
     <!-- Default bundle resources-filtered, may be overridden as part of "alt.build.dir" property -->
     <bundle.resources-filtered>target/resources-filtered</bundle.resources-filtered>
@@ -1005,7 +1004,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <connection>scm:git:git://github.com/newmediaworks/nmw-oss-parent.git</connection>
     <developerConnection>scm:git:git@github.com:newmediaworks/nmw-oss-parent.git</developerConnection>
     <url>https://github.com/newmediaworks/nmw-oss-parent</url>
-    <tag>HEAD</tag>
+    <tag>nmw-oss-parent-1.20.1</tag>
   </scm>
 
   <issueManagement>
@@ -2355,12 +2354,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         </classpath>
                         -->
                       </taskdef>
-                      <seo-javadoc-filter
-                        buildDirectory="${project.build.directory}"
-                        projectUrl="${project.url}"
-                        nofollow="${seo-javadoc-filter.nofollow}"
-                        follow="${seo-javadoc-filter.follow}"
-                      />
+                      <seo-javadoc-filter buildDirectory="${project.build.directory}" projectUrl="${project.url}" nofollow="${seo-javadoc-filter.nofollow}" follow="${seo-javadoc-filter.follow}" />
                     </target>
                   </configuration>
                 </execution>
@@ -2375,13 +2369,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         </classpath>
                         -->
                       </taskdef>
-                      <zip-timestamp-merge
-                        outputTimestamp="${project.build.outputTimestamp}"
-                        buildReproducible="${zip-timestamp-merge.buildReproducible}"
-                        requireLastBuild="${requireLastBuild}"
-                        lastBuildDirectory="${project.build.directory}/last-successful-artifacts"
-                        buildDirectory="${project.build.directory}"
-                      />
+                      <zip-timestamp-merge outputTimestamp="${project.build.outputTimestamp}" buildReproducible="${zip-timestamp-merge.buildReproducible}" requireLastBuild="${requireLastBuild}" lastBuildDirectory="${project.build.directory}/last-successful-artifacts" buildDirectory="${project.build.directory}" />
                     </target>
                   </configuration>
                 </execution>
@@ -2396,10 +2384,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         </classpath>
                         -->
                       </taskdef>
-                      <generate-javadoc-sitemap
-                        buildDirectory="${project.build.directory}"
-                        projectUrl="${project.url}"
-                      />
+                      <generate-javadoc-sitemap buildDirectory="${project.build.directory}" projectUrl="${project.url}" />
                     </target>
                   </configuration>
                 </execution>
