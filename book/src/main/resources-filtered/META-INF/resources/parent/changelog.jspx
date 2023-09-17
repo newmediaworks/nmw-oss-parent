@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2023-09-16T22:26:57Z"
+    dateModified="2023-09-17T02:47:26Z"
   >
     <c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
       <changelog:release
@@ -159,12 +159,12 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <li>
           <p>
             Using packaging=jar instead of packaging=bundle for all jar projects.
-            OSGI manifest entries are still added, however, as documented at
+            OSGi manifest entries are still added, however, as documented at
             <ao:a href="https://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html#_adding_osgi_metadata_to_existing_projects_without_changing_the_packaging_type">
               Adding OSGi metadata to existing projects without changing the packaging type
             </ao:a>.
             This has the side effect that projects that were previously packaging=jar will now have
-            OSGI manifest entries added.  None of our projects were previously of the jar packaging.
+            OSGi manifest entries added.  None of our projects were previously of the jar packaging.
           </p>
           <p>
             This change is required since <ao:a href="https://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html">maven-bundle-plugin</ao:a>
@@ -1348,7 +1348,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     >
       <ul>
         <li>
-          Added support for packaging as OSGI bundles as <code><![CDATA[&lt;packaging&gt;bundle&lt;/packaging&gt;]]></code>
+          Added support for packaging as OSGi bundles as <code><![CDATA[&lt;packaging&gt;bundle&lt;/packaging&gt;]]></code>
           via the <ao:a href="https://felix.apache.org/components/bundle-plugin/index.html">Maven Bundle Plugin</ao:a>.
         </li>
         <li>Now including unfiltered form of <code>src/main/resources-filtered</code> in source artifacts.</li>

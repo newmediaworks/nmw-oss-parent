@@ -1233,14 +1233,14 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <silent>true</silent>
           </configuration>
         </plugin>
-        <!-- Supporting packaging of "bundle" for OSGI bundles -->
+        <!-- Supporting packaging of "bundle" for OSGi bundles -->
         <plugin>
           <groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId><version>${org.apache.felix.maven-bundle-plugin.version}</version>
           <configuration>
             <instructions>
               <_removeheaders>POST-SNAPSHOT</_removeheaders>
               <!-- TODO: What to do with post-release builds regarding Bundle-Version? -->
-              <!-- TODO: ao-badges for OSGI? -->
+              <!-- TODO: ao-badges for OSGi? -->
               <!-- TODO: _nouses like in http://svn.apache.org/repos/asf/commons/proper/commons-parent/trunk/pom.xml ? -->
               <Bundle-DocURL>${project.url}</Bundle-DocURL>
               <!--
@@ -1880,7 +1880,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </execution>
         </executions>
       </plugin>
-      <!-- Supporting packaging of "bundle" for OSGI bundles -->
+      <!-- Supporting packaging of "bundle" for OSGi bundles -->
       <plugin>
         <groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId>
         <extensions>true</extensions>
