@@ -28,6 +28,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
   <packaging>pom</packaging>
 
   <properties>
+    <!-- Must be set to ${git.commit.time} for snapshots or ISO 8601 timestamp for releases. -->
     <project.build.outputTimestamp>${git.commit.time}</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -1667,6 +1668,33 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                   <message>Maven &gt;= 3.9.0 required for profile activation by packaging</message>
                   <version>[3.9.0,)</version>
                 </requireMavenVersion>
+              </rules>
+            </configuration>
+          </execution>
+          <execution>
+            <id>enforce-project.build.outputTimestamp-iso8601</id><goals><goal>enforce</goal></goals>
+            <configuration>
+              <rules>
+                <requireProperty>
+                  <property>project.build.outputTimestamp</property>
+                  <regex>^[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$</regex>
+                  <regexMessage>Property 'project.build.outputTimestamp' must be an ISO 8601 timestamp in 'yyyy-MM-ddTHH:mm:ssZ' format.</regexMessage>
+                </requireProperty>
+              </rules>
+            </configuration>
+          </execution>
+          <!--
+            Verify ${project.build.outputTimestamp} equals ${git.commit.time} to ensure
+            ${project.build.outputTimestamp} is properly set back to ${git.commit.time} after releases. -->
+          <execution>
+            <id>enforce-git.commit.time</id><goals><goal>enforce</goal></goals>
+            <configuration>
+              <rules>
+                <requireProperty>
+                  <property>project.build.outputTimestamp</property>
+                  <regex>^${git.commit.time}$</regex>
+                  <regexMessage>Property 'project.build.outputTimestamp' must be set to $${git.commit.time} except during release.</regexMessage>
+                </requireProperty>
               </rules>
             </configuration>
           </execution>
@@ -3325,6 +3353,23 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                   </rules>
                   <fail>true</fail>
                 </configuration>
+              </execution>
+              <!-- ${git.commit.time} is not defined during release builds, cannot verify -->
+              <execution>
+                <id>enforce-git.commit.time</id><phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <!--
+            maven-release-plugin release:prepare puts an ISO 8601 timestamp into ${project.build.outputTimestamp}.
+            This is useful in support of reproducible releases without a dependency on the Git repository.
+            Correspondingly, disable the generation of the ${git.commit.time} property.
+          -->
+          <plugin>
+            <groupId>io.github.git-commit-id</groupId><artifactId>git-commit-id-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>git.commit.time</id><phase>none</phase>
               </execution>
             </executions>
           </plugin>
