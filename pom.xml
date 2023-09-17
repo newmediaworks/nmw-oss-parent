@@ -1253,14 +1253,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
               <Implementation-URL>${project.url}</Implementation-URL>
               <Specification-Title>${project.name}</Specification-Title>
-              <!--
-                TODO: The Specification-Version is not being set to major.minor as expected.
-                  Could be related to being in parent pom?
-                Possibly related:
-                  https://issues.apache.org/jira/browse/FELIX-3392
-                  https://stackoverflow.com/questions/12279952/mercurial-changeset-in-osgi-bundle-manifest-with-maven
-                Not important enought to put any more time into this, at least for now.
-              -->
               <Specification-Version>${project.artifact.selectedVersion.majorVersion}.${project.artifact.selectedVersion.minorVersion}</Specification-Version>
               <Specification-Vendor>${project.organization.name}</Specification-Vendor>
               <!-- Instructions not found in docs, and adapted by what found in https://github.com/mybatis/parent/blob/master/pom.xml -->
