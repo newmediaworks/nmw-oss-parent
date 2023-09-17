@@ -1417,7 +1417,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </manifestEntries>
             </archive>
             <notimestamp>true</notimestamp>
-            <!-- TODO: Here and all javadocs, support canonical URL links in generated docs -->
             <packagesheader><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${project.version}</a>]]></packagesheader>
             <header><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${project.version}</a>]]></header>
             <keywords>true</keywords><!-- Help internal search systems -->
