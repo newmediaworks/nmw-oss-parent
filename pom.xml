@@ -1235,7 +1235,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <configuration>
             <instructions>
               <_removeheaders>POST-SNAPSHOT</_removeheaders>
-              <!-- TODO: ao-badges for OSGi? -->
               <!-- TODO: _nouses like in http://svn.apache.org/repos/asf/commons/proper/commons-parent/trunk/pom.xml ? -->
               <Bundle-DocURL>${project.url}</Bundle-DocURL>
               <!--
