@@ -1235,7 +1235,13 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <configuration>
             <instructions>
               <_removeheaders>POST-SNAPSHOT</_removeheaders>
-              <!-- TODO: _nouses like in http://svn.apache.org/repos/asf/commons/proper/commons-parent/trunk/pom.xml ? -->
+              <!--
+                _nouses to avoid NP-hard time complexity in "uses" resolvers.
+                See https://github.com/apache/commons-parent/blob/master/pom.xml
+                See https://cwiki.apache.org/confluence/display/UIMA/Building+Eclipse+Plugins+with+maven-bundle-plugin+and+friends
+                See https://www.eclipse.org/lists/stp-dev/msg01624.html
+              -->
+              <_nouses>true</_nouses>
               <Bundle-DocURL>${project.url}</Bundle-DocURL>
               <!--
                 Other values seen at http://maven.reprezen.com/repository/releases/com/fasterxml/oss-parent/11/oss-parent-11.pom
