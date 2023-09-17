@@ -24,7 +24,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.23.1-POST-SNAPSHOT</version>
+  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.23.2-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
