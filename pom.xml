@@ -112,6 +112,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.maven.plugins.maven-javadoc-plugin.version.reactor>3.0.1</org.apache.maven.plugins.maven-javadoc-plugin.version.reactor>
     <copy-element-list-to-package-list-before-javadoc.phase>none</copy-element-list-to-package-list-before-javadoc.phase>
 
+    <!-- devMode flag, enabled in "development" profile, enforced must be disabled in "publish" profile -->
+    <devMode>false</devMode>
+
     <!-- The version of Java apidocs to link to, preferring https -->
     <!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->
     <!-- Note: These prefixes match ao-ant-tasks:SeoJavadocFilterTask.java default Java SE nofollow filters -->
@@ -3092,6 +3095,8 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <profile>
       <id>development</id><activation><file><exists>profile.d/development</exists></file></activation>
       <properties>
+        <!-- devMode flag, enabled in "development" profile, enforced must be disabled in "publish" profile -->
+        <devMode>true</devMode>
         <!-- Never stage development builds -->
         <nexus.skipNexusStagingDeployMojo>true</nexus.skipNexusStagingDeployMojo>
       </properties>
@@ -3408,13 +3413,17 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <id>publish-enforce-profiles</id><goals><goal>enforce</goal></goals>
                 <configuration>
                   <rules>
-                    <!-- TODO: How to disallow "development" profile when publish? -->
                     <requireActiveProfile>
                       <message>"publish" requires "POST-SNAPSHOT" profile</message>
                       <profiles>POST-SNAPSHOT</profiles>
                     </requireActiveProfile>
+                    <!-- devMode flag, enabled in "development" profile, enforced must be disabled in "publish" profile -->
+                    <requireProperty>
+                      <property>devMode</property>
+                      <regex>^false$</regex>
+                      <regexMessage>"publish" requires 'devMode' property must be 'false'</regexMessage>
+                    </requireProperty>
                   </rules>
-                  <fail>true</fail>
                 </configuration>
               </execution>
             </executions>
