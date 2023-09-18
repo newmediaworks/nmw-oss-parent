@@ -1425,8 +1425,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </manifestEntries>
             </archive>
             <notimestamp>true</notimestamp>
-            <packagesheader><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${project.version}</a>]]></packagesheader>
-            <header><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${project.version}</a>]]></header>
+            <packagesheader><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${build.versionNoPostSnapshot}</a>]]></packagesheader>
+            <header><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name} ${build.versionNoPostSnapshot}</a>]]></header>
             <keywords>true</keywords><!-- Help internal search systems -->
             <quiet>true</quiet>
             <docfilessubdirs>true</docfilessubdirs>
