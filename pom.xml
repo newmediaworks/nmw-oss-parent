@@ -168,6 +168,18 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <maven.compiler.source>${javase.version}</maven.compiler.source>
     <maven.compiler.target>${javase.version}</maven.compiler.target>
     <maven.compiler.release>${javase.release}</maven.compiler.release>
+
+    <!--
+      The path to the sub-project.
+      This should be empty for the top-level project or the path (ending in slash) to append to ${project.url}.
+
+      One important use is the offsetting of the generated Javadoc apidocs/ URL.
+      This is because others may publish our sub-project API docs that we do not publish directly (such as books).
+      When published, we do not want conflicting canonical URLs.
+
+      Sub-projects that both share the same ${project.url} and generate Javadocs must override this value. -->
+    <subproject.subpath />
+
     <!--
       The frame target for links from javadocs:
         Can be "_self" for JDK >= 9, since the apidocs do not use frames.
@@ -1498,7 +1510,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <li><a target="${javadoc.target}" href="${project.url}">Project Home</a></li>
       <li><a target="${javadoc.target}" href="${project.url}changelog">Changelog</a></li>
       ${javadoc.taglibReference}
-      <li><a target="${javadoc.target}" href="${project.url}apidocs/">API Docs</a></li>
+      <li><a target="${javadoc.target}" href="${project.url}${subproject.subpath}apidocs/">API Docs</a></li>
       <li><a target="${javadoc.target}" href="https://central.sonatype.com/artifact/${project.groupId}/${project.artifactId}">Maven Central Repository</a></li>
       <li><a target="${javadoc.target}" href="${project.scm.url}">GitHub</a></li>
     </ul>
@@ -2355,7 +2367,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                           <fileset dir="${project.build.directory}"><include name="ao-ant-tasks-*.jar" /></fileset>
                         </classpath>
                       </taskdef>
-                      <seo-javadoc-filter buildDirectory="${project.build.directory}" projectUrl="${project.url}" nofollow="${seo-javadoc-filter.nofollow}" follow="${seo-javadoc-filter.follow}" />
+                      <seo-javadoc-filter buildDirectory="${project.build.directory}" projectUrl="${project.url}" subprojectSubpath="${subproject.subpath}" nofollow="${seo-javadoc-filter.nofollow}" follow="${seo-javadoc-filter.follow}" />
                     </target>
                   </configuration>
                 </execution>
@@ -2381,7 +2393,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                           <fileset dir="${project.build.directory}"><include name="ao-ant-tasks-*.jar" /></fileset>
                         </classpath>
                       </taskdef>
-                      <generate-javadoc-sitemap buildDirectory="${project.build.directory}" projectUrl="${project.url}" />
+                      <generate-javadoc-sitemap buildDirectory="${project.build.directory}" projectUrl="${project.url}" subprojectSubpath="${subproject.subpath}" />
                     </target>
                   </configuration>
                 </execution>
