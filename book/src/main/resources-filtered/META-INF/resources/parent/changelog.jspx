@@ -37,9 +37,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2019-05-24T19:05:12-05:00"
-    dateModified="2023-09-17T11:19:34Z"
+    dateModified="2023-09-18T01:27:39Z"
     allowRobots="false"
-   >
+  >
     <c:set var="latestRelease" value="1.20.1" />
     <c:if test="${
       fn:endsWith('@{project.version}', '-SNAPSHOT')
@@ -53,7 +53,15 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         artifactId="@{documented.artifactId}"
         repository="@{nexusUrl}content/repositories/snapshots/"
         scmUrl="@{project.scm.url}"
-      />
+      >
+        <ul>
+          <li>
+            Stripping any <code>-POST-SNAPSHOT</code> from versions used in Javadoc
+            <ao:a href="https://maven.apache.org/plugins/maven-javadoc-plugin/jar-mojo.html#doctitle">doctitle</ao:a>
+            and <ao:a href="https://maven.apache.org/plugins/maven-javadoc-plugin/jar-mojo.html#windowtitle">windowtitle</ao:a>.
+          </li>
+        </ul>
+      </changelog:release>
     </c:if>
 
     <changelog:release
