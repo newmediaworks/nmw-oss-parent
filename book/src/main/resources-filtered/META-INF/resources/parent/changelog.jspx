@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2023-09-17T06:47:50Z"
+    dateModified="2023-09-18T01:27:39Z"
   >
     <c:set var="latestRelease" value="1.23.2" />
     <c:if test="${
@@ -54,6 +54,13 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         scmUrl="@{project.scm.url}"
       >
         <!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
+        <ul>
+          <li>
+            Stripping any <code>-POST-SNAPSHOT</code> from versions used in Javadoc
+            <ao:a href="https://maven.apache.org/plugins/maven-javadoc-plugin/jar-mojo.html#doctitle">doctitle</ao:a>
+            and <ao:a href="https://maven.apache.org/plugins/maven-javadoc-plugin/jar-mojo.html#windowtitle">windowtitle</ao:a>.
+          </li>
+        </ul>
       </changelog:release>
     </c:if>
 

@@ -1411,6 +1411,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <release>${maven.compiler.release}</release>
             <additionalJOption>--allow-script-in-comments</additionalJOption>
             <doclint>all,-missing</doclint>
+            <doctitle>${project.name} ${build.versionNoPostSnapshot} API</doctitle>
+            <windowtitle>${project.name} ${build.versionNoPostSnapshot} API</windowtitle>
             <archive>
               <manifest>
                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
