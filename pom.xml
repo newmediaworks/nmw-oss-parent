@@ -24,7 +24,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.20.1-POST-SNAPSHOT</version>
+  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.21.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
@@ -87,7 +87,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <com.github.spotbugs.spotbugs.version>4.7.3</com.github.spotbugs.spotbugs.version>
     <com.aoapps.ao-javadoc-offline.version>3.4.1${POST-SNAPSHOT}</com.aoapps.ao-javadoc-offline.version>
     <com.newmediaworks.nmw-javadoc-resources.version>1.0.2${POST-SNAPSHOT}</com.newmediaworks.nmw-javadoc-resources.version>
-    <com.aoapps.ao-ant-tasks.version>1.0.0${POST-SNAPSHOT}</com.aoapps.ao-ant-tasks.version>
+    <com.aoapps.ao-ant-tasks.version>1.1.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-ant-tasks.version>
     <org.apache.commons.commons-compress.version>1.24.0</org.apache.commons.commons-compress.version>
     <commons-io.commons-io.version>2.13.0</commons-io.commons-io.version>
     <org.apache.commons.commons-lang3.version>3.13.0</org.apache.commons.commons-lang3.version>
