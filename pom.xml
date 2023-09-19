@@ -1690,24 +1690,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </rules>
             </configuration>
           </execution>
-          <!--
-            Verify ${project.build.outputTimestamp} equals ${git.commit.time} to ensure
-            ${project.build.outputTimestamp} is properly set back to ${git.commit.time} after releases. -->
-          <execution>
-            <!--
-              Changed phase from default "validate" to "initialize" to workaround a race condition that would cause
-              this regex check to occasionally fail despite reporting equal values in the regexMessage. -->
-            <id>enforce-git.commit.time</id><phase>initialize</phase><goals><goal>enforce</goal></goals>
-            <configuration>
-              <rules>
-                <requireProperty>
-                  <property>project.build.outputTimestamp</property>
-                  <regex>^${git.commit.time}$</regex>
-                  <regexMessage>Property 'project.build.outputTimestamp' must be set to $${git.commit.time} except during release: "${project.build.outputTimestamp}" != "${git.commit.time}"</regexMessage>
-                </requireProperty>
-              </rules>
-            </configuration>
-          </execution>
           <execution>
             <id>enforce-bytecode-version</id><goals><goal>enforce</goal></goals>
             <configuration>
@@ -1967,6 +1949,22 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <!--
+            Verify ${project.build.outputTimestamp} equals ${git.commit.time} to ensure
+            ${project.build.outputTimestamp} is properly set back to ${git.commit.time} after releases. -->
+          <execution>
+            <id>enforce-git.commit.time</id><phase>validate</phase><goals><goal>run</goal></goals>
+            <configuration>
+              <target>
+                <condition property="outputTimestampIsCommitTime">
+                  <equals arg1="${project.build.outputTimestamp}" arg2="${git.commit.time}" forcestring="true" />
+                </condition>
+                <fail unless="outputTimestampIsCommitTime" message="Property 'project.build.outputTimestamp' must be set to $${git.commit.time} except during release: &quot;${project.build.outputTimestamp}&quot; != &quot;${git.commit.time}&quot;" />
+              </target>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
@@ -3424,10 +3422,6 @@ Found the following files: ${javaSourceFiles}" />
                   <fail>true</fail>
                 </configuration>
               </execution>
-              <!-- ${git.commit.time} is not defined during release builds, cannot verify -->
-              <execution>
-                <id>enforce-git.commit.time</id><phase>none</phase>
-              </execution>
             </executions>
           </plugin>
           <!--
@@ -3462,6 +3456,15 @@ Found the following files: ${javaSourceFiles}" />
               <execution>
                 <!-- Add tests as a secondary artifact -->
                 <id>attach-test-sources</id><goals><goal>test-jar-no-fork</goal></goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <!-- ${git.commit.time} is not defined during release builds, cannot verify -->
+              <execution>
+                <id>enforce-git.commit.time</id><phase>none</phase>
               </execution>
             </executions>
           </plugin>
