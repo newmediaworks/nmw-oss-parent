@@ -174,10 +174,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       This should be empty for the top-level project or the path (ending in slash) to append to ${project.url}.
 
       One important use is the offsetting of the generated Javadoc apidocs/ URL.
-      This is because others may publish our sub-project javadocs that we do not publish directly (such as books).
+      This is because others may publish our sub-project API docs that we do not publish directly (such as books).
       When published, we do not want conflicting canonical URLs.
 
-      Sub-projects that both share the same ${project.url} and generate javadocs must override this value. -->
+      Sub-projects that both share the same ${project.url} and generate Javadocs must override this value. -->
     <subproject.subpath />
 
     <!--
@@ -2364,7 +2364,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       <taskdef resource="com/aoapps/ant/tasks/antlib.xml">
                         <!-- com.aoapps:ao-ant-tasks does not have this as a parent:
                         <classpath>
-                          <fileset dir="${project.build.directory}"><include name="ao-ant-tasks-*.jar"/></fileset>
+                          <fileset dir="${project.build.directory}"><include name="ao-ant-tasks-*.jar" /></fileset>
                         </classpath>
                         -->
                       </taskdef>
@@ -2379,7 +2379,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       <taskdef resource="com/aoapps/ant/tasks/antlib.xml">
                         <!-- com.aoapps:ao-ant-tasks does not have this as a parent:
                         <classpath>
-                          <fileset dir="${project.build.directory}"><include name="ao-ant-tasks-*.jar"/></fileset>
+                          <fileset dir="${project.build.directory}"><include name="ao-ant-tasks-*.jar" /></fileset>
                         </classpath>
                         -->
                       </taskdef>
@@ -2394,7 +2394,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       <taskdef resource="com/aoapps/ant/tasks/antlib.xml">
                         <!-- com.aoapps:ao-ant-tasks does not have this as a parent:
                         <classpath>
-                          <fileset dir="${project.build.directory}"><include name="ao-ant-tasks-*.jar"/></fileset>
+                          <fileset dir="${project.build.directory}"><include name="ao-ant-tasks-*.jar" /></fileset>
                         </classpath>
                         -->
                       </taskdef>
@@ -2748,6 +2748,35 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>verify-no-java-in-src</id><phase>validate</phase><goals><goal>run</goal></goals>
+                <configuration>
+                  <target xmlns:unless="ant:unless">
+                    <!-- Fail if no ${project.build.sourceDirectory} -->
+                    <available property="sourceDirectoryExists" file="${project.build.sourceDirectory}" type="dir" />
+                    <fail unless="sourceDirectoryExists" message="profile.d/maven.javadoc.skip exists while ${project.build.sourceDirectory}
+does not exist or is not a directory.  Please:
+1) Remove profile.d/maven.javadoc.skip" />
+                    <available property="developmentProfileExists" file="${project.basedir}/profile.d/development" type="file" />
+                    <pathconvert unless:set="developmentProfileExists" property="javaSourceFiles" setonempty="false" pathsep=" ">
+                      <path>
+                        <fileset dir="${project.build.sourceDirectory}" excludes="module-info.java" includes="**/*.java" />
+                      </path>
+                    </pathconvert>
+                    <fail unless:set="developmentProfileExists" if="javaSourceFiles" message="May not skip javadocs when have *.java source files other than module-info.java.  Please:
+1) Remove profile.d/maven.javadoc.skip
+2) Configure javadoc.breadcrumbs property (and related)
+3) Adds offlineLinks profile if have dependencies not in ao-javadoc-offline (do not do on books which do not have published apidocs)
+
+Found the following files: ${javaSourceFiles}" />
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
             <executions>
               <execution>
@@ -2758,6 +2787,39 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
             <configuration><skip>true</skip></configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>not-maven.javadoc.skip</id><activation><file><missing>profile.d/maven.javadoc.skip</missing></file></activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>verify-java-in-src</id><phase>validate</phase><goals><goal>run</goal></goals>
+                <configuration>
+                  <target xmlns:if="ant:if">
+                    <!-- Require profile.d/maven.javadoc.skip when profile.d/development exists? -->
+                    <available property="developmentProfileExists" file="${project.basedir}/profile.d/development" type="file" />
+                    <fail if="developmentProfileExists" message="profile.d/maven.javadoc.skip required when profile.d/development exists" />
+                    <!-- Only when ${project.build.sourceDirectory} exists -->
+                    <available property="sourceDirectoryExists" file="${project.build.sourceDirectory}" type="dir" />
+                    <pathconvert if:set="sourceDirectoryExists" property="javaSourceFiles" setonempty="false" pathsep=" ">
+                      <path>
+                        <fileset dir="${project.build.sourceDirectory}" excludes="module-info.java" includes="**/*.java" />
+                      </path>
+                    </pathconvert>
+                    <fail if:set="sourceDirectoryExists" unless="javaSourceFiles" message="Must skip javadocs when have no *.java source files other than module-info.java.  Please:
+1) Add empty profile.d/maven.javadoc.skip
+2) Remove javadoc.breadcrumbs property (and related)
+3) Remove any offlineLinks profile" />
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
