@@ -114,6 +114,8 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
     <!-- devMode flag, enabled in "development" profile, enforced must be disabled in "publish" profile -->
     <devMode>false</devMode>
+    <!-- devMode may be "true" only for projects that have profile.d/development which never publish anything. -->
+    <devMode.enforceNotPublished.phase>validate</devMode.enforceNotPublished.phase>
 
     <!-- The version of Java apidocs to link to, preferring https -->
     <!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->
@@ -3467,6 +3469,13 @@ Found the following files: ${javaSourceFiles}" />
       </build>
     </profile>
     <profile>
+      <id>devMode.allowPublished</id><activation><file><exists>profile.d/development</exists></file></activation>
+      <properties>
+        <!-- devMode may be "true" only for projects that have profile.d/development which never publish anything. -->
+        <devMode.enforceNotPublished.phase>none</devMode.enforceNotPublished.phase>
+      </properties>
+    </profile>
+    <profile>
       <id>publish</id>
       <build>
         <plugins>
@@ -3481,6 +3490,13 @@ Found the following files: ${javaSourceFiles}" />
                       <message>"publish" requires "POST-SNAPSHOT" profile</message>
                       <profiles>POST-SNAPSHOT</profiles>
                     </requireActiveProfile>
+                  </rules>
+                </configuration>
+              </execution>
+              <execution>
+                <id>devMode.enforceNotPublished</id><phase>${devMode.enforceNotPublished.phase}</phase><goals><goal>enforce</goal></goals>
+                <configuration>
+                  <rules>
                     <!-- devMode flag, enabled in "development" profile, enforced must be disabled in "publish" profile -->
                     <requireProperty>
                       <property>devMode</property>
