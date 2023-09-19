@@ -1697,13 +1697,16 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             Verify ${project.build.outputTimestamp} equals ${git.commit.time} to ensure
             ${project.build.outputTimestamp} is properly set back to ${git.commit.time} after releases. -->
           <execution>
-            <id>enforce-git.commit.time</id><goals><goal>enforce</goal></goals>
+            <!--
+              Changed phase from default "validate" to "initialize" to workaround a race condition that would cause
+              this regex check to occasionally fail despite reporting equal values in the regexMessage. -->
+            <id>enforce-git.commit.time</id><phase>initialize</phase><goals><goal>enforce</goal></goals>
             <configuration>
               <rules>
                 <requireProperty>
                   <property>project.build.outputTimestamp</property>
                   <regex>^${git.commit.time}$</regex>
-                  <regexMessage>Property 'project.build.outputTimestamp' must be set to $${git.commit.time} except during release.</regexMessage>
+                  <regexMessage>Property 'project.build.outputTimestamp' must be set to $${git.commit.time} except during release: "${project.build.outputTimestamp}" != "${git.commit.time}"</regexMessage>
                 </requireProperty>
               </rules>
             </configuration>
