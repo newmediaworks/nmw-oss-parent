@@ -117,6 +117,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <!-- devMode may be "true" only for projects that have profile.d/development which never publish anything. -->
     <devMode.enforceNotPublished.phase>validate</devMode.enforceNotPublished.phase>
 
+    <!-- May optionally allow javadocs despite being development-only -->
+    <verify-java-in-src.allowJavadocInDevelopmentProfile>false</verify-java-in-src.allowJavadocInDevelopmentProfile>
+
     <!-- The version of Java apidocs to link to, preferring https -->
     <!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->
     <!-- Note: These prefixes match ao-ant-tasks:SeoJavadocFilterTask.java default Java SE nofollow filters -->
@@ -2799,10 +2802,10 @@ Found the following files: ${javaSourceFiles}" />
               <execution>
                 <id>verify-java-in-src</id><phase>validate</phase><goals><goal>run</goal></goals>
                 <configuration>
-                  <target xmlns:if="ant:if">
+                  <target xmlns:if="ant:if" xmlns:unless="ant:unless">
                     <!-- Require profile.d/maven.javadoc.skip when profile.d/development exists? -->
-                    <available property="developmentProfileExists" file="${project.basedir}/profile.d/development" type="file" />
-                    <fail if="developmentProfileExists" message="profile.d/maven.javadoc.skip required when profile.d/development exists" />
+                    <available unless:true="${verify-java-in-src.allowJavadocInDevelopmentProfile}" property="developmentProfileExists" file="${project.basedir}/profile.d/development" type="file" />
+                    <fail unless:true="${verify-java-in-src.allowJavadocInDevelopmentProfile}" if="developmentProfileExists" message="profile.d/maven.javadoc.skip required when profile.d/development exists" />
                     <!-- Only when ${project.build.sourceDirectory} exists -->
                     <available property="sourceDirectoryExists" file="${project.build.sourceDirectory}" type="dir" />
                     <pathconvert if:set="sourceDirectoryExists" property="javaSourceFiles" setonempty="false" pathsep=" ">
