@@ -1447,7 +1447,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <detectJavaApiLink>false</detectJavaApiLink>
             <!-- Links between projects are added manually on a per-project basis -->
             <detectOfflineLinks>false</detectOfflineLinks>
-            <!-- Java 17: Use -legal-notices with the project's license: https://bugs.openjdk.java.net/browse/JDK-8259530 -->
+            <!-- Java 17: Use -legal-notices with the project's license: https://bugs.openjdk.org/browse/JDK-8259530 -->
             <top>
 <![CDATA[<style>
   ${javadoc.html.style}
@@ -2441,7 +2441,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       </properties>
     </profile>
     <!--
-      Workaround JDK-8215291 in JDK < 12 for projects without any module-info.java: https://bugs.openjdk.java.net/browse/JDK-8215291 -->
+      Workaround JDK-8215291 in JDK < 12 for projects without any module-info.java: https://bugs.openjdk.org/browse/JDK-8215291 -->
     <profile>
       <id>workaround-JDK-8215291</id>
       <activation>
