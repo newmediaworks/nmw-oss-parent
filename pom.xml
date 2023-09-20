@@ -86,7 +86,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <com.puppycrawl.tools.checkstyle.version>10.12.3</com.puppycrawl.tools.checkstyle.version>
     <com.github.spotbugs.spotbugs.version>4.7.3</com.github.spotbugs.spotbugs.version>
     <com.aoapps.ao-javadoc-offline.version>3.4.1${POST-SNAPSHOT}</com.aoapps.ao-javadoc-offline.version>
-    <com.aoapps.ao-javadoc-resources.version>1.0.2${POST-SNAPSHOT}</com.aoapps.ao-javadoc-resources.version>
+    <com.aoapps.ao-javadoc-resources.version>1.1.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-javadoc-resources.version>
     <com.aoapps.ao-ant-tasks.version>1.1.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-ant-tasks.version>
     <org.apache.commons.commons-compress.version>1.24.0</org.apache.commons.commons-compress.version>
     <commons-io.commons-io.version>2.13.0</commons-io.commons-io.version>
@@ -1675,6 +1675,22 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
         <executions>
+          <execution>
+            <id>enforce-jdk</id><goals><goal>enforce</goal></goals>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <!-- Matches Java version for ao-ant-tasks -->
+                  <!-- Matches Java version for ao-checkstyle-config -->
+                  <!-- Matches Java version for ao-javadoc-offline -->
+                  <!-- Matches Java version for ao-javadoc-resources (and related forks) -->
+                  <!-- Matches Java version for ao-pgp-keys-map -->
+                  <message>JDK &gt;= 11 required for building</message>
+                  <version>[11,)</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
           <execution>
             <id>enforce-maven</id><goals><goal>enforce</goal></goals>
             <configuration>
@@ -3329,6 +3345,10 @@ Found the following files: ${javaSourceFiles}" />
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
             <executions>
+              <execution>
+                <!-- Already enforced during "Build" phase -->
+                <id>enforce-jdk</id><phase>none</phase>
+              </execution>
               <execution>
                 <!-- Already enforced during "Build" phase -->
                 <id>enforce-maven</id><phase>none</phase>
