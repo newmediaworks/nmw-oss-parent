@@ -3238,7 +3238,7 @@ Found the following files: ${javaSourceFiles}" />
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
             <executions>
               <execution>
-                <!-- Always enforce in Jekins builds -->
+                <!-- Always enforce in Jenkins builds -->
                 <id>enforce-bytecode-version</id><phase>validate</phase>
               </execution>
               <execution>
