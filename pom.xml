@@ -117,6 +117,55 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <!-- devMode may be "true" only for projects that have profile.d/development which never publish anything. -->
     <devMode.enforceNotPublished.phase>validate</devMode.enforceNotPublished.phase>
 
+    <!--
+        Selectively enabled/disabled in development, skip-war, jenkins, jenkins-deploy, and release profiles.
+
+        Useful to determine what to skip:
+        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT
+        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development
+        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development,skip-war
+        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,jenkins
+        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development,jenkins
+        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,jenkins,jenkins-deploy
+        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development,jenkins,jenkins-deploy
+        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -P'!POST-SNAPSHOT',release
+
+        Example colordiff while handling differing ASCII table widths:
+        colordiff \
+          <(mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT | sed -E -e 's/ +\| / | /g') \
+          <(mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development | sed -E -e 's/ +\| / | /g')
+    -->
+    <pgpverify-check.phase>validate</pgpverify-check.phase>
+    <git.commit.time.phase>validate</git.commit.time.phase>
+    <enforce-jdk.phase>validate</enforce-jdk.phase>
+    <enforce-maven.phase>validate</enforce-maven.phase>
+    <enforce-project.build.outputTimestamp-iso8601.phase>validate</enforce-project.build.outputTimestamp-iso8601.phase>
+    <enforce-bytecode-version.phase>validate</enforce-bytecode-version.phase>
+    <require-POST-SNAPSHOT-is-snapshot-version.phase>validate</require-POST-SNAPSHOT-is-snapshot-version.phase>
+    <require-javadoc.breadcrumbs.phase>validate</require-javadoc.breadcrumbs.phase>
+    <require-development-is-snapshot-version.phase>validate</require-development-is-snapshot-version.phase>
+    <audit-dependencies.phase>validate</audit-dependencies.phase>
+    <enforce-git.commit.time.phase>validate</enforce-git.commit.time.phase>
+    <verify-no-java-in-src.phase>validate</verify-no-java-in-src.phase>
+    <verify-java-in-src.phase>validate</verify-java-in-src.phase>
+    <remove-empty-test.phase>initialize</remove-empty-test.phase>
+    <bundle-manifest.phase>process-classes</bundle-manifest.phase>
+    <unpack.offlineLinks.phase>prepare-package</unpack.offlineLinks.phase>
+    <process.offlineLinks.phase>prepare-package</process.offlineLinks.phase>
+    <attach-tests.phase>package</attach-tests.phase>
+    <attach-sources.phase>none</attach-sources.phase>
+    <attach-test-sources.phase>none</attach-test-sources.phase>
+    <attach-javadocs.phase>package</attach-javadocs.phase>
+    <attach-test-javadocs.phase>package</attach-test-javadocs.phase>
+    <seo-javadoc-filter.phase>package</seo-javadoc-filter.phase>
+    <zip-timestamp-merge.phase>none</zip-timestamp-merge.phase>
+    <generate-javadoc-sitemap.phase>package</generate-javadoc-sitemap.phase>
+    <sign-artifacts.phase>verify</sign-artifacts.phase>
+    <analyze-dependencies.phase>verify</analyze-dependencies.phase>
+    <unpack.ao-checkstyle-config.phase>verify</unpack.ao-checkstyle-config.phase>
+    <checkstyle.phase>verify</checkstyle.phase>
+    <spotbugs.phase>verify</spotbugs.phase>
+
     <!-- May optionally allow javadocs despite being development-only -->
     <verify-java-in-src.allowJavadocInDevelopmentProfile>false</verify-java-in-src.allowJavadocInDevelopmentProfile>
 
@@ -1646,7 +1695,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId>
         <executions>
           <execution>
-            <id>pgpverify-check</id><goals><goal>check</goal></goals>
+            <id>pgpverify-check</id><phase>${pgpverify-check.phase}</phase><goals><goal>check</goal></goals>
           </execution>
         </executions>
       </plugin>
@@ -1654,7 +1703,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <groupId>io.github.git-commit-id</groupId><artifactId>git-commit-id-maven-plugin</artifactId>
         <executions>
           <execution>
-            <id>git.commit.time</id><phase>validate</phase><goals><goal>revision</goal></goals>
+            <id>git.commit.time</id><phase>${git.commit.time.phase}</phase><goals><goal>revision</goal></goals>
             <configuration>
               <skipPoms>false</skipPoms>
               <dateFormat>yyyy-MM-dd'T'HH:mm:ss'Z'</dateFormat>
@@ -1671,7 +1720,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
         <executions>
           <execution>
-            <id>enforce-jdk</id><goals><goal>enforce</goal></goals>
+            <id>enforce-jdk</id><phase>${enforce-jdk.phase}</phase><goals><goal>enforce</goal></goals>
             <configuration>
               <rules>
                 <requireJavaVersion>
@@ -1687,7 +1736,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             </configuration>
           </execution>
           <execution>
-            <id>enforce-maven</id><goals><goal>enforce</goal></goals>
+            <id>enforce-maven</id><phase>${enforce-maven.phase}</phase><goals><goal>enforce</goal></goals>
             <configuration>
               <rules>
                 <requireMavenVersion>
@@ -1698,7 +1747,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             </configuration>
           </execution>
           <execution>
-            <id>enforce-project.build.outputTimestamp-iso8601</id><goals><goal>enforce</goal></goals>
+            <id>enforce-project.build.outputTimestamp-iso8601</id><phase>${enforce-project.build.outputTimestamp-iso8601.phase}</phase><goals><goal>enforce</goal></goals>
             <configuration>
               <rules>
                 <requireProperty>
@@ -1710,7 +1759,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             </configuration>
           </execution>
           <execution>
-            <id>enforce-bytecode-version</id><goals><goal>enforce</goal></goals>
+            <id>enforce-bytecode-version</id><phase>${enforce-bytecode-version.phase}</phase><goals><goal>enforce</goal></goals>
             <configuration>
               <rules>
                 <enforceBytecodeVersion>
@@ -1856,12 +1905,12 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </execution>
         </executions>
       </plugin>
-      <!-- Sign all builds -->
+      <!-- Sign all builds except "skip-war" -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId>
         <executions>
           <execution>
-            <id>sign-artifacts</id><phase>verify</phase><goals><goal>sign</goal></goals>
+            <id>sign-artifacts</id><phase>${sign-artifacts.phase}</phase><goals><goal>sign</goal></goals>
           </execution>
         </executions>
       </plugin>
@@ -1879,7 +1928,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId>
         <executions>
           <execution>
-            <id>audit-dependencies</id><phase>validate</phase><goals><goal>audit</goal></goals>
+            <id>audit-dependencies</id><phase>${audit-dependencies.phase}</phase><goals><goal>audit</goal></goals>
             <configuration>
               <!-- Perform audit, fail the build when vulnerable components are found -->
               <fail>true</fail>
@@ -1892,7 +1941,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <executions>
           <!-- Analyze dependencies, fail the build when problems found -->
           <execution>
-            <id>analyze-dependencies</id><goals><goal>analyze-only</goal></goals>
+            <id>analyze-dependencies</id><phase>${analyze-dependencies.phase}</phase><goals><goal>analyze-only</goal></goals>
             <configuration>
               <failOnWarning>true</failOnWarning>
             </configuration>
@@ -1916,7 +1965,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <executions>
           <execution>
             <!-- Add tests as a secondary artifact -->
-            <id>attach-tests</id><goals><goal>test-jar</goal></goals>
+            <id>attach-tests</id><phase>${attach-tests.phase}</phase><goals><goal>test-jar</goal></goals>
             <configuration>
               <archive>
                 <manifest>
@@ -1942,16 +1991,29 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         -->
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
       </plugin>
-      <!-- Here to control plugin order -->
+      <!-- Attach sources only during release builds -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id><phase>${attach-sources.phase}</phase><goals><goal>jar-no-fork</goal></goals>
+          </execution>
+          <execution>
+            <!-- Add tests as a secondary artifact -->
+            <id>attach-test-sources</id><phase>${attach-test-sources.phase}</phase><goals><goal>test-jar-no-fork</goal></goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
         <executions>
           <!-- Create javadocs -->
           <execution>
-            <id>attach-javadocs</id><goals><goal>jar</goal></goals>
+            <id>attach-javadocs</id><phase>${attach-javadocs.phase}</phase><goals><goal>jar</goal></goals>
+          </execution>
+          <!-- Create test javadocs during release builds -->
+          <execution>
+            <id>attach-test-javadocs</id><phase>${attach-test-javadocs.phase}</phase><goals><goal>test-jar</goal></goals>
           </execution>
         </executions>
       </plugin>
@@ -1973,7 +2035,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             Verify ${project.build.outputTimestamp} equals ${git.commit.time} to ensure
             ${project.build.outputTimestamp} is properly set back to ${git.commit.time} after releases. -->
           <execution>
-            <id>enforce-git.commit.time</id><phase>validate</phase><goals><goal>run</goal></goals>
+            <id>enforce-git.commit.time</id><phase>${enforce-git.commit.time.phase}</phase><goals><goal>run</goal></goals>
             <configuration>
               <target>
                 <condition property="outputTimestampIsCommitTime">
@@ -2059,7 +2121,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
             <executions>
               <execution>
-                <id>require-POST-SNAPSHOT-is-snapshot-version</id><goals><goal>enforce</goal></goals>
+                <id>require-POST-SNAPSHOT-is-snapshot-version</id><phase>${require-POST-SNAPSHOT-is-snapshot-version.phase}</phase><goals><goal>enforce</goal></goals>
                 <configuration>
                   <rules>
                     <requireSnapshotVersion>
@@ -2344,7 +2406,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId>
             <executions>
               <execution>
-                <id>bundle-manifest</id><phase>process-classes</phase><goals><goal>manifest</goal></goals>
+                <id>bundle-manifest</id><phase>${bundle-manifest.phase}</phase><goals><goal>manifest</goal></goals>
               </execution>
             </executions>
           </plugin>
@@ -2380,7 +2442,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </dependencies>
               <executions>
                 <execution>
-                  <id>seo-javadoc-filter</id><phase>package</phase><goals><goal>run</goal></goals>
+                  <id>seo-javadoc-filter</id><phase>${seo-javadoc-filter.phase}</phase><goals><goal>run</goal></goals>
                   <configuration>
                     <target>
                       <taskdef resource="com/aoapps/ant/tasks/antlib.xml">
@@ -2395,9 +2457,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                   </configuration>
                 </execution>
                 <execution>
-                  <id>zip-timestamp-merge</id><phase>package</phase><goals><goal>run</goal></goals>
+                  <id>zip-timestamp-merge</id><phase>${zip-timestamp-merge.phase}</phase><goals><goal>run</goal></goals>
                   <configuration>
-                    <target if="ao-ant-tasks.isJenkinsDeploy">
+                    <target>
                       <taskdef resource="com/aoapps/ant/tasks/antlib.xml">
                         <!-- com.aoapps:ao-ant-tasks does not have this as a parent:
                         <classpath>
@@ -2410,7 +2472,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                   </configuration>
                 </execution>
                 <execution>
-                  <id>generate-javadoc-sitemap</id><phase>package</phase><goals><goal>run</goal></goals>
+                  <id>generate-javadoc-sitemap</id><phase>${generate-javadoc-sitemap.phase}</phase><goals><goal>run</goal></goals>
                   <configuration>
                     <target>
                       <taskdef resource="com/aoapps/ant/tasks/antlib.xml">
@@ -2495,64 +2557,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         </pluginManagement>
       </build>
     </profile>
-    <!-- Optimize for fastest possible development build -->
-    <profile>
-      <id>skip-war</id>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <!-- Do not pack the war -->
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId>
-              <executions>
-                <execution>
-                  <id>default-war</id><phase>none</phase>
-                </execution>
-                <execution>
-                  <id>war-exploded</id><phase>package</phase><goals><goal>exploded</goal></goals>
-                </execution>
-              </executions>
-            </plugin>
-          </plugins>
-        </pluginManagement>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>skip-war-enforce-profiles</id><goals><goal>enforce</goal></goals>
-                <configuration>
-                  <rules>
-                    <requireActiveProfile>
-                      <message>"skip-war" requires "development" profile</message>
-                      <profiles>development</profiles>
-                    </requireActiveProfile>
-                  </rules>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <!-- Skip artifact PGP verification -->
-          <plugin>
-            <groupId>org.simplify4u.plugins</groupId><artifactId>pgpverify-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>pgpverify-check</id><phase>none</phase>
-              </execution>
-            </executions>
-          </plugin>
-          <!-- Skip GPG signing -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id><phase>none</phase>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
     <profile>
       <!-- Remove empty test directories that are created by something (NetBeans?) -->
       <id>remove-empty-test</id><activation><file><exists>src/test</exists></file></activation>
@@ -2562,7 +2566,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
             <executions>
               <execution>
-                <id>remove-empty-test</id><phase>initialize</phase><goals><goal>run</goal></goals>
+                <id>remove-empty-test</id><phase>${remove-empty-test.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target>
                     <!-- See https://stackoverflow.com/a/5706781 -->
@@ -2618,7 +2622,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
             <executions>
               <execution>
-                <id>require-javadoc.breadcrumbs</id><goals><goal>enforce</goal></goals>
+                <id>require-javadoc.breadcrumbs</id><phase>${require-javadoc.breadcrumbs.phase}</phase><goals><goal>enforce</goal></goals>
                 <configuration>
                   <rules>
                     <requireProperty>
@@ -2648,7 +2652,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             </dependencies>
             <executions>
               <execution>
-                <id>process.offlineLinks</id><phase>prepare-package</phase><goals><goal>process</goal></goals>
+                <id>process.offlineLinks</id><phase>${process.offlineLinks.phase}</phase><goals><goal>process</goal></goals>
                 <configuration>
                   <attachToMain>false</attachToMain><attachToTest>false</attachToTest>
                   <resourceBundles>
@@ -2773,7 +2777,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
             <executions>
               <execution>
-                <id>verify-no-java-in-src</id><phase>validate</phase><goals><goal>run</goal></goals>
+                <id>verify-no-java-in-src</id><phase>${verify-no-java-in-src.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target xmlns:unless="ant:unless">
                     <!-- Fail if no ${project.build.sourceDirectory} -->
@@ -2802,6 +2806,7 @@ Found the following files: ${javaSourceFiles}" />
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-remote-resources-plugin</artifactId>
             <executions>
               <execution>
+                <!-- Overriding phase to be "none" to fully disregard ${process.offlineLinks.phase} -->
                 <id>process.offlineLinks</id><phase>none</phase>
               </execution>
             </executions>
@@ -2821,7 +2826,7 @@ Found the following files: ${javaSourceFiles}" />
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
             <executions>
               <execution>
-                <id>verify-java-in-src</id><phase>validate</phase><goals><goal>run</goal></goals>
+                <id>verify-java-in-src</id><phase>${verify-java-in-src.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target xmlns:if="ant:if" xmlns:unless="ant:unless">
                     <!-- Require profile.d/maven.javadoc.skip when profile.d/development exists? -->
@@ -2860,7 +2865,7 @@ Found the following files: ${javaSourceFiles}" />
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId>
             <executions>
               <execution>
-                <id>unpack.ao-checkstyle-config</id><phase>initialize</phase><goals><goal>unpack</goal></goals>
+                <id>unpack.ao-checkstyle-config</id><phase>${unpack.ao-checkstyle-config.phase}</phase><goals><goal>unpack</goal></goals>
                 <configuration>
                   <artifactItems>
                     <artifactItem>
@@ -2922,7 +2927,7 @@ Found the following files: ${javaSourceFiles}" />
             </configuration>
             <executions>
               <execution>
-                <id>checkstyle</id><phase>verify</phase><goals><goal>check</goal></goals>
+                <id>checkstyle</id><phase>${checkstyle.phase}</phase><goals><goal>check</goal></goals>
               </execution>
             </executions>
           </plugin>
@@ -2948,6 +2953,7 @@ Found the following files: ${javaSourceFiles}" />
             </configuration>
             <executions>
               <execution>
+                <!-- Overriding phase to be "none" to fully disregard ${checkstyle.phase} -->
                 <id>checkstyle</id><phase>none</phase>
               </execution>
             </executions>
@@ -2986,7 +2992,7 @@ Found the following files: ${javaSourceFiles}" />
             <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId>
             <executions>
               <execution>
-                <id>spotbugs</id><phase>verify</phase><goals><goal>check</goal></goals>
+                <id>spotbugs</id><phase>${spotbugs.phase}</phase><goals><goal>check</goal></goals>
               </execution>
             </executions>
           </plugin>
@@ -3016,6 +3022,7 @@ Found the following files: ${javaSourceFiles}" />
             </configuration>
             <executions>
               <execution>
+                <!-- Overriding phase to be "none" to fully disregard ${spotbugs.phase} -->
                 <id>spotbugs</id><phase>none</phase>
               </execution>
             </executions>
@@ -3180,6 +3187,39 @@ Found the following files: ${javaSourceFiles}" />
       <properties>
         <!-- devMode flag, enabled in "development" profile, enforced must be disabled in "publish" profile -->
         <devMode>true</devMode>
+
+        <!-- Skip many steps for quick development builds (unless reactivated in "jenkins" or "jenkins-deploy" profiles below  -->
+        <!-- <pgpverify-check.phase>validate</pgpverify-check.phase> -->
+        <!-- <git.commit.time.phase>validate</git.commit.time.phase> -->
+        <enforce-jdk.phase>none</enforce-jdk.phase>
+        <enforce-maven.phase>none</enforce-maven.phase>
+        <enforce-project.build.outputTimestamp-iso8601.phase>none</enforce-project.build.outputTimestamp-iso8601.phase>
+        <enforce-bytecode-version.phase>none</enforce-bytecode-version.phase>
+        <require-POST-SNAPSHOT-is-snapshot-version.phase>none</require-POST-SNAPSHOT-is-snapshot-version.phase>
+        <require-javadoc.breadcrumbs.phase>none</require-javadoc.breadcrumbs.phase>
+        <!-- <require-development-is-snapshot-version.phase>validate</require-development-is-snapshot-version.phase> -->
+        <audit-dependencies.phase>none</audit-dependencies.phase>
+        <enforce-git.commit.time.phase>none</enforce-git.commit.time.phase>
+        <verify-no-java-in-src.phase>none</verify-no-java-in-src.phase>
+        <verify-java-in-src.phase>none</verify-java-in-src.phase>
+        <!-- <remove-empty-test.phase>initialize</remove-empty-test.phase> -->
+        <!-- <bundle-manifest.phase>process-classes</bundle-manifest.phase> -->
+        <unpack.offlineLinks.phase>none</unpack.offlineLinks.phase>
+        <process.offlineLinks.phase>none</process.offlineLinks.phase>
+        <!-- <attach-tests.phase>package</attach-tests.phase> -->
+        <!-- <attach-sources.phase>none</attach-sources.phase> -->
+        <!-- <attach-test-sources.phase>none</attach-test-sources.phase> -->
+        <attach-javadocs.phase>none</attach-javadocs.phase>
+        <attach-test-javadocs.phase>none</attach-test-javadocs.phase>
+        <seo-javadoc-filter.phase>none</seo-javadoc-filter.phase>
+        <!-- <zip-timestamp-merge.phase>none</zip-timestamp-merge.phase> -->
+        <generate-javadoc-sitemap.phase>none</generate-javadoc-sitemap.phase>
+        <!-- <sign-artifacts.phase>verify</sign-artifacts.phase> -->
+        <analyze-dependencies.phase>none</analyze-dependencies.phase>
+        <!-- <unpack.ao-checkstyle-config.phase>verify</unpack.ao-checkstyle-config.phase> -->
+        <!-- <checkstyle.phase>verify</checkstyle.phase> -->
+        <!-- <spotbugs.phase>verify</spotbugs.phase> -->
+
         <!-- Never stage development builds -->
         <nexus.skipNexusStagingDeployMojo>true</nexus.skipNexusStagingDeployMojo>
       </properties>
@@ -3189,7 +3229,7 @@ Found the following files: ${javaSourceFiles}" />
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
             <executions>
               <execution>
-                <id>require-development-is-snapshot-version</id><goals><goal>enforce</goal></goals>
+                <id>require-development-is-snapshot-version</id><phase>${require-development-is-snapshot-version.phase}</phase><goals><goal>enforce</goal></goals>
                 <configuration>
                   <rules>
                     <requireSnapshotVersion>
@@ -3199,44 +3239,12 @@ Found the following files: ${javaSourceFiles}" />
                   <fail>true</fail>
                 </configuration>
               </execution>
-              <execution>
-                <!-- Skip dependency bytecode version check (unless reactivated in "jenkins" profile below) -->
-                <id>enforce-bytecode-version</id><phase>none</phase>
-              </execution>
-            </executions>
-          </plugin>
-          <!-- Skip audit (unless reactivated in "jenkins" profile below) -->
-          <plugin>
-            <!-- See https://sonatype.github.io/ossindex-maven/maven-plugin/ -->
-            <groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>audit-dependencies</id><phase>none</phase>
-              </execution>
             </executions>
           </plugin>
           <!-- Skip tests for quick development builds (unless reactivated in "jenkins" profile below) -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId>
             <configuration><skipTests>true</skipTests></configuration>
-          </plugin>
-          <!-- Skip analyze dependencies (unless reactivated in "jenkins" profile below) -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>analyze-dependencies</id><phase>none</phase>
-              </execution>
-            </executions>
-          </plugin>
-          <!-- Skip javadocs on development builds (unless reactivated in "jenkins" profile below) -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id><phase>none</phase>
-              </execution>
-            </executions>
           </plugin>
           <!-- Never deploy development builds -->
           <plugin>
@@ -3246,17 +3254,97 @@ Found the following files: ${javaSourceFiles}" />
         </plugins>
       </build>
     </profile>
+    <!-- Optimize for fastest possible development build -->
     <profile>
-      <id>jenkins</id>
+      <id>skip-war</id>
+      <properties>
+        <!-- Starting with "development" profile, further reduce the steps -->
+        <pgpverify-check.phase>none</pgpverify-check.phase>
+        <remove-empty-test.phase>none</remove-empty-test.phase>
+        <attach-tests.phase>none</attach-tests.phase>
+        <sign-artifacts.phase>none</sign-artifacts.phase>
+        <unpack.ao-checkstyle-config.phase>none</unpack.ao-checkstyle-config.phase>
+        <checkstyle.phase>none</checkstyle.phase>
+        <spotbugs.phase>none</spotbugs.phase>
+      </properties>
       <build>
+        <pluginManagement>
+          <plugins>
+            <!-- Do not pack the war -->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>default-war</id><phase>none</phase>
+                </execution>
+                <execution>
+                  <id>war-exploded</id><phase>package</phase><goals><goal>exploded</goal></goals>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
             <executions>
               <execution>
-                <!-- Always enforce in Jenkins builds -->
-                <id>enforce-bytecode-version</id><phase>validate</phase>
+                <id>skip-war-enforce-profiles</id><goals><goal>enforce</goal></goals>
+                <configuration>
+                  <rules>
+                    <requireActiveProfile>
+                      <message>"skip-war" requires "development" profile</message>
+                      <profiles>development</profiles>
+                    </requireActiveProfile>
+                  </rules>
+                </configuration>
               </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>jenkins</id>
+      <properties>
+        <!-- Only done in "Build" phase -->
+        <!-- <pgpverify-check.phase>validate</pgpverify-check.phase> -->
+        <!-- <git.commit.time.phase>validate</git.commit.time.phase> -->
+        <enforce-jdk.phase>validate</enforce-jdk.phase>
+        <enforce-maven.phase>validate</enforce-maven.phase>
+        <enforce-project.build.outputTimestamp-iso8601.phase>validate</enforce-project.build.outputTimestamp-iso8601.phase>
+        <enforce-bytecode-version.phase>validate</enforce-bytecode-version.phase>
+        <require-POST-SNAPSHOT-is-snapshot-version.phase>validate</require-POST-SNAPSHOT-is-snapshot-version.phase>
+        <require-javadoc.breadcrumbs.phase>validate</require-javadoc.breadcrumbs.phase>
+        <!-- <require-development-is-snapshot-version.phase>validate</require-development-is-snapshot-version.phase> -->
+        <audit-dependencies.phase>validate</audit-dependencies.phase>
+        <enforce-git.commit.time.phase>validate</enforce-git.commit.time.phase>
+        <verify-no-java-in-src.phase>validate</verify-no-java-in-src.phase>
+        <verify-java-in-src.phase>validate</verify-java-in-src.phase>
+        <!-- <remove-empty-test.phase>initialize</remove-empty-test.phase> -->
+        <!-- <bundle-manifest.phase>process-classes</bundle-manifest.phase> -->
+        <!-- Only done in "Deploy" phase -->
+        <unpack.offlineLinks.phase>none</unpack.offlineLinks.phase>
+        <process.offlineLinks.phase>none</process.offlineLinks.phase>
+        <attach-tests.phase>none</attach-tests.phase>
+        <!-- <attach-sources.phase>none</attach-sources.phase> -->
+        <!-- <attach-test-sources.phase>none</attach-test-sources.phase> -->
+        <attach-javadocs.phase>none</attach-javadocs.phase>
+        <attach-test-javadocs.phase>none</attach-test-javadocs.phase>
+        <seo-javadoc-filter.phase>none</seo-javadoc-filter.phase>
+        <!-- <zip-timestamp-merge.phase>none</zip-timestamp-merge.phase> -->
+        <generate-javadoc-sitemap.phase>none</generate-javadoc-sitemap.phase>
+        <sign-artifacts.phase>none</sign-artifacts.phase>
+        <analyze-dependencies.phase>none</analyze-dependencies.phase>
+        <unpack.ao-checkstyle-config.phase>none</unpack.ao-checkstyle-config.phase>
+        <checkstyle.phase>none</checkstyle.phase>
+        <spotbugs.phase>none</spotbugs.phase>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
               <execution>
                 <id>jenkins-enforce-profiles</id><goals><goal>enforce</goal></goals>
                 <configuration>
@@ -3271,40 +3359,10 @@ Found the following files: ${javaSourceFiles}" />
               </execution>
             </executions>
           </plugin>
-          <!-- Always audit in Jenkins builds -->
-          <plugin>
-            <groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>audit-dependencies</id><phase>validate</phase>
-              </execution>
-            </executions>
-          </plugin>
           <!-- Always test Jenkins builds -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId>
             <configuration><skipTests>false</skipTests></configuration>
-          </plugin>
-          <!-- Always analyze dependencies in Jenkins builds -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>analyze-dependencies</id><phase>verify</phase>
-              </execution>
-            </executions>
-          </plugin>
-          <!-- Always generate javadocs for Jenkins builds -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id><phase>package</phase>
-              </execution>
-              <execution>
-                <id>attach-test-javadocs</id><goals><goal>test-jar</goal></goals>
-              </execution>
-            </executions>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId>
@@ -3332,36 +3390,45 @@ Found the following files: ${javaSourceFiles}" />
     </profile>
     <profile>
       <id>jenkins-deploy</id>
-      <!--
-        Useful to determine what to skip:
-        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT
-        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development
-        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,jenkins
-        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development,jenkins
-        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,jenkins,jenkins-deploy
-        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development,jenkins,jenkins-deploy
-      -->
       <properties>
-        <!-- Some steps are only performed in the "jenkins-deploy" profile -->
-        <ao-ant-tasks.isJenkinsDeploy>true</ao-ant-tasks.isJenkinsDeploy>
+        <!-- Only done in "Build" phase -->
+        <!-- <pgpverify-check.phase>validate</pgpverify-check.phase> -->
+        <!-- <git.commit.time.phase>validate</git.commit.time.phase> -->
+        <enforce-jdk.phase>none</enforce-jdk.phase>
+        <enforce-maven.phase>none</enforce-maven.phase>
+        <enforce-project.build.outputTimestamp-iso8601.phase>none</enforce-project.build.outputTimestamp-iso8601.phase>
+        <enforce-bytecode-version.phase>none</enforce-bytecode-version.phase>
+        <require-POST-SNAPSHOT-is-snapshot-version.phase>none</require-POST-SNAPSHOT-is-snapshot-version.phase>
+        <require-javadoc.breadcrumbs.phase>none</require-javadoc.breadcrumbs.phase>
+        <require-development-is-snapshot-version.phase>none</require-development-is-snapshot-version.phase>
+        <audit-dependencies.phase>none</audit-dependencies.phase>
+        <enforce-git.commit.time.phase>none</enforce-git.commit.time.phase>
+        <verify-no-java-in-src.phase>none</verify-no-java-in-src.phase>
+        <verify-java-in-src.phase>none</verify-java-in-src.phase>
+        <remove-empty-test.phase>none</remove-empty-test.phase>
+        <bundle-manifest.phase>none</bundle-manifest.phase>
+        <!-- Only done in "Deploy" phase -->
+        <unpack.offlineLinks.phase>prepare-package</unpack.offlineLinks.phase>
+        <process.offlineLinks.phase>prepare-package</process.offlineLinks.phase>
+        <attach-tests.phase>package</attach-tests.phase>
+        <!-- <attach-sources.phase>none</attach-sources.phase> -->
+        <!-- <attach-test-sources.phase>none</attach-test-sources.phase> -->
+        <attach-javadocs.phase>package</attach-javadocs.phase>
+        <attach-test-javadocs.phase>package</attach-test-javadocs.phase>
+        <seo-javadoc-filter.phase>package</seo-javadoc-filter.phase>
+        <zip-timestamp-merge.phase>package</zip-timestamp-merge.phase>
+        <generate-javadoc-sitemap.phase>package</generate-javadoc-sitemap.phase>
+        <sign-artifacts.phase>verify</sign-artifacts.phase>
+        <analyze-dependencies.phase>verify</analyze-dependencies.phase>
+        <unpack.ao-checkstyle-config.phase>verify</unpack.ao-checkstyle-config.phase>
+        <checkstyle.phase>verify</checkstyle.phase>
+        <spotbugs.phase>verify</spotbugs.phase>
       </properties>
       <build>
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
             <executions>
-              <execution>
-                <!-- Already enforced during "Build" phase -->
-                <id>enforce-jdk</id><phase>none</phase>
-              </execution>
-              <execution>
-                <!-- Already enforced during "Build" phase -->
-                <id>enforce-maven</id><phase>none</phase>
-              </execution>
-              <execution>
-                <!-- Already enforced during "Build" phase -->
-                <id>enforce-bytecode-version</id><phase>none</phase>
-              </execution>
               <execution>
                 <id>jenkins-deploy-enforce-profiles</id><goals><goal>enforce</goal></goals>
                 <configuration>
@@ -3380,15 +3447,6 @@ Found the following files: ${javaSourceFiles}" />
               </execution>
             </executions>
           </plugin>
-          <!-- Already audited during "Build" phase -->
-          <plugin>
-            <groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>audit-dependencies</id><phase>none</phase>
-              </execution>
-            </executions>
-          </plugin>
           <!-- Already compiled during "Build" phase -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId>
@@ -3396,15 +3454,6 @@ Found the following files: ${javaSourceFiles}" />
               <skipMain>true</skipMain>
               <skip>true</skip>
             </configuration>
-          </plugin>
-          <!-- MANIFEST.MF already created during "Build" phase -->
-          <plugin>
-            <groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>bundle-manifest</id><phase>none</phase>
-              </execution>
-            </executions>
           </plugin>
           <!-- Already tested during "Test" phase -->
           <plugin>
@@ -3429,6 +3478,17 @@ Found the following files: ${javaSourceFiles}" />
     </profile>
     <profile>
       <id>release</id>
+      <properties>
+        <!--
+          maven-release-plugin release:prepare puts an ISO 8601 timestamp into ${project.build.outputTimestamp}.
+          This is useful in support of reproducible releases without a dependency on the Git repository.
+          Correspondingly, disable the generation of the ${git.commit.time} property.
+        -->
+        <git.commit.time.phase>none</git.commit.time.phase>
+        <enforce-git.commit.time.phase>none</enforce-git.commit.time.phase>
+        <attach-sources.phase>package</attach-sources.phase>
+        <attach-test-sources.phase>package</attach-test-sources.phase>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -3444,50 +3504,6 @@ Found the following files: ${javaSourceFiles}" />
                   </rules>
                   <fail>true</fail>
                 </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <!--
-            maven-release-plugin release:prepare puts an ISO 8601 timestamp into ${project.build.outputTimestamp}.
-            This is useful in support of reproducible releases without a dependency on the Git repository.
-            Correspondingly, disable the generation of the ${git.commit.time} property.
-          -->
-          <plugin>
-            <groupId>io.github.git-commit-id</groupId><artifactId>git-commit-id-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>git.commit.time</id><phase>none</phase>
-              </execution>
-            </executions>
-          </plugin>
-          <!-- Create test javadocs during release builds -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-test-javadocs</id><goals><goal>test-jar</goal></goals>
-              </execution>
-            </executions>
-          </plugin>
-          <!-- Attach sources only during release builds -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-sources</id><goals><goal>jar-no-fork</goal></goals>
-              </execution>
-              <execution>
-                <!-- Add tests as a secondary artifact -->
-                <id>attach-test-sources</id><goals><goal>test-jar-no-fork</goal></goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-              <!-- ${git.commit.time} is not defined during release builds, cannot verify -->
-              <execution>
-                <id>enforce-git.commit.time</id><phase>none</phase>
               </execution>
             </executions>
           </plugin>
