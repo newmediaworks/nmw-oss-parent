@@ -118,7 +118,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <devMode.enforceNotPublished.phase>validate</devMode.enforceNotPublished.phase>
 
     <!--
-        Selectively enabled/disabled in development, skip-war, jenkins, jenkins-deploy, and release profiles.
+        Selectively enabled/disabled in development, skip-war, jenkins, jenkins-build-altjdk, jenkins-deploy, and release profiles.
 
         Useful to determine what to skip:
         mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT
@@ -126,6 +126,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development,skip-war
         mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,jenkins
         mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development,jenkins
+        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,jenkins,jenkins-build-altjdk
+        mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development,jenkins,jenkins-build-altjdk
         mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,jenkins,jenkins-deploy
         mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development,jenkins,jenkins-deploy
         mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -P'!POST-SNAPSHOT',release
@@ -3448,6 +3450,49 @@ Found the following files: ${javaSourceFiles}" />
             <configuration>
               <pomCacheDirectory>${project.basedir}</pomCacheDirectory>
             </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <!-- The "Build" phase on a JDK other than the deployJdk.  These may skip some of the checks that are done on deployJdk. -->
+      <id>jenkins-build-altjdk</id>
+      <properties>
+        <!-- Only done in "Build" phase on deployJdk-->
+        <!-- <pgpverify-check.phase>validate</pgpverify-check.phase> -->
+        <!-- <git.commit.time.phase>validate</git.commit.time.phase> -->
+        <!-- <enforce-jdk.phase>validate</enforce-jdk.phase> -->
+        <enforce-maven.phase>none</enforce-maven.phase>
+        <enforce-project.build.outputTimestamp-iso8601.phase>none</enforce-project.build.outputTimestamp-iso8601.phase>
+        <enforce-bytecode-version.phase>none</enforce-bytecode-version.phase>
+        <require-POST-SNAPSHOT-is-snapshot-version.phase>none</require-POST-SNAPSHOT-is-snapshot-version.phase>
+        <require-javadoc.breadcrumbs.phase>none</require-javadoc.breadcrumbs.phase>
+        <require-development-is-snapshot-version.phase>none</require-development-is-snapshot-version.phase>
+        <audit-dependencies.phase>none</audit-dependencies.phase>
+        <enforce-git.commit.time.phase>none</enforce-git.commit.time.phase>
+        <verify-no-java-in-src.phase>none</verify-no-java-in-src.phase>
+        <verify-java-in-src.phase>none</verify-java-in-src.phase>
+        <remove-empty-test.phase>none</remove-empty-test.phase>
+        <!-- <bundle-manifest.phase>process-classes</bundle-manifest.phase> -->
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jenkins-build-altjdk-enforce-profiles</id><goals><goal>enforce</goal></goals>
+                <configuration>
+                  <rules>
+                    <requireActiveProfile>
+                      <message>"jenkins-build-altjdk" requires "jenkins" profile</message>
+                      <profiles>jenkins</profiles>
+                    </requireActiveProfile>
+                  </rules>
+                  <fail>true</fail>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
