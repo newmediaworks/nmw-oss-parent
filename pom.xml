@@ -165,6 +165,8 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <unpack.ao-checkstyle-config.phase>verify</unpack.ao-checkstyle-config.phase>
     <checkstyle.phase>verify</checkstyle.phase>
     <spotbugs.phase>verify</spotbugs.phase>
+    <default-install.phase>install</default-install.phase>
+    <default-deploy.phase>deploy</default-deploy.phase>
 
     <!-- May optionally allow javadocs despite being development-only -->
     <verify-java-in-src.allowJavadocInDevelopmentProfile>false</verify-java-in-src.allowJavadocInDevelopmentProfile>
@@ -1387,9 +1389,19 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId><version>${org.apache.maven.plugins.maven-deploy-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>default-deploy</id><phase>${default-deploy.phase}</phase>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-install-plugin</artifactId><version>${org.apache.maven.plugins.maven-install-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>default-install</id><phase>${default-install.phase}</phase>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>${org.apache.maven.plugins.maven-jar-plugin.version}</version>
@@ -2774,6 +2786,15 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <!-- Overriding phase to be "none" to fully disregard ${require-javadoc.breadcrumbs.phase} -->
+                <id>require-javadoc.breadcrumbs</id><phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
             <executions>
               <execution>
@@ -2800,6 +2821,14 @@ Found the following files: ${javaSourceFiles}" />
                   </target>
                 </configuration>
               </execution>
+              <execution>
+                <!-- Overriding phase to be "none" to fully disregard ${seo-javadoc-filter.phase} -->
+                <id>seo-javadoc-filter</id><phase>none</phase>
+              </execution>
+              <execution>
+                <!-- Overriding phase to be "none" to fully disregard ${generate-javadoc-sitemap.phase} -->
+                <id>generate-javadoc-sitemap</id><phase>none</phase>
+              </execution>
             </executions>
           </plugin>
           <plugin>
@@ -2813,7 +2842,16 @@ Found the following files: ${javaSourceFiles}" />
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
-            <configuration><skip>true</skip></configuration>
+            <executions>
+              <execution>
+                <!-- Overriding phase to be "none" to fully disregard ${attach-javadocs.phase} -->
+                <id>attach-javadocs</id><phase>none</phase>
+              </execution>
+              <execution>
+                <!-- Overriding phase to be "none" to fully disregard ${attach-test-javadocs.phase} -->
+                <id>attach-test-javadocs</id><phase>none</phase>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
@@ -2948,9 +2986,6 @@ Found the following files: ${javaSourceFiles}" />
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId>
-            <configuration>
-              <skip>true</skip>
-            </configuration>
             <executions>
               <execution>
                 <!-- Overriding phase to be "none" to fully disregard ${checkstyle.phase} -->
@@ -3017,9 +3052,6 @@ Found the following files: ${javaSourceFiles}" />
         <plugins>
           <plugin>
             <groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId>
-            <configuration>
-              <skip>true</skip>
-            </configuration>
             <executions>
               <execution>
                 <!-- Overriding phase to be "none" to fully disregard ${spotbugs.phase} -->
@@ -3064,7 +3096,6 @@ Found the following files: ${javaSourceFiles}" />
                 <serverId>ossrh-newmediaworks</serverId>
                 <nexusUrl>${nexusUrl}</nexusUrl>
                 <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                <skipNexusStagingDeployMojo>${nexus.skipNexusStagingDeployMojo}</skipNexusStagingDeployMojo>
                 <!--
                   Use direct deployment instead of deferred for two reasons:
                   1) Total deploy time is significantly reduced because artifact uploads happen in parallel
@@ -3087,7 +3118,10 @@ Found the following files: ${javaSourceFiles}" />
             <executions>
               <execution>
                 <!-- Manually added since nexus-staging-maven-plugin is not used as extension -->
-                <id>default-deploy</id><phase>deploy</phase><goals><goal>deploy</goal></goals>
+                <id>default-deploy</id><phase>${default-deploy.phase}</phase><goals><goal>deploy</goal></goals>
+                <configuration>
+                  <skipNexusStagingDeployMojo>${nexus.skipNexusStagingDeployMojo}</skipNexusStagingDeployMojo>
+                </configuration>
               </execution>
             </executions>
           </plugin>
@@ -3113,7 +3147,12 @@ Found the following files: ${javaSourceFiles}" />
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-install-plugin</artifactId>
-            <configuration><skip>true</skip></configuration>
+            <executions>
+              <execution>
+                <!-- Overriding phase to be "none" to fully disregard ${default-install.phase} -->
+                <id>default-install</id><phase>none</phase>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
@@ -3128,7 +3167,12 @@ Found the following files: ${javaSourceFiles}" />
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
-            <configuration><skip>true</skip></configuration>
+            <executions>
+              <execution>
+                <!-- Overriding phase to be "none" to fully disregard ${default-deploy.phase} -->
+                <id>default-deploy</id><phase>none</phase>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
@@ -3142,6 +3186,19 @@ Found the following files: ${javaSourceFiles}" />
       <properties>
         <nexus.skipNexusStagingDeployMojo>true</nexus.skipNexusStagingDeployMojo>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <!-- Overriding phase to be "none" to fully disregard ${default-deploy.phase} -->
+                <id>default-deploy</id><phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>versions-rules</id><activation><file><exists>versions-rules.xml</exists></file></activation>
@@ -3219,9 +3276,8 @@ Found the following files: ${javaSourceFiles}" />
         <!-- <unpack.ao-checkstyle-config.phase>verify</unpack.ao-checkstyle-config.phase> -->
         <!-- <checkstyle.phase>verify</checkstyle.phase> -->
         <!-- <spotbugs.phase>verify</spotbugs.phase> -->
-
-        <!-- Never stage development builds -->
-        <nexus.skipNexusStagingDeployMojo>true</nexus.skipNexusStagingDeployMojo>
+        <!-- <default-install.phase>install</default-install.phase> -->
+        <default-deploy.phase>none</default-deploy.phase>
       </properties>
       <build>
         <plugins>
@@ -3246,10 +3302,25 @@ Found the following files: ${javaSourceFiles}" />
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId>
             <configuration><skipTests>true</skipTests></configuration>
           </plugin>
-          <!-- Never deploy development builds -->
+          <!-- Never deploy development builds (although jenkins-deploy is allowed below for altDeploymentRepository) -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId>
-            <configuration><skip>true</skip></configuration>
+            <executions>
+              <execution>
+                <!-- Overriding phase to be "none" to fully disregard ${default-deploy.phase} -->
+                <id>default-deploy</id><phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- Never stage development builds -->
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <!-- Overriding phase to be "none" to fully disregard ${default-deploy.phase} -->
+                <id>default-deploy</id><phase>none</phase>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
@@ -3266,6 +3337,7 @@ Found the following files: ${javaSourceFiles}" />
         <unpack.ao-checkstyle-config.phase>none</unpack.ao-checkstyle-config.phase>
         <checkstyle.phase>none</checkstyle.phase>
         <spotbugs.phase>none</spotbugs.phase>
+        <default-install.phase>none</default-install.phase>
       </properties>
       <build>
         <pluginManagement>
@@ -3339,6 +3411,8 @@ Found the following files: ${javaSourceFiles}" />
         <unpack.ao-checkstyle-config.phase>none</unpack.ao-checkstyle-config.phase>
         <checkstyle.phase>none</checkstyle.phase>
         <spotbugs.phase>none</spotbugs.phase>
+        <default-install.phase>none</default-install.phase>
+        <default-deploy.phase>none</default-deploy.phase>
       </properties>
       <build>
         <plugins>
@@ -3372,11 +3446,6 @@ Found the following files: ${javaSourceFiles}" />
               <keyname>${gpg.jenkins-aoindustries-com.keyname}</keyname>
               <passphrase>${gpg.jenkins-aoindustries-com.passphrase}</passphrase>
             </configuration>
-          </plugin>
-          <!-- Do not install to per-workspace .m2/repository -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-install-plugin</artifactId>
-            <configuration><skip>true</skip></configuration>
           </plugin>
           <!-- Use per-workspace rewrite cache -->
           <plugin>
@@ -3423,6 +3492,8 @@ Found the following files: ${javaSourceFiles}" />
         <unpack.ao-checkstyle-config.phase>verify</unpack.ao-checkstyle-config.phase>
         <checkstyle.phase>verify</checkstyle.phase>
         <spotbugs.phase>verify</spotbugs.phase>
+        <!-- <default-install.phase>none</default-install.phase> -->
+        <default-deploy.phase>deploy</default-deploy.phase>
       </properties>
       <build>
         <plugins>
