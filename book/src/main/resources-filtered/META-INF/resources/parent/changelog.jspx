@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2023-09-21T16:45:26Z"
+    dateModified="2023-09-22T19:47:54Z"
   >
     <c:set var="latestRelease" value="1.23.2" />
     <c:if test="${
@@ -92,6 +92,12 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             Instead, the tracking code is added by the build of the website publishing the API docs using the new
             <core:link book="/ant-tasks" page="/index.jspx" /> project.  Importantly, the tracking code is not longer
             included in Javadocs released to <ao:a href="https://central.sonatype.com/">Maven Central</ao:a>.
+          </li>
+          <li>
+            GPG signing may be skipped with new profile activated by presence of <code>profile.d/maven.gpg.skip</code>.
+            When active, the <code>maven.deploy.skip</code>, <code>maven.install.skip</code>, and
+            <code>skipNexusStagingDeployMojo</code> profiles must also be active.  This is primarily used for projects
+            that only run directly in NetBeans.
           </li>
         </ul>
       </changelog:release>
