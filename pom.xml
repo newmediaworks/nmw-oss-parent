@@ -150,6 +150,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <enforce-git.commit.time.phase>validate</enforce-git.commit.time.phase>
     <verify-no-java-in-src.phase>validate</verify-no-java-in-src.phase>
     <verify-java-in-src.phase>validate</verify-java-in-src.phase>
+    <check-if-need-maven.gpg.skip.phase>validate</check-if-need-maven.gpg.skip.phase>
     <remove-empty-test.phase>initialize</remove-empty-test.phase>
     <bundle-manifest.phase>process-classes</bundle-manifest.phase>
     <unpack.offlineLinks.phase>prepare-package</unpack.offlineLinks.phase>
@@ -2847,7 +2848,7 @@ Found the following files: ${javaSourceFiles}" />
                 <id>verify-java-in-src</id><phase>${verify-java-in-src.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target xmlns:if="ant:if" xmlns:unless="ant:unless">
-                    <!-- Require profile.d/maven.javadoc.skip when profile.d/development exists? -->
+                    <!-- Require profile.d/maven.javadoc.skip when profile.d/development exists -->
                     <available unless:true="${verify-java-in-src.allowJavadocInDevelopmentProfile}" property="developmentProfileExists" file="${project.basedir}/profile.d/development" type="file" />
                     <fail unless:true="${verify-java-in-src.allowJavadocInDevelopmentProfile}" if="developmentProfileExists" message="profile.d/maven.javadoc.skip required when profile.d/development exists" />
                     <!-- Only when ${project.build.sourceDirectory} exists -->
@@ -3119,6 +3120,85 @@ Found the following files: ${javaSourceFiles}" />
     </profile>
     <profile>
       <!--
+        Skips GPG signing.
+
+        To ensure everything deployed is signed, the following profiles must also be active:
+        1) maven.deploy.skip
+        2) maven.install.skip
+        3) skipNexusStagingDeployMojo
+
+        This is primarily used for projects that only run directly in NetBeans.
+      -->
+      <id>maven.gpg.skip</id><activation><file><exists>profile.d/maven.gpg.skip</exists></file></activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>skip-war-enforce-profiles</id><goals><goal>enforce</goal></goals>
+                <configuration>
+                  <rules>
+                    <requireActiveProfile>
+                      <message>"maven.gpg.skip" requires "maven.deploy.skip" profile</message>
+                      <profiles>maven.deploy.skip</profiles>
+                    </requireActiveProfile>
+                    <requireActiveProfile>
+                      <message>"maven.gpg.skip" requires "maven.install.skip" profile</message>
+                      <profiles>maven.install.skip</profiles>
+                    </requireActiveProfile>
+                    <requireActiveProfile>
+                      <message>"maven.gpg.skip" requires "skipNexusStagingDeployMojo" profile</message>
+                      <profiles>skipNexusStagingDeployMojo</profiles>
+                    </requireActiveProfile>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId>
+            <executions>
+              <execution>
+                <!-- Overriding phase to be "none" to fully disregard ${${sign-artifacts.phase} -->
+                <id>sign-artifacts</id><phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+      <!--
+        When all three of the following are present, profile.d/maven.gpg.skip must also be present:
+        1) profile.d/maven.deploy.skip
+        2) profile.d/maven.install.skip
+        3) profile.d/skipNexusStagingDeployMojo
+      -->
+    <profile>
+      <id>not-maven.gpg.skip</id><activation><file><missing>profile.d/maven.gpg.skip</missing></file></activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>check-if-need-maven.gpg.skip</id><phase>${check-if-need-maven.gpg.skip.phase}</phase><goals><goal>run</goal></goals>
+                <configuration>
+                  <target xmlns:if="ant:if">
+                    <available property="mavenDeploySkipProfileExists" file="${project.basedir}/profile.d/maven.deploy.skip" type="file" />
+                    <available if:set="mavenDeploySkipProfileExists" property="andMavenInstallSkipProfileExists" file="${project.basedir}/profile.d/maven.install.skip" type="file" />
+                    <available if:set="andMavenInstallSkipProfileExists" property="andSkipNexusStagingDeployMojoProfileExists" file="${project.basedir}/profile.d/skipNexusStagingDeployMojo" type="file" />
+                    <fail if="andMavenInstallSkipProfileExists" message="profile.d/maven.gpg.skip required when all three of profile.d/maven.deploy.skip, profile.d/maven.install.skip, and profile.d/skipNexusStagingDeployMojo exist" />
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <!--
         Local repository install may be skipped by the presence of a file.
         This is primarily used for projects that are executed directly in NetBeans only.
       -->
@@ -3239,6 +3319,7 @@ Found the following files: ${javaSourceFiles}" />
         <enforce-git.commit.time.phase>none</enforce-git.commit.time.phase>
         <verify-no-java-in-src.phase>none</verify-no-java-in-src.phase>
         <verify-java-in-src.phase>none</verify-java-in-src.phase>
+        <check-if-need-maven.gpg.skip.phase>none</check-if-need-maven.gpg.skip.phase>
         <!-- <remove-empty-test.phase>initialize</remove-empty-test.phase> -->
         <!-- <bundle-manifest.phase>process-classes</bundle-manifest.phase> -->
         <unpack.offlineLinks.phase>none</unpack.offlineLinks.phase>
@@ -3373,6 +3454,7 @@ Found the following files: ${javaSourceFiles}" />
         <enforce-git.commit.time.phase>validate</enforce-git.commit.time.phase>
         <verify-no-java-in-src.phase>validate</verify-no-java-in-src.phase>
         <verify-java-in-src.phase>validate</verify-java-in-src.phase>
+        <check-if-need-maven.gpg.skip.phase>validate</check-if-need-maven.gpg.skip.phase>
         <!-- <remove-empty-test.phase>initialize</remove-empty-test.phase> -->
         <!-- <bundle-manifest.phase>process-classes</bundle-manifest.phase> -->
         <!-- Only done in "Deploy" phase -->
@@ -3455,6 +3537,7 @@ Found the following files: ${javaSourceFiles}" />
         <enforce-git.commit.time.phase>none</enforce-git.commit.time.phase>
         <verify-no-java-in-src.phase>none</verify-no-java-in-src.phase>
         <verify-java-in-src.phase>none</verify-java-in-src.phase>
+        <check-if-need-maven.gpg.skip.phase>none</check-if-need-maven.gpg.skip.phase>
         <remove-empty-test.phase>none</remove-empty-test.phase>
         <!-- <bundle-manifest.phase>process-classes</bundle-manifest.phase> -->
       </properties>
@@ -3497,6 +3580,7 @@ Found the following files: ${javaSourceFiles}" />
         <enforce-git.commit.time.phase>none</enforce-git.commit.time.phase>
         <verify-no-java-in-src.phase>none</verify-no-java-in-src.phase>
         <verify-java-in-src.phase>none</verify-java-in-src.phase>
+        <check-if-need-maven.gpg.skip.phase>none</check-if-need-maven.gpg.skip.phase>
         <remove-empty-test.phase>none</remove-empty-test.phase>
         <bundle-manifest.phase>none</bundle-manifest.phase>
         <!-- Only done in "Deploy" phase -->
