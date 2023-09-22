@@ -253,8 +253,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <javadoc.modules><!-- Default is none --></javadoc.modules>
     <!-- Related Projects section for javadocs -->
     <javadoc.relatedProjects><!-- Default is none --></javadoc.relatedProjects>
-    <!-- Google Analytics tracking code for the javadocs -->
-    <google.analytics.trackingId>G-RYD4Z0W4YW</google.analytics.trackingId>
     <!--
       The Java module name, defaulting to the value previously used for "Bundle-SymbolicName" in Java < 9. All projects should set this to match the module name defined in "module-info.java". Furthermore, projects without "module-info.java" should also add the "Automatic-Module-Name" manifest entry. -->
     <module.name>${project.groupId}.${project.artifactId}</module.name>
@@ -1489,7 +1487,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <configuration>
             <source>${maven.compiler.source}</source>
             <release>${maven.compiler.release}</release>
-            <additionalJOption>--allow-script-in-comments</additionalJOption>
             <doclint>all,-missing</doclint>
             <doctitle>${project.name} ${build.versionNoPostSnapshot} API</doctitle>
             <windowtitle>${project.name} ${build.versionNoPostSnapshot} API</windowtitle>
@@ -1599,18 +1596,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
   </div>
 </div>]]>
             </top>
-            <!-- TODO: Global site tag (gtag.js) once HTML 5 -->
-            <bottom>
-<![CDATA[Copyright &#169; {inceptionYear}&#x2013;{currentYear} {organizationName}. All rights reserved.
-<script type="application/javascript">
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', '${google.analytics.trackingId}', 'auto');
-  ga('send', 'pageview');
-</script>]]>
-            </bottom>
           </configuration>
         </plugin>
         <plugin>
@@ -2525,6 +2510,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <plugin>
               <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
               <configuration>
+                <additionalJOption>--allow-script-in-comments</additionalJOption>
                 <bottom>
 <![CDATA[Copyright &#169; {inceptionYear}&#x2013;{currentYear} {organizationName}. All rights reserved.
 <script type="application/javascript">
@@ -2532,14 +2518,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
   if (typeof useModuleDirectories !== 'undefined') {
     useModuleDirectories=false;
   }
-</script>
-<script type="application/javascript">
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', '${google.analytics.trackingId}', 'auto');
-  ga('send', 'pageview');
 </script>]]>
                 </bottom>
               </configuration>
