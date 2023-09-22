@@ -3432,6 +3432,26 @@ Found the following files: ${javaSourceFiles}" />
                   </rules>
                 </configuration>
               </execution>
+              <execution>
+                <id>skip-war-never-install</id><phase>install</phase><goals><goal>enforce</goal></goals>
+                <configuration>
+                  <rules>
+                    <alwaysFail>
+                      <message>"skip-war" may never be used in the "install" phase</message>
+                    </alwaysFail>
+                  </rules>
+                </configuration>
+              </execution>
+              <execution>
+                <id>skip-war-never-deploy</id><phase>deploy</phase><goals><goal>enforce</goal></goals>
+                <configuration>
+                  <rules>
+                    <alwaysFail>
+                      <message>"skip-war" may never be used in the "deploy" phase</message>
+                    </alwaysFail>
+                  </rules>
+                </configuration>
+              </execution>
             </executions>
           </plugin>
         </plugins>
