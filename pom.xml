@@ -51,6 +51,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <io.reformanda.semper.dependencyversion-maven-plugin.version>1.0.1</io.reformanda.semper.dependencyversion-maven-plugin.version>
     <org.sonatype.ossindex.maven.ossindex-maven-plugin.version>3.2.0</org.sonatype.ossindex.maven.ossindex-maven-plugin.version>
     <org.apache.maven.plugins.maven-release-plugin.version>3.0.1</org.apache.maven.plugins.maven-release-plugin.version>
+    <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.6.13</org.sonatype.plugins.nexus-staging-maven-plugin.version>
     <org.codehaus.mojo.versions-maven-plugin.version>2.16.0</org.codehaus.mojo.versions-maven-plugin.version>
     <org.apache.maven.plugins.maven-gpg-plugin.version>3.1.0</org.apache.maven.plugins.maven-gpg-plugin.version>
     <org.apache.maven.plugins.maven-clean-plugin.version>3.3.1</org.apache.maven.plugins.maven-clean-plugin.version>
@@ -76,7 +77,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.codehaus.mojo.properties-maven-plugin.version>1.2.0</org.codehaus.mojo.properties-maven-plugin.version>
     <org.eclipse.jetty.jetty-maven-plugin.version>11.0.16</org.eclipse.jetty.jetty-maven-plugin.version>
     <org.apache.maven.plugins.maven-project-info-reports-plugin.version>3.4.5</org.apache.maven.plugins.maven-project-info-reports-plugin.version>
-    <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.6.13</org.sonatype.plugins.nexus-staging-maven-plugin.version>
 
     <!-- Plugin Dependencies -->
     <org.simplify4u.pgp-keys-map.version>2023.06.24</org.simplify4u.pgp-keys-map.version>
@@ -1370,6 +1370,19 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <configuration>
             <releaseProfiles>release</releaseProfiles>
             <goals>deploy</goals>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId><version>${org.sonatype.plugins.nexus-staging-maven-plugin.version}</version>
+          <configuration>
+            <!--
+              Use direct deployment instead of deferred for two reasons:
+              1) Total deploy time is significantly reduced because artifact uploads happen in parallel
+                 during the builds.  With deferred deployment, the artifact uploads are sequential.
+              2) When the reactor happens to end on a project with skipNexusStagingDeployMojo=true, the
+                 staging will not occur.
+            -->
+            <skipLocalStaging>${build.isSnapshot}</skipLocalStaging>
           </configuration>
         </plugin>
         <plugin>
@@ -3064,29 +3077,14 @@ Found the following files: ${javaSourceFiles}" />
     <profile>
       <id>nexus</id>
       <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId><version>${org.sonatype.plugins.nexus-staging-maven-plugin.version}</version>
-              <configuration>
-                <serverId>ossrh-aoindustries</serverId>
-                <nexusUrl>${nexusUrl}</nexusUrl>
-                <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                <!--
-                  Use direct deployment instead of deferred for two reasons:
-                  1) Total deploy time is significantly reduced because artifact uploads happen in parallel
-                     during the builds.  With deferred deployment, the artifact uploads are sequential.
-                  2) When the reactor happens to end on a project with skipNexusStagingDeployMojo=true, the
-                     staging will not occur.
-                -->
-                <skipLocalStaging>${build.isSnapshot}</skipLocalStaging>
-              </configuration>
-            </plugin>
-          </plugins>
-        </pluginManagement>
         <plugins>
           <plugin>
             <groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
+            <configuration>
+              <serverId>ossrh-aoindustries</serverId>
+              <nexusUrl>${nexusUrl}</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
             <!--
             Not using as extension, since it blocks maven-deploy-plugin in the jenkins-deploy profile:
             <extensions>true</extensions>
