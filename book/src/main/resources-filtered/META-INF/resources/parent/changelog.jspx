@@ -37,9 +37,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2023-09-23T05:45:40Z"
+    dateModified="2023-09-23T19:20:38Z"
   >
-    <c:set var="latestRelease" value="1.24.0" />
+    <c:set var="latestRelease" value="1.24.1" />
     <c:if test="${
       fn:endsWith('@{project.version}', '-SNAPSHOT')
       and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')
@@ -54,16 +54,26 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         scmUrl="@{project.scm.url}"
       >
         <!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
-        <ul>
-          <li>
-            To fully satisfy <ao:a href="https://central.sonatype.org/publish/requirements/#supply-javadoc-and-sources">Central Repository Requirements</ao:a>,
-            all projects must deploy javadoc classifier when have any <code>*.java</code> file, even if only a <code>module-info.java</code>.
-            Projects that have no public API now generate a placeholder javadoc artifact, with the <code>index.html</code>
-            describing the reason why Javadocs are not present.  The generated artifacts also contain an empty <code>element-list</code>.
-          </li>
-        </ul>
       </changelog:release>
     </c:if>
+
+    <changelog:release
+      projectName="@{documented.name}"
+      version="1.24.1"
+      datePublished="2023-09-23T19:20:38Z"
+      groupId="@{project.groupId}"
+      artifactId="@{documented.artifactId}"
+      scmUrl="@{project.scm.url}"
+    >
+      <ul>
+        <li>
+          To fully satisfy <ao:a href="https://central.sonatype.org/publish/requirements/#supply-javadoc-and-sources">Central Repository Requirements</ao:a>,
+          all projects must deploy javadoc classifier when have any <code>*.java</code> file, even if only a <code>module-info.java</code>.
+          Projects that have no public API now generate a placeholder javadoc artifact, with the <code>index.html</code>
+          describing the reason why Javadocs are not present.  The generated artifacts also contain an empty <code>element-list</code>.
+        </li>
+      </ul>
+    </changelog:release>
 
     <changelog:release
       projectName="@{documented.name}"
