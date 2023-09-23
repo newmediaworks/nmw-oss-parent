@@ -171,9 +171,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <default-install.phase>install</default-install.phase>
     <default-deploy.phase>deploy</default-deploy.phase>
 
-    <!-- May optionally allow javadocs despite being development-only -->
-    <verify-java-in-src.allowJavadocInDevelopmentProfile>false</verify-java-in-src.allowJavadocInDevelopmentProfile>
-
     <!-- The version of Java apidocs to link to, preferring https -->
     <!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->
     <!-- Note: These prefixes match ao-ant-tasks:SeoJavadocFilterTask.java default Java SE nofollow filters -->
@@ -2847,6 +2844,10 @@ Found the following files: ${javaSourceFiles}" />
     </profile>
     <profile>
       <id>not-maven.javadoc.skip</id><activation><file><missing>profile.d/maven.javadoc.skip</missing></file></activation>
+      <properties>
+        <!-- May optionally allow javadocs despite being development-only in the "development-with-javadocs" profile -->
+        <verify-java-in-src.allowJavadocInDevelopmentProfile>false</verify-java-in-src.allowJavadocInDevelopmentProfile>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -3373,6 +3374,43 @@ Found the following files: ${javaSourceFiles}" />
               <execution>
                 <!-- Overriding phase to be "none" to fully disregard ${default-deploy.phase} -->
                 <id>default-deploy</id><phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <!-- Keep javadocs enabled even under development profile -->
+      <id>development-with-javadocs</id><activation><file><exists>profile.d/development-with-javadocs</exists></file></activation>
+      <properties>
+        <!-- Allow javadocs despite being development-only -->
+        <verify-java-in-src.allowJavadocInDevelopmentProfile>true</verify-java-in-src.allowJavadocInDevelopmentProfile>
+
+        <!-- Reactivate phases disabled in development profile -->
+        <require-javadoc.breadcrumbs.phase>validate</require-javadoc.breadcrumbs.phase>
+        <unpack.offlineLinks.phase>prepare-package</unpack.offlineLinks.phase>
+        <process.offlineLinks.phase>prepare-package</process.offlineLinks.phase>
+        <attach-javadocs.phase>package</attach-javadocs.phase>
+        <attach-test-javadocs.phase>package</attach-test-javadocs.phase>
+        <seo-javadoc-filter.phase>package</seo-javadoc-filter.phase>
+        <generate-javadoc-sitemap.phase>package</generate-javadoc-sitemap.phase>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>development-with-javadocs-enforce-profiles</id><goals><goal>enforce</goal></goals>
+                <configuration>
+                  <rules>
+                    <requireActiveProfile>
+                      <message>"development-with-javadocs" requires "development" profile</message>
+                      <profiles>development</profiles>
+                    </requireActiveProfile>
+                  </rules>
+                </configuration>
               </execution>
             </executions>
           </plugin>
