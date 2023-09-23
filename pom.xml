@@ -24,12 +24,12 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.24.0-SNAPSHOT</version>
+  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.24.0</version>
   <packaging>pom</packaging>
 
   <properties>
     <!-- Must be set to ${git.commit.time} for snapshots or ISO 8601 timestamp for releases. -->
-    <project.build.outputTimestamp>${git.commit.time}</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2023-09-23T02:48:09Z</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Extensions -->
@@ -134,8 +134,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
         Example colordiff while handling differing ASCII table widths:
         colordiff \
-          <(mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT | sed -E -e 's/ +\| / | /g') \
-          <(mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development | sed -E -e 's/ +\| / | /g')
+          <(mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT | sed -E -e 's/ +\| / | /g') \ <(mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development | sed -E -e 's/ +\| / | /g')
     -->
     <pgpverify-check.phase>validate</pgpverify-check.phase>
     <git.commit.time.phase>validate</git.commit.time.phase>
@@ -1070,7 +1069,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <connection>scm:git:git://github.com/ao-apps/ao-oss-parent.git</connection>
     <developerConnection>scm:git:git@github.com:ao-apps/ao-oss-parent.git</developerConnection>
     <url>https://github.com/ao-apps/ao-oss-parent</url>
-    <tag>HEAD</tag>
+    <tag>ao-oss-parent-1.24.0</tag>
   </scm>
 
   <issueManagement>
@@ -2789,21 +2788,14 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                   <target xmlns:unless="ant:unless">
                     <!-- Fail if no ${project.build.sourceDirectory} -->
                     <available property="sourceDirectoryExists" file="${project.build.sourceDirectory}" type="dir" />
-                    <fail unless="sourceDirectoryExists" message="profile.d/maven.javadoc.skip exists while ${project.build.sourceDirectory}
-does not exist or is not a directory.  Please:
-1) Remove profile.d/maven.javadoc.skip" />
+                    <fail unless="sourceDirectoryExists" message="profile.d/maven.javadoc.skip exists while ${project.build.sourceDirectory} does not exist or is not a directory. Please: 1) Remove profile.d/maven.javadoc.skip" />
                     <available property="developmentProfileExists" file="${project.basedir}/profile.d/development" type="file" />
                     <pathconvert unless:set="developmentProfileExists" property="javaSourceFiles" setonempty="false" pathsep=" ">
                       <path>
                         <fileset dir="${project.build.sourceDirectory}" excludes="module-info.java" includes="**/*.java" />
                       </path>
                     </pathconvert>
-                    <fail unless:set="developmentProfileExists" if="javaSourceFiles" message="May not skip javadocs when have *.java source files other than module-info.java.  Please:
-1) Remove profile.d/maven.javadoc.skip
-2) Configure javadoc.breadcrumbs property (and related)
-3) Adds offlineLinks profile if have dependencies not in ao-javadoc-offline (do not do on books which do not have published apidocs)
-
-Found the following files: ${javaSourceFiles}" />
+                    <fail unless:set="developmentProfileExists" if="javaSourceFiles" message="May not skip javadocs when have *.java source files other than module-info.java. Please: 1) Remove profile.d/maven.javadoc.skip 2) Configure javadoc.breadcrumbs property (and related) 3) Adds offlineLinks profile if have dependencies not in ao-javadoc-offline (do not do on books which do not have published apidocs)  Found the following files: ${javaSourceFiles}" />
                   </target>
                 </configuration>
               </execution>
@@ -2867,10 +2859,7 @@ Found the following files: ${javaSourceFiles}" />
                         <fileset dir="${project.build.sourceDirectory}" excludes="module-info.java" includes="**/*.java" />
                       </path>
                     </pathconvert>
-                    <fail if:set="sourceDirectoryExists" unless="javaSourceFiles" message="Must skip javadocs when have no *.java source files other than module-info.java.  Please:
-1) Add empty profile.d/maven.javadoc.skip
-2) Remove javadoc.breadcrumbs property (and related)
-3) Remove any offlineLinks profile" />
+                    <fail if:set="sourceDirectoryExists" unless="javaSourceFiles" message="Must skip javadocs when have no *.java source files other than module-info.java. Please: 1) Add empty profile.d/maven.javadoc.skip 2) Remove javadoc.breadcrumbs property (and related) 3) Remove any offlineLinks profile" />
                   </target>
                 </configuration>
               </execution>
