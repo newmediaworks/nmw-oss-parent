@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2023-09-23T02:48:36Z"
+    dateModified="2023-09-23T05:45:40Z"
   >
     <c:set var="latestRelease" value="1.24.0" />
     <c:if test="${
@@ -54,6 +54,14 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         scmUrl="@{project.scm.url}"
       >
         <!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
+        <ul>
+          <li>
+            To fully satisfy <ao:a href="https://central.sonatype.org/publish/requirements/#supply-javadoc-and-sources">Central Repository Requirements</ao:a>,
+            all projects must deploy javadoc classifier when have any <code>*.java</code> file, even if only a <code>module-info.java</code>.
+            Projects that have no public API now generate a placeholder javadoc artifact, with the <code>index.html</code>
+            describing the reason why Javadocs are not present.  The generated artifacts also contain an empty <code>element-list</code>.
+          </li>
+        </ul>
       </changelog:release>
     </c:if>
 
@@ -87,11 +95,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <p>
             Sub-projects that both share the same <code>\${project.url}</code> and generate Javadocs must override this value.
           </p>
-        </li>
-        <li>
-          Per <ao:a href="https://central.sonatype.org/publish/requirements/#supply-javadoc-and-sources">Central Repository Requirements</ao:a>,
-          all projects must deploy javadoc classifier when have any <code>*.java</code> file other than
-          <code>module-info.java</code>.
         </li>
         <li>
           Build steps selection is much more based on properties, where the phase is set to "none" to disable.
