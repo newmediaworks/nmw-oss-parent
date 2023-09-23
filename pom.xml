@@ -135,8 +135,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         Example colordiff while handling differing ASCII table widths:
         colordiff \
           <(mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT | sed -E -e 's/ +\| / | /g') \
-          <(mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development | sed -E -e 's/ +\| / | /g')
-    -->
+          <(mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list -PPOST-SNAPSHOT,development | sed -E -e 's/ +\| / | /g') -->
     <pgpverify-check.phase>validate</pgpverify-check.phase>
     <git.commit.time.phase>validate</git.commit.time.phase>
     <enforce-jdk.phase>validate</enforce-jdk.phase>
@@ -152,10 +151,12 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <verify-java-in-src.phase>validate</verify-java-in-src.phase>
     <check-if-need-maven.gpg.skip.phase>validate</check-if-need-maven.gpg.skip.phase>
     <remove-empty-test.phase>initialize</remove-empty-test.phase>
+    <empty-javadoc-generate-element-list.phase>generate-resources</empty-javadoc-generate-element-list.phase>
     <bundle-manifest.phase>process-classes</bundle-manifest.phase>
     <unpack.offlineLinks.phase>prepare-package</unpack.offlineLinks.phase>
     <process.offlineLinks.phase>prepare-package</process.offlineLinks.phase>
     <attach-tests.phase>package</attach-tests.phase>
+    <empty-javadoc-jar.phase>package</empty-javadoc-jar.phase>
     <attach-sources.phase>none</attach-sources.phase>
     <attach-test-sources.phase>none</attach-test-sources.phase>
     <attach-javadocs.phase>package</attach-javadocs.phase>
@@ -2762,14 +2763,25 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     </profile>
     <profile>
       <!--
-        Javadoc generation may be skipped by the presence of a file.
-        This is primary used for book/ and devel/ projects.
-        This may be also be used for any project that no public API but still has a module-info.java file, as
-        this results in error "No public or protected classes found to document."
+        Projects without any public API must still deploy javadoc artifacts per Central Repository Requirements.
+        This includes projects that contain only a module-info.class.
+
+        To create an empty placeholder *-javadoc.jar:
+        1) Create a src/main/javadoc/index.html with an explanation of why cannot publish javadocs
+        2) Create a src/main/javadoc/element-list with empty module (this is auto-generated under "jenkins" profile)
+
+        Note: Normally src/main/javadoc/index.html would never exist, since that file would conflict with the file
+        created by the javadoc tool, thus there is no ambiguity.
+
+        See https://central.sonatype.org/publish/requirements/#supply-javadoc-and-sources
+
+        This is primarily used for *-all, *-book, and *-devel projects. However, this may be also be used for any
+        project that has no public API but still has a module-info.java file, which would result in a Javadoc error
+        "No public or protected classes found to document."
       -->
-      <id>maven.javadoc.skip</id><activation><file><exists>profile.d/maven.javadoc.skip</exists></file></activation>
+      <id>empty-javadoc</id><activation><file><exists>src/main/javadoc/index.html</exists></file></activation>
       <properties>
-        <!-- Provides default breadcrumbs for when profile.d/maven.javadoc.skip exists -->
+        <!-- Provides default breadcrumbs for when src/main/javadoc/index.html exists -->
         <javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
         <!-- maven-javadoc-plugin:3.0.1: Works both directly and in reactor build, but can't link to "element-list" -->
         <copy-element-list-to-package-list-before-javadoc.phase>none</copy-element-list-to-package-list-before-javadoc.phase>
@@ -2794,21 +2806,35 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                   <target xmlns:unless="ant:unless">
                     <!-- Fail if no ${project.build.sourceDirectory} -->
                     <available property="sourceDirectoryExists" file="${project.build.sourceDirectory}" type="dir" />
-                    <fail unless="sourceDirectoryExists" message="profile.d/maven.javadoc.skip exists while ${project.build.sourceDirectory}
-does not exist or is not a directory.  Please:
-1) Remove profile.d/maven.javadoc.skip" />
+                    <fail unless="sourceDirectoryExists">
+                      src/main/javadoc/index.html exists while ${project.build.sourceDirectory}
+                      does not exist or is not a directory. Please:
+                      1) Remove src/main/javadoc/index.html
+                      2) Remove src/main/javadoc/element-list
+                    </fail>
                     <available property="developmentProfileExists" file="${project.basedir}/profile.d/development" type="file" />
                     <pathconvert unless:set="developmentProfileExists" property="javaSourceFiles" setonempty="false" pathsep=" ">
                       <path>
                         <fileset dir="${project.build.sourceDirectory}" excludes="module-info.java" includes="**/*.java" />
                       </path>
                     </pathconvert>
-                    <fail unless:set="developmentProfileExists" if="javaSourceFiles" message="May not skip javadocs when have *.java source files other than module-info.java.  Please:
-1) Remove profile.d/maven.javadoc.skip
-2) Configure javadoc.breadcrumbs property (and related)
-3) Adds offlineLinks profile if have dependencies not in ao-javadoc-offline (do not do on books which do not have published apidocs)
+                    <fail unless:set="developmentProfileExists" if="javaSourceFiles">
+                      May not skip javadocs when have *.java source files other than module-info.java. Please:
+                      1) Remove src/main/javadoc/index.html
+                      2) Remove src/main/javadoc/element-list
+                      3) Configure javadoc.breadcrumbs property (and related)
+                      4) Adds offlineLinks profile if have dependencies not in ao-javadoc-offline (do not do on books which do not have published apidocs)
 
-Found the following files: ${javaSourceFiles}" />
+                      Found the following files: ${javaSourceFiles}
+                    </fail>
+                  </target>
+                </configuration>
+              </execution>
+              <execution>
+                <id>empty-javadoc-generate-element-list</id><phase>${empty-javadoc-generate-element-list.phase}</phase><goals><goal>run</goal></goals>
+                <configuration>
+                  <target>
+                    <echo file="${project.basedir}/src/main/javadoc/element-list" message="module:${module.name}${line.separator}" encoding="${project.build.sourceEncoding}" />
                   </target>
                 </configuration>
               </execution>
@@ -2844,11 +2870,34 @@ Found the following files: ${javaSourceFiles}" />
               </execution>
             </executions>
           </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>empty-javadoc-jar</id><phase>${empty-javadoc-jar.phase}</phase><goals><goal>jar</goal></goals>
+                <configuration>
+                  <classesDirectory>${project.basedir}/src/main/javadoc</classesDirectory>
+                  <classifier>javadoc</classifier>
+                  <archive>
+                    <manifest>
+                      <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                      <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                    </manifest>
+                    <manifestEntries>
+                      <Built-By>${project.organization.name}</Built-By>
+                      <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+                      <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+                    </manifestEntries>
+                  </archive>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
     </profile>
     <profile>
-      <id>not-maven.javadoc.skip</id><activation><file><missing>profile.d/maven.javadoc.skip</missing></file></activation>
+      <id>not-empty-javadoc</id><activation><file><missing>src/main/javadoc/index.html</missing></file></activation>
       <properties>
         <!-- May optionally allow javadocs despite being development-only in the "development-with-javadocs" profile -->
         <verify-java-in-src.allowJavadocInDevelopmentProfile>false</verify-java-in-src.allowJavadocInDevelopmentProfile>
@@ -2862,9 +2911,6 @@ Found the following files: ${javaSourceFiles}" />
                 <id>verify-java-in-src</id><phase>${verify-java-in-src.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target xmlns:if="ant:if" xmlns:unless="ant:unless">
-                    <!-- Require profile.d/maven.javadoc.skip when profile.d/development exists -->
-                    <available unless:true="${verify-java-in-src.allowJavadocInDevelopmentProfile}" property="developmentProfileExists" file="${project.basedir}/profile.d/development" type="file" />
-                    <fail unless:true="${verify-java-in-src.allowJavadocInDevelopmentProfile}" if="developmentProfileExists" message="profile.d/maven.javadoc.skip required when profile.d/development exists" />
                     <!-- Only when ${project.build.sourceDirectory} exists -->
                     <available property="sourceDirectoryExists" file="${project.build.sourceDirectory}" type="dir" />
                     <pathconvert if:set="sourceDirectoryExists" property="javaSourceFiles" setonempty="false" pathsep=" ">
@@ -2872,10 +2918,19 @@ Found the following files: ${javaSourceFiles}" />
                         <fileset dir="${project.build.sourceDirectory}" excludes="module-info.java" includes="**/*.java" />
                       </path>
                     </pathconvert>
-                    <fail if:set="sourceDirectoryExists" unless="javaSourceFiles" message="Must skip javadocs when have no *.java source files other than module-info.java.  Please:
-1) Add empty profile.d/maven.javadoc.skip
-2) Remove javadoc.breadcrumbs property (and related)
-3) Remove any offlineLinks profile" />
+                    <fail if:set="sourceDirectoryExists" unless="javaSourceFiles">
+                      Must skip javadocs when have no *.java source files other than module-info.java. Please:
+                      1) Create a src/main/javadoc/index.html with an explanation of why cannot publish javadocs
+                      2) Create a src/main/javadoc/element-list with empty module (this is auto-generated under "jenkins" profile)
+                      3) Remove javadoc.breadcrumbs property (and related)
+                      4) Remove any offlineLinks profile
+                    </fail>
+                    <!-- Require src/main/javadoc/index.html when profile.d/development exists and ${project.build.sourceDirectory} exists -->
+                    <available if:set="sourceDirectoryExists" unless:true="${verify-java-in-src.allowJavadocInDevelopmentProfile}" property="developmentProfileExists" file="${project.basedir}/profile.d/development" type="file" />
+                    <fail if:set="sourceDirectoryExists" unless:true="${verify-java-in-src.allowJavadocInDevelopmentProfile}" if="developmentProfileExists">
+                      src/main/javadoc/index.html required when both profile.d/development and ${project.build.sourceDirectory} exist,
+                      unless profile.d/development-with-javadocs also exists.
+                    </fail>
                   </target>
                 </configuration>
               </execution>
@@ -3320,10 +3375,12 @@ Found the following files: ${javaSourceFiles}" />
         <verify-java-in-src.phase>none</verify-java-in-src.phase>
         <check-if-need-maven.gpg.skip.phase>none</check-if-need-maven.gpg.skip.phase>
         <!-- <remove-empty-test.phase>initialize</remove-empty-test.phase> -->
+        <empty-javadoc-generate-element-list.phase>none</empty-javadoc-generate-element-list.phase>
         <!-- <bundle-manifest.phase>process-classes</bundle-manifest.phase> -->
         <unpack.offlineLinks.phase>none</unpack.offlineLinks.phase>
         <process.offlineLinks.phase>none</process.offlineLinks.phase>
         <!-- <attach-tests.phase>package</attach-tests.phase> -->
+        <empty-javadoc-jar.phase>none</empty-javadoc-jar.phase>
         <!-- <attach-sources.phase>none</attach-sources.phase> -->
         <!-- <attach-test-sources.phase>none</attach-test-sources.phase> -->
         <attach-javadocs.phase>none</attach-javadocs.phase>
@@ -3512,11 +3569,13 @@ Found the following files: ${javaSourceFiles}" />
         <verify-java-in-src.phase>validate</verify-java-in-src.phase>
         <check-if-need-maven.gpg.skip.phase>validate</check-if-need-maven.gpg.skip.phase>
         <!-- <remove-empty-test.phase>initialize</remove-empty-test.phase> -->
+        <empty-javadoc-generate-element-list.phase>generate-resources</empty-javadoc-generate-element-list.phase>
         <!-- <bundle-manifest.phase>process-classes</bundle-manifest.phase> -->
         <!-- Only done in "Deploy" phase -->
         <unpack.offlineLinks.phase>none</unpack.offlineLinks.phase>
         <process.offlineLinks.phase>none</process.offlineLinks.phase>
         <attach-tests.phase>none</attach-tests.phase>
+        <empty-javadoc-jar.phase>none</empty-javadoc-jar.phase>
         <!-- <attach-sources.phase>none</attach-sources.phase> -->
         <!-- <attach-test-sources.phase>none</attach-test-sources.phase> -->
         <attach-javadocs.phase>none</attach-javadocs.phase>
@@ -3595,6 +3654,7 @@ Found the following files: ${javaSourceFiles}" />
         <verify-java-in-src.phase>none</verify-java-in-src.phase>
         <check-if-need-maven.gpg.skip.phase>none</check-if-need-maven.gpg.skip.phase>
         <remove-empty-test.phase>none</remove-empty-test.phase>
+        <empty-javadoc-generate-element-list.phase>none</empty-javadoc-generate-element-list.phase>
         <!-- <bundle-manifest.phase>process-classes</bundle-manifest.phase> -->
       </properties>
       <build>
@@ -3638,11 +3698,13 @@ Found the following files: ${javaSourceFiles}" />
         <verify-java-in-src.phase>none</verify-java-in-src.phase>
         <check-if-need-maven.gpg.skip.phase>none</check-if-need-maven.gpg.skip.phase>
         <remove-empty-test.phase>none</remove-empty-test.phase>
+        <empty-javadoc-generate-element-list.phase>none</empty-javadoc-generate-element-list.phase>
         <bundle-manifest.phase>none</bundle-manifest.phase>
         <!-- Only done in "Deploy" phase -->
         <unpack.offlineLinks.phase>prepare-package</unpack.offlineLinks.phase>
         <process.offlineLinks.phase>prepare-package</process.offlineLinks.phase>
         <attach-tests.phase>package</attach-tests.phase>
+        <empty-javadoc-jar.phase>package</empty-javadoc-jar.phase>
         <!-- <attach-sources.phase>none</attach-sources.phase> -->
         <!-- <attach-test-sources.phase>none</attach-test-sources.phase> -->
         <attach-javadocs.phase>package</attach-javadocs.phase>
