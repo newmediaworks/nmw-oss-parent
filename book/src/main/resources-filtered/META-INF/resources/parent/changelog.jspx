@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2023-09-23T19:20:38Z"
+    dateModified="2023-09-24T02:34:17Z"
   >
     <c:set var="latestRelease" value="1.24.1" />
     <c:if test="${
@@ -54,6 +54,12 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         scmUrl="@{project.scm.url}"
       >
         <!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
+        <ul>
+          <li>
+            Removed <ao:a href="https://maven.apache.org/plugins/maven-dependency-plugin/analyze-only-mojo.html#ignoredUnusedDeclaredDependencies"><![CDATA[&lt;ignoredUnusedDeclaredDependencies&gt;&lt;dependency&gt;*:*:pom:*&lt;/dependency&gt;&lt;/ignoredUnusedDeclaredDependencies&lt;]]></ao:a>
+            from the default for all projects.
+          </li>
+        </ul>
       </changelog:release>
     </c:if>
 
@@ -204,10 +210,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         </li>
         <li>
           Set <ao:a href="https://maven.apache.org/plugins/maven-dependency-plugin/analyze-only-mojo.html#ignoreNonCompile"><![CDATA[&lt;ignoreNonCompile&gt;true&lt;/ignoreNonCompile&gt;]]></ao:a>
-          as the default for all projects.
-        </li>
-        <li>
-          Set <ao:a href="https://maven.apache.org/plugins/maven-dependency-plugin/analyze-only-mojo.html#ignoredUnusedDeclaredDependencies"><![CDATA[&lt;ignoredUnusedDeclaredDependencies&gt;&lt;dependency&gt;*:*:pom:*&lt;/dependency&gt;&lt;/ignoredUnusedDeclaredDependencies&lt;]]></ao:a>
           as the default for all projects.
         </li>
         <li>
