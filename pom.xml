@@ -1292,9 +1292,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId><version>${org.apache.maven.plugins.maven-dependency-plugin.version}</version>
           <configuration>
             <ignoreNonCompile>true</ignoreNonCompile>
-            <ignoredUnusedDeclaredDependencies>
-              <dependency>*:*:pom:*</dependency>
-            </ignoredUnusedDeclaredDependencies>
             <silent>true</silent>
           </configuration>
         </plugin>
