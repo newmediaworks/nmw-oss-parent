@@ -28,12 +28,12 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent</artifactId><version>1.21.0<!-- -POST-SNAPSHOT --></version>
   </parent>
 
-  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent-book</artifactId><version>1.21.0</version>
+  <groupId>com.newmediaworks</groupId><artifactId>nmw-oss-parent-book</artifactId><version>1.21.0-POST-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <properties>
     <!-- Must be set to ${git.commit.time} for snapshots or ISO 8601 timestamp for releases. -->
-    <project.build.outputTimestamp>2023-09-25T02:21:17Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>${git.commit.time}</project.build.outputTimestamp>
     <module.name>com.newmediaworks.oss.parent.book</module.name>
     <subproject.subpath>book/</subproject.subpath>
     <!-- These values are copied from the project being documented -->
@@ -76,7 +76,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <connection>scm:git:git://github.com/newmediaworks/nmw-oss-parent.git</connection>
     <developerConnection>scm:git:git@github.com:newmediaworks/nmw-oss-parent.git</developerConnection>
     <url>https://github.com/newmediaworks/nmw-oss-parent</url>
-    <tag>nmw-oss-parent-book-1.21.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
