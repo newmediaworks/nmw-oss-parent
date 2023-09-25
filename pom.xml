@@ -86,7 +86,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <com.puppycrawl.tools.checkstyle.version>10.12.3</com.puppycrawl.tools.checkstyle.version>
     <com.github.spotbugs.spotbugs.version>4.7.3</com.github.spotbugs.spotbugs.version>
     <com.aoapps.ao-javadoc-offline.version>3.4.1${POST-SNAPSHOT}</com.aoapps.ao-javadoc-offline.version>
-    <com.newmediaworks.nmw-javadoc-resources.version>1.1.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.newmediaworks.nmw-javadoc-resources.version>
+    <com.newmediaworks.nmw-javadoc-resources.version>1.1.0${POST-SNAPSHOT}</com.newmediaworks.nmw-javadoc-resources.version>
     <com.aoapps.ao-ant-tasks.version>1.1.1${POST-SNAPSHOT}</com.aoapps.ao-ant-tasks.version>
     <org.apache.commons.commons-compress.version>1.24.0</org.apache.commons.commons-compress.version>
     <commons-io.commons-io.version>2.13.0</commons-io.commons-io.version>
