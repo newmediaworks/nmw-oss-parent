@@ -3591,13 +3591,19 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
             <executions>
               <execution>
-                <id>jenkins-enforce-profiles</id><goals><goal>enforce</goal></goals>
+                <id>jenkins-enforce</id><goals><goal>enforce</goal></goals>
                 <configuration>
                   <rules>
                     <requireActiveProfile>
                       <message>"jenkins" requires "POST-SNAPSHOT" profile</message>
                       <profiles>POST-SNAPSHOT</profiles>
                     </requireActiveProfile>
+                    <requireProperty>
+                      <property>jenkins.buildNumber</property>
+                      <message>"jenkins" profile requires 'jenkins.buildNumber' property.</message>
+                      <regex>^\d+$</regex>
+                      <regexMessage>The 'jenkins.buildNumber' property must contain one or more digits.</regexMessage>
+                    </requireProperty>
                   </rules>
                 </configuration>
               </execution>
