@@ -153,3 +153,6 @@ com.google.re2j:re2j:1.7 = 0x6847BFA6411965A23F08C6366A97BB242496B68A
 
 # Used for WRO4J:
 ro.isdc.wro4j:wro4j-core:2.0.0 = 0xF562D7199B36C900B913FAA29224D6A53F200F59
+
+# Used by spotbugs-4.8.0
+com.github.stephenc.jcip:jcip-annotations:1.0-1 = 0x042B29E928995B9DB963C636C7CA19B7B620D787
