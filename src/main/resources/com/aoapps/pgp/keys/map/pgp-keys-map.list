@@ -113,16 +113,16 @@ com.google.protobuf:protobuf-java = 0x1A55F091AD28C07F831FA44D7905DE25C78AD456
 
 # Used for reCAPTCHA Enterprise
 # Direct
-com.google.api:gax:2.34.1 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
+com.google.api:gax:2.35.0 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
 com.google.auth:google-auth-library-credentials:1.19.0 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
 com.google.auth:google-auth-library-oauth2-http:1.19.0 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
-com.google.cloud:google-cloud-recaptchaenterprise:3.24.0 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
-com.google.api.grpc:proto-google-cloud-recaptchaenterprise-v1:3.24.0 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
+com.google.cloud:google-cloud-recaptchaenterprise:3.25.0 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
+com.google.api.grpc:proto-google-cloud-recaptchaenterprise-v1:3.25.0 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
 # Transitive
-com.google.api:api-common:2.17.1 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
-com.google.auto.value:auto-value-annotations:1.10.2 = 0xC7BE5BCC9FEC15518CFDA882B0F3710FA64900E7
-com.google.api:gax-grpc:2.34.1 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
-com.google.api:gax-httpjson:2.34.1 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
+com.google.api:api-common:2.18.0 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
+com.google.auto.value:auto-value-annotations:1.10.4 = 0xC7BE5BCC9FEC15518CFDA882B0F3710FA64900E7
+com.google.api:gax-grpc:2.35.0 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
+com.google.api:gax-httpjson:2.35.0 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
 com.google.http-client:google-http-client:1.43.3 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
 com.google.http-client:google-http-client-gson:1.43.3 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
 io.grpc:grpc-alts:1.58.0 = 0xB02335AA54CCF21E52BBF9ABD9C565AA72BA2FDD
@@ -138,8 +138,8 @@ io.grpc:grpc-protobuf-lite:1.58.0 = 0xB02335AA54CCF21E52BBF9ABD9C565AA72BA2FDD
 io.grpc:grpc-stub:1.58.0 = 0xB02335AA54CCF21E52BBF9ABD9C565AA72BA2FDD
 io.opencensus:opencensus-api:0.31.1 = 0x600EA202B1EC682F4A788E5AAC7A514BC9F9BB70
 io.opencensus:opencensus-contrib-http-util:0.31.1 = 0x600EA202B1EC682F4A788E5AAC7A514BC9F9BB70
-com.google.api.grpc:proto-google-cloud-recaptchaenterprise-v1beta1:0.66.0 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
-com.google.api.grpc:proto-google-common-protos:2.25.1 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
+com.google.api.grpc:proto-google-cloud-recaptchaenterprise-v1beta1:0.67.0 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
+com.google.api.grpc:proto-google-common-protos:2.26.0 = 0x47504B76CF89C15C0512D9AFE16AB52D79FD224F
 com.google.protobuf:protobuf-java-util:3.24.3 = 0x1A55F091AD28C07F831FA44D7905DE25C78AD456
 org.threeten:threetenbp:1.6.8 = 0xB41089A2DA79B0FA5810252872385FF0AF338D52
 # Runtime Transitive
