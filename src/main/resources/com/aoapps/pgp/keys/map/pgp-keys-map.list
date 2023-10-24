@@ -164,3 +164,6 @@ org.eclipse.parsson:parsson:1.1.4 = 0xD3A5F0B70EC567467BEFAA0E938C5A2AF83B88FA
 
 # Used by rewrite-maven-plugin-5.9.1
 org.jetbrains.intellij.deps:trove4j:1.0.20200330 = 0x8756C4F765C9AC3CB6B85D62379CE192D401AB61
+
+# Used by log4j-2.21.1
+org.apache.logging.log4j = 0x077E8893A6DCC33DD4A4D5B256E73BA9A0B592D0
