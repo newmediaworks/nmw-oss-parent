@@ -75,7 +75,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.maven.plugins.maven-jarsigner-plugin.version>3.0.0</org.apache.maven.plugins.maven-jarsigner-plugin.version>
     <org.apache.tomcat.maven.tomcat7-maven-plugin.version>2.2</org.apache.tomcat.maven.tomcat7-maven-plugin.version>
     <org.codehaus.mojo.properties-maven-plugin.version>1.2.1</org.codehaus.mojo.properties-maven-plugin.version>
-    <org.eclipse.jetty.jetty-maven-plugin.version>11.0.17</org.eclipse.jetty.jetty-maven-plugin.version>
+    <org.eclipse.jetty.jetty-maven-plugin.version>11.0.18</org.eclipse.jetty.jetty-maven-plugin.version>
     <org.apache.maven.plugins.maven-project-info-reports-plugin.version>3.4.5</org.apache.maven.plugins.maven-project-info-reports-plugin.version>
 
     <!-- Plugin Dependencies -->
