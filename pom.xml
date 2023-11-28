@@ -79,7 +79,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.maven.plugins.maven-project-info-reports-plugin.version>3.4.5</org.apache.maven.plugins.maven-project-info-reports-plugin.version>
 
     <!-- Plugin Dependencies -->
-    <org.simplify4u.pgp-keys-map.version>2023.06.24</org.simplify4u.pgp-keys-map.version>
+    <org.simplify4u.pgp-keys-map.version>2023.11.23</org.simplify4u.pgp-keys-map.version>
     <com.aoapps.pgp-keys-map.version>1.12.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.pgp-keys-map.version>
     <org.codehaus.mojo.extra-enforcer-rules.version>1.7.0</org.codehaus.mojo.extra-enforcer-rules.version>
     <org.ow2.asm.asm.version>9.6</org.ow2.asm.asm.version>
