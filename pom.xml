@@ -61,7 +61,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.maven.plugins.maven-remote-resources-plugin.version>3.1.0</org.apache.maven.plugins.maven-remote-resources-plugin.version>
     <org.apache.maven.plugins.maven-war-plugin.version>3.4.0</org.apache.maven.plugins.maven-war-plugin.version>
     <org.apache.maven.plugins.maven-source-plugin.version>3.3.0</org.apache.maven.plugins.maven-source-plugin.version>
-    <org.apache.maven.plugins.maven-javadoc-plugin.version>3.6.2</org.apache.maven.plugins.maven-javadoc-plugin.version>
+    <org.apache.maven.plugins.maven-javadoc-plugin.version>3.6.3</org.apache.maven.plugins.maven-javadoc-plugin.version>
     <org.apache.maven.plugins.maven-antrun-plugin.version>3.1.0</org.apache.maven.plugins.maven-antrun-plugin.version>
     <org.openrewrite.maven.rewrite-maven-plugin.version>5.14.0</org.openrewrite.maven.rewrite-maven-plugin.version>
     <org.apache.maven.plugins.maven-checkstyle-plugin.version>3.3.1</org.apache.maven.plugins.maven-checkstyle-plugin.version>
@@ -96,20 +96,13 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
     <!-- Maven Javadoc Plugin -->
     <!--
-      3.1.0 through 3.4.1: Works when building directly, using "-module-path", but fails in reactor build with "error: module not found" since uses "-class-path"
-      3.0.1: Works both directly and in reactor build, but can't link to "element-list"
-      Once fixed, remove the plugin 3.0.1 workaround "copy-element-list-to-package-list-before-javadoc" below.
-      See https://issues.apache.org/jira/projects/MJAVADOC/issues/MJAVADOC-682
-
-      As a workaround, default to latest version, but change to version 3.0.1 under a new "reactor" profile.
-      This "reactor" profile is activated only within developer scripts "mdr", "mir", and "mpr".  Version 3.0.1 does not
-      produce reproducible builds, but these developer scripts are only used as a fall-back when Jenkins is inoperable.
-
-      This older version (accessed via this *.reactor property) is also used by projects that are module but revert to
+      This older version (accessed via this *.compat property) is used by projects that are module but revert to
       Automatic-Module-Name in releases.  This is done when the project itself uses any unnamed modules.  Before
-      removing this properties, make sure to remove all uses of the properties across all projects.
+      removing these properties, make sure to remove all uses of the properties across all projects.
+
+      Once fixed, remove the plugin 3.0.1 workaround "copy-element-list-to-package-list-before-javadoc" below.
     -->
-    <org.apache.maven.plugins.maven-javadoc-plugin.version.reactor>3.0.1</org.apache.maven.plugins.maven-javadoc-plugin.version.reactor>
+    <org.apache.maven.plugins.maven-javadoc-plugin.version.compat>3.0.1</org.apache.maven.plugins.maven-javadoc-plugin.version.compat>
     <copy-element-list-to-package-list-before-javadoc.phase>none</copy-element-list-to-package-list-before-javadoc.phase>
 
     <!-- devMode flag, enabled in "development" profile, enforced must be disabled in "publish" profile -->
@@ -2660,7 +2653,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
             <executions>
-              <!-- maven-javadoc-plugin:3.0.1: Works both directly and in reactor build, but can't link to "element-list" -->
+              <!-- maven-javadoc-plugin:3.0.1: maven-javadoc-plugin:3.0.1: Can't link to "element-list" -->
               <execution>
                 <id>copy-element-list-to-package-list-before-javadoc</id><phase>${copy-element-list-to-package-list-before-javadoc.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
@@ -2745,13 +2738,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       </build>
     </profile>
     <profile>
-      <id>reactor</id>
-      <properties>
-        <org.apache.maven.plugins.maven-javadoc-plugin.version>${org.apache.maven.plugins.maven-javadoc-plugin.version.reactor}</org.apache.maven.plugins.maven-javadoc-plugin.version>
-        <copy-element-list-to-package-list-before-javadoc.phase>prepare-package</copy-element-list-to-package-list-before-javadoc.phase>
-      </properties>
-    </profile>
-    <profile>
       <!--
         Projects without any public API must still deploy javadoc artifacts per Central Repository Requirements.
         This includes projects that contain only a module-info.class.
@@ -2773,7 +2759,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <properties>
         <!-- Provides default breadcrumbs for when src/main/javadoc/index.html exists -->
         <javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
-        <!-- maven-javadoc-plugin:3.0.1: Works both directly and in reactor build, but can't link to "element-list" -->
+        <!-- maven-javadoc-plugin:3.0.1: maven-javadoc-plugin:3.0.1: Can't link to "element-list" -->
         <copy-element-list-to-package-list-before-javadoc.phase>none</copy-element-list-to-package-list-before-javadoc.phase>
       </properties>
       <build>
