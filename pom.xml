@@ -89,7 +89,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <com.newmediaworks.nmw-javadoc-resources.version>1.1.0${POST-SNAPSHOT}</com.newmediaworks.nmw-javadoc-resources.version>
     <com.aoapps.ao-ant-tasks.version>1.2.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-ant-tasks.version>
     <org.apache.commons.commons-compress.version>1.25.0</org.apache.commons.commons-compress.version>
-    <commons-io.commons-io.version>2.15.0</commons-io.commons-io.version>
+    <commons-io.commons-io.version>2.15.1</commons-io.commons-io.version>
     <org.apache.commons.commons-lang3.version>3.14.0</org.apache.commons.commons-lang3.version>
     <org.apache.commons.commons-text.version>1.11.0</org.apache.commons.commons-text.version>
     <com.aoapps.ao-checkstyle-config.version>1.2.0${POST-SNAPSHOT}</com.aoapps.ao-checkstyle-config.version>
