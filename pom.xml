@@ -85,7 +85,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.ow2.asm.asm.version>9.6</org.ow2.asm.asm.version>
     <com.puppycrawl.tools.checkstyle.version>10.12.7</com.puppycrawl.tools.checkstyle.version>
     <com.github.spotbugs.spotbugs.version>4.8.3</com.github.spotbugs.spotbugs.version>
-    <com.aoapps.ao-javadoc-offline.version>3.4.1${POST-SNAPSHOT}</com.aoapps.ao-javadoc-offline.version>
+    <com.aoapps.ao-javadoc-offline.version>3.5.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-javadoc-offline.version>
     <com.newmediaworks.nmw-javadoc-resources.version>1.1.0${POST-SNAPSHOT}</com.newmediaworks.nmw-javadoc-resources.version>
     <com.aoapps.ao-ant-tasks.version>1.2.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-ant-tasks.version>
     <org.apache.commons.commons-compress.version>1.25.0</org.apache.commons.commons-compress.version>
@@ -183,7 +183,8 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <javadoc.link.javase.18>https://docs.oracle.com/en/java/javase/18/docs/api/</javadoc.link.javase.18>
     <javadoc.link.javase.19>https://docs.oracle.com/en/java/javase/19/docs/api/</javadoc.link.javase.19>
     <javadoc.link.javase.20>https://docs.oracle.com/en/java/javase/20/docs/api/</javadoc.link.javase.20>
-    <javadoc.link.javase.21>https://download.java.net/java/early_access/jdk21/docs/api/</javadoc.link.javase.21>
+    <javadoc.link.javase.21>https://docs.oracle.com/en/java/javase/21/docs/api/</javadoc.link.javase.21>
+    <javadoc.link.javase.22>https://download.java.net/java/early_access/jdk22/docs/api/</javadoc.link.javase.22>
 
     <!-- The Java EE apidocs to link to, preferring https -->
     <!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->

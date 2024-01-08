@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 nmw-oss-parent - Parent POM for all New Media Works open-source software projects.
-Copyright (C) 2019, 2020, 2021, 2022, 2023  New Media Works
+Copyright (C) 2019, 2020, 2021, 2022, 2023, 2024  New Media Works
     info@newmediaworks.com
     703 2nd Street #465
     Santa Rosa, CA 95404
@@ -37,7 +37,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2019-05-24T19:05:12-05:00"
-    dateModified="2023-12-05T00:59:05Z"
+    dateModified="2024-01-08T00:08:41Z"
     allowRobots="false"
   >
     <c:set var="latestRelease" value="1.21.0" />
@@ -61,6 +61,13 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             Upgraded <ao:a href="https://maven.apache.org/plugins/maven-javadoc-plugin/">maven-javadoc-plugin</ao:a>
             to 3.6.3.  <ao:a href="https://issues.apache.org/jira/projects/MJAVADOC/issues/MJAVADOC-682">MJAVADOC-682</ao:a>
             is resolved so removed the "reactor" profile.
+          </li>
+          <li>Java updates:
+            <ol>
+              <li>Java 20 is now end-of-life</li>
+              <li>Java 21 is now current stable</li>
+              <li>Java 22 is new beta</li>
+            </ol>
           </li>
         </ul>
       </changelog:release>
