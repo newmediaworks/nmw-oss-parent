@@ -159,3 +159,10 @@ org.eclipse.parsson:parsson = 0xD3A5F0B70EC567467BEFAA0E938C5A2AF83B88FA
 
 # Used by maven-surefire-plugin-3.2.5
 dev.failsafe:failsafe = 0xCDE577234159E222BC56E50F9C61220417AAA02E
+
+# Used by maven-gpg-plugin-3.2.0
+com.kohlschutter.junixsocket:junixsocket-common:[2.9.0,) = 0xB5C082F1158B8C92AE3E5E1C29B8FEA02804261C
+com.kohlschutter.junixsocket:junixsocket-core:[2.9.0,) = 0xB5C082F1158B8C92AE3E5E1C29B8FEA02804261C
+com.kohlschutter.junixsocket:junixsocket-native-common:[2.9.0,) = 0xB5C082F1158B8C92AE3E5E1C29B8FEA02804261C
+org.bouncycastle:bcpg-jdk18on:[1.77,) = 0x7B121B76A7ED6CE6E60AD51784E913A8E3A748C0
+org.bouncycastle:bcprov-jdk18on:[1.77,) = 0x7B121B76A7ED6CE6E60AD51784E913A8E3A748C0
