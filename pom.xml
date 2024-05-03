@@ -63,7 +63,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.maven.plugins.maven-source-plugin.version>3.3.1</org.apache.maven.plugins.maven-source-plugin.version>
     <org.apache.maven.plugins.maven-javadoc-plugin.version>3.6.3</org.apache.maven.plugins.maven-javadoc-plugin.version>
     <org.apache.maven.plugins.maven-antrun-plugin.version>3.1.0</org.apache.maven.plugins.maven-antrun-plugin.version>
-    <org.openrewrite.maven.rewrite-maven-plugin.version>5.25.0</org.openrewrite.maven.rewrite-maven-plugin.version>
+    <org.openrewrite.maven.rewrite-maven-plugin.version>5.29.0</org.openrewrite.maven.rewrite-maven-plugin.version>
     <org.apache.maven.plugins.maven-checkstyle-plugin.version>3.3.1</org.apache.maven.plugins.maven-checkstyle-plugin.version>
     <com.github.spotbugs.spotbugs-maven-plugin.version>4.8.4.0</com.github.spotbugs.spotbugs-maven-plugin.version>
     <!-- TODO: Try findsecbugs-plugin:
