@@ -96,6 +96,8 @@ com.producersrealtygroup:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0x4F53D3B9302
 com.producersseedstocksales:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0x4F53D3B930239C69E14C656E748BC46BA17F171C
 
 # TODO: Get merged into upstream s4u/pgp-keys-map
+commons-logging:commons-logging:1.3.1 = 0x2DB4F1EF0FA761ECC4EA935C86FDC7E2A11262CB
+
 # Used by maven-site-plugin-4.0.0-M4:
 org.jetbrains:annotations       = 0x2E3A1AFFE42B5F53AF19F780BCF4173966770193
 # Used by git-commit-id-maven-plugin:
