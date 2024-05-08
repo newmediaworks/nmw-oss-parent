@@ -24,12 +24,12 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.24.3-SNAPSHOT</version>
+  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.24.3</version>
   <packaging>pom</packaging>
 
   <properties>
     <!-- Must be set to ${git.commit.time} for snapshots or ISO 8601 timestamp for releases. -->
-    <project.build.outputTimestamp>${git.commit.time}</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2024-05-08T00:39:58Z</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Extensions -->
@@ -1064,7 +1064,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <connection>scm:git:git://github.com/ao-apps/ao-oss-parent.git</connection>
     <developerConnection>scm:git:git@github.com:ao-apps/ao-oss-parent.git</developerConnection>
     <url>https://github.com/ao-apps/ao-oss-parent</url>
-    <tag>HEAD</tag>
+    <tag>ao-oss-parent-1.24.3</tag>
   </scm>
 
   <issueManagement>
