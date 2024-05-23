@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2024-05-23T06:38:35Z"
+    dateModified="2024-05-23T18:55:34Z"
   >
     <c:set var="latestRelease" value="1.24.3" />
     <c:if test="${
@@ -56,6 +56,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
         <ul>
           <li>Updated plugin versions.</li>
+          <li>
+            Temporarily added new PGP keys that we'll work on getting merged into
+            <ao:a href="https://github.com/s4u/pgp-keys-map">s4u/pgp-keys-map</ao:a>.
+          </li>
         </ul>
       </changelog:release>
     </c:if>
