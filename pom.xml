@@ -51,7 +51,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <io.reformanda.semper.dependencyversion-maven-plugin.version>1.0.1</io.reformanda.semper.dependencyversion-maven-plugin.version>
     <org.sonatype.ossindex.maven.ossindex-maven-plugin.version>3.2.0</org.sonatype.ossindex.maven.ossindex-maven-plugin.version>
     <org.apache.maven.plugins.maven-release-plugin.version>3.0.1</org.apache.maven.plugins.maven-release-plugin.version>
-    <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.6.13</org.sonatype.plugins.nexus-staging-maven-plugin.version>
+    <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.7.0</org.sonatype.plugins.nexus-staging-maven-plugin.version>
     <org.codehaus.mojo.versions-maven-plugin.version>2.16.2</org.codehaus.mojo.versions-maven-plugin.version>
     <org.apache.maven.plugins.maven-gpg-plugin.version>3.2.4</org.apache.maven.plugins.maven-gpg-plugin.version>
     <org.apache.maven.plugins.maven-clean-plugin.version>3.3.2</org.apache.maven.plugins.maven-clean-plugin.version>
