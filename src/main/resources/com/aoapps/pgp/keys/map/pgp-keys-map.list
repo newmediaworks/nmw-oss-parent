@@ -173,3 +173,7 @@ org.bouncycastle:bcprov-jdk18on:[1.77,) = 0x7B121B76A7ED6CE6E60AD51784E913A8E3A7
 
 # Used by maven-gpg-plugin-3.2.4 and maven-install-plugin-3.1.2
 org.apache.maven.plugins = 0x88BE34F94BDB2B5357044E2E3A387D43964143E3
+
+# Used by nexus-staging-maven-plugin-1.7.0
+org.sonatype.plugins:nexus-staging-maven-plugin:[1.7.0,) = 0x6C0D8AA121AE5808F43805A6C26BAB2B209A8FF4
+org.sonatype.nexus.maven:nexus-common:[1.7.0,) = 0x6C0D8AA121AE5808F43805A6C26BAB2B209A8FF4
