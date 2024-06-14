@@ -69,7 +69,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <!-- TODO: Try findsecbugs-plugin:
     <com.h3xstream.findsecbugs.findsecbugs-plugin.version>1.12.0</com.h3xstream.findsecbugs.findsecbugs-plugin.version>
     -->
-    <org.apache.maven.plugins.maven-site-plugin.version>4.0.0-M14</org.apache.maven.plugins.maven-site-plugin.version>
+    <org.apache.maven.plugins.maven-site-plugin.version>4.0.0-M15</org.apache.maven.plugins.maven-site-plugin.version>
     <org.sonarsource.scanner.maven.sonar-maven-plugin.version>3.11.0.3922</org.sonarsource.scanner.maven.sonar-maven-plugin.version>
     <org.apache.maven.plugins.maven-shade-plugin.version>3.6.0</org.apache.maven.plugins.maven-shade-plugin.version>
     <org.apache.maven.plugins.maven-jarsigner-plugin.version>3.0.0</org.apache.maven.plugins.maven-jarsigner-plugin.version>
