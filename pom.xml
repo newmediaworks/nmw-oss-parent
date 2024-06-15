@@ -257,6 +257,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <!-- Set to "-POST-SNAPSHOT" by activating the "POST-SNAPSHOT" profile to use post-release dependencies -->
     <POST-SNAPSHOT><!-- -POST-SNAPSHOT --></POST-SNAPSHOT>
     <!-- com.aoapps is on new Sonatype Nexus Repository Manager -->
+    <nexusServerId>s01.ossrh-aoindustries</nexusServerId>
     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
     <nexus.skipNexusStagingDeployMojo>false</nexus.skipNexusStagingDeployMojo>
     <!-- WAR exclusions -->
@@ -1135,13 +1136,13 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
   <distributionManagement>
     <snapshotRepository>
-      <id>ossrh-aoindustries</id>
-      <name>ossrh-aoindustries</name>
+      <id>${nexusServerId}</id>
+      <name>${nexusServerId}</name>
       <url>${nexusUrl}content/repositories/snapshots</url>
     </snapshotRepository>
     <repository>
-      <id>ossrh-aoindustries</id>
-      <name>ossrh-aoindustries</name>
+      <id>${nexusServerId}</id>
+      <name>${nexusServerId}</name>
       <url>${nexusUrl}service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
@@ -3119,7 +3120,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <plugin>
             <groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
             <configuration>
-              <serverId>ossrh-aoindustries</serverId>
+              <serverId>${nexusServerId}</serverId>
               <nexusUrl>${nexusUrl}</nexusUrl>
               <autoReleaseAfterClose>true</autoReleaseAfterClose>
             </configuration>
