@@ -50,7 +50,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.codehaus.mojo.build-helper-maven-plugin.version>3.6.0</org.codehaus.mojo.build-helper-maven-plugin.version>
     <io.reformanda.semper.dependencyversion-maven-plugin.version>1.0.1</io.reformanda.semper.dependencyversion-maven-plugin.version>
     <org.sonatype.ossindex.maven.ossindex-maven-plugin.version>3.2.0</org.sonatype.ossindex.maven.ossindex-maven-plugin.version>
-    <org.apache.maven.plugins.maven-release-plugin.version>3.0.1</org.apache.maven.plugins.maven-release-plugin.version>
+    <org.apache.maven.plugins.maven-release-plugin.version>3.1.0</org.apache.maven.plugins.maven-release-plugin.version>
     <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.7.0</org.sonatype.plugins.nexus-staging-maven-plugin.version>
     <org.codehaus.mojo.versions-maven-plugin.version>2.16.2</org.codehaus.mojo.versions-maven-plugin.version>
     <org.apache.maven.plugins.maven-gpg-plugin.version>3.2.4</org.apache.maven.plugins.maven-gpg-plugin.version>
