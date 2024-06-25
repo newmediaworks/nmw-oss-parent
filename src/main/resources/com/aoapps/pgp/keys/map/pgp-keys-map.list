@@ -177,3 +177,6 @@ org.apache.maven.plugins = 0x88BE34F94BDB2B5357044E2E3A387D43964143E3
 # Used by nexus-staging-maven-plugin-1.7.0
 org.sonatype.plugins:nexus-staging-maven-plugin:[1.7.0,) = 0x6C0D8AA121AE5808F43805A6C26BAB2B209A8FF4
 org.sonatype.nexus.maven:nexus-common:[1.7.0,) = 0x6C0D8AA121AE5808F43805A6C26BAB2B209A8FF4
+
+# Used by spotbugs-maven-plugin-4.8.6.0
+com.github.javaparser:javaparser-core:[3.26.1,) = 0x6DE9B8077FBB2F8A019F4904BD17A565509DEE20
