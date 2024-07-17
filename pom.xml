@@ -76,7 +76,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.tomcat.maven.tomcat7-maven-plugin.version>2.2</org.apache.tomcat.maven.tomcat7-maven-plugin.version>
     <org.codehaus.mojo.properties-maven-plugin.version>1.2.1</org.codehaus.mojo.properties-maven-plugin.version>
     <org.eclipse.jetty.jetty-maven-plugin.version>11.0.21</org.eclipse.jetty.jetty-maven-plugin.version>
-    <org.apache.maven.plugins.maven-project-info-reports-plugin.version>3.6.0</org.apache.maven.plugins.maven-project-info-reports-plugin.version>
+    <org.apache.maven.plugins.maven-project-info-reports-plugin.version>3.6.2</org.apache.maven.plugins.maven-project-info-reports-plugin.version>
 
     <!-- Plugin Dependencies -->
     <org.simplify4u.pgp-keys-map.version>2024.04.04</org.simplify4u.pgp-keys-map.version>
