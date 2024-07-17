@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 nmw-oss-parent - Parent POM for all New Media Works open-source software projects.
-Copyright (C) 2020, 2022  New Media Works
+Copyright (C) 2020, 2022, 2024  New Media Works
     info@newmediaworks.com
     703 2nd Street #465
     Santa Rosa, CA 95404
@@ -34,6 +34,11 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <ignoreVersion type="regex">.*\.alpha[0-9]*</ignoreVersion>
         <ignoreVersion type="regex">.*\.beta[0-9]*</ignoreVersion>
         <ignoreVersion type="regex">.*\.RC[0-9]*</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+    <rule groupId="org.apache.maven.plugins" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.*-beta-[0-9]*</ignoreVersion>
       </ignoreVersions>
     </rule>
   </rules>
