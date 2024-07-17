@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 ao-oss-parent - Parent POM for all AO open-source software projects.
-Copyright (C) 2020, 2021, 2022  AO Industries, Inc.
+Copyright (C) 2020, 2021, 2022, 2024  AO Industries, Inc.
     support@aoindustries.com
     7262 Bull Pen Cir
     Mobile, AL 36695
@@ -34,6 +34,11 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <ignoreVersion type="regex">.*\.alpha[0-9]*</ignoreVersion>
         <ignoreVersion type="regex">.*\.beta[0-9]*</ignoreVersion>
         <ignoreVersion type="regex">.*\.RC[0-9]*</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+    <rule groupId="org.apache.maven.plugins" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.*-beta-[0-9]*</ignoreVersion>
       </ignoreVersions>
     </rule>
   </rules>
