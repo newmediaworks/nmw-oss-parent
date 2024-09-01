@@ -151,7 +151,13 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <empty-javadoc-jar.phase>package</empty-javadoc-jar.phase>
     <attach-sources.phase>none</attach-sources.phase>
     <attach-test-sources.phase>none</attach-test-sources.phase>
-    <attach-javadocs.phase>package</attach-javadocs.phase>
+    <!--
+      maven-javadoc-plugin-3.10.0 is not skipping empty javadoc JARs with warning
+      "JAR will be empty - no content was marked for inclusion!".
+      This property will be set to "package" by the presence of src/main/java
+    -->
+    <attach-javadocs.phase.conditional>none</attach-javadocs.phase.conditional>
+    <attach-javadocs.phase>${attach-javadocs.phase.conditional}</attach-javadocs.phase>
     <!--
       maven-javadoc-plugin-3.10.0 is not skipping empty test javadoc JARs with warning
       "JAR will be empty - no content was marked for inclusion!".
@@ -2587,7 +2593,21 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       </build>
     </profile>
     <profile>
+      <!-- Set properties when src/main/java is present -->
+      <!-- Sadly, cannot use Maven properties in profile activation: ${project.build.sourceDirectory} -->
+      <id>set-properties-main-java</id><activation><file><exists>src/main/java</exists></file></activation>
+      <properties>
+        <!--
+          maven-javadoc-plugin-3.10.0 is not skipping empty javadoc JARs with warning
+          "JAR will be empty - no content was marked for inclusion!".
+          This property will be set to "package" by the presence of src/main/java
+        -->
+        <attach-javadocs.phase.conditional>package</attach-javadocs.phase.conditional>
+      </properties>
+    </profile>
+    <profile>
       <!-- Set properties when src/test/java is present -->
+      <!-- Sadly, cannot use Maven properties in profile activation: ${project.build.sourceDirectory} -->
       <id>set-properties-test-java</id><activation><file><exists>src/test/java</exists></file></activation>
       <properties>
         <!--
@@ -3453,7 +3473,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <require-javadoc.breadcrumbs.phase>validate</require-javadoc.breadcrumbs.phase>
         <unpack.offlineLinks.phase>prepare-package</unpack.offlineLinks.phase>
         <process.offlineLinks.phase>prepare-package</process.offlineLinks.phase>
-        <attach-javadocs.phase>package</attach-javadocs.phase>
+        <attach-javadocs.phase>${attach-javadocs.phase.conditional}</attach-javadocs.phase>
         <attach-test-javadocs.phase>${attach-test-javadocs.phase.conditional}</attach-test-javadocs.phase>
         <seo-javadoc-filter.phase>package</seo-javadoc-filter.phase>
         <generate-javadoc-sitemap.phase>package</generate-javadoc-sitemap.phase>
@@ -3711,7 +3731,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <empty-javadoc-jar.phase>package</empty-javadoc-jar.phase>
         <!-- <attach-sources.phase>none</attach-sources.phase> -->
         <!-- <attach-test-sources.phase>none</attach-test-sources.phase> -->
-        <attach-javadocs.phase>package</attach-javadocs.phase>
+        <attach-javadocs.phase>${attach-javadocs.phase.conditional}</attach-javadocs.phase>
         <attach-test-javadocs.phase>${attach-test-javadocs.phase.conditional}</attach-test-javadocs.phase>
         <seo-javadoc-filter.phase>package</seo-javadoc-filter.phase>
         <zip-timestamp-merge.phase>package</zip-timestamp-merge.phase>
