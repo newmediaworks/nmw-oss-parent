@@ -180,3 +180,6 @@ org.sonatype.nexus.maven:nexus-common:[1.7.0,) = 0x6C0D8AA121AE5808F43805A6C26BA
 
 # Used by spotbugs-maven-plugin-4.8.6.0
 com.github.javaparser:javaparser-core:[3.26.1,) = 0x6DE9B8077FBB2F8A019F4904BD17A565509DEE20
+
+# Used by maven-dependency-plugin-3.8.0
+io.airlift:aircompressor:[0.27,) = 0x9E93DB1192CEE3D3B581AABB37E9D58EA4598641

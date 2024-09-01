@@ -45,7 +45,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.maven.plugins.maven-resources-plugin.version>3.3.1</org.apache.maven.plugins.maven-resources-plugin.version>
     <org.jacoco.jacoco-maven-plugin.version>0.8.12</org.jacoco.jacoco-maven-plugin.version>
     <org.apache.maven.plugins.maven-surefire-plugin.version>3.5.0</org.apache.maven.plugins.maven-surefire-plugin.version>
-    <org.apache.maven.plugins.maven-dependency-plugin.version>3.7.1</org.apache.maven.plugins.maven-dependency-plugin.version>
+    <org.apache.maven.plugins.maven-dependency-plugin.version>3.8.0</org.apache.maven.plugins.maven-dependency-plugin.version>
     <org.apache.felix.maven-bundle-plugin.version>5.1.9</org.apache.felix.maven-bundle-plugin.version>
     <org.codehaus.mojo.build-helper-maven-plugin.version>3.6.0</org.codehaus.mojo.build-helper-maven-plugin.version>
     <io.reformanda.semper.dependencyversion-maven-plugin.version>1.0.1</io.reformanda.semper.dependencyversion-maven-plugin.version>
@@ -80,7 +80,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
     <!-- Plugin Dependencies -->
     <org.simplify4u.pgp-keys-map.version>2024.06.29</org.simplify4u.pgp-keys-map.version>
-    <com.aoapps.pgp-keys-map.version>1.13.0${POST-SNAPSHOT}</com.aoapps.pgp-keys-map.version>
+    <com.aoapps.pgp-keys-map.version>1.14.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.pgp-keys-map.version>
     <org.codehaus.mojo.extra-enforcer-rules.version>1.8.0</org.codehaus.mojo.extra-enforcer-rules.version>
     <org.ow2.asm.asm.version>9.7</org.ow2.asm.asm.version>
     <com.puppycrawl.tools.checkstyle.version>10.18.1</com.puppycrawl.tools.checkstyle.version>
