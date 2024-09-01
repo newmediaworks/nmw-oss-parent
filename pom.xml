@@ -155,7 +155,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <!--
       maven-javadoc-plugin-3.10.0 is not skipping empty test javadoc JARs with warning
       "JAR will be empty - no content was marked for inclusion!".
-      This property will be set top "package" by the presence of src/test/java
+      This property will be set to "package" by the presence of src/test/java
     -->
     <attach-test-javadocs.phase.conditional>none</attach-test-javadocs.phase.conditional>
     <attach-test-javadocs.phase>${attach-test-javadocs.phase.conditional}</attach-test-javadocs.phase>
@@ -2588,7 +2588,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!--
           maven-javadoc-plugin-3.10.0 is not skipping empty test javadoc JARs with warning
           "JAR will be empty - no content was marked for inclusion!".
-          This property will be set top "package" by the presence of src/test/java
+          This property will be set to "package" by the presence of src/test/java
         -->
         <attach-test-javadocs.phase.conditional>package</attach-test-javadocs.phase.conditional>
       </properties>
