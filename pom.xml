@@ -152,7 +152,13 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <attach-sources.phase>none</attach-sources.phase>
     <attach-test-sources.phase>none</attach-test-sources.phase>
     <attach-javadocs.phase>package</attach-javadocs.phase>
-    <attach-test-javadocs.phase>package</attach-test-javadocs.phase>
+    <!--
+      maven-javadoc-plugin-3.10.0 is not skipping empty test javadoc JARs with warning
+      "JAR will be empty - no content was marked for inclusion!".
+      This property will be set top "package" by the presence of src/test/java
+    -->
+    <attach-test-javadocs.phase.conditional>none</attach-test-javadocs.phase.conditional>
+    <attach-test-javadocs.phase>${attach-test-javadocs.phase.conditional}</attach-test-javadocs.phase>
     <seo-javadoc-filter.phase>package</seo-javadoc-filter.phase>
     <zip-timestamp-merge.phase>none</zip-timestamp-merge.phase>
     <generate-javadoc-sitemap.phase>package</generate-javadoc-sitemap.phase>
@@ -2576,6 +2582,18 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       </build>
     </profile>
     <profile>
+      <!-- Set properties when src/test/java is present -->
+      <id>set-properties-test-java</id><activation><file><exists>src/test/java</exists></file></activation>
+      <properties>
+        <!--
+          maven-javadoc-plugin-3.10.0 is not skipping empty test javadoc JARs with warning
+          "JAR will be empty - no content was marked for inclusion!".
+          This property will be set top "package" by the presence of src/test/java
+        -->
+        <attach-test-javadocs.phase.conditional>package</attach-test-javadocs.phase.conditional>
+      </properties>
+    </profile>
+    <profile>
       <!-- Sadly, cannot use Maven properties in profile activation: ${project.build.sourceDirectory} -->
       <id>war-attachClasses</id><activation><file><exists>src/main/java</exists></file></activation>
       <build>
@@ -3431,7 +3449,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <unpack.offlineLinks.phase>prepare-package</unpack.offlineLinks.phase>
         <process.offlineLinks.phase>prepare-package</process.offlineLinks.phase>
         <attach-javadocs.phase>package</attach-javadocs.phase>
-        <attach-test-javadocs.phase>package</attach-test-javadocs.phase>
+        <attach-test-javadocs.phase>${attach-test-javadocs.phase.conditional}</attach-test-javadocs.phase>
         <seo-javadoc-filter.phase>package</seo-javadoc-filter.phase>
         <generate-javadoc-sitemap.phase>package</generate-javadoc-sitemap.phase>
       </properties>
@@ -3689,7 +3707,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!-- <attach-sources.phase>none</attach-sources.phase> -->
         <!-- <attach-test-sources.phase>none</attach-test-sources.phase> -->
         <attach-javadocs.phase>package</attach-javadocs.phase>
-        <attach-test-javadocs.phase>package</attach-test-javadocs.phase>
+        <attach-test-javadocs.phase>${attach-test-javadocs.phase.conditional}</attach-test-javadocs.phase>
         <seo-javadoc-filter.phase>package</seo-javadoc-filter.phase>
         <zip-timestamp-merge.phase>package</zip-timestamp-merge.phase>
         <generate-javadoc-sitemap.phase>package</generate-javadoc-sitemap.phase>
