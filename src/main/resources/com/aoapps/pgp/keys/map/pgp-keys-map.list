@@ -186,3 +186,6 @@ io.airlift:aircompressor:[0.27,) = 0x9E93DB1192CEE3D3B581AABB37E9D58EA4598641
 
 # Used by rewrite-maven-plugin-5.39.2
 org.jspecify:jspecify:[1.0.0,) = 0x41CD49B4EF5876F9E9F691DABAC30622339994C4
+
+# Used by rewrite-maven-plugin-5.40.2
+org.yaml:snakeyaml:[2.3,) = 0x2FC53E6B1F681184F4CCD637F5C81DE10A0B8ECC
