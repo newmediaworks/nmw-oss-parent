@@ -89,7 +89,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <com.aoapps.ao-javadoc-resources.version>1.1.1${POST-SNAPSHOT}</com.aoapps.ao-javadoc-resources.version>
     <com.aoapps.ao-ant-tasks.version>1.2.0${POST-SNAPSHOT}</com.aoapps.ao-ant-tasks.version>
     <org.apache.commons.commons-compress.version>1.27.1</org.apache.commons.commons-compress.version>
-    <commons-io.commons-io.version>2.16.1</commons-io.commons-io.version>
+    <commons-io.commons-io.version>2.17.0</commons-io.commons-io.version>
     <org.apache.commons.commons-lang3.version>3.17.0</org.apache.commons.commons-lang3.version>
     <org.apache.commons.commons-text.version>1.12.0</org.apache.commons.commons-text.version>
     <com.aoapps.ao-checkstyle-config.version>1.4.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-checkstyle-config.version>
