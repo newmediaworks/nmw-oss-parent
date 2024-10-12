@@ -61,7 +61,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.maven.plugins.maven-remote-resources-plugin.version>3.2.0</org.apache.maven.plugins.maven-remote-resources-plugin.version>
     <org.apache.maven.plugins.maven-war-plugin.version>3.4.0</org.apache.maven.plugins.maven-war-plugin.version>
     <org.apache.maven.plugins.maven-source-plugin.version>3.3.1</org.apache.maven.plugins.maven-source-plugin.version>
-    <org.apache.maven.plugins.maven-javadoc-plugin.version>3.10.0</org.apache.maven.plugins.maven-javadoc-plugin.version>
+    <org.apache.maven.plugins.maven-javadoc-plugin.version>3.10.1</org.apache.maven.plugins.maven-javadoc-plugin.version>
     <org.apache.maven.plugins.maven-antrun-plugin.version>3.1.0</org.apache.maven.plugins.maven-antrun-plugin.version>
     <org.openrewrite.maven.rewrite-maven-plugin.version>5.40.2</org.openrewrite.maven.rewrite-maven-plugin.version>
     <org.apache.maven.plugins.maven-checkstyle-plugin.version>3.5.0</org.apache.maven.plugins.maven-checkstyle-plugin.version>
@@ -152,16 +152,18 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <attach-sources.phase>none</attach-sources.phase>
     <attach-test-sources.phase>none</attach-test-sources.phase>
     <!--
-      maven-javadoc-plugin-3.10.0 is not skipping empty javadoc JARs with warning
+      maven-javadoc-plugin-3.10.0 was not skipping empty javadoc JARs with warning
       "JAR will be empty - no content was marked for inclusion!".
       This property will be set to "package" by the presence of src/main/java
+      We are keeping this conditional plugin execution as a minor optimization, since we already have it in-place.
     -->
     <attach-javadocs.phase.conditional>none</attach-javadocs.phase.conditional>
     <attach-javadocs.phase>${attach-javadocs.phase.conditional}</attach-javadocs.phase>
     <!--
-      maven-javadoc-plugin-3.10.0 is not skipping empty test javadoc JARs with warning
+      maven-javadoc-plugin-3.10.0 was not skipping empty test javadoc JARs with warning
       "JAR will be empty - no content was marked for inclusion!".
       This property will be set to "package" by the presence of src/test/java
+      We are keeping this conditional plugin execution as a minor optimization, since we already have it in-place.
     -->
     <attach-test-javadocs.phase.conditional>none</attach-test-javadocs.phase.conditional>
     <attach-test-javadocs.phase>${attach-test-javadocs.phase.conditional}</attach-test-javadocs.phase>
@@ -2598,9 +2600,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <id>set-properties-main-java</id><activation><file><exists>src/main/java</exists></file></activation>
       <properties>
         <!--
-          maven-javadoc-plugin-3.10.0 is not skipping empty javadoc JARs with warning
+          maven-javadoc-plugin-3.10.0 was not skipping empty javadoc JARs with warning
           "JAR will be empty - no content was marked for inclusion!".
           This property will be set to "package" by the presence of src/main/java
+          We are keeping this conditional plugin execution as a minor optimization, since we already have it in-place.
         -->
         <attach-javadocs.phase.conditional>package</attach-javadocs.phase.conditional>
       </properties>
@@ -2611,9 +2614,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <id>set-properties-test-java</id><activation><file><exists>src/test/java</exists></file></activation>
       <properties>
         <!--
-          maven-javadoc-plugin-3.10.0 is not skipping empty test javadoc JARs with warning
+          maven-javadoc-plugin-3.10.0 was not skipping empty test javadoc JARs with warning
           "JAR will be empty - no content was marked for inclusion!".
           This property will be set to "package" by the presence of src/test/java
+          We are keeping this conditional plugin execution as a minor optimization, since we already have it in-place.
         -->
         <attach-test-javadocs.phase.conditional>package</attach-test-javadocs.phase.conditional>
       </properties>
