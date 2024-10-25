@@ -1785,6 +1785,13 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <rules>
                 <enforceBytecodeVersion>
                   <maxJdkVersion>${javase.release}</maxJdkVersion>
+                  <ignoreClasses>
+                    <!--
+                      com.fasterxml.jackson.core:* artifacts are Java 8 but have Java 9+ builds of package-info,
+                      ignore package-info from bytecode version checks on all projects.
+                    -->
+                    <ignoreClass>*.package-info</ignoreClass>
+                  </ignoreClasses>
                 </enforceBytecodeVersion>
               </rules>
             </configuration>
