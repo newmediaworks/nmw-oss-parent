@@ -189,3 +189,6 @@ org.jspecify:jspecify:[1.0.0,) = 0x41CD49B4EF5876F9E9F691DABAC30622339994C4
 
 # Used by rewrite-maven-plugin-5.40.2
 org.yaml:snakeyaml:[2.3,) = 0x2FC53E6B1F681184F4CCD637F5C81DE10A0B8ECC
+
+# Used by maven-dependency-plugin-3.8.1
+org.apache.velocity:velocity-engine-core:[2.4,) = 0x6F9D10E747DC79485ABB4F72B709E61252F136DD
