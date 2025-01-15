@@ -1,6 +1,6 @@
 #
 # pgp-keys-map - Additional PGP keys map for dependencies used by AO open-source projects.
-# Copyright (C) 2021, 2022, 2023, 2024  AO Industries, Inc.
+# Copyright (C) 2021, 2022, 2023, 2024, 2025  AO Industries, Inc.
 #     support@aoindustries.com
 #     7262 Bull Pen Cir
 #     Mobile, AL 36695
@@ -192,3 +192,6 @@ org.yaml:snakeyaml:[2.3,) = 0x2FC53E6B1F681184F4CCD637F5C81DE10A0B8ECC
 
 # Used by maven-dependency-plugin-3.8.1
 org.apache.velocity:velocity-engine-core:[2.4,) = 0x6F9D10E747DC79485ABB4F72B709E61252F136DD
+
+# Used by maven-remote-resources-plugin-3.3.0
+org.apache.maven.shared:maven-filtering:[3.4.0,) = 0xB91AB7D2121DC6B0A61AA182D7742D58455ECC7C
