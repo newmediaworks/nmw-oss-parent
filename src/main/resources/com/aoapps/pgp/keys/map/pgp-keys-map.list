@@ -95,9 +95,6 @@ com.producersequipmentauction:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+) = 0x4F53D3B9302
 com.producersrealtygroup:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0x4F53D3B930239C69E14C656E748BC46BA17F171C
 com.producersseedstocksales:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0x4F53D3B930239C69E14C656E748BC46BA17F171C
 
-# TODO: Get merged into upstream s4u/pgp-keys-map
-commons-logging:commons-logging:[1.3.1,) = 0x2DB4F1EF0FA761ECC4EA935C86FDC7E2A11262CB
-
 # Used by maven-site-plugin-4.0.0-M4:
 org.jetbrains:annotations       = 0x2E3A1AFFE42B5F53AF19F780BCF4173966770193
 # Used by git-commit-id-maven-plugin:
@@ -106,11 +103,6 @@ javax.json:javax.json-api       = 0x70CD19BFD9F6C330027D6F260315BFB7970A144F
 nu.studer:java-ordered-properties = 0x8756C4F765C9AC3CB6B85D62379CE192D401AB61
 org.brotli:dec = 0x3A4D86C56CA99373B6D8953DBE84D764623A3644
 org.apache.maven.plugins:maven-javadoc-plugin = 0x347C77169CDF57191103E81E4A0BCD23ADE37005
-org.codehaus.woodstox:stax2-api = 0x28118C070CB22A0175A2E8D43D12CA2AC19F3181
-commons-logging:commons-logging:1.3.0 = 0x2DB4F1EF0FA761ECC4EA935C86FDC7E2A11262CB
-commons-validator:commons-validator:[1.8.0,) = 0x2DB4F1EF0FA761ECC4EA935C86FDC7E2A11262CB
-org.apache.james:apache-mime4j-core:0.8.10 = 0xD02DF4AE22341CD32156D52338E2D3879FDF70B6
-com.thoughtworks.qdox:qdox:2.1.0 = 0x7E6557B314B189FD4EA5B680FE66BCA17E67AE6F
 
 # Used for reCAPTCHA Enterprise
 # Direct
@@ -160,38 +152,6 @@ ro.isdc.wro4j:wro4j-core = 0xF562D7199B36C900B913FAA29224D6A53F200F59
 # Used by git-commit-id-maven-plugin-7.0.0
 jakarta.json:jakarta.json-api = 0xD58760A74BFDE983E890B455005B27E7CA8E530D
 org.eclipse.parsson:parsson = 0xD3A5F0B70EC567467BEFAA0E938C5A2AF83B88FA
-
-# Used by maven-surefire-plugin-3.2.5
-dev.failsafe:failsafe = 0xCDE577234159E222BC56E50F9C61220417AAA02E
-
-# Used by maven-gpg-plugin-3.2.0
-com.kohlschutter.junixsocket:junixsocket-common:[2.9.0,) = 0xB5C082F1158B8C92AE3E5E1C29B8FEA02804261C
-com.kohlschutter.junixsocket:junixsocket-core:[2.9.0,) = 0xB5C082F1158B8C92AE3E5E1C29B8FEA02804261C
-com.kohlschutter.junixsocket:junixsocket-native-common:[2.9.0,) = 0xB5C082F1158B8C92AE3E5E1C29B8FEA02804261C
-org.bouncycastle:bcpg-jdk18on:[1.77,) = 0x7B121B76A7ED6CE6E60AD51784E913A8E3A748C0
-org.bouncycastle:bcprov-jdk18on:[1.77,) = 0x7B121B76A7ED6CE6E60AD51784E913A8E3A748C0
-
-# Used by maven-gpg-plugin-3.2.4 and maven-install-plugin-3.1.2
-org.apache.maven.plugins = 0x88BE34F94BDB2B5357044E2E3A387D43964143E3
-
-# Used by nexus-staging-maven-plugin-1.7.0
-org.sonatype.plugins:nexus-staging-maven-plugin:[1.7.0,) = 0x6C0D8AA121AE5808F43805A6C26BAB2B209A8FF4
-org.sonatype.nexus.maven:nexus-common:[1.7.0,) = 0x6C0D8AA121AE5808F43805A6C26BAB2B209A8FF4
-
-# Used by spotbugs-maven-plugin-4.8.6.0
-com.github.javaparser:javaparser-core:[3.26.1,) = 0x6DE9B8077FBB2F8A019F4904BD17A565509DEE20
-
-# Used by maven-dependency-plugin-3.8.0
-io.airlift:aircompressor:[0.27,) = 0x9E93DB1192CEE3D3B581AABB37E9D58EA4598641
-
-# Used by rewrite-maven-plugin-5.39.2
-org.jspecify:jspecify:[1.0.0,) = 0x41CD49B4EF5876F9E9F691DABAC30622339994C4
-
-# Used by rewrite-maven-plugin-5.40.2
-org.yaml:snakeyaml:[2.3,) = 0x2FC53E6B1F681184F4CCD637F5C81DE10A0B8ECC
-
-# Used by maven-dependency-plugin-3.8.1
-org.apache.velocity:velocity-engine-core:[2.4,) = 0x6F9D10E747DC79485ABB4F72B709E61252F136DD
 
 # Used by maven-remote-resources-plugin-3.3.0
 org.apache.maven.shared:maven-filtering:[3.4.0,) = 0xB91AB7D2121DC6B0A61AA182D7742D58455ECC7C
