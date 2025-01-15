@@ -46,7 +46,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.jacoco.jacoco-maven-plugin.version>0.8.12</org.jacoco.jacoco-maven-plugin.version>
     <org.apache.maven.plugins.maven-surefire-plugin.version>3.5.2</org.apache.maven.plugins.maven-surefire-plugin.version>
     <org.apache.maven.plugins.maven-dependency-plugin.version>3.8.1</org.apache.maven.plugins.maven-dependency-plugin.version>
-    <org.apache.felix.maven-bundle-plugin.version>5.1.9</org.apache.felix.maven-bundle-plugin.version>
+    <org.apache.felix.maven-bundle-plugin.version>6.0.0</org.apache.felix.maven-bundle-plugin.version>
     <org.codehaus.mojo.build-helper-maven-plugin.version>3.6.0</org.codehaus.mojo.build-helper-maven-plugin.version>
     <io.reformanda.semper.dependencyversion-maven-plugin.version>1.0.1</io.reformanda.semper.dependencyversion-maven-plugin.version>
     <org.sonatype.ossindex.maven.ossindex-maven-plugin.version>3.2.0</org.sonatype.ossindex.maven.ossindex-maven-plugin.version>
@@ -2513,6 +2513,15 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </plugins>
         </pluginManagement>
       </build>
+    </profile>
+    <!-- maven-bundle-plugin >= 6.0.0 requires JDK >= 17, use older plugin for older JDK -->
+    <profile>
+      <activation>
+        <jdk>(,17)</jdk>
+      </activation>
+      <properties>
+        <org.apache.felix.maven-bundle-plugin.version>5.1.9</org.apache.felix.maven-bundle-plugin.version>
+      </properties>
     </profile>
     <!-- Fix the scroll position in Java 11 javadoc -->
     <profile>
