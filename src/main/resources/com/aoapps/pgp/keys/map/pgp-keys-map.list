@@ -158,3 +158,6 @@ org.apache.maven.shared:maven-filtering:[3.4.0,) = 0xB91AB7D2121DC6B0A61AA182D77
 
 # Used by maven-bundle-plugin-6.0.0
 org.apache.felix:maven-bundle-plugin:[6.0.0,) = 0x524E21A269663147319D55F8DD2B17ACA29BD7AB
+
+# Used by commons-beanutils-1.10.0
+commons-beanutils:commons-beanutils:[1.10.0,) = 0x2DB4F1EF0FA761ECC4EA935C86FDC7E2A11262CB
