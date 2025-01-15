@@ -63,7 +63,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.maven.plugins.maven-source-plugin.version>3.3.1</org.apache.maven.plugins.maven-source-plugin.version>
     <org.apache.maven.plugins.maven-javadoc-plugin.version>3.10.1</org.apache.maven.plugins.maven-javadoc-plugin.version>
     <org.apache.maven.plugins.maven-antrun-plugin.version>3.1.0</org.apache.maven.plugins.maven-antrun-plugin.version>
-    <org.openrewrite.maven.rewrite-maven-plugin.version>5.43.3</org.openrewrite.maven.rewrite-maven-plugin.version>
     <org.apache.maven.plugins.maven-checkstyle-plugin.version>3.6.0</org.apache.maven.plugins.maven-checkstyle-plugin.version>
     <com.github.spotbugs.spotbugs-maven-plugin.version>4.8.6.6</com.github.spotbugs.spotbugs-maven-plugin.version>
     <!-- TODO: Try findsecbugs-plugin:
@@ -1614,31 +1613,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>${org.apache.maven.plugins.maven-antrun-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId><version>${org.openrewrite.maven.rewrite-maven-plugin.version}</version>
-          <configuration>
-            <activeRecipes>
-              <recipe>org.openrewrite.java.format.AutoFormat</recipe>
-              <recipe>org.openrewrite.java.cleanup.Cleanup</recipe>
-            </activeRecipes>
-            <activeStyles>
-              <style>org.openrewrite.java.GoogleJavaFormat</style>
-            </activeStyles>
-            <failOnDryRunResults>true</failOnDryRunResults>
-            <!--
-              The ~/.rewrite-cache cache is not reliable, missing files, JVM stalling on exit requiring kill -9.
-              Disabling to see if the problem goes away.
-            -->
-            <pomCacheEnabled>false</pomCacheEnabled>
-            <!--
-              Support builds without parent available on the relative path.  This happens in the Jenkins builds as well
-              as when checking-out individual projects outside of the overall project tree.  At least with
-              rewrite-maven-plugin 4.22.2, it appears the plugin might not correctly download the parent POM when
-              the relativePath points to a missing file.
-            -->
-            <skipMavenParsing>true</skipMavenParsing>
-          </configuration>
-        </plugin>
-        <plugin>
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>${org.apache.maven.plugins.maven-checkstyle-plugin.version}</version>
           <dependencies>
             <dependency>
@@ -2981,63 +2955,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       </build>
     </profile>
     <profile>
-      <!--
-        See https://docs.openrewrite.org/
-        See https://docs.openrewrite.org/reference/rewrite-maven-plugin
-        See https://docs.openrewrite.org/tutorials/automatically-fix-checkstyle-violations
-      -->
-      <id>rewrite</id><activation><file><exists>src/main/java</exists></file></activation>
-      <build>
-        <plugins>
-          <!-- Cannot find how to get checkstyle config from classpath, so unpacking from ao-checkstyle-config instead -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>unpack.ao-checkstyle-config</id><phase>${unpack.ao-checkstyle-config.phase}</phase><goals><goal>unpack</goal></goals>
-                <configuration>
-                  <artifactItems>
-                    <artifactItem>
-                      <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>${com.aoapps.ao-checkstyle-config.version}</version>
-                      <type>jar</type>
-                      <includes>ao-checkstyle-config/checkstyle-configuration.xml</includes>
-                    </artifactItem>
-                  </artifactItems>
-                </configuration>
-              </execution>
-            </executions>
-            <dependencies>
-              <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>${com.aoapps.ao-checkstyle-config.version}</version>
-                <type>jar</type>
-              </dependency>
-            </dependencies>
-          </plugin>
-          <plugin>
-            <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId>
-            <dependencies>
-              <dependency>
-                <groupId>com.aoapps</groupId><artifactId>ao-checkstyle-config</artifactId><version>${com.aoapps.ao-checkstyle-config.version}</version>
-              </dependency>
-            </dependencies>
-            <configuration>
-              <activeStyles>
-                <style>org.openrewrite.java.GoogleJavaFormat</style>
-                <!-- TODO: Review if ao-java-style.yml is still required on rewrite-maven-plugin > 4.22.2 -->
-                <style>com.aoapps.checkstyle.config.AoJavaFormat</style>
-              </activeStyles>
-              <checkstyleConfigFile>${project.build.directory}/dependency/ao-checkstyle-config/checkstyle-configuration.xml</checkstyleConfigFile>
-            </configuration>
-            <executions>
-              <execution>
-                <id>rewrite</id><phase>${rewrite.phase}</phase><goals><goal>${rewrite.goal}</goal></goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
       <id>checkstyle</id><activation><file><exists>src/main/java</exists></file></activation>
       <build>
         <plugins>
@@ -3667,13 +3584,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <homedir>${gpg.jenkins-aoindustries-com.homedir}</homedir>
               <keyname>${gpg.jenkins-aoindustries-com.keyname}</keyname>
               <passphrase>${gpg.jenkins-aoindustries-com.passphrase}</passphrase>
-            </configuration>
-          </plugin>
-          <!-- Use per-workspace rewrite cache -->
-          <plugin>
-            <groupId>org.openrewrite.maven</groupId><artifactId>rewrite-maven-plugin</artifactId>
-            <configuration>
-              <pomCacheDirectory>${project.basedir}</pomCacheDirectory>
             </configuration>
           </plugin>
         </plugins>

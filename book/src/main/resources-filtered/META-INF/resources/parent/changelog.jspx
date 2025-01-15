@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 nmw-oss-parent - Parent POM for all New Media Works open-source software projects.
-Copyright (C) 2019, 2020, 2021, 2022, 2023, 2024  New Media Works
+Copyright (C) 2019, 2020, 2021, 2022, 2023, 2024, 2025  New Media Works
     info@newmediaworks.com
     703 2nd Street #465
     Santa Rosa, CA 95404
@@ -37,7 +37,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2019-05-24T19:05:12-05:00"
-    dateModified="2024-08-31T19:37:53Z"
+    dateModified="2025-01-15T05:53:57Z"
     allowRobots="false"
   >
     <c:set var="latestRelease" value="1.21.2" />
@@ -57,6 +57,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <ul>
           <li>Updated plugin versions.</li>
           <li>Updated to <ao:a href="https://checkstyle.org/releasenotes.html#Release_10.18.1">Checkstyle 10.18.1</ao:a>.</li>
+          <li>Removed support for <ao:a href="https://github.com/openrewrite/rewrite-maven-plugin">rewrite-maven-plugin</ao:a>.</li>
         </ul>
       </changelog:release>
     </c:if>
