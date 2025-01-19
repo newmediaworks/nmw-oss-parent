@@ -56,7 +56,7 @@ com.Verisign:Verisign:20030915  = noSig
 # Artifacts known to be correct since we generated on behalf of the client:
 #
 
-com.aisummarizer                = 0x25011A614EADB73C918129B2E655D97C20355D31
+com.summarizor                  = 0x25011A614EADB73C918129B2E655D97C20355D31
 
 org.aorepo                      = 0x3FF945C37048D113E997AEC7CE70AA9A5BD10E01
 
@@ -78,7 +78,7 @@ com.producersseedstocksales     = 0xD8D68337741679784D01A63B1BCFA6EB5578E000
 #
 # Requires pgpverify-maven-plugin >= 1.16.0:
 #
-com.aisummarizer:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)              = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
+com.summarizor:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)                = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.aoapps:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)                    = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.aoapps.platform:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)           = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
 com.aoindustries:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)              = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
