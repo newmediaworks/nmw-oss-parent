@@ -95,6 +95,14 @@ com.producersequipmentauction:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+) = 0x4F53D3B9302
 com.producersrealtygroup:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0x4F53D3B930239C69E14C656E748BC46BA17F171C
 com.producersseedstocksales:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0x4F53D3B930239C69E14C656E748BC46BA17F171C
 
+#
+# SNAPSHOT artifacts built by developers who are not allowed to perform releases.
+#
+# Requires pgpverify-maven-plugin >= 1.16.0:
+#
+com.summarizor:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)                = 0xD9E523830DB4D7477BC4ECF304DB18816DD6086F
+com.ewatchly:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)                  = 0xD9E523830DB4D7477BC4ECF304DB18816DD6086F
+
 # Used by maven-site-plugin-4.0.0-M4:
 org.jetbrains:annotations       = 0x2E3A1AFFE42B5F53AF19F780BCF4173966770193
 # Used by git-commit-id-maven-plugin:
