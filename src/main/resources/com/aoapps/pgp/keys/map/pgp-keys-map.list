@@ -103,15 +103,15 @@ com.producersseedstocksales:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)   = 0x4F53D3B9302
 com.summarizor:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)                = 0xD9E523830DB4D7477BC4ECF304DB18816DD6086F
 com.ewatchly:*:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)                  = 0xD9E523830DB4D7477BC4ECF304DB18816DD6086F
 # *-devel dependencies for in-context translation:
-com.aoapps:ao-encoding-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)             = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-com.aoapps:ao-encoding-taglib-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-com.aoapps:ao-fluent-html-any-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-com.aoapps:ao-hodgepodge-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)           = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-com.aoapps:ao-lang-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)                 = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-com.aoapps:ao-net-types-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)            = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-com.aoapps:ao-servlet-util-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)         = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-com.aoapps:ao-sql-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)                  = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
-com.aoapps:ao-taglib-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)               = 0xA10BFD39C3ADFC8B6119984DB849C247CF8CCA52
+com.aoapps:ao-encoding-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)             = 0xD9E523830DB4D7477BC4ECF304DB18816DD6086F
+com.aoapps:ao-encoding-taglib-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0xD9E523830DB4D7477BC4ECF304DB18816DD6086F
+com.aoapps:ao-fluent-html-any-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)      = 0xD9E523830DB4D7477BC4ECF304DB18816DD6086F
+com.aoapps:ao-hodgepodge-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)           = 0xD9E523830DB4D7477BC4ECF304DB18816DD6086F
+com.aoapps:ao-lang-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)                 = 0xD9E523830DB4D7477BC4ECF304DB18816DD6086F
+com.aoapps:ao-net-types-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)            = 0xD9E523830DB4D7477BC4ECF304DB18816DD6086F
+com.aoapps:ao-servlet-util-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)         = 0xD9E523830DB4D7477BC4ECF304DB18816DD6086F
+com.aoapps:ao-sql-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)                  = 0xD9E523830DB4D7477BC4ECF304DB18816DD6086F
+com.aoapps:ao-taglib-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+)               = 0xD9E523830DB4D7477BC4ECF304DB18816DD6086F
 com.newmediaworks:nmw-email-taglib-devel:~.*-(SNAPSHOT|\d{8,}\.\d{6}-\d+) = 0xD9E523830DB4D7477BC4ECF304DB18816DD6086F
 
 # Used by maven-site-plugin-4.0.0-M4:
