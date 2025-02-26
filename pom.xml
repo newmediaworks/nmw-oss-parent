@@ -316,7 +316,8 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     See https://community.sonarsource.com/t/how-can-i-deactivate-not-used-languages/73622
     Can't seem to find an authoritative list of file types that trigger, so adding here as-needed.
     -->
-    <sonar.exclusions>**/*.js,**/*.ts,**/*.css,**/*.html</sonar.exclusions>
+    <default.sonar.exclusions>**/*.js,**/*.ts,**/*.css,**/*.html,**/*.rb,**/*.scss</default.sonar.exclusions>
+    <sonar.exclusions>${default.sonar.exclusions}</sonar.exclusions>
     <!--
     Fail if the exclusions are inadequate and the JavaScript/TypeScript/CSS scanner is still invoked.
     See https://docs.sonarsource.com/sonarqube-server/latest/analyzing-source-code/languages/javascript-typescript-css/
