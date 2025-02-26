@@ -287,6 +287,42 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <sonar.organization>newmediaworks</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.java.source>${javase.release}</sonar.java.source>
+    <!--
+    In SonarQube, at least in version 10.6, the JavaScript/TypeScript/CSS scanner is searching through all files
+    and directories in the project, including .m2.  This scanning is severely slowing down the builds.  No combination
+    of sonar.exclusions, sonar.sources, or sonar.javascript.detectBundles seems to prevent this scanning.
+
+    This problem may be observed when there is a long delay between "to be analyzed" and "has been analyzed".
+    For example:
+    [INFO] 1 source file to be analyzed
+    [INFO] 0/1 files analyzed, current file: src/main/webapp/google<REDACTED>.html
+    - line repeated many times -
+    [INFO] 1/1 source file has been analyzed
+
+    Didn't help:
+    <sonar.exclusions>.m2/**,.git/**,target/**</sonar.exclusions>
+
+    Didn't help, pom.xml wasn't scanned (src/main might need to exist, set in profile if we ever need it):
+    <sonar.sources>src/main</sonar.sources>
+
+    Fails if doesn't exist, set in profile if we ever need it:
+    <sonar.tests>src/test</sonar.tests>
+
+    For now, we are disabling all scanners that rely on Node.JS.
+    TODO: Check if this occurs in SonarQube > 10.6.
+    -->
+    <!--
+    Prevent the JavaScript/TypeScript/CSS scanner from being invoked.
+    See https://community.sonarsource.com/t/how-can-i-deactivate-not-used-languages/73622
+    Can't seem to find an authoritative list of file types that trigger, so adding here as-needed.
+    -->
+    <sonar.exclusions>**/*.js,**/*.ts,**/*.css,**/*.html</sonar.exclusions>
+    <!--
+    Fail if the exclusions are inadequate and the JavaScript/TypeScript/CSS scanner is still invoked.
+    See https://docs.sonarsource.com/sonarqube-server/latest/analyzing-source-code/languages/javascript-typescript-css/
+    -->
+    <sonar.scanner.skipNodeProvisioning>true</sonar.scanner.skipNodeProvisioning>
+    <sonar.nodejs.executable>/bin/false</sonar.nodejs.executable>
 
     <!--
       Is the last build required for the zip-timestamp-merge Ant task?
