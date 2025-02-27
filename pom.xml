@@ -313,10 +313,29 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     -->
     <!--
     Prevent the JavaScript/TypeScript/CSS scanner from being invoked.
-    See https://community.sonarsource.com/t/how-can-i-deactivate-not-used-languages/73622
-    Can't seem to find an authoritative list of file types that trigger, so adding here as-needed.
+    The closest we've found to an authoritative list of file types is the SonarLanguage enum:
+    https://github.com/SonarSource/sonarlint-core/blob/master/backend/commons/src/main/java/org/sonarsource/sonarlint/core/commons/api/SonarLanguage.java
+
+    At the same time, we find close, but not precisely matching, extensions defined in implementations of getFileSuffixes():
+    https://github.com/SonarSource/SonarJS/blob/master/sonar-plugin/css/src/main/java/org/sonar/css/CssLanguage.java
+    https://github.com/SonarSource/SonarJS/blob/master/sonar-plugin/sonar-javascript-plugin/src/main/java/org/sonar/plugins/javascript/JavaScriptLanguage.java
+    https://github.com/SonarSource/SonarJS/blob/master/sonar-plugin/sonar-javascript-plugin/src/main/java/org/sonar/plugins/javascript/TypeScriptLanguage.java
+    https://github.com/SonarSource/sonar-css/blob/master/sonar-css-plugin/src/main/java/org/sonar/css/plugin/CssPlugin.java
+
+    Instead of chasing specific file extensions to exclude, we are overriding the suffixes used by the scanners.  This
+    technique is observed at
+    https://github.com/acidanthera/Lilu/blob/2ec01fab29726828327ff09657ee754878c89bf8/sonar-project.properties#L89
     -->
-    <default.sonar.exclusions>**/*.js,**/*.ts,**/*.css,**/*.html,**/*.rb,**/*.scss</default.sonar.exclusions>
+    <sonar.css.file.suffixes>-</sonar.css.file.suffixes>
+    <sonar.html.file.suffixes>-</sonar.html.file.suffixes>
+    <sonar.javascript.file.suffixes>-</sonar.javascript.file.suffixes>
+    <nar.ruby.file.suffixes>-</nar.ruby.file.suffixes>
+    <sonar.typescript.file.suffixes>-</sonar.typescript.file.suffixes>
+    <!--
+    SonarLanguage.YAML and SonarLanguage.JSON are marked with "NO_PUBLIC_PROPERTY_PROVIDED_FOR_THIS_LANGUAGE",
+    so exclude them by extension.  Note: *yaml without dot is intentional and matches SonarLanguage.YAML
+    -->
+    <default.sonar.exclusions>**/*.yml,**/*yaml,**/*.json</default.sonar.exclusions>
     <sonar.exclusions>${default.sonar.exclusions}</sonar.exclusions>
     <!--
     Fail if the exclusions are inadequate and the JavaScript/TypeScript/CSS scanner is still invoked.
