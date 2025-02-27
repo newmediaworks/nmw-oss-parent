@@ -2854,7 +2854,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <properties>
         <!-- Provides default breadcrumbs for when src/main/javadoc/index.html exists -->
         <javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
-        <!-- maven-javadoc-plugin:3.0.1: maven-javadoc-plugin:3.0.1: Can't link to "element-list" -->
+        <!-- maven-javadoc-plugin:3.0.1: Can't link to "element-list" -->
         <copy-element-list-to-package-list-before-javadoc.phase>none</copy-element-list-to-package-list-before-javadoc.phase>
       </properties>
       <build>
