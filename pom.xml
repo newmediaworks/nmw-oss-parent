@@ -342,8 +342,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       devel/**,
       <!-- Maven build: -->
       target*/**,
-      <!-- Tests (used by sonar.test.inclusions below) -->
-      src/test/**,
       <!--
       SonarLanguage.YAML and SonarLanguage.JSON are marked with "NO_PUBLIC_PROPERTY_PROVIDED_FOR_THIS_LANGUAGE",
       so exclude them by extension.  Note: *yaml without dot is intentional and matches SonarLanguage.YAML
