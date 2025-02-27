@@ -344,6 +344,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <sonar.scanner.skipNodeProvisioning>true</sonar.scanner.skipNodeProvisioning>
     <sonar.nodejs.executable>/bin/false</sonar.nodejs.executable>
 
+    <!-- Include pom.xml as a source -->
+    <sonar.sources>pom.xml</sonar.sources>
+
     <!-- Exclude .m2 and .git from tests, too -->
     <default.sonar.test.exclusions>.m2/**,.git/**</default.sonar.test.exclusions>
     <sonar.test.exclusions>${default.sonar.test.exclusions}</sonar.test.exclusions>
@@ -2656,6 +2659,15 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           We are keeping this conditional plugin execution as a minor optimization, since we already have it in-place.
         -->
         <attach-javadocs.phase.conditional>package</attach-javadocs.phase.conditional>
+      </properties>
+    </profile>
+    <profile>
+      <!-- Set properties when src/main is present -->
+      <!-- Sadly, cannot use Maven properties in profile activation: ${project.build.sourceDirectory} -->
+      <id>set-properties-main</id><activation><file><exists>src/main</exists></file></activation>
+      <properties>
+        <!-- Provide sources path to SonarQube -->
+        <sonar.sources>pom.xml,src/main</sonar.sources>
       </properties>
     </profile>
     <profile>
