@@ -337,6 +337,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <!-- Maven and Git repositories: -->
       .m2/**,
       .git/**,
+      <!-- Sub-projects: -->
+      book/**,
+      devel/**,
       <!-- Maven build: -->
       target*/**,
       <!-- Tests (used by sonar.test.inclusions below) -->
