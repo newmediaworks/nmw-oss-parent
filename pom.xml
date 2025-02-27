@@ -331,11 +331,24 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <sonar.javascript.file.suffixes>-</sonar.javascript.file.suffixes>
     <nar.ruby.file.suffixes>-</nar.ruby.file.suffixes>
     <sonar.typescript.file.suffixes>-</sonar.typescript.file.suffixes>
-    <!--
-    SonarLanguage.YAML and SonarLanguage.JSON are marked with "NO_PUBLIC_PROPERTY_PROVIDED_FOR_THIS_LANGUAGE",
-    so exclude them by extension.  Note: *yaml without dot is intentional and matches SonarLanguage.YAML
-    -->
-    <default.sonar.exclusions>.m2/**,.git/**,**/*.yml,**/*yaml,**/*.json</default.sonar.exclusions>
+
+    <sonar.sources>.</sonar.sources>
+    <default.sonar.exclusions>
+      <!-- Maven and Git repositories: -->
+      .m2/**,
+      .git/**,
+      <!-- Maven build: -->
+      target*/**,
+      <!-- Tests (used by sonar.test.inclusions below) -->
+      src/test/**,
+      <!--
+      SonarLanguage.YAML and SonarLanguage.JSON are marked with "NO_PUBLIC_PROPERTY_PROVIDED_FOR_THIS_LANGUAGE",
+      so exclude them by extension.  Note: *yaml without dot is intentional and matches SonarLanguage.YAML
+      -->
+      **/*.yml,
+      **/*yaml,
+      **/*.json
+    </default.sonar.exclusions>
     <sonar.exclusions>${default.sonar.exclusions}</sonar.exclusions>
     <!--
     Fail if the exclusions are inadequate and the JavaScript/TypeScript/CSS scanner is still invoked.
@@ -344,12 +357,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <sonar.scanner.skipNodeProvisioning>true</sonar.scanner.skipNodeProvisioning>
     <sonar.nodejs.executable>/bin/false</sonar.nodejs.executable>
 
-    <!-- Include pom.xml as a source -->
-    <sonar.sources>pom.xml</sonar.sources>
-
     <!-- Exclude .m2 and .git from tests, too -->
-    <default.sonar.test.exclusions>.m2/**,.git/**</default.sonar.test.exclusions>
-    <sonar.test.exclusions>${default.sonar.test.exclusions}</sonar.test.exclusions>
+    <sonar.tests>.</sonar.tests>
+    <default.sonar.test.inclusions>src/test/**</default.sonar.test.inclusions>
+    <sonar.test.inclusions>${default.sonar.test.inclusions}</sonar.test.inclusions>
 
     <!--
       Is the last build required for the zip-timestamp-merge Ant task?
@@ -2654,24 +2665,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           We are keeping this conditional plugin execution as a minor optimization, since we already have it in-place.
         -->
         <attach-javadocs.phase.conditional>package</attach-javadocs.phase.conditional>
-      </properties>
-    </profile>
-    <profile>
-      <!-- Set properties when src/main is present -->
-      <!-- Sadly, cannot use Maven properties in profile activation: ${project.build.sourceDirectory} -->
-      <id>set-properties-main</id><activation><file><exists>src/main</exists></file></activation>
-      <properties>
-        <!-- Provide sources path to SonarQube -->
-        <sonar.sources>pom.xml,src/main</sonar.sources>
-      </properties>
-    </profile>
-    <profile>
-      <!-- Set properties when src/test is present -->
-      <!-- Sadly, cannot use Maven properties in profile activation: ${project.build.sourceDirectory} -->
-      <id>set-properties-test</id><activation><file><exists>src/test</exists></file></activation>
-      <properties>
-        <!-- Provide tests path to SonarQube -->
-        <sonar.tests>src/test</sonar.tests>
       </properties>
     </profile>
     <profile>
