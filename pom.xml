@@ -2661,6 +2661,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           We are keeping this conditional plugin execution as a minor optimization, since we already have it in-place.
         -->
         <attach-test-javadocs.phase.conditional>package</attach-test-javadocs.phase.conditional>
+        <!-- Provide JUnit results to SonarQube -->
+        <sonar.surefire.reportsPath>target/surefire-reports</sonar.surefire.reportsPath>
       </properties>
     </profile>
     <profile>
