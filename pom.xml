@@ -2743,7 +2743,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
             <executions>
-              <!-- maven-javadoc-plugin:3.0.1: maven-javadoc-plugin:3.0.1: Can't link to "element-list" -->
+              <!-- maven-javadoc-plugin:3.0.1: Can't link to "element-list" -->
               <execution>
                 <id>copy-element-list-to-package-list-before-javadoc</id><phase>${copy-element-list-to-package-list-before-javadoc.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
@@ -2849,7 +2849,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <properties>
         <!-- Provides default breadcrumbs for when src/main/javadoc/index.html exists -->
         <javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="${project.url}">${project.name}</a>]]></javadoc.breadcrumbs>
-        <!-- maven-javadoc-plugin:3.0.1: maven-javadoc-plugin:3.0.1: Can't link to "element-list" -->
+        <!-- maven-javadoc-plugin:3.0.1: Can't link to "element-list" -->
         <copy-element-list-to-package-list-before-javadoc.phase>none</copy-element-list-to-package-list-before-javadoc.phase>
       </properties>
       <build>
