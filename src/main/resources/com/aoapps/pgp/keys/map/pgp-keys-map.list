@@ -180,3 +180,7 @@ org.apache.felix:maven-bundle-plugin:[6.0.0,) = 0x524E21A269663147319D55F8DD2B17
 
 # Used by commons-beanutils-1.10.0
 commons-beanutils:commons-beanutils:[1.10.0,) = 0x2DB4F1EF0FA761ECC4EA935C86FDC7E2A11262CB
+
+# Used by pgpverify-maven-plugin-1.19.0
+io.vavr:vavr-match:[0.10.6,] = 0x0942F59B726DA4BD2837DD44F45F03308EE961FF
+io.vavr:vavr:[0.10.6,] = 0x0942F59B726DA4BD2837DD44F45F03308EE961FF
