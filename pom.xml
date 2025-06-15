@@ -47,7 +47,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.maven.plugins.maven-surefire-plugin.version>3.5.3</org.apache.maven.plugins.maven-surefire-plugin.version>
     <org.apache.maven.plugins.maven-dependency-plugin.version>3.8.1</org.apache.maven.plugins.maven-dependency-plugin.version>
     <org.apache.felix.maven-bundle-plugin.version>6.0.0</org.apache.felix.maven-bundle-plugin.version>
-    <org.codehaus.mojo.build-helper-maven-plugin.version>3.6.0</org.codehaus.mojo.build-helper-maven-plugin.version>
+    <org.codehaus.mojo.build-helper-maven-plugin.version>3.6.1</org.codehaus.mojo.build-helper-maven-plugin.version>
     <io.reformanda.semper.dependencyversion-maven-plugin.version>1.0.1</io.reformanda.semper.dependencyversion-maven-plugin.version>
     <org.sonatype.ossindex.maven.ossindex-maven-plugin.version>3.2.0</org.sonatype.ossindex.maven.ossindex-maven-plugin.version>
     <org.apache.maven.plugins.maven-release-plugin.version>3.1.1</org.apache.maven.plugins.maven-release-plugin.version>
