@@ -171,3 +171,6 @@ ro.isdc.wro4j:wro4j-core = 0xF562D7199B36C900B913FAA29224D6A53F200F59
 # Used by git-commit-id-maven-plugin-7.0.0
 jakarta.json:jakarta.json-api = 0xD58760A74BFDE983E890B455005B27E7CA8E530D
 org.eclipse.parsson:parsson = 0xD3A5F0B70EC567467BEFAA0E938C5A2AF83B88FA
+
+# TODO: Get merged into upstream pgp-keys-map.list
+org.jfree:jfreechart:[1.5.6,) = 0x76A0712EF95F23AD27E6577C9BCEE37704862F01
