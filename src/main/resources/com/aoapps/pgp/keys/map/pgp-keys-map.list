@@ -174,3 +174,4 @@ org.eclipse.parsson:parsson = 0xD3A5F0B70EC567467BEFAA0E938C5A2AF83B88FA
 
 # TODO: Get merged into upstream pgp-keys-map.list
 org.jfree:jfreechart:[1.5.6,) = 0x76A0712EF95F23AD27E6577C9BCEE37704862F01
+commons-fileupload:commons-fileupload:[1.6.0,) = 0x2DB4F1EF0FA761ECC4EA935C86FDC7E2A11262CB
