@@ -19,7 +19,7 @@ Parent POM for all AO open-source software projects.
 ## Project Links
 * [Project Home](https://oss.aoapps.com/parent/)
 * [Changelog](https://oss.aoapps.com/parent/changelog)
-* [Maven Central Repository](https://central.sonatype.com/artifact/com.aoapps/ao-oss-parent)
+* [Central Repository](https://central.sonatype.com/artifact/com.aoapps/ao-oss-parent)
 * [GitHub](https://github.com/ao-apps/ao-oss-parent)
 
 ## Contact Us

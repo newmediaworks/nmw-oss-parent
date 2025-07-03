@@ -269,9 +269,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <osgi.permissions><!-- Default is none --></osgi.permissions>
     <!-- Set to "-POST-SNAPSHOT" by activating the "POST-SNAPSHOT" profile to use post-release dependencies -->
     <POST-SNAPSHOT><!-- -POST-SNAPSHOT --></POST-SNAPSHOT>
-    <!-- com.aoapps is on new Sonatype Nexus Repository Manager -->
-    <nexusServerId>s01.ossrh-aoindustries</nexusServerId>
-    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+    <!-- OSSRH Staging API -->
+    <nexusServerId>ossrh-aoindustries</nexusServerId>
     <nexus.skipNexusStagingDeployMojo>false</nexus.skipNexusStagingDeployMojo>
     <!-- WAR exclusions -->
     <maven-war-plugin.warSourceExcludes.default>
@@ -1174,20 +1173,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
   <pluginRepositories>
     <pluginRepository>
-      <id>sonatype-nexus-snapshots</id>
-      <name>Sonatype Nexus Snapshots</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <checksumPolicy>fail</checksumPolicy>
-      </snapshots>
-    </pluginRepository>
-    <pluginRepository>
-      <id>sonatype-nexus-snapshots-s01</id>
-      <name>Sonatype Nexus Snapshots S01</name>
-      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+      <id>central-snapshots</id>
+      <name>Central Snapshot Repository</name>
+      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
       <releases>
         <enabled>false</enabled>
       </releases>
@@ -1199,20 +1187,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
   <repositories>
     <repository>
-      <id>sonatype-nexus-snapshots</id>
-      <name>Sonatype Nexus Snapshots</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <checksumPolicy>fail</checksumPolicy>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>sonatype-nexus-snapshots-s01</id>
-      <name>Sonatype Nexus Snapshots S01</name>
-      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+      <id>central-snapshots</id>
+      <name>Central Snapshot Repository</name>
+      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
       <releases>
         <enabled>false</enabled>
       </releases>
@@ -1226,12 +1203,12 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <snapshotRepository>
       <id>${nexusServerId}</id>
       <name>${nexusServerId}</name>
-      <url>${nexusUrl}content/repositories/snapshots</url>
+      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
     </snapshotRepository>
     <repository>
       <id>${nexusServerId}</id>
       <name>${nexusServerId}</name>
-      <url>${nexusUrl}service/local/staging/deploy/maven2/</url>
+      <url>https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
 
@@ -1668,7 +1645,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <li><a target="${javadoc.target}" href="${project.url}changelog">Changelog</a></li>
       ${javadoc.taglibReference}
       <li><a target="${javadoc.target}" href="${project.url}${subproject.subpath}apidocs/">API Docs</a></li>
-      <li><a target="${javadoc.target}" href="https://central.sonatype.com/artifact/${project.groupId}/${project.artifactId}">Maven Central Repository</a></li>
+      <li><a target="${javadoc.target}" href="https://central.sonatype.com/artifact/${project.groupId}/${project.artifactId}">Central Repository</a></li>
       <li><a target="${javadoc.target}" href="${project.scm.url}">GitHub</a></li>
     </ul>
   </div>
@@ -3174,7 +3151,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.sonatype.plugins</groupId><artifactId>nexus-staging-maven-plugin</artifactId>
             <configuration>
               <serverId>${nexusServerId}</serverId>
-              <nexusUrl>${nexusUrl}</nexusUrl>
+              <nexusUrl>https://ossrh-staging-api.central.sonatype.com/</nexusUrl>
               <autoReleaseAfterClose>true</autoReleaseAfterClose>
             </configuration>
             <!--
