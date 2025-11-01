@@ -178,3 +178,6 @@ org.jfree:jfreechart:[1.5.6,) = 0x76A0712EF95F23AD27E6577C9BCEE37704862F01
 commons-fileupload:commons-fileupload:[1.6.0,) = 0x2DB4F1EF0FA761ECC4EA935C86FDC7E2A11262CB
 com.github.spotbugs:spotbugs:[4.9.4,) = 0xD878D4A823EAE731B729D1A8D2151178A123C97F
 com.github.spotbugs:spotbugs-annotations:[4.9.4,) = 0xD878D4A823EAE731B729D1A8D2151178A123C97F
+
+# Used by checkstyle-12.1.1
+com.google.j2objc:j2objc-annotations:[3.1,) = 0xC3259D20DAEC4ACE6D57CC83340B090F727518D8
