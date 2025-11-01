@@ -64,7 +64,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.maven.plugins.maven-javadoc-plugin.version>3.12.0</org.apache.maven.plugins.maven-javadoc-plugin.version>
     <org.apache.maven.plugins.maven-antrun-plugin.version>3.2.0</org.apache.maven.plugins.maven-antrun-plugin.version>
     <org.apache.maven.plugins.maven-checkstyle-plugin.version>3.6.0</org.apache.maven.plugins.maven-checkstyle-plugin.version>
-    <com.github.spotbugs.spotbugs-maven-plugin.version>4.9.4.1</com.github.spotbugs.spotbugs-maven-plugin.version>
+    <com.github.spotbugs.spotbugs-maven-plugin.version>4.9.8.1</com.github.spotbugs.spotbugs-maven-plugin.version>
     <!-- TODO: Try findsecbugs-plugin:
     <com.h3xstream.findsecbugs.findsecbugs-plugin.version>1.12.0</com.h3xstream.findsecbugs.findsecbugs-plugin.version>
     -->
@@ -83,7 +83,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.codehaus.mojo.extra-enforcer-rules.version>1.11.0</org.codehaus.mojo.extra-enforcer-rules.version>
     <org.ow2.asm.asm.version>9.9</org.ow2.asm.asm.version>
     <com.puppycrawl.tools.checkstyle.version>11.0.1</com.puppycrawl.tools.checkstyle.version>
-    <com.github.spotbugs.spotbugs.version>4.9.4</com.github.spotbugs.spotbugs.version>
+    <com.github.spotbugs.spotbugs.version>4.9.8</com.github.spotbugs.spotbugs.version>
     <com.aoapps.ao-javadoc-offline.version>3.5.0${POST-SNAPSHOT}</com.aoapps.ao-javadoc-offline.version>
     <com.aoapps.ao-javadoc-resources.version>1.1.1${POST-SNAPSHOT}</com.aoapps.ao-javadoc-resources.version>
     <com.aoapps.ao-ant-tasks.version>1.2.1-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-ant-tasks.version>
