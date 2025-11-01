@@ -70,7 +70,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     -->
     <org.apache.maven.plugins.maven-site-plugin.version>4.0.0-M16</org.apache.maven.plugins.maven-site-plugin.version>
     <org.sonarsource.scanner.maven.sonar-maven-plugin.version>5.2.0.4988</org.sonarsource.scanner.maven.sonar-maven-plugin.version>
-    <org.apache.maven.plugins.maven-shade-plugin.version>3.6.0</org.apache.maven.plugins.maven-shade-plugin.version>
+    <org.apache.maven.plugins.maven-shade-plugin.version>3.6.1</org.apache.maven.plugins.maven-shade-plugin.version>
     <org.apache.maven.plugins.maven-jarsigner-plugin.version>3.1.0</org.apache.maven.plugins.maven-jarsigner-plugin.version>
     <org.apache.tomcat.maven.tomcat7-maven-plugin.version>2.2</org.apache.tomcat.maven.tomcat7-maven-plugin.version>
     <org.codehaus.mojo.properties-maven-plugin.version>1.2.1</org.codehaus.mojo.properties-maven-plugin.version>
