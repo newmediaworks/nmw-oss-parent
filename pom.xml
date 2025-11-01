@@ -38,7 +38,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <!-- Plugins -->
     <org.simplify4u.plugins.pgpverify-maven-plugin.version>1.19.1</org.simplify4u.plugins.pgpverify-maven-plugin.version>
     <org.apache.axis2.axis2-aar-maven-plugin.version>1.8.2</org.apache.axis2.axis2-aar-maven-plugin.version>
-    <org.codehaus.mojo.exec-maven-plugin.version>3.5.1</org.codehaus.mojo.exec-maven-plugin.version>
+    <org.codehaus.mojo.exec-maven-plugin.version>3.6.2</org.codehaus.mojo.exec-maven-plugin.version>
     <io.github.git-commit-id.git-commit-id-maven-plugin.version>9.0.2</io.github.git-commit-id.git-commit-id-maven-plugin.version>
     <org.apache.maven.plugins.maven-compiler-plugin.version>3.14.1</org.apache.maven.plugins.maven-compiler-plugin.version>
     <org.apache.maven.plugins.maven-enforcer-plugin.version>3.6.2</org.apache.maven.plugins.maven-enforcer-plugin.version>
