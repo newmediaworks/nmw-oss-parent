@@ -181,3 +181,6 @@ com.github.spotbugs:spotbugs-annotations:[4.9.4,) = 0xD878D4A823EAE731B729D1A8D2
 
 # Used by checkstyle-12.1.1
 com.google.j2objc:j2objc-annotations:[3.1,) = 0xC3259D20DAEC4ACE6D57CC83340B090F727518D8
+
+# Used by postgresql-42.7.8
+org.postgresql:postgresql:[42.7.8,) = 0x86C0144909739E0EE3D1B545305F296EAC47556B
