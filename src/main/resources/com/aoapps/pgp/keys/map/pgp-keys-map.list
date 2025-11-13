@@ -184,3 +184,6 @@ com.google.j2objc:j2objc-annotations:[3.1,) = 0xC3259D20DAEC4ACE6D57CC83340B090F
 
 # Used by postgresql-42.7.8
 org.postgresql:postgresql:[42.7.8,) = 0x86C0144909739E0EE3D1B545305F296EAC47556B
+
+# Used by stripe-java-30.2.0
+com.stripe:stripe-java:[30.2.0,) = 0x13A4324B0B93CA280A36CBFD0D50EC67EBBEE268
