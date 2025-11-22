@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2025-07-02T23:05:45Z"
+    dateModified="2025-11-22T08:08:36Z"
   >
     <c:set var="latestRelease" value="1.24.4" />
     <c:if test="${
@@ -1507,7 +1507,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <ao:a rel="nofollow" href="https://docs.oracle.com/javaee/6/">Java EE Web API 6</ao:a>
           from <ao:a href="https://www.mojohaus.org/versions-maven-plugin/examples/advancing-dependency-versions.html#Controlling_which_dependencies_are_processed">version updates</ao:a>.
           Instead, projects are encouraged to use the new
-          <core:link book="/javaee-web-api-bom" page="/index.jspx" /> project.
+          <core:link book="/jakartaee-web-profile-bom" page="/index.jspx" /> project.
         </li>
         <li>
           Removed the repository "java.net2" that was going to <ao:a href="https://maven.java.net/content/groups/public/" />.
