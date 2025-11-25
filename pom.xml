@@ -52,7 +52,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.sonatype.ossindex.maven.ossindex-maven-plugin.version>3.2.0</org.sonatype.ossindex.maven.ossindex-maven-plugin.version>
     <org.apache.maven.plugins.maven-release-plugin.version>3.2.0</org.apache.maven.plugins.maven-release-plugin.version>
     <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.7.0</org.sonatype.plugins.nexus-staging-maven-plugin.version>
-    <org.codehaus.mojo.versions-maven-plugin.version>2.19.1</org.codehaus.mojo.versions-maven-plugin.version>
+    <org.codehaus.mojo.versions-maven-plugin.version>2.20.1</org.codehaus.mojo.versions-maven-plugin.version>
     <org.apache.maven.plugins.maven-gpg-plugin.version>3.2.8</org.apache.maven.plugins.maven-gpg-plugin.version>
     <org.apache.maven.plugins.maven-clean-plugin.version>3.5.0</org.apache.maven.plugins.maven-clean-plugin.version>
     <org.apache.maven.plugins.maven-deploy-plugin.version>3.0.0-M2</org.apache.maven.plugins.maven-deploy-plugin.version>
