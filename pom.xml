@@ -1356,7 +1356,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId><version>${org.apache.maven.plugins.maven-dependency-plugin.version}</version>
           <configuration>
             <ignoreNonCompile>true</ignoreNonCompile>
-            <silent>true</silent>
           </configuration>
         </plugin>
         <!-- Supporting packaging of "bundle" for OSGi bundles -->
