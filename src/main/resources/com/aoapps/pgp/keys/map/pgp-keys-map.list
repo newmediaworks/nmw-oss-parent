@@ -187,3 +187,16 @@ org.postgresql:postgresql:[42.7.8,) = 0x86C0144909739E0EE3D1B545305F296EAC47556B
 
 # Used by stripe-java-30.2.0
 com.stripe:stripe-java:[30.2.0,) = 0x13A4324B0B93CA280A36CBFD0D50EC67EBBEE268
+
+# Used by jakarta.platform:jakarta.jakartaee-web-api:10.0.0
+jakarta.authentication:jakarta.authentication-api:[3.0.0,) = 0x2F08881E334A507E3FF71D5DBB2DEBC3BCE7937A
+jakarta.enterprise:jakarta.enterprise.cdi-api:[4.0.1,) = 0x6ACBD5073DF2D83775916804928B20E9AD5298CC
+jakarta.websocket:jakarta.websocket-api:[2.1.1,) = 0xFFA95B1DD22FE6D191189AFA718E28A09E67016B
+jakarta.json.bind:jakarta.json.bind-api:[3.0.0,) = 0xB69AD394A2EF787D34918BF6DB1159D716E4C00E
+jakarta.enterprise:jakarta.enterprise.lang-model:[4.0.1,) = 0x6ACBD5073DF2D83775916804928B20E9AD5298CC
+jakarta.interceptor:jakarta.interceptor-api:[2.1.0,) = 0xFCB6AD548AF8C07562B7F2BCB801691488C03901
+jakarta.faces:jakarta.faces-api:[4.0.1,) = 0x01B236E9B215FD7FAC094EB9E7A47E4F41F0B3E5
+jakarta.platform:jakarta.jakartaee-web-api:[10.0.0,) = 0x71C524683EEC78CCAD6D5554049FE94F2D5DAD9D
+jakarta.websocket:jakarta.websocket-client-api:[2.1.1,) = 0xFFA95B1DD22FE6D191189AFA718E28A09E67016B
+jakarta.security.enterprise:jakarta.security.enterprise-api:[3.0.0,) = 0xD8176C0C4B31042360BCE81E01061A667879AAD9
+jakarta.ejb:jakarta.ejb-api:[4.0.1,) = 0x1ED4BDDDD0BAAFCDE503C3727D310B363F9B6378
