@@ -90,7 +90,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.commons.commons-compress.version>1.28.0</org.apache.commons.commons-compress.version>
     <commons-io.commons-io.version>2.21.0</commons-io.commons-io.version>
     <org.apache.commons.commons-lang3.version>3.20.0</org.apache.commons.commons-lang3.version>
-    <org.apache.commons.commons-text.version>1.14.0</org.apache.commons.commons-text.version>
+    <org.apache.commons.commons-text.version>1.15.0</org.apache.commons.commons-text.version>
     <com.aoapps.ao-checkstyle-config.version>1.4.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-checkstyle-config.version>
 
     <!-- Maven Javadoc Plugin -->

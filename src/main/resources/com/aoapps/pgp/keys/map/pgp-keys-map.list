@@ -200,3 +200,6 @@ jakarta.platform:jakarta.jakartaee-web-api:[10.0.0,) = 0x71C524683EEC78CCAD6D555
 jakarta.websocket:jakarta.websocket-client-api:[2.1.1,) = 0xFFA95B1DD22FE6D191189AFA718E28A09E67016B
 jakarta.security.enterprise:jakarta.security.enterprise-api:[3.0.0,) = 0xD8176C0C4B31042360BCE81E01061A667879AAD9
 jakarta.ejb:jakarta.ejb-api:[4.0.1,) = 0x1ED4BDDDD0BAAFCDE503C3727D310B363F9B6378
+
+# Used by commons-text-1.15.0
+org.apache.commons:commons-text:[1.15.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
