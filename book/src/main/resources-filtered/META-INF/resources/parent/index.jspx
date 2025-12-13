@@ -34,9 +34,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     title="@{documented.name}"
     description="@{documented.description}"
     datePublished="2016-10-23T19:27:00-05:00"
-    dateModified="2025-07-02T23:05:45Z"
+    dateModified="2025-12-13T04:27:40Z"
   >
     <core:child page="changelog.jspx" />
+    <core:child page="post-snapshot-versions.jspx" />
     <header>
       <ao:include
         page="/ao-badges/badges.inc.jspx"
@@ -67,6 +68,11 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <li><core:link page="changelog.jspx">Changelog</core:link></li>
         <li><ao:a href="https://central.sonatype.com/artifact/${ao:encodeURIComponent('@{project.groupId}')}/${ao:encodeURIComponent('@{documented.artifactId}')}">Central Repository</ao:a></li>
         <li><ao:a href="@{project.scm.url}">GitHub</ao:a></li>
+      </ul>
+    </section:nav>
+    <section:nav label="Project Pages">
+      <ul>
+        <li><core:link page="post-snapshot-versions.jspx" /></li>
       </ul>
     </section:nav>
   </core:page>

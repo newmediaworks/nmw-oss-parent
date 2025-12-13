@@ -2146,31 +2146,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         </properties>
       </profile>
 
-      This profile must not be active while performing a release.  Deactivate with:
-      mvn -Prelease,'!POST-SNAPSHOT' …
-
-      Post-release builds happen after a release and before a new -SNAPSHOT is
-      started.  They are used to ensure that previous releases still compile
-      against newer dependencies.
-
-      Furthermore, post-release builds may contain the following changes without
-      being promoted to the next -SNAPSHOT version:
-      1) Updated parent POM
-      2) Updated POM
-      3) Updated Java version (without any source code changes)
-      4) Updated dependency versions
-      5) Updated javadocs
-      6) Updated documentation
-      7) Updated unit tests
-      8) Deprecated methods and classes
-      9) Renamed private fields and local variables
-      10) Other changes to white-space or comments
-
-      Post-release builds also allow NetBeans to correctly connect projects
-      together for those who are actively developing multiple modules.
-
-      Those who are only using the dependency can use the regular release to
-      avoid the overhead of the daily check for updates.
+      See https://oss.aoapps.com/parent/post-snapshot-versions for more details.
     -->
     <profile>
       <id>POST-SNAPSHOT</id>
