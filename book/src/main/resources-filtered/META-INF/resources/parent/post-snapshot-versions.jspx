@@ -35,6 +35,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     title="POST-SNAPSHOT Versions"
     description="The why and how of *-POST-SNAPSHOT version conventions"
     datePublished="2025-12-13T04:27:40Z"
+    dateModified="2025-12-13T10:59:10Z"
   >
     <p>
       <code>*-POST-SNAPSHOT</code> versions are a convention used by
@@ -131,7 +132,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         other released versions, we comment-out as <code>&amp;lt;!-- \${POST-SNAPSHOT} --&amp;gt;</code> before the release, then
         restore after the release.
       </p>
-      <section:section label="How to activate the POST-RELEASE profile?">
+      <section:section label="How to activate the POST-SNAPSHOT profile?">
         <p>
           This profile is not active by default.  Activate in <code>~/.m2/settings.xml</code> to use post-release builds
           as dependencies:
@@ -150,7 +151,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <code>mvn -P'!POST-SNAPSHOT',release …</code>
         </p>
       </section:section>
-      <section:section label="Who should activate the POST-RELEASE profile?">
+      <section:section label="Who should activate the POST-SNAPSHOT profile?">
         <p>
           Those who are only using the dependency (and not actively developing the dependency) may leave the profile
           inactive to use the regular release.  This improves the build performance by not checking for newer
