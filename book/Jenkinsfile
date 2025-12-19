@@ -30,7 +30,7 @@ def upstreamProjects = [
   'javadoc-resources', // <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId>
 
   // Direct
-  '../../ao/oss/badges-1.x', // <groupId>com.aoapps</groupId><artifactId>ao-badges</artifactId>
+  '../../ao/oss/badges-javaee', // <groupId>com.aoapps</groupId><artifactId>ao-badges</artifactId>
   '../../ao/oss/taglib-javaee', // <groupId>com.aoapps</groupId><artifactId>ao-taglib</artifactId>
   '../../ao/semanticcms-1.x/changelog-taglib', // <groupId>com.semanticcms</groupId><artifactId>semanticcms-changelog-taglib</artifactId>
   '../../ao/semanticcms-1.x/core/taglib', // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId>
