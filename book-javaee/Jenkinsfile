@@ -30,11 +30,11 @@ def upstreamProjects = [
   'javadoc-resources', // <groupId>com.newmediaworks</groupId><artifactId>nmw-javadoc-resources</artifactId>
 
   // Direct
-  '../../ao/oss/badges', // <groupId>com.aoapps</groupId><artifactId>ao-badges</artifactId>
-  '../../ao/oss/taglib', // <groupId>com.aoapps</groupId><artifactId>ao-taglib</artifactId>
-  '../../ao/semanticcms-2.x/changelog-taglib', // <groupId>com.semanticcms</groupId><artifactId>semanticcms-changelog-taglib</artifactId>
-  '../../ao/semanticcms-2.x/core/taglib', // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId>
-  '../../ao/semanticcms-2.x/section/taglib', // <groupId>com.semanticcms</groupId><artifactId>semanticcms-section-taglib</artifactId>
+  '../../ao/oss/badges-javaee', // <groupId>com.aoapps</groupId><artifactId>ao-badges</artifactId>
+  '../../ao/oss/taglib-javaee', // <groupId>com.aoapps</groupId><artifactId>ao-taglib</artifactId>
+  '../../ao/semanticcms-1.x/changelog-taglib', // <groupId>com.semanticcms</groupId><artifactId>semanticcms-changelog-taglib</artifactId>
+  '../../ao/semanticcms-1.x/core/taglib', // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId>
+  '../../ao/semanticcms-1.x/section/taglib', // <groupId>com.semanticcms</groupId><artifactId>semanticcms-section-taglib</artifactId>
   // No Jenkins: <groupId>org.apache.taglibs</groupId><artifactId>taglibs-standard-spec</artifactId>
 
   // Runtime Direct
