@@ -1416,10 +1416,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <groupId>io.reformanda.semper</groupId><artifactId>dependencyversion-maven-plugin</artifactId><version>${io.reformanda.semper.dependencyversion-maven-plugin.version}</version>
         </plugin>
         <plugin>
-          <!-- See https://sonatype.github.io/ossindex-maven/maven-plugin/ -->
-          <groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId><version>${org.sonatype.ossindex.maven.ossindex-maven-plugin.version}</version>
-        </plugin>
-        <plugin>
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-release-plugin</artifactId><version>${org.apache.maven.plugins.maven-release-plugin.version}</version>
           <configuration>
             <releaseProfiles>release</releaseProfiles>
@@ -1978,27 +1974,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         </executions>
       </plugin>
       <plugin>
-        <!-- See https://sonatype.github.io/ossindex-maven/maven-plugin/ -->
-        <groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId>
-        <configuration>
-          <clientConfiguration>
-            <authConfiguration>
-              <username>${ossindex-maven-plugin.username}</username>
-              <password>${ossindex-maven-plugin.password}</password>
-            </authConfiguration>
-          </clientConfiguration>
-        </configuration>
-        <executions>
-          <execution>
-            <id>audit-dependencies</id><phase>${audit-dependencies.phase}</phase><goals><goal>audit</goal></goals>
-            <configuration>
-              <!-- Perform audit, fail the build when vulnerable components are found -->
-              <fail>true</fail>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId>
         <executions>
           <!-- Analyze dependencies, fail the build when problems found -->
@@ -2240,6 +2215,45 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             </plugin>
           </plugins>
         </pluginManagement>
+      </build>
+    </profile>
+    <profile>
+      <id>audit-dependencies</id>
+      <activation>
+        <property><name>ossindex.skip</name><value>!true</value></property>
+      </activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <!-- See https://sonatype.github.io/ossindex-maven/maven-plugin/ -->
+              <groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId><version>${org.sonatype.ossindex.maven.ossindex-maven-plugin.version}</version>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+        <plugins>
+          <plugin>
+            <!-- See https://sonatype.github.io/ossindex-maven/maven-plugin/ -->
+            <groupId>org.sonatype.ossindex.maven</groupId><artifactId>ossindex-maven-plugin</artifactId>
+            <configuration>
+              <clientConfiguration>
+                <authConfiguration>
+                  <username>${ossindex-maven-plugin.username}</username>
+                  <password>${ossindex-maven-plugin.password}</password>
+                </authConfiguration>
+              </clientConfiguration>
+            </configuration>
+            <executions>
+              <execution>
+                <id>audit-dependencies</id><phase>${audit-dependencies.phase}</phase><goals><goal>audit</goal></goals>
+                <configuration>
+                  <!-- Perform audit, fail the build when vulnerable components are found -->
+                  <fail>true</fail>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
       </build>
     </profile>
     <!-- Obtain AO Ant Tasks from the com.aoapps:ao-ant-tasks artifact unless we are building com.aoapps:ao-ant-tasks to avoid cyclic dependency -->
