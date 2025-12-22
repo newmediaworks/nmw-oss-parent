@@ -1444,7 +1444,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <lockMode>multiple</lockMode>
             <homedir>${gpg.support-aoindustries-com.homedir}</homedir>
             <keyname>${gpg.support-aoindustries-com.keyname}</keyname>
-            <passphrase>${gpg.support-aoindustries-com.passphrase}</passphrase>
           </configuration>
         </plugin>
         <!--
@@ -3630,7 +3629,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <lockMode>multiple</lockMode>
               <homedir>${gpg.jenkins-aoindustries-com.homedir}</homedir>
               <keyname>${gpg.jenkins-aoindustries-com.keyname}</keyname>
-              <passphrase>${gpg.jenkins-aoindustries-com.passphrase}</passphrase>
+              <useAgent>false</useAgent>
             </configuration>
           </plugin>
         </plugins>
