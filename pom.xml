@@ -1440,7 +1440,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <lockMode>multiple</lockMode>
             <homedir>${gpg.oss-newmediaworks-com.homedir}</homedir>
             <keyname>${gpg.oss-newmediaworks-com.keyname}</keyname>
-            <passphrase>${gpg.oss-newmediaworks-com.passphrase}</passphrase>
           </configuration>
         </plugin>
         <!--
@@ -3635,7 +3634,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <lockMode>multiple</lockMode>
               <homedir>${gpg.jenkins-aoindustries-com.homedir}</homedir>
               <keyname>${gpg.jenkins-aoindustries-com.keyname}</keyname>
-              <passphrase>${gpg.jenkins-aoindustries-com.passphrase}</passphrase>
+              <useAgent>false</useAgent>
             </configuration>
           </plugin>
         </plugins>
