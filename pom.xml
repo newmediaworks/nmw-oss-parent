@@ -1299,6 +1299,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
           <configuration>
             <!-- Default to using -Xlint and showing warnings -->
+            <compilerArgs>
+              <!-- We exclude "exports" since we proactively declare all directly used dependencies, matching the Maven build system. -->
+              <arg>-Xlint:-exports</arg>
+            </compilerArgs>
             <showDeprecation>true</showDeprecation>
             <showWarnings>true</showWarnings>
             <source>${maven.compiler.source}</source>
