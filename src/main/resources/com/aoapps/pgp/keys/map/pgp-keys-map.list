@@ -209,3 +209,6 @@ org.apache.commons:commons-exec:[1.6.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C2
 
 # Used by io.github.weblegacy:struts-1.5.0-RC2
 io.github.weblegacy = noKey # was signed by 0x21F8E7306A66F05CAA8046F8480913580EEEC892
+
+# Used by net.sargue:java-time-jsptags-2.0.2
+net.sargue:java-time-jsptags = 0x56C2742ED5907F995483BBEE7670A553E691B2AB
