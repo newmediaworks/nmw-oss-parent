@@ -104,8 +104,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.maven.plugins.maven-javadoc-plugin.version.compat>3.0.1</org.apache.maven.plugins.maven-javadoc-plugin.version.compat>
     <copy-element-list-to-package-list-before-javadoc.phase>none</copy-element-list-to-package-list-before-javadoc.phase>
 
-    <!-- devMode flag, enabled in "development" profile, enforced must be disabled in "publish" profile -->
+    <!-- devMode and negated notDevMode flags, enabled in "development" profile, enforced must be disabled in "publish" profile -->
     <devMode>false</devMode>
+    <notDevMode>true</notDevMode>
     <!-- devMode may be "true" only for projects that have profile.d/development which never publish anything. -->
     <devMode.enforceNotPublished.phase>validate</devMode.enforceNotPublished.phase>
 
@@ -3360,8 +3361,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <profile>
       <id>development</id><activation><file><exists>profile.d/development</exists></file></activation>
       <properties>
-        <!-- devMode flag, enabled in "development" profile, enforced must be disabled in "publish" profile -->
+        <!-- devMode and negated notDevMode flags, enabled in "development" profile, enforced must be disabled in "publish" profile -->
         <devMode>true</devMode>
+        <notDevMode>false</notDevMode>
 
         <!-- Skip many steps for quick development builds (unless reactivated in "jenkins" or "jenkins-deploy" profiles below  -->
         <!-- <pgpverify-check.phase>validate</pgpverify-check.phase> -->
@@ -3838,6 +3840,12 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       <property>devMode</property>
                       <regex>^false$</regex>
                       <regexMessage>"publish" requires 'devMode' property must be 'false'</regexMessage>
+                    </requireProperty>
+                    <!-- notDevMode flag, disabled in "development" profile, enforced must be enabled in "publish" profile -->
+                    <requireProperty>
+                      <property>notDevMode</property>
+                      <regex>^true$</regex>
+                      <regexMessage>"publish" requires 'notDevMode' property must be 'true'</regexMessage>
                     </requireProperty>
                   </rules>
                 </configuration>
