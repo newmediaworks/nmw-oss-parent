@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 nmw-oss-parent - Parent POM for all New Media Works open-source software projects.
-Copyright (C) 2019, 2020, 2021, 2022, 2023, 2024, 2025  New Media Works
+Copyright (C) 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026  New Media Works
     info@newmediaworks.com
     703 2nd Street #465
     Santa Rosa, CA 95404
@@ -23,10 +23,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <jsp:root
   xmlns:ao="https://oss.aoapps.com/taglib/"
-  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:c="jakarta.tags.core"
   xmlns:changelog="https://semanticcms.com/changelog/taglib/"
   xmlns:core="https://semanticcms.com/core/taglib/"
-  xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:fn="jakarta.tags.functions"
   xmlns:jsp="http://java.sun.com/JSP/Page"
   version="2.1"
 >
@@ -907,7 +907,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <li>Updated plugin versions.</li>
         <li>
           Removed offline Javadocs for <code>com.servlets:cos</code>, since we have eradicated it from all projects in favor of
-          <ao:a rel="nofollow" href="@{javadoc.link.javaee}javax/servlet/http/HttpServletRequest.html#getParts()">the standard file upload API</ao:a>
+          <ao:a rel="nofollow" href="@{javadoc.link.javaee.7}javax/servlet/http/HttpServletRequest.html#getParts()">the standard file upload API</ao:a>
           and <ao:a href="https://javaee.github.io/javamail/">JavaMail</ao:a>.
         </li>
         <li>
