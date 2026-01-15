@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2025-12-28T22:27:25Z"
+    dateModified="2026-01-15T22:39:57Z"
   >
     <c:set var="latestRelease" value="1.24.4" />
     <c:if test="${
@@ -201,7 +201,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <ao:a href="https://analytics.google.com/">Google Analytics</ao:a> tracking code is no longer added using
           the <code><![CDATA[&lt;bottom&gt;]]></code> section in <ao:a href="https://maven.apache.org/plugins/maven-javadoc-plugin/">maven-javadoc-plugin</ao:a>.
           Instead, the tracking code is added by the build of the website publishing the API docs using the new
-          <core:link book="/ant-tasks" page="/index.jspx" /> project.  Importantly, the tracking code is not longer
+          <core:link book="/ant-tasks" page="/index.jspx" /> project.  Importantly, the tracking code is no longer
           included in Javadocs released to <ao:a href="https://central.sonatype.com/">Maven Central</ao:a>.
         </li>
         <li>
