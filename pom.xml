@@ -2896,7 +2896,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <id>empty-javadoc-generate-element-list</id><phase>${empty-javadoc-generate-element-list.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target>
-                    <echo file="${project.basedir}/src/main/javadoc/element-list" message="module:${module.name}${line.separator}" encoding="${project.build.sourceEncoding}" />
+                    <echo file="${project.basedir}/src/main/javadoc/element-list" message="module:${module.name}&#10;" encoding="${project.build.sourceEncoding}" />
                   </target>
                 </configuration>
               </execution>
