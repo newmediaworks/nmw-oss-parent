@@ -1,6 +1,6 @@
 #
 # pgp-keys-map - Additional PGP keys map for dependencies used by AO open-source projects.
-# Copyright (C) 2021, 2022, 2023, 2024, 2025  AO Industries, Inc.
+# Copyright (C) 2021, 2022, 2023, 2024, 2025, 2026  AO Industries, Inc.
 #     support@aoindustries.com
 #     7262 Bull Pen Cir
 #     Mobile, AL 36695
@@ -208,7 +208,7 @@ org.apache.commons:commons-text:[1.15.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C
 org.apache.commons:commons-exec:[1.6.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
 
 # Used by io.github.weblegacy:struts-1.5.0-RC2
-io.github.weblegacy = noKey # was signed by 0x21F8E7306A66F05CAA8046F8480913580EEEC892
+io.github.weblegacy = 0x21F8E7306A66F05CAA8046F8480913580EEEC892
 
 # Used by net.sargue:java-time-jsptags-2.0.2
 net.sargue:java-time-jsptags = 0x56C2742ED5907F995483BBEE7670A553E691B2AB
