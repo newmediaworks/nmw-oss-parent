@@ -37,7 +37,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
     <!-- Plugins -->
     <org.simplify4u.plugins.pgpverify-maven-plugin.version>1.19.1</org.simplify4u.plugins.pgpverify-maven-plugin.version>
-    <org.apache.axis2.axis2-aar-maven-plugin.version>1.8.2</org.apache.axis2.axis2-aar-maven-plugin.version>
+    <org.apache.axis2.axis2-aar-maven-plugin.version>2.0.0</org.apache.axis2.axis2-aar-maven-plugin.version>
     <org.codehaus.mojo.exec-maven-plugin.version>3.6.3</org.codehaus.mojo.exec-maven-plugin.version>
     <io.github.git-commit-id.git-commit-id-maven-plugin.version>9.0.2</io.github.git-commit-id.git-commit-id-maven-plugin.version>
     <org.apache.maven.plugins.maven-compiler-plugin.version>3.14.1</org.apache.maven.plugins.maven-compiler-plugin.version>
@@ -371,11 +371,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       May be disabled in Maven command line property.
     -->
     <requireLastBuild>true</requireLastBuild>
-    <!--
-      Is this build reproducible for the zip-timestamp-merge Ant task?
-      Currently with axis2-aar-maven-plugin version 1.8.2, aar builds are not reproducible,
-      so this is disabled in packaging profile for "aar" packaging.
-    -->
+    <!-- Is this build reproducible for the zip-timestamp-merge Ant task? -->
     <zip-timestamp-merge.buildReproducible>true</zip-timestamp-merge.buildReproducible>
     <!-- The nofollows URL prefixes for seo-javadoc-filter. -->
     <seo-javadoc-filter.nofollow>default</seo-javadoc-filter.nofollow>
@@ -2310,18 +2306,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </plugin>
         </plugins>
       </build>
-    </profile>
-    <profile>
-      <id>packaging-aar</id>
-      <activation><property><name>packaging</name><value>aar</value></property></activation>
-      <properties>
-        <!--
-          Is this build reproducible for the zip-timestamp-merge Ant task?
-          Currently with axis2-aar-maven-plugin version 1.8.2, aar builds are not reproducible,
-          so this is disabled in packaging profile for "aar" packaging.
-        -->
-        <zip-timestamp-merge.buildReproducible>false</zip-timestamp-merge.buildReproducible>
-      </properties>
     </profile>
     <profile>
       <id>packaging-bundle</id>
