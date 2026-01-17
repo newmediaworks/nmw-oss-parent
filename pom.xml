@@ -144,6 +144,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <check-if-need-maven.gpg.skip.phase>validate</check-if-need-maven.gpg.skip.phase>
     <remove-empty-test.phase>initialize</remove-empty-test.phase>
     <empty-javadoc-generate-element-list.phase>generate-resources</empty-javadoc-generate-element-list.phase>
+    <update-readme.phase>generate-resources</update-readme.phase>
     <bundle-manifest.phase>process-classes</bundle-manifest.phase>
     <unpack.offlineLinks.phase>prepare-package</unpack.offlineLinks.phase>
     <process.offlineLinks.phase>prepare-package</process.offlineLinks.phase>
@@ -199,6 +200,26 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <javadoc.link.javase.20>https://docs.oracle.com/en/java/javase/20/docs/api/</javadoc.link.javase.20>
     <javadoc.link.javase.21>https://docs.oracle.com/en/java/javase/21/docs/api/</javadoc.link.javase.21>
     <javadoc.link.javase.22>https://download.java.net/java/early_access/jdk22/docs/api/</javadoc.link.javase.22>
+    <!-- Note: Also add new Java versions to "update-readme" below -->
+    <javase.href.5>https://www.oracle.com/java/technologies/javase/j2se5.0.html</javase.href.5>
+    <javase.href.6>https://www.oracle.com/java/technologies/javase/javase-overview6.html</javase.href.6>
+    <javase.href.7>https://docs.oracle.com/javase/7/docs/</javase.href.7>
+    <javase.href.8>https://docs.oracle.com/javase/8/</javase.href.8>
+    <javase.href.9>https://docs.oracle.com/javase/9/</javase.href.9>
+    <javase.href.10>https://docs.oracle.com/javase/10/</javase.href.10>
+    <javase.href.11>https://docs.oracle.com/en/java/javase/11/</javase.href.11>
+    <javase.href.12>https://docs.oracle.com/en/java/javase/12/</javase.href.12>
+    <javase.href.13>https://docs.oracle.com/en/java/javase/13/</javase.href.13>
+    <javase.href.14>https://docs.oracle.com/en/java/javase/14/</javase.href.14>
+    <javase.href.15>https://docs.oracle.com/en/java/javase/15/</javase.href.15>
+    <javase.href.16>https://docs.oracle.com/en/java/javase/16/</javase.href.16>
+    <javase.href.17>https://docs.oracle.com/en/java/javase/17/</javase.href.17>
+    <javase.href.18>https://docs.oracle.com/en/java/javase/18/</javase.href.18>
+    <javase.href.19>https://docs.oracle.com/en/java/javase/19/</javase.href.19>
+    <javase.href.20>https://docs.oracle.com/en/java/javase/20/</javase.href.20>
+    <javase.href.21>https://docs.oracle.com/en/java/javase/21/</javase.href.21>
+    <javase.href.22>https://openjdk.org/projects/jdk/22/</javase.href.22>
+    <!-- Note: Also add new Java versions to "update-readme" below -->
 
     <!-- The Java EE apidocs to link to, preferring https -->
     <!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->
@@ -212,6 +233,15 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <javadoc.link.jakartaee.9>https://jakarta.ee/specifications/platform/9/apidocs/</javadoc.link.jakartaee.9>
     <javadoc.link.jakartaee.9.1>https://jakarta.ee/specifications/platform/9.1/apidocs/</javadoc.link.jakartaee.9.1>
     <javadoc.link.jakartaee.10>https://jakarta.ee/specifications/platform/10/apidocs/</javadoc.link.jakartaee.10>
+    <!-- Note: Also add new Jakarta EE versions to "update-readme" below -->
+    <javaee.href.5>https://docs.oracle.com/javaee/5/</javaee.href.5>
+    <javaee.href.6>https://docs.oracle.com/javaee/6/</javaee.href.6>
+    <javaee.href.7>https://docs.oracle.com/javaee/7/</javaee.href.7>
+    <jakartaee.href.8>https://jakarta.ee/release/8/</jakartaee.href.8>
+    <jakartaee.href.9>https://jakarta.ee/release/9/</jakartaee.href.9>
+    <jakartaee.href.9.1>https://jakarta.ee/release/9.1/</jakartaee.href.9.1>
+    <jakartaee.href.10>https://jakarta.ee/release/10/</jakartaee.href.10>
+    <!-- Note: Also add new Jakarta EE versions to "update-readme" below -->
 
     <!-- Java SE version -->
     <javase.version>11</javase.version><!-- 1.6, 1.7, 1.8, 9, 10, 11, ... -->
@@ -3366,6 +3396,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <check-if-need-maven.gpg.skip.phase>none</check-if-need-maven.gpg.skip.phase>
         <!-- <remove-empty-test.phase>initialize</remove-empty-test.phase> -->
         <empty-javadoc-generate-element-list.phase>none</empty-javadoc-generate-element-list.phase>
+        <update-readme.phase>none</update-readme.phase>
         <!-- <bundle-manifest.phase>process-classes</bundle-manifest.phase> -->
         <unpack.offlineLinks.phase>none</unpack.offlineLinks.phase>
         <process.offlineLinks.phase>none</process.offlineLinks.phase>
@@ -3559,6 +3590,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <check-if-need-maven.gpg.skip.phase>validate</check-if-need-maven.gpg.skip.phase>
         <!-- <remove-empty-test.phase>initialize</remove-empty-test.phase> -->
         <empty-javadoc-generate-element-list.phase>generate-resources</empty-javadoc-generate-element-list.phase>
+        <update-readme.phase>generate-resources</update-readme.phase>
         <!-- <bundle-manifest.phase>process-classes</bundle-manifest.phase> -->
         <!-- Only done in "Deploy" phase -->
         <unpack.offlineLinks.phase>none</unpack.offlineLinks.phase>
@@ -3642,6 +3674,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <check-if-need-maven.gpg.skip.phase>none</check-if-need-maven.gpg.skip.phase>
         <remove-empty-test.phase>none</remove-empty-test.phase>
         <empty-javadoc-generate-element-list.phase>none</empty-javadoc-generate-element-list.phase>
+        <update-readme.phase>none</update-readme.phase>
         <!-- <bundle-manifest.phase>process-classes</bundle-manifest.phase> -->
       </properties>
       <build>
@@ -3685,6 +3718,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <check-if-need-maven.gpg.skip.phase>none</check-if-need-maven.gpg.skip.phase>
         <remove-empty-test.phase>none</remove-empty-test.phase>
         <empty-javadoc-generate-element-list.phase>none</empty-javadoc-generate-element-list.phase>
+        <update-readme.phase>none</update-readme.phase>
         <bundle-manifest.phase>none</bundle-manifest.phase>
         <!-- Only done in "Deploy" phase -->
         <unpack.offlineLinks.phase>prepare-package</unpack.offlineLinks.phase>
@@ -3999,6 +4033,161 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!--   </Hints> -->
         <!-- </NetBeans 17 → Project → Properties> -->
       </properties>
+    </profile>
+    <profile>
+      <id>update-readme</id>
+      <activation><file><exists>README.md</exists></file></activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <!--
+                Updates any existing Java and Java / Jakarta EE lines in README.md to match the Maven
+                build properties.  Leaves the updated version in-place.  The Jenkins CI builds will error
+                when any file changed during the build.
+              -->
+              <execution>
+                <id>update-readme</id><phase>${update-readme.phase}</phase><goals><goal>run</goal></goals>
+                <configuration>
+                  <target xmlns:if="ant:if" xmlns:unless="ant:unless">
+                    <!-- Determine the expected Java SE link target. -->
+                    <!-- Note: versions added here must also be added to ao-badges:badges.inc.jspx:arg.javaseVersion -->
+                    <condition property="javase.href" value="${javase.href.5}">
+                      <equals arg1="${javase.release}" arg2="5" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.6}">
+                      <equals arg1="${javase.release}" arg2="6" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.7}">
+                      <equals arg1="${javase.release}" arg2="7" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.8}">
+                      <equals arg1="${javase.release}" arg2="8" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.9}">
+                      <equals arg1="${javase.release}" arg2="9" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.10}">
+                      <equals arg1="${javase.release}" arg2="10" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.11}">
+                      <equals arg1="${javase.release}" arg2="11" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.12}">
+                      <equals arg1="${javase.release}" arg2="12" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.13}">
+                      <equals arg1="${javase.release}" arg2="13" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.14}">
+                      <equals arg1="${javase.release}" arg2="14" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.15}">
+                      <equals arg1="${javase.release}" arg2="15" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.16}">
+                      <equals arg1="${javase.release}" arg2="16" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.17}">
+                      <equals arg1="${javase.release}" arg2="17" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.18}">
+                      <equals arg1="${javase.release}" arg2="18" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.19}">
+                      <equals arg1="${javase.release}" arg2="19" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.20}">
+                      <equals arg1="${javase.release}" arg2="20" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.21}">
+                      <equals arg1="${javase.release}" arg2="21" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.22}">
+                      <equals arg1="${javase.release}" arg2="22" />
+                    </condition>
+                    <!-- Note: versions added here must also be added to ao-badges:badges.inc.jspx:arg.javaseVersion -->
+                    <fail unless="javase.href" message="Unexpected value for 'javase.release' when updating README.md: &quot;${javase.release}&quot;" />
+                    <echo level="verbose" message="javase.href = ${javase.href}" />
+
+                    <!-- Determine the expected Jakarta EE link target. -->
+                    <!-- Note: versions added here must also be added to ao-badges:badges.inc.jspx:arg.javaeeVersion -->
+                    <condition property="jakartaee.href" value="${javaee.href.5}">
+                      <equals arg1="${javaee.version}" arg2="5" />
+                    </condition>
+                    <condition property="jakartaee.href" value="${javaee.href.6}">
+                      <equals arg1="${javaee.version}" arg2="6" />
+                    </condition>
+                    <condition property="jakartaee.href" value="${javaee.href.7}">
+                      <equals arg1="${javaee.version}" arg2="7" />
+                    </condition>
+                    <!-- Note: versions added here must also be added to ao-badges:badges.inc.jspx:arg.jakartaeeVersion -->
+                    <condition property="jakartaee.href" value="${jakartaee.href.8}">
+                      <equals arg1="${javaee.version}" arg2="8" />
+                    </condition>
+                    <condition property="jakartaee.href" value="${jakartaee.href.9}">
+                      <equals arg1="${javaee.version}" arg2="9" />
+                    </condition>
+                    <condition property="jakartaee.href" value="${jakartaee.href.9.1}">
+                      <equals arg1="${javaee.version}" arg2="9.1" />
+                    </condition>
+                    <condition property="jakartaee.href" value="${jakartaee.href.10}">
+                      <equals arg1="${javaee.version}" arg2="10" />
+                    </condition>
+                    <!-- Note: versions added here must also be added to ao-badges:badges.inc.jspx:arg.jakartaeeVersion -->
+                    <fail unless="jakartaee.href" message="Unexpected value for 'javaee.version' when updating README.md: &quot;${javaee.version}&quot;" />
+                    <echo level="verbose" message="jakartaee.href = ${jakartaee.href}" />
+
+                    <!-- Create a copy in the build directory -->
+                    <copy overwrite="true" file="${project.basedir}/README.md" todir="${project.build.directory}/substitute-templates" />
+
+                    <!-- Replace the values in the build directory -->
+                    <replaceregexp
+                      file="${project.build.directory}/substitute-templates/README.md"
+                      match="\[!\[java: &amp;gt;= [0-9]+\]\(https://(.*)/ao-badges/java-[0-9]+\.svg\)\]\(.*\)"
+                      replace="[![java: &amp;gt;= ${javase.release}](https://\1/ao-badges/java-${javase.release}.svg)](${javase.href})"
+                      byline="true"
+                    />
+                    <replaceregexp
+                      file="${project.build.directory}/substitute-templates/README.md"
+                      match="\[!\[(java|jakarta) ee: &amp;gt;= [0-9]+\]\(https://(.*)/ao-badges/(javaee|jakartaee)-[0-9]+\.svg\)\]\(.*\)"
+                      replace="[![${javadoc.link.javaee.type}: &amp;gt;= ${javaee.version}](https://\2/ao-badges/${javadoc.link.javaee.type}-${javaee.version}.svg)](${jakartaee.href})"
+                      byline="true"
+                    />
+                    <!-- Split "javaee" into "java ee" and "jakartaee" into "jakarta ee" -->
+                    <replaceregexp
+                      file="${project.build.directory}/substitute-templates/README.md"
+                      match="\[!\[(java|jakarta)ee: &amp;gt;= ([0-9]+)\]"
+                      replace="[![\1 ee: &amp;gt;= \2]"
+                      byline="true"
+                    />
+
+                    <!-- Move into place only if changed -->
+                    <condition property="readme.matches" value="true">
+                      <filesmatch
+                        file1="${project.build.directory}/substitute-templates/README.md"
+                        file2="${project.basedir}/README.md"
+                      />
+                    </condition>
+                    <copy
+                      unless:set="readme.matches"
+                      overwrite="true"
+                      file="${project.build.directory}/substitute-templates/README.md"
+                      tofile="${project.basedir}/README.md"
+                    />
+                    <echo
+                      if:set="readme.matches"
+                      message="README.md unchanged"
+                      level="info"
+                    />
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
 </project>
