@@ -145,6 +145,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <remove-empty-test.phase>initialize</remove-empty-test.phase>
     <empty-javadoc-generate-element-list.phase>generate-resources</empty-javadoc-generate-element-list.phase>
     <update-readme.phase>generate-resources</update-readme.phase>
+    <update-book-pom.phase>generate-resources</update-book-pom.phase>
     <bundle-manifest.phase>process-classes</bundle-manifest.phase>
     <unpack.offlineLinks.phase>prepare-package</unpack.offlineLinks.phase>
     <process.offlineLinks.phase>prepare-package</process.offlineLinks.phase>
@@ -3402,6 +3403,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!-- <remove-empty-test.phase>initialize</remove-empty-test.phase> -->
         <empty-javadoc-generate-element-list.phase>none</empty-javadoc-generate-element-list.phase>
         <update-readme.phase>none</update-readme.phase>
+        <update-book-pom.phase>none</update-book-pom.phase>
         <!-- <bundle-manifest.phase>process-classes</bundle-manifest.phase> -->
         <unpack.offlineLinks.phase>none</unpack.offlineLinks.phase>
         <process.offlineLinks.phase>none</process.offlineLinks.phase>
@@ -3596,6 +3598,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!-- <remove-empty-test.phase>initialize</remove-empty-test.phase> -->
         <empty-javadoc-generate-element-list.phase>generate-resources</empty-javadoc-generate-element-list.phase>
         <update-readme.phase>generate-resources</update-readme.phase>
+        <update-book-pom.phase>generate-resources</update-book-pom.phase>
         <!-- <bundle-manifest.phase>process-classes</bundle-manifest.phase> -->
         <!-- Only done in "Deploy" phase -->
         <unpack.offlineLinks.phase>none</unpack.offlineLinks.phase>
@@ -3680,6 +3683,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <remove-empty-test.phase>none</remove-empty-test.phase>
         <empty-javadoc-generate-element-list.phase>none</empty-javadoc-generate-element-list.phase>
         <update-readme.phase>none</update-readme.phase>
+        <update-book-pom.phase>none</update-book-pom.phase>
         <!-- <bundle-manifest.phase>process-classes</bundle-manifest.phase> -->
       </properties>
       <build>
@@ -3724,6 +3728,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <remove-empty-test.phase>none</remove-empty-test.phase>
         <empty-javadoc-generate-element-list.phase>none</empty-javadoc-generate-element-list.phase>
         <update-readme.phase>none</update-readme.phase>
+        <update-book-pom.phase>none</update-book-pom.phase>
         <bundle-manifest.phase>none</bundle-manifest.phase>
         <!-- Only done in "Deploy" phase -->
         <unpack.offlineLinks.phase>prepare-package</unpack.offlineLinks.phase>
@@ -4184,6 +4189,171 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                     <echo
                       if:set="readme.matches"
                       message="README.md unchanged"
+                      level="info"
+                    />
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>update-book-pom</id>
+      <activation><file><exists>book/pom.xml</exists></file></activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <!--
+                Updates the "documented.*" Java and Java / Jakarta EE properties in book/pom.xml to match the Maven
+                build properties.  Leaves the updated version in-place.  The Jenkins CI builds will error
+                when any file changed during the build.
+
+                Since these properties might not exist when they are equal to the current parent default, verifies and
+                fails the build when the values don't exist but should exist with a non-default value.
+
+                Note: For these assumptions to work, the book must have the same default properties as the project itself.
+              -->
+              <execution>
+                <id>update-book-pom</id><phase>${update-book-pom.phase}</phase><goals><goal>run</goal></goals>
+                <configuration>
+                  <target xmlns:if="ant:if" xmlns:unless="ant:unless">
+                    <!-- Create a copy in the build directory -->
+                    <copy overwrite="true" file="${project.basedir}/book/pom.xml" todir="${project.build.directory}/substitute-templates/book" />
+
+                    <!-- Replace the values in the build directory -->
+                    <replaceregexp
+                      file="${project.build.directory}/substitute-templates/book/pom.xml"
+                      match="&lt;!-- Java .* --&gt;(\n *)&lt;documented\.javase\.version&gt;.*&lt;/documented\.javase\.version&gt;(\n *)&lt;documented\.javadoc\.link\.javase&gt;.*&lt;/documented\.javadoc\.link\.javase&gt;"
+                      replace="&lt;!-- Java ${javase.version} --&gt;\1&lt;documented.javase.version&gt;${javase.version}&lt;/documented.javase.version&gt;\2&lt;documented.javadoc.link.javase&gt;\\\$\{javadoc.link.javase.${javase.release}\}&lt;/documented.javadoc.link.javase&gt;"
+                      flags="m"
+                    />
+                    <replaceregexp
+                      file="${project.build.directory}/substitute-templates/book/pom.xml"
+                      match="&lt;!-- (Java|Jakarta) EE .* --&gt;(\n *)&lt;documented\.javaee\.version&gt;.*&lt;/documented\.javaee\.version&gt;(\n *)&lt;documented\.javadoc\.link\.javaee&gt;.*&lt;/documented\.javadoc\.link\.javaee&gt;"
+                      replace="&lt;!-- \1 EE ${javaee.version} --&gt;\2&lt;documented.javaee.version&gt;${javaee.version}&lt;/documented.javaee.version&gt;\3&lt;documented.javadoc.link.javaee&gt;\\\$\{javadoc.link.${javadoc.link.javaee.type}.${javaee.version}\}&lt;/documented.javadoc.link.javaee&gt;"
+                      flags="m"
+                    />
+
+                    <!-- Verify documented.javase.version matches expected -->
+                    <loadfile property="book-pom.documented.javase.version" srcFile="${project.build.directory}/substitute-templates/book/pom.xml">
+                      <filterchain>
+                        <linecontainsregexp>
+                          <regexp pattern=".*&lt;documented\.javase\.version&gt;(.*)&lt;/documented\.javase\.version&gt;.*" />
+                        </linecontainsregexp>
+                        <tokenfilter>
+                          <replaceregex
+                            pattern=".*&lt;documented\.javase\.version&gt;(.*)&lt;/documented\.javase\.version&gt;.*"
+                            replace="\1"
+                          />
+                        </tokenfilter>
+                      </filterchain>
+                    </loadfile>
+                    <echo level="verbose" message="book-pom.documented.javase.version from file: ${book-pom.documented.javase.version}" />
+                    <property name="book-pom.documented.javase.version" value="${documented.javase.version}" />
+                    <echo level="verbose" message="book-pom.documented.javase.version now: ${book-pom.documented.javase.version}" />
+                    <fail message="book/pom.xml must have 'documented.javase.version' set to '${javase.version}', but found '${book-pom.documented.javase.version}'.">
+                      <condition>
+                        <not>
+                          <equals arg1="${book-pom.documented.javase.version}" arg2="${javase.version}" trim="true" />
+                        </not>
+                      </condition>
+                    </fail>
+
+                    <!-- Verify documented.javadoc.link.javase matches expected -->
+                    <loadfile property="book-pom.documented.javadoc.link.javase" srcFile="${project.build.directory}/substitute-templates/book/pom.xml">
+                      <filterchain>
+                        <linecontainsregexp>
+                          <regexp pattern=".*&lt;documented\.javadoc\.link\.javase&gt;.\{javadoc\.link\.javase\.(.*)\}&lt;/documented\.javadoc\.link\.javase&gt;.*" />
+                        </linecontainsregexp>
+                        <tokenfilter>
+                          <replaceregex
+                            pattern=".*&lt;documented\.javadoc\.link\.javase&gt;.\{javadoc\.link\.javase\.(.*)\}&lt;/documented\.javadoc\.link\.javase&gt;.*"
+                            replace="\1"
+                          />
+                        </tokenfilter>
+                      </filterchain>
+                    </loadfile>
+                    <echo level="verbose" message="book-pom.documented.javadoc.link.javase from file: ${book-pom.documented.javadoc.link.javase}" />
+                    <property name="book-pom.documented.javadoc.link.javase" value="${documented.javase.version}" />
+                    <echo level="verbose" message="book-pom.documented.javadoc.link.javase now: ${book-pom.documented.javadoc.link.javase}" />
+                    <fail message="book/pom.xml must have 'documented.javadoc.link.javase' set to '${javase.release}', but found '${book-pom.documented.javadoc.link.javase}'.">
+                      <condition>
+                        <not>
+                          <equals arg1="${book-pom.documented.javadoc.link.javase}" arg2="${javase.release}" trim="true" />
+                        </not>
+                      </condition>
+                    </fail>
+
+                    <!-- Verify documented.javaee.version matches expected -->
+                    <loadfile property="book-pom.documented.javaee.version" srcFile="${project.build.directory}/substitute-templates/book/pom.xml">
+                      <filterchain>
+                        <linecontainsregexp>
+                          <regexp pattern=".*&lt;documented\.javaee\.version&gt;(.*)&lt;/documented\.javaee\.version&gt;.*" />
+                        </linecontainsregexp>
+                        <tokenfilter>
+                          <replaceregex
+                            pattern=".*&lt;documented\.javaee\.version&gt;(.*)&lt;/documented\.javaee\.version&gt;.*"
+                            replace="\1"
+                          />
+                        </tokenfilter>
+                      </filterchain>
+                    </loadfile>
+                    <echo level="verbose" message="book-pom.documented.javaee.version from file: ${book-pom.documented.javaee.version}" />
+                    <property name="book-pom.documented.javaee.version" value="${documented.javaee.version}" />
+                    <echo level="verbose" message="book-pom.documented.javaee.version now: ${book-pom.documented.javaee.version}" />
+                    <fail message="book/pom.xml must have 'documented.javaee.version' set to '${javaee.version}', but found '${book-pom.documented.javaee.version}'.">
+                      <condition>
+                        <not>
+                          <equals arg1="${book-pom.documented.javaee.version}" arg2="${javaee.version}" trim="true" />
+                        </not>
+                      </condition>
+                    </fail>
+
+                    <!-- Verify documented.javadoc.link.javaee matches expected -->
+                    <loadfile property="book-pom.documented.javadoc.link.javaee" srcFile="${project.build.directory}/substitute-templates/book/pom.xml">
+                      <filterchain>
+                        <linecontainsregexp>
+                          <regexp pattern=".*&lt;documented\.javadoc\.link\.javaee&gt;.\{javadoc\.link\.(?:javaee|jakartaee)\.(.*)\}&lt;/documented\.javadoc\.link\.javaee&gt;.*" />
+                        </linecontainsregexp>
+                        <tokenfilter>
+                          <replaceregex
+                            pattern=".*&lt;documented\.javadoc\.link\.javaee&gt;.\{javadoc\.link\.(?:javaee|jakartaee)\.(.*)\}&lt;/documented\.javadoc\.link\.javaee&gt;.*"
+                            replace="\1"
+                          />
+                        </tokenfilter>
+                      </filterchain>
+                    </loadfile>
+                    <echo level="verbose" message="book-pom.documented.javadoc.link.javaee from file: ${book-pom.documented.javadoc.link.javaee}" />
+                    <property name="book-pom.documented.javadoc.link.javaee" value="${documented.javaee.version}" />
+                    <echo level="verbose" message="book-pom.documented.javadoc.link.javaee now: ${book-pom.documented.javadoc.link.javaee}" />
+                    <fail message="book/pom.xml must have 'documented.javadoc.link.javaee' set to '${javaee.version}', but found '${book-pom.documented.javadoc.link.javaee}'.">
+                      <condition>
+                        <not>
+                          <equals arg1="${book-pom.documented.javadoc.link.javaee}" arg2="${javaee.version}" trim="true" />
+                        </not>
+                      </condition>
+                    </fail>
+
+                    <!-- Move into place only if changed -->
+                    <condition property="book-pom.matches" value="true">
+                      <filesmatch
+                        file1="${project.build.directory}/substitute-templates/book/pom.xml"
+                        file2="${project.basedir}/book/pom.xml"
+                      />
+                    </condition>
+                    <copy
+                      unless:set="book-pom.matches"
+                      overwrite="true"
+                      file="${project.build.directory}/substitute-templates/book/pom.xml"
+                      tofile="${project.basedir}/book/pom.xml"
+                    />
+                    <echo
+                      if:set="book-pom.matches"
+                      message="book/pom.xml unchanged"
                       level="info"
                     />
                   </target>
