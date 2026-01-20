@@ -3655,7 +3655,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <lockMode>multiple</lockMode>
               <homedir>${gpg.jenkins-aoindustries-com.homedir}</homedir>
               <keyname>${gpg.jenkins-aoindustries-com.keyname}</keyname>
-              <useAgent>false</useAgent>
             </configuration>
           </plugin>
         </plugins>
