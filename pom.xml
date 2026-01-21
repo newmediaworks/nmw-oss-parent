@@ -3862,6 +3862,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <id>publish.tomcat7-maven-plugin</id><activation><file><exists>profile.d/publish.tomcat7-maven-plugin</exists></file></activation>
       <properties>
         <publish.tomcat7-maven-plugin.update>true</publish.tomcat7-maven-plugin.update>
+        <publish.tomcat7-maven-plugin.path.extra />
       </properties>
       <build>
         <plugins>
