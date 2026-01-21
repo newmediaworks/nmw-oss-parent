@@ -3864,6 +3864,11 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.update>true</publish.tomcat7-maven-plugin.update>
         <publish.tomcat7-maven-plugin.path.extra />
       </properties>
+      <!--
+        TODO: How to do these things only when publish profile active, too?
+        Put into the publish profile (harder to reason about)?
+        More phase selectors altered by publish profile, like done for requireProperties?
+      -->
       <build>
         <plugins>
           <plugin>
