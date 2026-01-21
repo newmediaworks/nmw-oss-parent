@@ -144,7 +144,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <verify-no-java-in-src.phase>validate</verify-no-java-in-src.phase>
     <verify-java-in-src.phase>validate</verify-java-in-src.phase>
     <check-if-need-maven.gpg.skip.phase>validate</check-if-need-maven.gpg.skip.phase>
-    <publish.tomcat7-maven-plugin.requireProperties.phase>none</publish.tomcat7-maven-plugin.requireProperties.phase>
     <remove-empty-test.phase>initialize</remove-empty-test.phase>
     <empty-javadoc-generate-element-list.phase>generate-resources</empty-javadoc-generate-element-list.phase>
     <update-readme.phase>generate-resources</update-readme.phase>
@@ -182,6 +181,13 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <spotbugs.phase>verify</spotbugs.phase>
     <default-install.phase>install</default-install.phase>
     <default-deploy.phase>deploy</default-deploy.phase>
+    <!--
+      publish.tomcat7-maven-plugin phases are enabled by the publish profile.
+      This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
+      and publish (activated on command line) profiles must be active for the actions to be taken.
+    -->
+    <publish.tomcat7-maven-plugin.requireProperties.phase>none</publish.tomcat7-maven-plugin.requireProperties.phase>
+    <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>none</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
 
     <!-- The version of Java apidocs to link to, preferring https -->
     <!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->
@@ -3896,6 +3902,22 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             </executions>
           </plugin>
           <plugin>
+            <groupId>org.codehaus.gmaven</groupId><artifactId>groovy-maven-plugin</artifactId>
+            <executions>
+              <!-- See https://stackoverflow.com/a/11239913 -->
+              <execution>
+                <id>publish.tomcat7-maven-plugin.get-auth-from-settings</id><phase>${publish.tomcat7-maven-plugin.get-auth-from-settings.phase}</phase><goals><goal>execute</goal></goals>
+                <configuration>
+                  <source>
+                    def server = settings.servers.find{ it.id.equals("${publish.tomcat7-maven-plugin.server}") }
+                    project.properties['publish.tomcat7-maven-plugin.server.username'] = server.username
+                    project.properties['publish.tomcat7-maven-plugin.server.password'] = server.password
+                  </source>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
             <groupId>org.apache.tomcat.maven</groupId><artifactId>tomcat7-maven-plugin</artifactId>
             <executions>
               <execution>
@@ -3932,6 +3954,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <id>publish</id>
       <properties>
         <publish.tomcat7-maven-plugin.requireProperties.phase>validate</publish.tomcat7-maven-plugin.requireProperties.phase>
+        <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
       </properties>
       <build>
         <plugins>
