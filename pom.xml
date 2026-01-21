@@ -3906,7 +3906,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </execution>
             </executions>
           </plugin>
-          <!-- TODO: conditional exec plugin here -->
+          <!-- TODO: publish.tomcat7-maven-plugin.conditional-deploy-only here -->
+          <!-- TODO: publish.tomcat7-maven-plugin.read-project-properties here -->
+          <!-- TODO: publish.tomcat7-maven-plugin.capture-maven-context here -->
+          <!-- TODO: publish.tomcat7-maven-plugin.existing-war-file-fingerprints here -->
         </plugins>
       </build>
     </profile>
