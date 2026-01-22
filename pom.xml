@@ -4321,8 +4321,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       <equals arg1="${publish.tomcat7-maven-plugin.1.running-war-file-fingerprint}" arg2="${publish.tomcat7-maven-plugin.1.build-war-file-fingerprint}" />
                     </condition>
                     <echo level="debug" message="publish.tomcat7-maven-plugin.1.running-war-file.matches = ${publish.tomcat7-maven-plugin.1.running-war-file.matches}" />
-                    <echo level="info" if:true="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" message="Tomcat deployment will be skipped because new build matches running fingerprint: ${publish.tomcat7-maven-plugin.1.running-war-file-fingerprint}" />
-                    <echo level="info" unless:true="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" message="Tomcat deployment will proceed because new build does not match running fingerprint: build = ${publish.tomcat7-maven-plugin.1.build-war-file-fingerprint}, running = ${publish.tomcat7-maven-plugin.1.running-war-file-fingerprint}" />
+                    <echo level="info" if:true="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" message="Tomcat deployment #1 will be skipped because new build matches running fingerprint: ${publish.tomcat7-maven-plugin.1.running-war-file-fingerprint}" />
+                    <echo level="info" unless:true="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" message="Tomcat deployment #1 will proceed because new build does not match running fingerprint: build = ${publish.tomcat7-maven-plugin.1.build-war-file-fingerprint}, running = ${publish.tomcat7-maven-plugin.1.running-war-file-fingerprint}" />
                     <!-- Save properties for Maven to read -->
                     <echo file="${project.build.directory}/publish.tomcat7-maven-plugin.1/existing-war-file-fingerprints.properties"><!--
                       -->publish.tomcat7-maven-plugin.1.build-war-file-fingerprint=${publish.tomcat7-maven-plugin.1.build-war-file-fingerprint}${line.separator}<!--
@@ -4363,8 +4363,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       <equals arg1="${publish.tomcat7-maven-plugin.2.running-war-file-fingerprint}" arg2="${publish.tomcat7-maven-plugin.2.build-war-file-fingerprint}" />
                     </condition>
                     <echo level="debug" message="publish.tomcat7-maven-plugin.2.running-war-file.matches = ${publish.tomcat7-maven-plugin.2.running-war-file.matches}" />
-                    <echo level="info" if:true="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" message="Tomcat deployment will be skipped because new build matches running fingerprint: ${publish.tomcat7-maven-plugin.2.running-war-file-fingerprint}" />
-                    <echo level="info" unless:true="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" message="Tomcat deployment will proceed because new build does not match running fingerprint: build = ${publish.tomcat7-maven-plugin.2.build-war-file-fingerprint}, running = ${publish.tomcat7-maven-plugin.2.running-war-file-fingerprint}" />
+                    <echo level="info" if:true="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" message="Tomcat deployment #2 will be skipped because new build matches running fingerprint: ${publish.tomcat7-maven-plugin.2.running-war-file-fingerprint}" />
+                    <echo level="info" unless:true="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" message="Tomcat deployment #2 will proceed because new build does not match running fingerprint: build = ${publish.tomcat7-maven-plugin.2.build-war-file-fingerprint}, running = ${publish.tomcat7-maven-plugin.2.running-war-file-fingerprint}" />
                     <!-- Save properties for Maven to read -->
                     <echo file="${project.build.directory}/publish.tomcat7-maven-plugin.2/existing-war-file-fingerprints.properties"><!--
                       -->publish.tomcat7-maven-plugin.2.build-war-file-fingerprint=${publish.tomcat7-maven-plugin.2.build-war-file-fingerprint}${line.separator}<!--
