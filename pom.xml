@@ -3935,11 +3935,56 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </plugin>
           <!-- TODO: publish.tomcat7-maven-plugin.conditional-deploy-only here -->
           <!-- TODO: publish.tomcat7-maven-plugin.read-project-properties here -->
-          <!-- TODO: publish.tomcat7-maven-plugin.capture-maven-context here -->
-          <!-- TODO: publish.tomcat7-maven-plugin.existing-war-file-fingerprints here -->
-          <!-- TODO: publish.tomcat7-maven-plugin.warmup-sleep here -->
-          <!-- TODO: publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint here -->
-          <!-- TODO: warmup-get-url here, via optional properties? -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <!-- TODO: publish.tomcat7-maven-plugin.capture-maven-context here -->
+              <!-- TODO: publish.tomcat7-maven-plugin.existing-war-file-fingerprints here -->
+              <!-- TODO: publish.tomcat7-maven-plugin.warmup-sleep here -->
+              <!-- TODO: publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint here -->
+              <execution>
+                <id>publish.tomcat7-maven-plugin.warmup-get-url</id><phase>deploy</phase><goals><goal>run</goal></goals>
+                <configuration>
+                  <target xmlns:if="ant:if">
+                    <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin" />
+                    <!-- TODO: Optional username/password for projects that need it -->
+                    <retry if:set="publish.tomcat7-maven-plugin.warmup-get-url.1" retrycount="12" retrydelay="15000">
+                      <get
+                        retries="1"
+                        src="${publish.tomcat7-maven-plugin.warmup-get-url.1}"
+                        dest="${project.build.directory}/publish.tomcat7-maven-plugin/warmup-get-url.1.response"
+                        maxtime="120"
+                        httpusecaches="false"
+                      />
+                    </retry>
+                    <retry if:set="publish.tomcat7-maven-plugin.warmup-get-url.2" retrycount="12" retrydelay="15000">
+                      <get
+                        retries="1"
+                        src="${publish.tomcat7-maven-plugin.warmup-get-url.2}"
+                        dest="${project.build.directory}/publish.tomcat7-maven-plugin/warmup-get-url.2.response"
+                        maxtime="120"
+                        httpusecaches="false"
+                      />
+                    </retry>
+                    <retry if:set="publish.tomcat7-maven-plugin.warmup-get-url.3" retrycount="12" retrydelay="15000">
+                      <get
+                        retries="1"
+                        src="${publish.tomcat7-maven-plugin.warmup-get-url.3}"
+                        dest="${project.build.directory}/publish.tomcat7-maven-plugin/warmup-get-url.3.response"
+                        maxtime="120"
+                        httpusecaches="false"
+                      />
+                    </retry>
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>org.codehaus.groovy</groupId><artifactId>groovy-ant</artifactId><version>${org.codehaus.groovy.groovy-ant.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
         </plugins>
       </build>
     </profile>
