@@ -189,6 +189,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <publish.tomcat7-maven-plugin.read-project-properties.phase>none</publish.tomcat7-maven-plugin.read-project-properties.phase>
     <publish.tomcat7-maven-plugin.capture-maven-context.phase>none</publish.tomcat7-maven-plugin.capture-maven-context.phase>
     <publish.tomcat7-maven-plugin.warmup-sleep.phase>none</publish.tomcat7-maven-plugin.warmup-sleep.phase>
+    <publish.tomcat7-maven-plugin.warmup-get-url.phase>none</publish.tomcat7-maven-plugin.warmup-get-url.phase>
     <!--
       publish.tomcat7-maven-plugin.N phases are enabled by the publish.tomcat7-maven-plugin.N profile.
       This creates an and condition: both publish.tomcat7-maven-plugin.N (activated in profile.d)
@@ -206,8 +207,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <publish.tomcat7-maven-plugin.2.existing-war-file-fingerprints.phase>none</publish.tomcat7-maven-plugin.2.existing-war-file-fingerprints.phase>
     <publish.tomcat7-maven-plugin.1.verify-published-war-file-fingerprint.phase>none</publish.tomcat7-maven-plugin.1.verify-published-war-file-fingerprint.phase>
     <publish.tomcat7-maven-plugin.2.verify-published-war-file-fingerprint.phase>none</publish.tomcat7-maven-plugin.2.verify-published-war-file-fingerprint.phase>
-    <publish.tomcat7-maven-plugin.1.warmup-get-url.phase>none</publish.tomcat7-maven-plugin.1.warmup-get-url.phase>
-    <publish.tomcat7-maven-plugin.2.warmup-get-url.phase>none</publish.tomcat7-maven-plugin.2.warmup-get-url.phase>
     <!--
       publish.tomcat7-maven-plugin.N.parallel-deployment phases are enabled by the publish.tomcat7-maven-plugin.N.parallel-deployment profile.
       This creates an and condition: both publish.tomcat7-maven-plugin.N.parallel-deployment (activated in profile.d)
@@ -3896,6 +3895,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <profile>
       <id>publish.tomcat7-maven-plugin.1</id><activation><file><exists>profile.d/publish.tomcat7-maven-plugin.1</exists></file></activation>
       <properties>
+        <!-- Flag that lets other places know this profile is active -->
+        <publish.tomcat7-maven-plugin.1.active>true</publish.tomcat7-maven-plugin.1.active>
         <!-- Non-parallel deployment settings -->
         <publish.tomcat7-maven-plugin.1.update>true</publish.tomcat7-maven-plugin.1.update>
         <publish.tomcat7-maven-plugin.1.path.extra />
@@ -3907,6 +3908,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.warmup-sleep.phase>deploy</publish.tomcat7-maven-plugin.warmup-sleep.phase>
+        <publish.tomcat7-maven-plugin.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.warmup-get-url.phase>
         <!--
           publish.tomcat7-maven-plugin.N phases are enabled by the publish.tomcat7-maven-plugin.N profile.
           This creates an and condition: both publish.tomcat7-maven-plugin.N (activated in profile.d)
@@ -3918,12 +3920,13 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.1.read-project-properties.phase>install</publish.tomcat7-maven-plugin.1.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints.phase>
         <publish.tomcat7-maven-plugin.1.verify-published-war-file-fingerprint.phase>deploy</publish.tomcat7-maven-plugin.1.verify-published-war-file-fingerprint.phase>
-        <publish.tomcat7-maven-plugin.1.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.1.warmup-get-url.phase>
       </properties>
     </profile>
     <profile>
       <id>publish.tomcat7-maven-plugin.2</id><activation><file><exists>profile.d/publish.tomcat7-maven-plugin.2</exists></file></activation>
       <properties>
+        <!-- Flag that lets other places know this profile is active -->
+        <publish.tomcat7-maven-plugin.2.active>true</publish.tomcat7-maven-plugin.2.active>
         <!-- Non-parallel deployment settings -->
         <publish.tomcat7-maven-plugin.2.update>true</publish.tomcat7-maven-plugin.2.update>
         <publish.tomcat7-maven-plugin.2.path.extra />
@@ -3935,6 +3938,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.warmup-sleep.phase>deploy</publish.tomcat7-maven-plugin.warmup-sleep.phase>
+        <publish.tomcat7-maven-plugin.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.warmup-get-url.phase>
         <!--
           publish.tomcat7-maven-plugin.N phases are enabled by the publish.tomcat7-maven-plugin.N profile.
           This creates an and condition: both publish.tomcat7-maven-plugin.N (activated in profile.d)
@@ -3946,7 +3950,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.2.read-project-properties.phase>install</publish.tomcat7-maven-plugin.2.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.2.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.2.existing-war-file-fingerprints.phase>
         <publish.tomcat7-maven-plugin.2.verify-published-war-file-fingerprint.phase>deploy</publish.tomcat7-maven-plugin.2.verify-published-war-file-fingerprint.phase>
-        <publish.tomcat7-maven-plugin.2.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.2.warmup-get-url.phase>
       </properties>
     </profile>
     <profile>
@@ -4522,74 +4525,47 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 </configuration>
               </execution>
               <execution>
-                <id>publish.tomcat7-maven-plugin.1.warmup-get-url</id><phase>${publish.tomcat7-maven-plugin.1.warmup-get-url.phase}</phase><goals><goal>run</goal></goals>
+                <id>publish.tomcat7-maven-plugin.warmup-get-url</id><phase>${publish.tomcat7-maven-plugin.warmup-get-url.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target xmlns:if="ant:if">
-                    <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin.1" />
-                    <!-- TODO: Optional username/password for projects that need it -->
-                    <retry if:set="publish.tomcat7-maven-plugin.1.warmup-get-url.1" retrycount="12" retrydelay="15000">
-                      <get
-                        retries="1"
-                        src="${publish.tomcat7-maven-plugin.1.warmup-get-url.1}"
-                        dest="${project.build.directory}/publish.tomcat7-maven-plugin.1/warmup-get-url.1.response"
-                        maxtime="120"
-                        httpusecaches="false"
-                      />
-                    </retry>
-                    <retry if:set="publish.tomcat7-maven-plugin.1.warmup-get-url.2" retrycount="12" retrydelay="15000">
-                      <get
-                        retries="1"
-                        src="${publish.tomcat7-maven-plugin.1.warmup-get-url.2}"
-                        dest="${project.build.directory}/publish.tomcat7-maven-plugin.1/warmup-get-url.2.response"
-                        maxtime="120"
-                        httpusecaches="false"
-                      />
-                    </retry>
-                    <retry if:set="publish.tomcat7-maven-plugin.1.warmup-get-url.3" retrycount="12" retrydelay="15000">
-                      <get
-                        retries="1"
-                        src="${publish.tomcat7-maven-plugin.1.warmup-get-url.3}"
-                        dest="${project.build.directory}/publish.tomcat7-maven-plugin.1/warmup-get-url.3.response"
-                        maxtime="120"
-                        httpusecaches="false"
-                      />
-                    </retry>
-                  </target>
-                </configuration>
-              </execution>
-              <execution>
-                <id>publish.tomcat7-maven-plugin.2.warmup-get-url</id><phase>${publish.tomcat7-maven-plugin.2.warmup-get-url.phase}</phase><goals><goal>run</goal></goals>
-                <configuration>
-                  <target xmlns:if="ant:if">
-                    <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin.2" />
-                    <!-- TODO: Optional username/password for projects that need it -->
-                    <retry if:set="publish.tomcat7-maven-plugin.2.warmup-get-url.1" retrycount="12" retrydelay="15000">
-                      <get
-                        retries="1"
-                        src="${publish.tomcat7-maven-plugin.2.warmup-get-url.1}"
-                        dest="${project.build.directory}/publish.tomcat7-maven-plugin.2/warmup-get-url.1.response"
-                        maxtime="120"
-                        httpusecaches="false"
-                      />
-                    </retry>
-                    <retry if:set="publish.tomcat7-maven-plugin.2.warmup-get-url.2" retrycount="12" retrydelay="15000">
-                      <get
-                        retries="1"
-                        src="${publish.tomcat7-maven-plugin.2.warmup-get-url.2}"
-                        dest="${project.build.directory}/publish.tomcat7-maven-plugin.2/warmup-get-url.2.response"
-                        maxtime="120"
-                        httpusecaches="false"
-                      />
-                    </retry>
-                    <retry if:set="publish.tomcat7-maven-plugin.2.warmup-get-url.3" retrycount="12" retrydelay="15000">
-                      <get
-                        retries="1"
-                        src="${publish.tomcat7-maven-plugin.2.warmup-get-url.3}"
-                        dest="${project.build.directory}/publish.tomcat7-maven-plugin.2/warmup-get-url.3.response"
-                        maxtime="120"
-                        httpusecaches="false"
-                      />
-                    </retry>
+                    <macrodef name="warmup-get-url">
+                      <attribute name="N" />
+                      <sequential>
+                        <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}" />
+                        <!-- TODO: Optional username/password for projects that need it -->
+                        <retry if:set="publish.tomcat7-maven-plugin.@{N}.warmup-get-url.1" retrycount="12" retrydelay="15000">
+                          <get
+                            retries="1"
+                            src="${publish.tomcat7-maven-plugin.@{N}.warmup-get-url.1}"
+                            dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/warmup-get-url.1.response"
+                            maxtime="120"
+                            httpusecaches="false"
+                          />
+                        </retry>
+                        <retry if:set="publish.tomcat7-maven-plugin.@{N}.warmup-get-url.2" retrycount="12" retrydelay="15000">
+                          <get
+                            retries="1"
+                            src="${publish.tomcat7-maven-plugin.@{N}.warmup-get-url.2}"
+                            dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/warmup-get-url.2.response"
+                            maxtime="120"
+                            httpusecaches="false"
+                          />
+                        </retry>
+                        <retry if:set="publish.tomcat7-maven-plugin.@{N}.warmup-get-url.3" retrycount="12" retrydelay="15000">
+                          <get
+                            retries="1"
+                            src="${publish.tomcat7-maven-plugin.@{N}.warmup-get-url.3}"
+                            dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/warmup-get-url.3.response"
+                            maxtime="120"
+                            httpusecaches="false"
+                          />
+                        </retry>
+                      </sequential>
+                    </macrodef>
+                    <parallel>
+                      <warmup-get-url if:set="publish.tomcat7-maven-plugin.1.active" N="1" />
+                      <warmup-get-url if:set="publish.tomcat7-maven-plugin.2.active" N="2" />
+                    </parallel>
                   </target>
                 </configuration>
               </execution>
