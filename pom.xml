@@ -3874,6 +3874,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.read-project-properties.phase>none</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>none</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>none</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
+        <publish.tomcat7-maven-plugin.warmup-sleep.phase>none</publish.tomcat7-maven-plugin.warmup-sleep.phase>
         <publish.tomcat7-maven-plugin.warmup-get-url.phase>none</publish.tomcat7-maven-plugin.warmup-get-url.phase>
       </properties>
       <build>
@@ -4084,7 +4085,15 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                   </target>
                 </configuration>
               </execution>
-              <!-- TODO: publish.tomcat7-maven-plugin.warmup-sleep here -->
+              <execution>
+                <id>publish.tomcat7-maven-plugin.warmup-sleep</id><phase>${publish.tomcat7-maven-plugin.warmup-sleep.phase}</phase><goals><goal>run</goal></goals>
+                <configuration>
+                  <skip>${publish.tomcat7-maven-plugin.running-war-file.matches}</skip>
+                  <target>
+                    <sleep seconds="10" />
+                  </target>
+                </configuration>
+              </execution>
               <!-- TODO: publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint here -->
               <execution>
                 <id>publish.tomcat7-maven-plugin.warmup-get-url</id><phase>${publish.tomcat7-maven-plugin.warmup-get-url.phase}</phase><goals><goal>run</goal></goals>
@@ -4180,6 +4189,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
+        <publish.tomcat7-maven-plugin.warmup-sleep.phase>deploy</publish.tomcat7-maven-plugin.warmup-sleep.phase>
         <publish.tomcat7-maven-plugin.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.warmup-get-url.phase>
         <!-- Note: publish profile must remain after publish.tomcat7-maven-plugin.parallel-deployment profile -->
         <publish.tomcat7-maven-plugin.parallel-deployment.requireProperties.phase>validate</publish.tomcat7-maven-plugin.parallel-deployment.requireProperties.phase>
