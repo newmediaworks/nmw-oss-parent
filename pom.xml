@@ -4519,38 +4519,29 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <id>publish.tomcat7-maven-plugin.warmup-get-url</id><phase>${publish.tomcat7-maven-plugin.warmup-get-url.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target xmlns:if="ant:if">
+                    <macrodef name="warmup-get-url-with-retry">
+                      <attribute name="N" />
+                      <attribute name="num" />
+                      <sequential>
+                        <retry if:set="publish.tomcat7-maven-plugin.@{N}.warmup-get-url.@{num}" retrycount="12" retrydelay="15000">
+                          <!-- TODO: Optional username/password for projects that need it -->
+                          <get
+                            retries="1"
+                            src="${publish.tomcat7-maven-plugin.@{N}.warmup-get-url.@{num}}"
+                            dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/warmup-get-url.@{num}.response"
+                            maxtime="120"
+                            httpusecaches="false"
+                          />
+                        </retry>
+                      </sequential>
+                    </macrodef>
                     <macrodef name="warmup-get-url">
                       <attribute name="N" />
                       <sequential>
                         <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}" />
-                        <!-- TODO: Optional username/password for projects that need it -->
-                        <retry if:set="publish.tomcat7-maven-plugin.@{N}.warmup-get-url.1" retrycount="12" retrydelay="15000">
-                          <get
-                            retries="1"
-                            src="${publish.tomcat7-maven-plugin.@{N}.warmup-get-url.1}"
-                            dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/warmup-get-url.1.response"
-                            maxtime="120"
-                            httpusecaches="false"
-                          />
-                        </retry>
-                        <retry if:set="publish.tomcat7-maven-plugin.@{N}.warmup-get-url.2" retrycount="12" retrydelay="15000">
-                          <get
-                            retries="1"
-                            src="${publish.tomcat7-maven-plugin.@{N}.warmup-get-url.2}"
-                            dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/warmup-get-url.2.response"
-                            maxtime="120"
-                            httpusecaches="false"
-                          />
-                        </retry>
-                        <retry if:set="publish.tomcat7-maven-plugin.@{N}.warmup-get-url.3" retrycount="12" retrydelay="15000">
-                          <get
-                            retries="1"
-                            src="${publish.tomcat7-maven-plugin.@{N}.warmup-get-url.3}"
-                            dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/warmup-get-url.3.response"
-                            maxtime="120"
-                            httpusecaches="false"
-                          />
-                        </retry>
+                        <warmup-get-url-with-retry N="@{N}" num="1" />
+                        <warmup-get-url-with-retry N="@{N}" num="2" />
+                        <warmup-get-url-with-retry N="@{N}" num="3" />
                       </sequential>
                     </macrodef>
                     <parallel>
