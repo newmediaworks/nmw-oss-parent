@@ -4156,6 +4156,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           and publish (activated on command line) profiles must be active for the actions to be taken.
         -->
         <publish.tomcat7-maven-plugin.parallel-deployment.requireProperties.phase>none</publish.tomcat7-maven-plugin.parallel-deployment.requireProperties.phase>
+        <publish.tomcat7-maven-plugin.parallel.deployment.version.verify.phase>none</publish.tomcat7-maven-plugin.parallel.deployment.version.verify.phase>
       </properties>
       <build>
         <plugins>
@@ -4175,7 +4176,42 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </execution>
             </executions>
           </plugin>
-          <!-- TODO: publish.tomcat7-maven-plugin.parallel.deployment.version.verify here, or above enable by property? -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>publish.tomcat7-maven-plugin.parallel.deployment.version.verify</id><phase>${publish.tomcat7-maven-plugin.parallel.deployment.version.verify.phase}</phase><goals><goal>run</goal></goals>
+                <configuration>
+                  <skip>${publish.tomcat7-maven-plugin.running-war-file.matches}</skip>
+                  <target>
+                    <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin" />
+                    <retry retrycount="12" retrydelay="15000">
+                      <sequential>
+                        <local name="publish.tomcat7-maven-plugin.parallel.deployment.version.verify" />
+                        <get
+                          retries="1"
+                          username="${publish.tomcat7-maven-plugin.server.username}"
+                          password="${publish.tomcat7-maven-plugin.server.password}"
+                          src="${publish.tomcat7-maven-plugin.GetParallelDeploymentVersion-url}"
+                          dest="${project.build.directory}/publish.tomcat7-maven-plugin/verify-parallel.deployment.version"
+                          maxtime="120"
+                          httpusecaches="false"
+                        />
+                        <loadfile property="publish.tomcat7-maven-plugin.parallel.deployment.version.verify" srcFile="${project.build.directory}/publish.tomcat7-maven-plugin/verify-parallel.deployment.version" />
+                        <condition property="publish.tomcat7-maven-plugin.parallel.deployment.version.matches">
+                          <equals arg1="${publish.tomcat7-maven-plugin.parallel.deployment.version.verify}" arg2="${publish.tomcat7-maven-plugin.parallel.deployment.version}" />
+                        </condition>
+                        <fail
+                          message="Parallel deployment version mismatch.  Expected ${publish.tomcat7-maven-plugin.parallel.deployment.version}, got ${publish.tomcat7-maven-plugin.parallel.deployment.version.verify}."
+                          unless="publish.tomcat7-maven-plugin.parallel.deployment.version.matches"
+                        />
+                      </sequential>
+                    </retry>
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
     </profile>
@@ -4193,6 +4229,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.warmup-get-url.phase>
         <!-- Note: publish profile must remain after publish.tomcat7-maven-plugin.parallel-deployment profile -->
         <publish.tomcat7-maven-plugin.parallel-deployment.requireProperties.phase>validate</publish.tomcat7-maven-plugin.parallel-deployment.requireProperties.phase>
+        <publish.tomcat7-maven-plugin.parallel.deployment.version.verify.phase>deploy</publish.tomcat7-maven-plugin.parallel.deployment.version.verify.phase>
       </properties>
       <build>
         <plugins>
