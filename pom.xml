@@ -186,6 +186,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
       and publish (activated on command line) profiles must be active for the actions to be taken.
     -->
+    <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>none</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
     <publish.tomcat7-maven-plugin.read-project-properties.phase>none</publish.tomcat7-maven-plugin.read-project-properties.phase>
     <publish.tomcat7-maven-plugin.capture-maven-context.phase>none</publish.tomcat7-maven-plugin.capture-maven-context.phase>
     <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>none</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
@@ -199,8 +200,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     -->
     <publish.tomcat7-maven-plugin.1.requireProperties.phase>none</publish.tomcat7-maven-plugin.1.requireProperties.phase>
     <publish.tomcat7-maven-plugin.2.requireProperties.phase>none</publish.tomcat7-maven-plugin.2.requireProperties.phase>
-    <publish.tomcat7-maven-plugin.1.get-auth-from-settings.phase>none</publish.tomcat7-maven-plugin.1.get-auth-from-settings.phase>
-    <publish.tomcat7-maven-plugin.2.get-auth-from-settings.phase>none</publish.tomcat7-maven-plugin.2.get-auth-from-settings.phase>
     <publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>none</publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>
     <publish.tomcat7-maven-plugin.2.conditional-deploy-only.phase>none</publish.tomcat7-maven-plugin.2.conditional-deploy-only.phase>
     <publish.tomcat7-maven-plugin.1.read-project-properties.phase>none</publish.tomcat7-maven-plugin.1.read-project-properties.phase>
@@ -3907,6 +3906,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
           and publish (activated on command line) profiles must be active for the actions to be taken.
         -->
+        <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
         <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
@@ -3919,7 +3919,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           and publish (activated on command line) profiles must be active for the actions to be taken.
         -->
         <publish.tomcat7-maven-plugin.1.requireProperties.phase>validate</publish.tomcat7-maven-plugin.1.requireProperties.phase>
-        <publish.tomcat7-maven-plugin.1.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.1.get-auth-from-settings.phase>
         <publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>
         <publish.tomcat7-maven-plugin.1.read-project-properties.phase>install</publish.tomcat7-maven-plugin.1.read-project-properties.phase>
       </properties>
@@ -3937,6 +3936,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
           and publish (activated on command line) profiles must be active for the actions to be taken.
         -->
+        <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
         <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
@@ -3949,7 +3949,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           and publish (activated on command line) profiles must be active for the actions to be taken.
         -->
         <publish.tomcat7-maven-plugin.2.requireProperties.phase>validate</publish.tomcat7-maven-plugin.2.requireProperties.phase>
-        <publish.tomcat7-maven-plugin.2.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.2.get-auth-from-settings.phase>
         <publish.tomcat7-maven-plugin.2.conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.2.conditional-deploy-only.phase>
         <publish.tomcat7-maven-plugin.2.read-project-properties.phase>install</publish.tomcat7-maven-plugin.2.read-project-properties.phase>
       </properties>
@@ -4112,23 +4111,25 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <executions>
               <!-- See https://stackoverflow.com/a/11239913 -->
               <execution>
-                <id>publish.tomcat7-maven-plugin.1.get-auth-from-settings</id><phase>${publish.tomcat7-maven-plugin.1.get-auth-from-settings.phase}</phase><goals><goal>execute</goal></goals>
+                <id>publish.tomcat7-maven-plugin.get-auth-from-settings</id><phase>${publish.tomcat7-maven-plugin.get-auth-from-settings.phase}</phase><goals><goal>execute</goal></goals>
                 <configuration>
-                  <source>
-                    def server = settings.servers.find{ it.id.equals("${publish.tomcat7-maven-plugin.1.server}") }
-                    project.properties['publish.tomcat7-maven-plugin.1.server.username'] = server.username
-                    project.properties['publish.tomcat7-maven-plugin.1.server.password'] = server.password
-                  </source>
-                </configuration>
-              </execution>
-              <execution>
-                <id>publish.tomcat7-maven-plugin.2.get-auth-from-settings</id><phase>${publish.tomcat7-maven-plugin.2.get-auth-from-settings.phase}</phase><goals><goal>execute</goal></goals>
-                <configuration>
-                  <source>
-                    def server = settings.servers.find{ it.id.equals("${publish.tomcat7-maven-plugin.2.server}") }
-                    project.properties['publish.tomcat7-maven-plugin.2.server.username'] = server.username
-                    project.properties['publish.tomcat7-maven-plugin.2.server.password'] = server.password
-                  </source>
+                  <source><![CDATA[
+                    // Handles any number of Tomcat instances by searching all properties for "publish.tomcat7-maven-plugin.N.active"
+                    def regex = /^publish\.tomcat7-maven-plugin\.(\d+)\.active$/
+                    project.properties.keySet().each { activeProp ->
+                      def matcher = activeProp =~ regex
+                      if (matcher.matches() && project.properties[activeProp].toBoolean()) {
+                        def N = matcher[0][1] // extract the number
+                        def serverId = project.properties['publish.tomcat7-maven-plugin.' + N + '.server']
+                        def server = settings.servers.find { it.id == serverId }
+                        if (server == null) {
+                          throw new IllegalStateException("Server '" + serverId + "' not found in settings.xml for Tomcat #" + N)
+                        }
+                        project.properties['publish.tomcat7-maven-plugin.' + N + '.server.username'] = server.username
+                        project.properties['publish.tomcat7-maven-plugin.' + N + '.server.password'] = server.password
+                      }
+                    }
+                  ]]></source>
                 </configuration>
               </execution>
             </executions>
@@ -4357,6 +4358,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                   </target>
                 </configuration>
               </execution>
+              <!-- TODO: restart-tomcat here if not parallel deployment -->
+              <!-- TODO: delete-tomcat-work-sleep here if not parallel deployment -->
+              <!-- TODO: delete-tomcat-work here if not parallel deployment -->
               <execution>
                 <id>publish.tomcat7-maven-plugin.warmup-sleep</id><phase>${publish.tomcat7-maven-plugin.warmup-sleep.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
