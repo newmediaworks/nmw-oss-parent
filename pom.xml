@@ -186,6 +186,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
       and publish (activated on command line) profiles must be active for the actions to be taken.
     -->
+    <publish.tomcat7-maven-plugin.read-project-properties.phase>none</publish.tomcat7-maven-plugin.read-project-properties.phase>
+    <publish.tomcat7-maven-plugin.capture-maven-context.phase>none</publish.tomcat7-maven-plugin.capture-maven-context.phase>
     <publish.tomcat7-maven-plugin.warmup-sleep.phase>none</publish.tomcat7-maven-plugin.warmup-sleep.phase>
     <!--
       publish.tomcat7-maven-plugin.1 phases are enabled by the publish.tomcat7-maven-plugin.1 profile.
@@ -196,7 +198,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <publish.tomcat7-maven-plugin.1.get-auth-from-settings.phase>none</publish.tomcat7-maven-plugin.1.get-auth-from-settings.phase>
     <publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>none</publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>
     <publish.tomcat7-maven-plugin.1.read-project-properties.phase>none</publish.tomcat7-maven-plugin.1.read-project-properties.phase>
-    <publish.tomcat7-maven-plugin.1.capture-maven-context.phase>none</publish.tomcat7-maven-plugin.1.capture-maven-context.phase>
     <publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints.phase>none</publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints.phase>
     <publish.tomcat7-maven-plugin.1.verify-published-war-file-fingerprint.phase>none</publish.tomcat7-maven-plugin.1.verify-published-war-file-fingerprint.phase>
     <publish.tomcat7-maven-plugin.1.warmup-get-url.phase>none</publish.tomcat7-maven-plugin.1.warmup-get-url.phase>
@@ -3894,6 +3895,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
           and publish (activated on command line) profiles must be active for the actions to be taken.
         -->
+        <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
+        <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.warmup-sleep.phase>deploy</publish.tomcat7-maven-plugin.warmup-sleep.phase>
         <!--
           publish.tomcat7-maven-plugin.1 phases are enabled by the publish.tomcat7-maven-plugin.1 profile.
@@ -3904,7 +3907,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.1.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.1.get-auth-from-settings.phase>
         <publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>
         <publish.tomcat7-maven-plugin.1.read-project-properties.phase>install</publish.tomcat7-maven-plugin.1.read-project-properties.phase>
-        <publish.tomcat7-maven-plugin.1.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.1.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints.phase>
         <publish.tomcat7-maven-plugin.1.verify-published-war-file-fingerprint.phase>deploy</publish.tomcat7-maven-plugin.1.verify-published-war-file-fingerprint.phase>
         <publish.tomcat7-maven-plugin.1.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.1.warmup-get-url.phase>
@@ -4045,8 +4047,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                   <commandlineArgs>
                     --quiet
                     -N
-                    -P${publish.tomcat7-maven-plugin.1.capture-maven-context.activeProfiles}
-                    ${publish.tomcat7-maven-plugin.1.capture-maven-context.additionalArguments}
+                    -P${publish.tomcat7-maven-plugin.capture-maven-context.activeProfiles}
+                    ${publish.tomcat7-maven-plugin.capture-maven-context.additionalArguments}
                     tomcat7:deploy-only@publish.tomcat7-maven-plugin.1.deploy-only
                   </commandlineArgs>
                   <environmentVariables>
@@ -4063,13 +4065,22 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <plugin>
             <groupId>org.codehaus.mojo</groupId><artifactId>properties-maven-plugin</artifactId>
             <executions>
-              <!-- Reads the properties created by publish.tomcat7-maven-plugin.1.capture-maven-context and publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints below. -->
+              <!-- Reads the properties created by publish.tomcat7-maven-plugin.capture-maven-context  below. -->
+              <execution>
+                <!-- install phase to be after publish.tomcat7-maven-plugin.capture-maven-context and just before deploy -->
+                <id>publish.tomcat7-maven-plugin.read-project-properties</id><phase>${publish.tomcat7-maven-plugin.read-project-properties.phase}</phase><goals><goal>read-project-properties</goal></goals>
+                <configuration>
+                  <files>
+                    <file>${project.build.directory}/publish.tomcat7-maven-plugin/capture-maven-context.properties</file>
+                  </files>
+                </configuration>
+              </execution>
+              <!-- Reads the properties created by publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints below. -->
               <execution>
                 <!-- install phase to be just after publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints and just before deploy -->
                 <id>publish.tomcat7-maven-plugin.1.read-project-properties</id><phase>${publish.tomcat7-maven-plugin.1.read-project-properties.phase}</phase><goals><goal>read-project-properties</goal></goals>
                 <configuration>
                   <files>
-                    <file>${project.build.directory}/publish.tomcat7-maven-plugin.1/capture-maven-context.properties</file>
                     <file>${project.build.directory}/publish.tomcat7-maven-plugin.1/existing-war-file-fingerprints.properties</file>
                   </files>
                 </configuration>
@@ -4080,21 +4091,21 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
             <executions>
               <execution>
-                <id>publish.tomcat7-maven-plugin.1.capture-maven-context</id><phase>${publish.tomcat7-maven-plugin.1.capture-maven-context.phase}</phase><goals><goal>run</goal></goals>
+                <id>publish.tomcat7-maven-plugin.capture-maven-context</id><phase>${publish.tomcat7-maven-plugin.capture-maven-context.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target>
                     <!-- Load Groovy support -->
                     <taskdef name="groovy" classname="org.codehaus.groovy.ant.Groovy"/>
 
                     <!-- Groovy block to iterate all user-defined properties -->
-                    <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin.1" />
+                    <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin" />
                     <groovy><![CDATA[
                       def mavenProject = project.references['maven.project']
                       assert mavenProject != null
 
                       def newline = System.lineSeparator()
 
-                      def out = new File("${project.build.directory}/publish.tomcat7-maven-plugin.1/capture-maven-context.properties")
+                      def out = new File("${project.build.directory}/publish.tomcat7-maven-plugin/capture-maven-context.properties")
                       out.text = '' // overwrite
 
                       // Explicit whitelist of user properties to forward
@@ -4108,7 +4119,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         // 'org.jenkinsci.plugins.pipeline.maven.reportsFolder',
                       ]
 
-                      out << "publish.tomcat7-maven-plugin.1.capture-maven-context.additionalArguments="
+                      out << "publish.tomcat7-maven-plugin.capture-maven-context.additionalArguments="
                       // Maintain debug flag
                       def needSpace = false
                       if (Boolean.getBoolean(System.getProperty("maven.debug"))) {
@@ -4132,7 +4143,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
                       // Active profiles
                       def profiles = mavenProject.activeProfiles*.id
-                      out << "publish.tomcat7-maven-plugin.1.capture-maven-context.activeProfiles=" + profiles.join(",") + newline
+                      out << "publish.tomcat7-maven-plugin.capture-maven-context.activeProfiles=" + profiles.join(",") + newline
                     ]]></groovy>
                   </target>
                 </configuration>
