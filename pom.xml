@@ -181,13 +181,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <spotbugs.phase>verify</spotbugs.phase>
     <default-install.phase>install</default-install.phase>
     <default-deploy.phase>deploy</default-deploy.phase>
-    <!--
-      publish.tomcat7-maven-plugin phases are enabled by the publish profile.
-      This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
-      and publish (activated on command line) profiles must be active for the actions to be taken.
-    -->
-    <publish.tomcat7-maven-plugin.requireProperties.phase>none</publish.tomcat7-maven-plugin.requireProperties.phase>
-    <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>none</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
 
     <!-- The version of Java apidocs to link to, preferring https -->
     <!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->
@@ -3865,16 +3858,19 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       </properties>
     </profile>
     <profile>
+      <!-- Note: publish.tomcat7-maven-plugin profile must remain before publish profile -->
       <id>publish.tomcat7-maven-plugin</id><activation><file><exists>profile.d/publish.tomcat7-maven-plugin</exists></file></activation>
       <properties>
         <publish.tomcat7-maven-plugin.update>true</publish.tomcat7-maven-plugin.update>
         <publish.tomcat7-maven-plugin.path.extra />
+        <!--
+          publish.tomcat7-maven-plugin phases are enabled by the publish profile.
+          This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
+          and publish (activated on command line) profiles must be active for the actions to be taken.
+        -->
+        <publish.tomcat7-maven-plugin.requireProperties.phase>none</publish.tomcat7-maven-plugin.requireProperties.phase>
+        <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>none</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
       </properties>
-      <!--
-        TODO: How to do these things only when publish profile active, too?
-        Put into the publish profile (harder to reason about)?
-        More phase selectors altered by publish profile, like done for requireProperties?
-      -->
       <build>
         <plugins>
           <plugin>
@@ -3895,6 +3891,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                     <requireProperty>
                       <property>publish.tomcat7-maven-plugin.url</property>
                       <message>Property 'publish.tomcat7-maven-plugin.url' is required when profile.d/publish.tomcat7-maven-plugin exists.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.GetWarFileFingerprint-url</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.GetWarFileFingerprint-url' is required when profile.d/publish.tomcat7-maven-plugin exists.</message>
                     </requireProperty>
                   </rules>
                 </configuration>
@@ -3937,6 +3937,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <!-- TODO: publish.tomcat7-maven-plugin.read-project-properties here -->
           <!-- TODO: publish.tomcat7-maven-plugin.capture-maven-context here -->
           <!-- TODO: publish.tomcat7-maven-plugin.existing-war-file-fingerprints here -->
+          <!-- TODO: publish.tomcat7-maven-plugin.warmup-sleep here -->
+          <!-- TODO: publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint here -->
+          <!-- TODO: warmup-get-url here, via optional properties? -->
         </plugins>
       </build>
     </profile>
@@ -3949,10 +3952,16 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.update>false</publish.tomcat7-maven-plugin.update>
         <publish.tomcat7-maven-plugin.path.extra>##${publish.tomcat7-maven-plugin.parallel.deployment.version}</publish.tomcat7-maven-plugin.path.extra>
       </properties>
+      <build>
+        <plugins>
+          <!-- TODO: publish.tomcat7-maven-plugin.parallel.deployment.version.verify here, or above enable by property? -->
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>publish</id>
       <properties>
+        <!-- Note: publish profile must remain after publish.tomcat7-maven-plugin profile -->
         <publish.tomcat7-maven-plugin.requireProperties.phase>validate</publish.tomcat7-maven-plugin.requireProperties.phase>
         <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
       </properties>
