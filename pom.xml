@@ -3871,6 +3871,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.requireProperties.phase>none</publish.tomcat7-maven-plugin.requireProperties.phase>
         <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>none</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>none</publish.tomcat7-maven-plugin.capture-maven-context.phase>
+        <publish.tomcat7-maven-plugin.warmup-get-url.phase>none</publish.tomcat7-maven-plugin.warmup-get-url.phase>
       </properties>
       <build>
         <plugins>
@@ -4001,7 +4002,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <!-- TODO: publish.tomcat7-maven-plugin.warmup-sleep here -->
               <!-- TODO: publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint here -->
               <execution>
-                <id>publish.tomcat7-maven-plugin.warmup-get-url</id><phase>deploy</phase><goals><goal>run</goal></goals>
+                <id>publish.tomcat7-maven-plugin.warmup-get-url</id><phase>${publish.tomcat7-maven-plugin.warmup-get-url.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target xmlns:if="ant:if">
                     <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin" />
@@ -4091,6 +4092,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.requireProperties.phase>validate</publish.tomcat7-maven-plugin.requireProperties.phase>
         <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
+        <publish.tomcat7-maven-plugin.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.warmup-get-url.phase>
         <!-- Note: publish profile must remain after publish.tomcat7-maven-plugin.parallel-deployment profile -->
         <publish.tomcat7-maven-plugin.parallel-deployment.requireProperties.phase>validate</publish.tomcat7-maven-plugin.parallel-deployment.requireProperties.phase>
       </properties>
