@@ -182,6 +182,12 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <default-install.phase>install</default-install.phase>
     <default-deploy.phase>deploy</default-deploy.phase>
     <!--
+      publish.tomcat7-maven-plugin phases are enabled by any of the publish.tomcat7-maven-plugin.N profiles.
+      This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
+      and publish (activated on command line) profiles must be active for the actions to be taken.
+    -->
+    <publish.tomcat7-maven-plugin.warmup-sleep.phase>none</publish.tomcat7-maven-plugin.warmup-sleep.phase>
+    <!--
       publish.tomcat7-maven-plugin.1 phases are enabled by the publish.tomcat7-maven-plugin.1 profile.
       This creates an and condition: both publish.tomcat7-maven-plugin.1 (activated in profile.d)
       and publish (activated on command line) profiles must be active for the actions to be taken.
@@ -192,7 +198,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <publish.tomcat7-maven-plugin.1.read-project-properties.phase>none</publish.tomcat7-maven-plugin.1.read-project-properties.phase>
     <publish.tomcat7-maven-plugin.1.capture-maven-context.phase>none</publish.tomcat7-maven-plugin.1.capture-maven-context.phase>
     <publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints.phase>none</publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints.phase>
-    <publish.tomcat7-maven-plugin.1.warmup-sleep.phase>none</publish.tomcat7-maven-plugin.1.warmup-sleep.phase>
     <publish.tomcat7-maven-plugin.1.verify-published-war-file-fingerprint.phase>none</publish.tomcat7-maven-plugin.1.verify-published-war-file-fingerprint.phase>
     <publish.tomcat7-maven-plugin.1.warmup-get-url.phase>none</publish.tomcat7-maven-plugin.1.warmup-get-url.phase>
     <!--
@@ -3885,6 +3890,12 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.1.update>true</publish.tomcat7-maven-plugin.1.update>
         <publish.tomcat7-maven-plugin.1.path.extra />
         <!--
+          publish.tomcat7-maven-plugin phases are enabled by any of the publish.tomcat7-maven-plugin.N profiles.
+          This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
+          and publish (activated on command line) profiles must be active for the actions to be taken.
+        -->
+        <publish.tomcat7-maven-plugin.warmup-sleep.phase>deploy</publish.tomcat7-maven-plugin.warmup-sleep.phase>
+        <!--
           publish.tomcat7-maven-plugin.1 phases are enabled by the publish.tomcat7-maven-plugin.1 profile.
           This creates an and condition: both publish.tomcat7-maven-plugin.1 (activated in profile.d)
           and publish (activated on command line) profiles must be active for the actions to be taken.
@@ -3895,7 +3906,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.1.read-project-properties.phase>install</publish.tomcat7-maven-plugin.1.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.1.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.1.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints.phase>
-        <publish.tomcat7-maven-plugin.1.warmup-sleep.phase>deploy</publish.tomcat7-maven-plugin.1.warmup-sleep.phase>
         <publish.tomcat7-maven-plugin.1.verify-published-war-file-fingerprint.phase>deploy</publish.tomcat7-maven-plugin.1.verify-published-war-file-fingerprint.phase>
         <publish.tomcat7-maven-plugin.1.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.1.warmup-get-url.phase>
       </properties>
@@ -4170,11 +4180,16 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 </configuration>
               </execution>
               <execution>
-                <id>publish.tomcat7-maven-plugin.1.warmup-sleep</id><phase>${publish.tomcat7-maven-plugin.1.warmup-sleep.phase}</phase><goals><goal>run</goal></goals>
+                <id>publish.tomcat7-maven-plugin.warmup-sleep</id><phase>${publish.tomcat7-maven-plugin.warmup-sleep.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
-                  <skip>${publish.tomcat7-maven-plugin.1.running-war-file.matches}</skip>
-                  <target>
-                    <sleep seconds="10" />
+                  <target xmlns:if="ant:if" xmlns:unless="ant:unless">
+                    <condition property="warmup-sleep.required">
+                      <or>
+                        <equals arg1="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" arg2="true" />
+                      </or>
+                    </condition>
+                    <sleep if:set="warmup-sleep.required" seconds="10" />
+                    <echo unless:set="warmup-sleep.required" level="debug" message="All running fingerprints match the build, no need to sleep for warmup" />
                   </target>
                 </configuration>
               </execution>
