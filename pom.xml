@@ -3947,13 +3947,36 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <!-- Parallel deployment -->
       <!-- Note: Tomcat server.xml/Host/autoDeploy must be set to "true" -->
       <!-- Note: Tomcat server.xml/Host/undeployOldVersions must be set to "true" to clean-up old versions -->
+      <!-- Note: publish.tomcat7-maven-plugin.parallel-deployment profile must remain before publish profile -->
       <id>publish.tomcat7-maven-plugin.parallel-deployment</id><activation><file><exists>profile.d/publish.tomcat7-maven-plugin.parallel-deployment</exists></file></activation>
       <properties>
         <publish.tomcat7-maven-plugin.update>false</publish.tomcat7-maven-plugin.update>
         <publish.tomcat7-maven-plugin.path.extra>##${publish.tomcat7-maven-plugin.parallel.deployment.version}</publish.tomcat7-maven-plugin.path.extra>
+         <!--
+          publish.tomcat7-maven-plugin.parallel-deployment phases are enabled by the publish profile.
+          This creates an and condition: both publish.tomcat7-maven-plugin.parallel-deployment (activated in profile.d)
+          and publish (activated on command line) profiles must be active for the actions to be taken.
+        -->
+        <publish.tomcat7-maven-plugin.parallel-deployment.requireProperties.phase>none</publish.tomcat7-maven-plugin.parallel-deployment.requireProperties.phase>
       </properties>
       <build>
         <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>publish.tomcat7-maven-plugin.parallel-deployment.requireProperties</id><phase>${publish.tomcat7-maven-plugin.parallel-deployment.requireProperties.phase}</phase><goals><goal>enforce</goal></goals>
+                <configuration>
+                  <rules>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.GetParallelDeploymentVersion-url</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.GetParallelDeploymentVersion-url' is required when profile.d/publish.tomcat7-maven-plugin.parallel-deployment exists.</message>
+                    </requireProperty>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
           <!-- TODO: publish.tomcat7-maven-plugin.parallel.deployment.version.verify here, or above enable by property? -->
         </plugins>
       </build>
@@ -3964,6 +3987,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!-- Note: publish profile must remain after publish.tomcat7-maven-plugin profile -->
         <publish.tomcat7-maven-plugin.requireProperties.phase>validate</publish.tomcat7-maven-plugin.requireProperties.phase>
         <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
+        <!-- Note: publish profile must remain after publish.tomcat7-maven-plugin.parallel-deployment profile -->
+        <publish.tomcat7-maven-plugin.parallel-deployment.requireProperties.phase>validate</publish.tomcat7-maven-plugin.parallel-deployment.requireProperties.phase>
       </properties>
       <build>
         <plugins>
