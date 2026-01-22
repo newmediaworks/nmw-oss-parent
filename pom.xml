@@ -3870,6 +3870,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         -->
         <publish.tomcat7-maven-plugin.requireProperties.phase>none</publish.tomcat7-maven-plugin.requireProperties.phase>
         <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>none</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
+        <publish.tomcat7-maven-plugin.conditional-deploy-only.phase>none</publish.tomcat7-maven-plugin.conditional-deploy-only.phase>
+        <publish.tomcat7-maven-plugin.read-project-properties.phase>none</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>none</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.warmup-get-url.phase>none</publish.tomcat7-maven-plugin.warmup-get-url.phase>
       </properties>
@@ -3935,14 +3937,40 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </execution>
             </executions>
           </plugin>
-          <!-- TODO: publish.tomcat7-maven-plugin.conditional-deploy-only here -->
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId><artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>publish.tomcat7-maven-plugin.conditional-deploy-only</id><phase>${publish.tomcat7-maven-plugin.conditional-deploy-only.phase}</phase><goals><goal>exec</goal></goals>
+                <configuration>
+                  <skip>${publish.tomcat7-maven-plugin.running-war-file.matches}</skip>
+                  <executable>mvn</executable>
+                  <!-- -B made colors not work -->
+                  <commandlineArgs>
+                    --quiet
+                    -N
+                    -P${publish.tomcat7-maven-plugin.capture-maven-context.activeProfiles}
+                    ${publish.tomcat7-maven-plugin.capture-maven-context.additionalArguments}
+                    tomcat7:deploy-only@publish.tomcat7-maven-plugin.deploy-only
+                  </commandlineArgs>
+                  <environmentVariables>
+                    <JAVA_HOME>${env.JAVA_HOME}</JAVA_HOME>
+                    <MAVEN_OPTS>${env.MAVEN_OPTS}</MAVEN_OPTS>
+                    <!-- Seen in Jenkins builds -->
+                    <!-- TODO: Review set -e inside Jenkinsfile for if any more that we should include -->
+                    <!-- <JAVA_TOOL_OPTIONS>${env.JAVA_TOOL_OPTIONS}</JAVA_TOOL_OPTIONS> -->
+                  </environmentVariables>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
           <plugin>
             <groupId>org.codehaus.mojo</groupId><artifactId>properties-maven-plugin</artifactId>
             <executions>
               <!-- Reads the properties created by publish.tomcat7-maven-plugin.capture-maven-context and publish.tomcat7-maven-plugin.existing-war-file-fingerprints below. -->
               <execution>
                 <!-- install phase to be just after publish.tomcat7-maven-plugin.existing-war-file-fingerprints and just before deploy -->
-                <id>publish.tomcat7-maven-plugin.read-project-properties</id><phase>install</phase><goals><goal>read-project-properties</goal></goals>
+                <id>publish.tomcat7-maven-plugin.read-project-properties</id><phase>${publish.tomcat7-maven-plugin.read-project-properties.phase}</phase><goals><goal>read-project-properties</goal></goals>
                 <configuration>
                   <files>
                     <file>${project.build.directory}/publish.tomcat7-maven-plugin/capture-maven-context.properties</file>
@@ -4106,6 +4134,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!-- Note: publish profile must remain after publish.tomcat7-maven-plugin profile -->
         <publish.tomcat7-maven-plugin.requireProperties.phase>validate</publish.tomcat7-maven-plugin.requireProperties.phase>
         <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
+        <publish.tomcat7-maven-plugin.conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.conditional-deploy-only.phase>
+        <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.warmup-get-url.phase>
         <!-- Note: publish profile must remain after publish.tomcat7-maven-plugin.parallel-deployment profile -->
