@@ -188,6 +188,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     -->
     <publish.tomcat7-maven-plugin.read-project-properties.phase>none</publish.tomcat7-maven-plugin.read-project-properties.phase>
     <publish.tomcat7-maven-plugin.capture-maven-context.phase>none</publish.tomcat7-maven-plugin.capture-maven-context.phase>
+    <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>none</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
     <publish.tomcat7-maven-plugin.warmup-sleep.phase>none</publish.tomcat7-maven-plugin.warmup-sleep.phase>
     <publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>none</publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>
     <publish.tomcat7-maven-plugin.warmup-get-url.phase>none</publish.tomcat7-maven-plugin.warmup-get-url.phase>
@@ -204,8 +205,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <publish.tomcat7-maven-plugin.2.conditional-deploy-only.phase>none</publish.tomcat7-maven-plugin.2.conditional-deploy-only.phase>
     <publish.tomcat7-maven-plugin.1.read-project-properties.phase>none</publish.tomcat7-maven-plugin.1.read-project-properties.phase>
     <publish.tomcat7-maven-plugin.2.read-project-properties.phase>none</publish.tomcat7-maven-plugin.2.read-project-properties.phase>
-    <publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints.phase>none</publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints.phase>
-    <publish.tomcat7-maven-plugin.2.existing-war-file-fingerprints.phase>none</publish.tomcat7-maven-plugin.2.existing-war-file-fingerprints.phase>
     <!--
       publish.tomcat7-maven-plugin.parallel-deployment phases are enabled by any of the publish.tomcat7-maven-plugin.N.parallel-deployment profiles.
       This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
@@ -3910,6 +3909,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         -->
         <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
+        <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
         <publish.tomcat7-maven-plugin.warmup-sleep.phase>deploy</publish.tomcat7-maven-plugin.warmup-sleep.phase>
         <publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>deploy</publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>
         <publish.tomcat7-maven-plugin.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.warmup-get-url.phase>
@@ -3922,7 +3922,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.1.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.1.get-auth-from-settings.phase>
         <publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>
         <publish.tomcat7-maven-plugin.1.read-project-properties.phase>install</publish.tomcat7-maven-plugin.1.read-project-properties.phase>
-        <publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints.phase>
       </properties>
     </profile>
     <profile>
@@ -3940,6 +3939,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         -->
         <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
+        <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
         <publish.tomcat7-maven-plugin.warmup-sleep.phase>deploy</publish.tomcat7-maven-plugin.warmup-sleep.phase>
         <publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>deploy</publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>
         <publish.tomcat7-maven-plugin.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.warmup-get-url.phase>
@@ -3952,7 +3952,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.2.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.2.get-auth-from-settings.phase>
         <publish.tomcat7-maven-plugin.2.conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.2.conditional-deploy-only.phase>
         <publish.tomcat7-maven-plugin.2.read-project-properties.phase>install</publish.tomcat7-maven-plugin.2.read-project-properties.phase>
-        <publish.tomcat7-maven-plugin.2.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.2.existing-war-file-fingerprints.phase>
       </properties>
     </profile>
     <profile>
@@ -4308,85 +4307,53 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               </execution>
               <execution>
                 <!-- verify phase to be just before publish.tomcat7-maven-plugin.1.read-project-properties -->
-                <id>publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints</id><phase>${publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints.phase}</phase><goals><goal>run</goal></goals>
-                <configuration>
-                  <target xmlns:if="ant:if" xmlns:unless="ant:unless">
-                    <!-- Compute the expected MD5 fingerprint -->
-                    <checksum file="${project.build.directory}/${project.build.finalName}.war" property="publish.tomcat7-maven-plugin.1.build-war-file-fingerprint" />
-                    <echo level="debug" message="publish.tomcat7-maven-plugin.1.build-war-file-fingerprint = ${publish.tomcat7-maven-plugin.1.build-war-file-fingerprint}" />
-                    <!-- Download the current fingerprint running on the server -->
-                    <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin.1" />
-                    <get
-                      retries="4"
-                      username="${publish.tomcat7-maven-plugin.1.server.username}"
-                      password="${publish.tomcat7-maven-plugin.1.server.password}"
-                      src="${publish.tomcat7-maven-plugin.1.GetWarFileFingerprint-url}"
-                      dest="${project.build.directory}/publish.tomcat7-maven-plugin.1/running-war-file-fingerprint"
-                      maxtime="20"
-                      httpusecaches="false"
-                      ignoreerrors="true"
-                    />
-                    <available file="${project.build.directory}/publish.tomcat7-maven-plugin.1/running-war-file-fingerprint" property="publish.tomcat7-maven-plugin.1.running-war-file-fingerprint.exists" />
-                    <loadfile if:set="publish.tomcat7-maven-plugin.1.running-war-file-fingerprint.exists" property="publish.tomcat7-maven-plugin.1.running-war-file-fingerprint"
-                              srcFile="${project.build.directory}/publish.tomcat7-maven-plugin.1/running-war-file-fingerprint" />
-                    <echo unless:set="publish.tomcat7-maven-plugin.1.running-war-file-fingerprint" level="warning" message="Unable to determine running fingerprint.  Check logfiles for info messages from &lt;get&gt;." />
-                    <property name="publish.tomcat7-maven-plugin.1.running-war-file-fingerprint" value="UNKNOWN" />
-                    <echo level="debug" message="publish.tomcat7-maven-plugin.1.running-war-file-fingerprint = ${publish.tomcat7-maven-plugin.1.running-war-file-fingerprint}" />
-                    <!-- Set as property to true/false based on if this matches the expected fingerprint -->
-                    <condition property="publish.tomcat7-maven-plugin.1.running-war-file.matches" value="true" else="false">
-                      <equals arg1="${publish.tomcat7-maven-plugin.1.running-war-file-fingerprint}" arg2="${publish.tomcat7-maven-plugin.1.build-war-file-fingerprint}" />
-                    </condition>
-                    <echo level="debug" message="publish.tomcat7-maven-plugin.1.running-war-file.matches = ${publish.tomcat7-maven-plugin.1.running-war-file.matches}" />
-                    <echo level="info" if:true="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" message="Tomcat deployment #1 will be skipped because new build matches running fingerprint: ${publish.tomcat7-maven-plugin.1.running-war-file-fingerprint}" />
-                    <echo level="info" unless:true="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" message="Tomcat deployment #1 will proceed because new build does not match running fingerprint: build = ${publish.tomcat7-maven-plugin.1.build-war-file-fingerprint}, running = ${publish.tomcat7-maven-plugin.1.running-war-file-fingerprint}" />
-                    <!-- Save properties for Maven to read -->
-                    <echo file="${project.build.directory}/publish.tomcat7-maven-plugin.1/existing-war-file-fingerprints.properties"><!--
-                      -->publish.tomcat7-maven-plugin.1.build-war-file-fingerprint=${publish.tomcat7-maven-plugin.1.build-war-file-fingerprint}${line.separator}<!--
-                      -->publish.tomcat7-maven-plugin.1.running-war-file-fingerprint=${publish.tomcat7-maven-plugin.1.running-war-file-fingerprint}${line.separator}<!--
-                      -->publish.tomcat7-maven-plugin.1.running-war-file.matches=${publish.tomcat7-maven-plugin.1.running-war-file.matches}${line.separator}<!--
-                    --></echo>
-                  </target>
-                </configuration>
-              </execution>
-              <execution>
                 <!-- verify phase to be just before publish.tomcat7-maven-plugin.2.read-project-properties -->
-                <id>publish.tomcat7-maven-plugin.2.existing-war-file-fingerprints</id><phase>${publish.tomcat7-maven-plugin.2.existing-war-file-fingerprints.phase}</phase><goals><goal>run</goal></goals>
+                <id>publish.tomcat7-maven-plugin.existing-war-file-fingerprints</id><phase>${publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target xmlns:if="ant:if" xmlns:unless="ant:unless">
-                    <!-- Compute the expected MD5 fingerprint -->
-                    <checksum file="${project.build.directory}/${project.build.finalName}.war" property="publish.tomcat7-maven-plugin.2.build-war-file-fingerprint" />
-                    <echo level="debug" message="publish.tomcat7-maven-plugin.2.build-war-file-fingerprint = ${publish.tomcat7-maven-plugin.2.build-war-file-fingerprint}" />
-                    <!-- Download the current fingerprint running on the server -->
-                    <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin.2" />
-                    <get
-                      retries="4"
-                      username="${publish.tomcat7-maven-plugin.2.server.username}"
-                      password="${publish.tomcat7-maven-plugin.2.server.password}"
-                      src="${publish.tomcat7-maven-plugin.2.GetWarFileFingerprint-url}"
-                      dest="${project.build.directory}/publish.tomcat7-maven-plugin.2/running-war-file-fingerprint"
-                      maxtime="20"
-                      httpusecaches="false"
-                      ignoreerrors="true"
-                    />
-                    <available file="${project.build.directory}/publish.tomcat7-maven-plugin.2/running-war-file-fingerprint" property="publish.tomcat7-maven-plugin.2.running-war-file-fingerprint.exists" />
-                    <loadfile if:set="publish.tomcat7-maven-plugin.2.running-war-file-fingerprint.exists" property="publish.tomcat7-maven-plugin.2.running-war-file-fingerprint"
-                              srcFile="${project.build.directory}/publish.tomcat7-maven-plugin.2/running-war-file-fingerprint" />
-                    <echo unless:set="publish.tomcat7-maven-plugin.2.running-war-file-fingerprint" level="warning" message="Unable to determine running fingerprint.  Check logfiles for info messages from &lt;get&gt;." />
-                    <property name="publish.tomcat7-maven-plugin.2.running-war-file-fingerprint" value="UNKNOWN" />
-                    <echo level="debug" message="publish.tomcat7-maven-plugin.2.running-war-file-fingerprint = ${publish.tomcat7-maven-plugin.2.running-war-file-fingerprint}" />
-                    <!-- Set as property to true/false based on if this matches the expected fingerprint -->
-                    <condition property="publish.tomcat7-maven-plugin.2.running-war-file.matches" value="true" else="false">
-                      <equals arg1="${publish.tomcat7-maven-plugin.2.running-war-file-fingerprint}" arg2="${publish.tomcat7-maven-plugin.2.build-war-file-fingerprint}" />
-                    </condition>
-                    <echo level="debug" message="publish.tomcat7-maven-plugin.2.running-war-file.matches = ${publish.tomcat7-maven-plugin.2.running-war-file.matches}" />
-                    <echo level="info" if:true="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" message="Tomcat deployment #2 will be skipped because new build matches running fingerprint: ${publish.tomcat7-maven-plugin.2.running-war-file-fingerprint}" />
-                    <echo level="info" unless:true="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" message="Tomcat deployment #2 will proceed because new build does not match running fingerprint: build = ${publish.tomcat7-maven-plugin.2.build-war-file-fingerprint}, running = ${publish.tomcat7-maven-plugin.2.running-war-file-fingerprint}" />
-                    <!-- Save properties for Maven to read -->
-                    <echo file="${project.build.directory}/publish.tomcat7-maven-plugin.2/existing-war-file-fingerprints.properties"><!--
-                      -->publish.tomcat7-maven-plugin.2.build-war-file-fingerprint=${publish.tomcat7-maven-plugin.2.build-war-file-fingerprint}${line.separator}<!--
-                      -->publish.tomcat7-maven-plugin.2.running-war-file-fingerprint=${publish.tomcat7-maven-plugin.2.running-war-file-fingerprint}${line.separator}<!--
-                      -->publish.tomcat7-maven-plugin.2.running-war-file.matches=${publish.tomcat7-maven-plugin.2.running-war-file.matches}${line.separator}<!--
-                    --></echo>
+                    <macrodef name="existing-war-file-fingerprints">
+                      <attribute name="N" />
+                      <sequential>
+                        <!-- Compute the expected MD5 fingerprint -->
+                        <checksum file="${project.build.directory}/${project.build.finalName}.war" property="publish.tomcat7-maven-plugin.@{N}.build-war-file-fingerprint" />
+                        <echo level="debug" message="Tomcat #@{N}: publish.tomcat7-maven-plugin.@{N}.build-war-file-fingerprint = ${publish.tomcat7-maven-plugin.@{N}.build-war-file-fingerprint}" />
+                        <!-- Download the current fingerprint running on the server -->
+                        <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}" />
+                        <get
+                          retries="4"
+                          username="${publish.tomcat7-maven-plugin.@{N}.server.username}"
+                          password="${publish.tomcat7-maven-plugin.@{N}.server.password}"
+                          src="${publish.tomcat7-maven-plugin.@{N}.GetWarFileFingerprint-url}"
+                          dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/running-war-file-fingerprint"
+                          maxtime="20"
+                          httpusecaches="false"
+                          ignoreerrors="true"
+                        />
+                        <available file="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/running-war-file-fingerprint" property="publish.tomcat7-maven-plugin.@{N}.running-war-file-fingerprint.exists" />
+                        <loadfile if:set="publish.tomcat7-maven-plugin.@{N}.running-war-file-fingerprint.exists" property="publish.tomcat7-maven-plugin.@{N}.running-war-file-fingerprint"
+                                  srcFile="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/running-war-file-fingerprint" />
+                        <echo unless:set="publish.tomcat7-maven-plugin.@{N}.running-war-file-fingerprint" level="warning" message="Tomcat #@{N}: Unable to determine running fingerprint.  Check logfiles for info messages from &lt;get&gt;." />
+                        <property name="publish.tomcat7-maven-plugin.@{N}.running-war-file-fingerprint" value="UNKNOWN" />
+                        <echo level="debug" message="Tomcat #@{N}: publish.tomcat7-maven-plugin.@{N}.running-war-file-fingerprint = ${publish.tomcat7-maven-plugin.@{N}.running-war-file-fingerprint}" />
+                        <!-- Set as property to true/false based on if this matches the expected fingerprint -->
+                        <condition property="publish.tomcat7-maven-plugin.@{N}.running-war-file.matches" value="true" else="false">
+                          <equals arg1="${publish.tomcat7-maven-plugin.@{N}.running-war-file-fingerprint}" arg2="${publish.tomcat7-maven-plugin.@{N}.build-war-file-fingerprint}" />
+                        </condition>
+                        <echo level="debug" message="Tomcat #@{N}: publish.tomcat7-maven-plugin.@{N}.running-war-file.matches = ${publish.tomcat7-maven-plugin.@{N}.running-war-file.matches}" />
+                        <echo level="info" if:true="${publish.tomcat7-maven-plugin.@{N}.running-war-file.matches}" message="Tomcat deployment #@{N} will be skipped because new build matches running fingerprint: ${publish.tomcat7-maven-plugin.@{N}.running-war-file-fingerprint}" />
+                        <echo level="info" unless:true="${publish.tomcat7-maven-plugin.@{N}.running-war-file.matches}" message="Tomcat deployment #@{N} will proceed because new build does not match running fingerprint: build = ${publish.tomcat7-maven-plugin.@{N}.build-war-file-fingerprint}, running = ${publish.tomcat7-maven-plugin.@{N}.running-war-file-fingerprint}" />
+                        <!-- Save properties for Maven to read -->
+                        <echo file="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/existing-war-file-fingerprints.properties"><!--
+                          -->publish.tomcat7-maven-plugin.@{N}.build-war-file-fingerprint=${publish.tomcat7-maven-plugin.@{N}.build-war-file-fingerprint}${line.separator}<!--
+                          -->publish.tomcat7-maven-plugin.@{N}.running-war-file-fingerprint=${publish.tomcat7-maven-plugin.@{N}.running-war-file-fingerprint}${line.separator}<!--
+                          -->publish.tomcat7-maven-plugin.@{N}.running-war-file.matches=${publish.tomcat7-maven-plugin.@{N}.running-war-file.matches}${line.separator}<!--
+                        --></echo>
+                      </sequential>
+                    </macrodef>
+                    <parallel>
+                      <existing-war-file-fingerprints if:set="publish.tomcat7-maven-plugin.1.active" N="1" />
+                      <existing-war-file-fingerprints if:set="publish.tomcat7-maven-plugin.2.active" N="2" />
+                    </parallel>
                   </target>
                 </configuration>
               </execution>
