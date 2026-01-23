@@ -195,8 +195,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <publish.tomcat7-maven-plugin.read-project-properties.phase>none</publish.tomcat7-maven-plugin.read-project-properties.phase>
     <publish.tomcat7-maven-plugin.capture-maven-context.phase>none</publish.tomcat7-maven-plugin.capture-maven-context.phase>
     <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>none</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
-    <publish.tomcat7-maven-plugin.restart-tomcat.phase>none</publish.tomcat7-maven-plugin.restart-tomcat.phase>
-    <publish.tomcat7-maven-plugin.warmup-sleep.phase>none</publish.tomcat7-maven-plugin.warmup-sleep.phase>
+    <publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>none</publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>
     <publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>none</publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>
     <publish.tomcat7-maven-plugin.warmup-get-url.phase>none</publish.tomcat7-maven-plugin.warmup-get-url.phase>
     <!--
@@ -3916,8 +3915,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
-        <publish.tomcat7-maven-plugin.restart-tomcat.phase>deploy</publish.tomcat7-maven-plugin.restart-tomcat.phase>
-        <publish.tomcat7-maven-plugin.warmup-sleep.phase>deploy</publish.tomcat7-maven-plugin.warmup-sleep.phase>
+        <publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>
         <publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>deploy</publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>
         <publish.tomcat7-maven-plugin.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.warmup-get-url.phase>
         <!--
@@ -3990,8 +3988,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
-        <publish.tomcat7-maven-plugin.restart-tomcat.phase>deploy</publish.tomcat7-maven-plugin.restart-tomcat.phase>
-        <publish.tomcat7-maven-plugin.warmup-sleep.phase>deploy</publish.tomcat7-maven-plugin.warmup-sleep.phase>
+        <publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>
         <publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>deploy</publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>
         <publish.tomcat7-maven-plugin.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.warmup-get-url.phase>
         <!--
@@ -4461,71 +4458,46 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 </configuration>
               </execution>
               <execution>
-                <id>publish.tomcat7-maven-plugin.restart-tomcat</id><phase>${publish.tomcat7-maven-plugin.restart-tomcat.phase}</phase><goals><goal>run</goal></goals>
+                <id>publish.tomcat7-maven-plugin.after-conditional-deploy-only</id><phase>${publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target xmlns:if="ant:if" xmlns:unless="ant:unless">
-                    <macrodef name="restart-tomcat">
+                    <macrodef name="after-conditional-deploy-only">
                       <attribute name="N" />
                       <sequential>
-                        <echo if:true="${publish.tomcat7-maven-plugin.@{N}.running-war-file.matches}" level="debug" message="Not restarting Tomcat #@{N} because WAR file matches" />
+                        <!-- When running WAR file matches, deploy-only is not called by conditional-deploy-only, so Tomcat restart and related steps are not required -->
                         <sequential unless:true="${publish.tomcat7-maven-plugin.@{N}.running-war-file.matches}">
-                          <echo level="info" message="Restarting Tomcat #@{N}" />
-                          <!-- Restart Tomcat -->
-                          <exec executable="${publish.tomcat7-maven-plugin.@{N}.ssh-path}" failonerror="true">
-                            <arg value="-oControlPath=none"/>
-                            <arg value="-T"/>
-                            <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-username}@${publish.tomcat7-maven-plugin.@{N}.tomcat-hostname}"/>
-                            <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-path}"/>
-                            <arg value="start"/>
-                          </exec>
-                          <!-- Delete Tomcat work for ensure full JSP recompilation -->
-                          <sleep seconds="1" />
-                          <exec executable="${publish.tomcat7-maven-plugin.@{N}.ssh-path}" failonerror="true">
-                            <arg value="-oControlPath=none" />
-                            <arg value="-T" />
-                            <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-username}@${publish.tomcat7-maven-plugin.@{N}.tomcat-hostname}"/>
-                            <arg value="bash -c 'if [ -d &quot;$1&quot; ] ; then find &quot;$1&quot; &quot;(&quot; -name &quot;*.java&quot; -or -name &quot;*.class&quot; &quot;)&quot; -delete ; fi' delete-tomcat-work '${publish.tomcat7-maven-plugin.@{N}.tomcat-work}'" />
-                          </exec>
+                          <!-- Tomcat is only restarted for non-parallel deployments -->
+                          <echo if:true="${publish.tomcat7-maven-plugin.@{N}.parallel-deployment.active}" level="debug" message="Not restarting Tomcat #@{N} because is parallel deployment" />
+                          <sequential unless:true="${publish.tomcat7-maven-plugin.@{N}.parallel-deployment.active}">
+                            <sleep seconds="5" />
+                            <!-- Restart Tomcat -->
+                            <echo level="info" message="Restarting Tomcat #@{N}" />
+                            <exec executable="${publish.tomcat7-maven-plugin.@{N}.ssh-path}" failonerror="true">
+                              <arg value="-oControlPath=none"/>
+                              <arg value="-T"/>
+                              <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-username}@${publish.tomcat7-maven-plugin.@{N}.tomcat-hostname}"/>
+                              <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-path}"/>
+                              <arg value="start"/>
+                            </exec>
+                            <!-- Delete Tomcat work to ensure full JSP recompilation -->
+                            <sleep seconds="1" />
+                            <exec executable="${publish.tomcat7-maven-plugin.@{N}.ssh-path}" failonerror="true">
+                              <arg value="-oControlPath=none" />
+                              <arg value="-T" />
+                              <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-username}@${publish.tomcat7-maven-plugin.@{N}.tomcat-hostname}"/>
+                              <arg value="bash -c 'if [ -d &quot;$1&quot; ] ; then find &quot;$1&quot; &quot;(&quot; -name &quot;*.java&quot; -or -name &quot;*.class&quot; &quot;)&quot; -delete ; fi' delete-tomcat-work '${publish.tomcat7-maven-plugin.@{N}.tomcat-work}'" />
+                            </exec>
+                          </sequential>
+                          <!-- For both parallel and non-parallel deployment, sleep a little extra time before doing warmup / test HTTP requests -->
+                          <sleep seconds="10" />
                         </sequential>
+                        <!-- TODO: Warmup / test HTTP requests here, always done even if deploy-only not done -->
                       </sequential>
                     </macrodef>
-                    <condition property="restart-tomcat.required">
-                      <or>
-                        <and>
-                          <equals arg1="${publish.tomcat7-maven-plugin.1.active}" arg2="true" />
-                          <equals arg1="${publish.tomcat7-maven-plugin.1.parallel-deployment.active}" arg2="false" />
-                          <equals arg1="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" arg2="false" />
-                        </and>
-                        <and>
-                          <equals arg1="${publish.tomcat7-maven-plugin.2.active}" arg2="true" />
-                          <equals arg1="${publish.tomcat7-maven-plugin.2.parallel-deployment.active}" arg2="false" />
-                          <equals arg1="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" arg2="false" />
-                        </and>
-                      </or>
-                    </condition>
-                    <echo unless:set="restart-tomcat.required" level="debug" message="No Tomcat restarts are required" />
-                    <sequential if:set="restart-tomcat.required">
-                      <sleep seconds="5" />
-                      <parallel>
-                        <restart-tomcat if:true="${publish.tomcat7-maven-plugin.1.active}" unless:true="${publish.tomcat7-maven-plugin.1.parallel-deployment.active}" N="1" />
-                        <restart-tomcat if:true="${publish.tomcat7-maven-plugin.2.active}" unless:true="${publish.tomcat7-maven-plugin.2.parallel-deployment.active}" N="2" />
-                      </parallel>
-                    </sequential>
-                  </target>
-                </configuration>
-              </execution>
-              <execution>
-                <id>publish.tomcat7-maven-plugin.warmup-sleep</id><phase>${publish.tomcat7-maven-plugin.warmup-sleep.phase}</phase><goals><goal>run</goal></goals>
-                <configuration>
-                  <target xmlns:if="ant:if" xmlns:unless="ant:unless">
-                    <condition property="warmup-sleep.required">
-                      <or>
-                        <equals arg1="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" arg2="false" />
-                        <equals arg1="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" arg2="false" />
-                      </or>
-                    </condition>
-                    <sleep if:set="warmup-sleep.required" seconds="10" />
-                    <echo unless:set="warmup-sleep.required" level="debug" message="All running fingerprints match the build, no need to sleep for warmup" />
+                    <parallel>
+                      <after-conditional-deploy-only if:true="${publish.tomcat7-maven-plugin.1.active}" N="1" />
+                      <after-conditional-deploy-only if:true="${publish.tomcat7-maven-plugin.2.active}" N="2" />
+                    </parallel>
                   </target>
                 </configuration>
               </execution>
