@@ -4294,26 +4294,28 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       <attribute name="num" />
                       <sequential>
                         <retry if:set="publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}" retrycount="12" retrydelay="15000">
-                          <!-- Request without username/password -->
-                          <get
-                            unless:set="publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.username"
-                            retries="1"
-                            src="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}}"
-                            dest="${project.build.directory}/publish.tomcat7-maven-plugin@{suffix}/warmup-get-url.@{num}.response"
-                            maxtime="120"
-                            httpusecaches="false"
-                          />
-                          <!-- Otherwise, request with username/password -->
-                          <get
-                            if:set="publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.username"
-                            retries="1"
-                            username="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.username}"
-                            password="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.password}"
-                            src="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}}"
-                            dest="${project.build.directory}/publish.tomcat7-maven-plugin@{suffix}/warmup-get-url.@{num}.response"
-                            maxtime="120"
-                            httpusecaches="false"
-                          />
+                          <sequential>
+                            <!-- Request without username/password -->
+                            <get
+                              unless:set="publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.username"
+                              retries="1"
+                              src="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}}"
+                              dest="${project.build.directory}/publish.tomcat7-maven-plugin@{suffix}/warmup-get-url.@{num}.response"
+                              maxtime="120"
+                              httpusecaches="false"
+                            />
+                            <!-- Otherwise, request with username/password -->
+                            <get
+                              if:set="publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.username"
+                              retries="1"
+                              username="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.username}"
+                              password="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.password}"
+                              src="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}}"
+                              dest="${project.build.directory}/publish.tomcat7-maven-plugin@{suffix}/warmup-get-url.@{num}.response"
+                              maxtime="120"
+                              httpusecaches="false"
+                            />
+                          </sequential>
                         </retry>
                       </sequential>
                     </macrodef>
