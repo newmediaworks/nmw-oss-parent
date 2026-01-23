@@ -192,8 +192,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       and publish (activated on command line) profiles must be active for the actions to be taken.
     -->
     <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>none</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
-    <publish.tomcat7-maven-plugin.read-project-properties.phase>none</publish.tomcat7-maven-plugin.read-project-properties.phase>
-    <publish.tomcat7-maven-plugin.capture-maven-context.phase>none</publish.tomcat7-maven-plugin.capture-maven-context.phase>
     <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>none</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
     <publish.tomcat7-maven-plugin.deploy-sequence.phase>none</publish.tomcat7-maven-plugin.deploy-sequence.phase>
     <!--
@@ -3902,8 +3900,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           and publish (activated on command line) profiles must be active for the actions to be taken.
         -->
         <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
-        <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
-        <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
         <publish.tomcat7-maven-plugin.deploy-sequence.phase>deploy</publish.tomcat7-maven-plugin.deploy-sequence.phase>
         <!--
@@ -3972,8 +3968,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           and publish (activated on command line) profiles must be active for the actions to be taken.
         -->
         <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
-        <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
-        <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
         <publish.tomcat7-maven-plugin.deploy-sequence.phase>deploy</publish.tomcat7-maven-plugin.deploy-sequence.phase>
         <!--
@@ -4200,11 +4194,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         project.properties['publish.tomcat7-maven-plugin.' + N + '.server.password'] = server.password
                       }
                     }
-                    // Get Maven PID for tomcat7:deploy-only passing progress output directly to parent Maven's standard out (Linux only)
-                    // See "use-linux-fd-trick" below
-                    def name = java.lang.management.ManagementFactory.runtimeMXBean.name  // Example: "12345@hostname"
-                    def pid = name.split('@')[0]
-                    project.properties['publish.tomcat7-maven-plugin.maven.pid'] = pid
                   ]]></source>
                 </configuration>
               </execution>
@@ -4240,16 +4229,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <plugin>
             <groupId>org.codehaus.mojo</groupId><artifactId>properties-maven-plugin</artifactId>
             <executions>
-              <!-- Reads the properties created by publish.tomcat7-maven-plugin.capture-maven-context  below. -->
-              <execution>
-                <!-- install phase to be after publish.tomcat7-maven-plugin.capture-maven-context and just before deploy -->
-                <id>publish.tomcat7-maven-plugin.read-project-properties</id><phase>${publish.tomcat7-maven-plugin.read-project-properties.phase}</phase><goals><goal>read-project-properties</goal></goals>
-                <configuration>
-                  <files>
-                    <file>${project.build.directory}/publish.tomcat7-maven-plugin/capture-maven-context.properties</file>
-                  </files>
-                </configuration>
-              </execution>
               <!-- Reads the properties created by publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints below. -->
               <execution>
                 <!-- install phase to be just after publish.tomcat7-maven-plugin.1.existing-war-file-fingerprints and just before deploy -->
@@ -4275,64 +4254,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           <plugin>
             <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
             <executions>
-              <execution>
-                <id>publish.tomcat7-maven-plugin.capture-maven-context</id><phase>${publish.tomcat7-maven-plugin.capture-maven-context.phase}</phase><goals><goal>run</goal></goals>
-                <configuration>
-                  <target>
-                    <!-- Load Groovy support -->
-                    <taskdef name="groovy" classname="org.codehaus.groovy.ant.Groovy"/>
-
-                    <!-- Groovy block to iterate all user-defined properties -->
-                    <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin" />
-                    <groovy><![CDATA[
-                      def mavenProject = project.references['maven.project']
-                      assert mavenProject != null
-
-                      def newline = System.lineSeparator()
-
-                      def out = new File("${project.build.directory}/publish.tomcat7-maven-plugin/capture-maven-context.properties")
-                      out.text = '' // overwrite
-
-                      // Explicit whitelist of user properties to forward
-                      def whitelist = [
-                        // Used in parallel deployment version
-                        'current.datetime',
-                        'jenkins.buildNumber',
-                        // Seen in Jenkins builds
-                        'style.color',
-                        // 'maven.ext.class.path',
-                        // 'org.jenkinsci.plugins.pipeline.maven.reportsFolder',
-                      ]
-
-                      out << "publish.tomcat7-maven-plugin.capture-maven-context.additionalArguments="
-                      // Maintain debug flag
-                      def needSpace = false
-                      if (Boolean.getBoolean(System.getProperty("maven.debug"))) {
-                        out << "-X" + newline
-                        needSpace = true
-                      }
-                      whitelist.each { name ->
-                        if (mavenProject.properties.containsKey(name)) {
-                          def value = mavenProject.properties[name]
-                          if (needSpace) {
-                            out << " "
-                          }
-                          out << "-D" + name;
-                          if (value != null && !value.toString().isEmpty()) {
-                            out << "=" + value
-                          }
-                          needSpace = true
-                        }
-                      }
-                      out << newline
-
-                      // Active profiles
-                      def profiles = mavenProject.activeProfiles*.id
-                      out << "publish.tomcat7-maven-plugin.capture-maven-context.activeProfiles=" + profiles.join(",") + newline
-                    ]]></groovy>
-                  </target>
-                </configuration>
-              </execution>
               <execution>
                 <!-- verify phase to be just before publish.tomcat7-maven-plugin.1.read-project-properties -->
                 <!-- verify phase to be just before publish.tomcat7-maven-plugin.2.read-project-properties -->
@@ -4389,6 +4310,57 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <id>publish.tomcat7-maven-plugin.deploy-sequence</id><phase>${publish.tomcat7-maven-plugin.deploy-sequence.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target xmlns:if="ant:if" xmlns:unless="ant:unless">
+                    <!-- Load Groovy support -->
+                    <taskdef name="groovy" classname="org.codehaus.groovy.ant.Groovy"/>
+                    <!-- Capture the Maven environment -->
+                    <groovy><![CDATA[
+                      def mavenProject = project.references['maven.project']
+                      assert mavenProject != null
+
+                      // Get Maven PID for tomcat7:deploy-only passing progress output directly to parent Maven's standard out (Linux only)
+                      // See "use-linux-fd-trick" below
+                      def beanName = java.lang.management.ManagementFactory.runtimeMXBean.name  // Example: "12345@hostname"
+                      def pid = beanName.split('@')[0]
+                      project.setProperty('publish.tomcat7-maven-plugin.maven.pid', pid)
+
+                      // Explicit whitelist of user properties to forward
+                      def whitelist = [
+                        // Used in parallel deployment version
+                        'current.datetime',
+                        'jenkins.buildNumber',
+                        // Seen in Jenkins builds
+                        'style.color',
+                        // 'maven.ext.class.path',
+                        // 'org.jenkinsci.plugins.pipeline.maven.reportsFolder',
+                      ]
+
+                      def additionalArguments = new StringBuilder();
+                      // Maintain debug flag
+                      if (Boolean.getBoolean(System.getProperty("maven.debug"))) {
+                        additionalArguments.append("-X")
+                      }
+                      whitelist.each { name ->
+                        if (mavenProject.properties.containsKey(name)) {
+                          def value = mavenProject.properties[name]
+                          if (additionalArguments.length() > 0) {
+                            additionalArguments.append(" ");
+                          }
+                          additionalArguments.append("-D").append(name);
+                          if (value != null && !value.toString().isEmpty()) {
+                            additionalArguments.append("=").append(value);
+                          }
+                        }
+                      }
+                      project.setProperty('publish.tomcat7-maven-plugin.additionalArguments', additionalArguments.toString())
+
+                      // Active profiles
+                      def profiles = mavenProject.activeProfiles*.id
+                      project.setProperty('publish.tomcat7-maven-plugin.activeProfiles', profiles.join(","))
+                    ]]></groovy>
+                    <echo level="debug" message="publish.tomcat7-maven-plugin.maven.pid: ${publish.tomcat7-maven-plugin.maven.pid}" />
+                    <echo level="debug" message="publish.tomcat7-maven-plugin.additionalArguments: ${publish.tomcat7-maven-plugin.additionalArguments}" />
+                    <echo level="debug" message="publish.tomcat7-maven-plugin.activeProfiles: ${publish.tomcat7-maven-plugin.activeProfiles}" />
+                    <!-- Determine if will use Linux FD trick -->
                     <condition property="publish.tomcat7-maven-plugin.is-unix" value="true">
                       <os family="unix" />
                     </condition>
@@ -4431,8 +4403,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                             <arg value="--color=always"/>
                             <arg value="--quiet"/>
                             <arg value="-N"/>
-                            <arg value="-P${publish.tomcat7-maven-plugin.capture-maven-context.activeProfiles}"/>
-                            <arg line="${publish.tomcat7-maven-plugin.capture-maven-context.additionalArguments}"/>
+                            <arg value="-P${publish.tomcat7-maven-plugin.activeProfiles}"/>
+                            <arg line="${publish.tomcat7-maven-plugin.additionalArguments}"/>
                             <arg value="tomcat7:deploy-only@publish.tomcat7-maven-plugin.@{N}.deploy-only"/>
                           </exec>
                           <!-- Non-Linux: No output progress -->
@@ -4444,8 +4416,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                             <arg value="-B"/>
                             <arg value="--quiet"/>
                             <arg value="-N"/>
-                            <arg value="-P${publish.tomcat7-maven-plugin.capture-maven-context.activeProfiles}"/>
-                            <arg line="${publish.tomcat7-maven-plugin.capture-maven-context.additionalArguments}"/>
+                            <arg value="-P${publish.tomcat7-maven-plugin.activeProfiles}"/>
+                            <arg line="${publish.tomcat7-maven-plugin.additionalArguments}"/>
                             <arg value="tomcat7:deploy-only@publish.tomcat7-maven-plugin.@{N}.deploy-only"/>
                           </exec>
                           <!-- Tomcat is only restarted for non-parallel deployments -->
