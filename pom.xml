@@ -4264,8 +4264,8 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         additionalArguments.append("-X")
                       }
                       whitelist.each { name ->
-                        if (mavenProject.properties.containsKey(name)) {
-                          def value = mavenProject.properties[name]
+                        def value = mavenProject.properties[name] ?: System.getProperty(name)
+                        if (value != null || mavenProject.properties.containsKey(name)) {
                           if (additionalArguments.length() > 0) {
                             additionalArguments.append(" ");
                           }
