@@ -4289,28 +4289,28 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         <available file="/proc/${publish.tomcat7-maven-plugin.maven.pid}/fd/2" />
                       </and>
                     </condition>
-                    <macrodef name="warmup-get-url-with-retry">
-                      <attribute name="N" />
+                    <macrodef name="warmup-get-url">
+                      <attribute name="suffix" />
                       <attribute name="num" />
                       <sequential>
-                        <retry if:set="publish.tomcat7-maven-plugin.@{N}.warmup-get-url.@{num}" retrycount="12" retrydelay="15000">
+                        <retry if:set="publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}" retrycount="12" retrydelay="15000">
                           <!-- Request without username/password -->
                           <get
-                            unless:set="publish.tomcat7-maven-plugin.@{N}.warmup-get-url.@{num}.username"
+                            unless:set="publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.username"
                             retries="1"
-                            src="${publish.tomcat7-maven-plugin.@{N}.warmup-get-url.@{num}}"
-                            dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/warmup-get-url.@{num}.response"
+                            src="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}}"
+                            dest="${project.build.directory}/publish.tomcat7-maven-plugin@{suffix}/warmup-get-url.@{num}.response"
                             maxtime="120"
                             httpusecaches="false"
                           />
                           <!-- Otherwise, request with username/password -->
                           <get
-                            if:set="publish.tomcat7-maven-plugin.@{N}.warmup-get-url.@{num}.username"
+                            if:set="publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.username"
                             retries="1"
-                            username="${publish.tomcat7-maven-plugin.@{N}.warmup-get-url.@{num}.username}"
-                            password="${publish.tomcat7-maven-plugin.@{N}.warmup-get-url.@{num}.password}"
-                            src="${publish.tomcat7-maven-plugin.@{N}.warmup-get-url.@{num}}"
-                            dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/warmup-get-url.@{num}.response"
+                            username="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.username}"
+                            password="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.password}"
+                            src="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}}"
+                            dest="${project.build.directory}/publish.tomcat7-maven-plugin@{suffix}/warmup-get-url.@{num}.response"
                             maxtime="120"
                             httpusecaches="false"
                           />
@@ -4468,15 +4468,19 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                           </sequential>
                         </sequential>
                         <!-- Warmup / test HTTP requests -->
-                        <warmup-get-url-with-retry N="@{N}" num="1" />
-                        <warmup-get-url-with-retry N="@{N}" num="2" />
-                        <warmup-get-url-with-retry N="@{N}" num="3" />
+                        <warmup-get-url suffix=".@{N}" num="1" />
+                        <warmup-get-url suffix=".@{N}" num="2" />
+                        <warmup-get-url suffix=".@{N}" num="3" />
                       </sequential>
                     </macrodef>
                     <parallel>
                       <deploy-sequence if:true="${publish.tomcat7-maven-plugin.1.active}" N="1" />
                       <deploy-sequence if:true="${publish.tomcat7-maven-plugin.2.active}" N="2" />
                     </parallel>
+                    <!-- Warmup / test HTTP requests not tied to any specific Tomcat instance -->
+                    <warmup-get-url suffix="" num="1" />
+                    <warmup-get-url suffix="" num="2" />
+                    <warmup-get-url suffix="" num="3" />
                   </target>
                 </configuration>
               </execution>
