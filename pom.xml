@@ -3896,7 +3896,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
           and publish (activated on command line) profiles must be active for the actions to be taken.
         -->
-        <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
+        <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>install</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
         <publish.tomcat7-maven-plugin.deploy-sequence.phase>deploy</publish.tomcat7-maven-plugin.deploy-sequence.phase>
         <!--
           publish.tomcat7-maven-plugin.N phases are enabled by the publish.tomcat7-maven-plugin.N profile.
@@ -3962,7 +3962,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
           and publish (activated on command line) profiles must be active for the actions to be taken.
         -->
-        <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>validate</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
+        <publish.tomcat7-maven-plugin.get-auth-from-settings.phase>install</publish.tomcat7-maven-plugin.get-auth-from-settings.phase>
         <publish.tomcat7-maven-plugin.deploy-sequence.phase>deploy</publish.tomcat7-maven-plugin.deploy-sequence.phase>
         <!--
           publish.tomcat7-maven-plugin.N phases are enabled by the publish.tomcat7-maven-plugin.N profile.
@@ -4165,34 +4165,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             </executions>
           </plugin>
           <plugin>
-            <groupId>org.codehaus.gmaven</groupId><artifactId>groovy-maven-plugin</artifactId>
-            <executions>
-              <!-- See https://stackoverflow.com/a/11239913 -->
-              <execution>
-                <id>publish.tomcat7-maven-plugin.get-auth-from-settings</id><phase>${publish.tomcat7-maven-plugin.get-auth-from-settings.phase}</phase><goals><goal>execute</goal></goals>
-                <configuration>
-                  <source><![CDATA[
-                    // Handles any number of Tomcat instances by searching all properties for "publish.tomcat7-maven-plugin.N.active"
-                    def regex = /^publish\.tomcat7-maven-plugin\.(\d+)\.active$/
-                    project.properties.keySet().each { activeProp ->
-                      def matcher = activeProp =~ regex
-                      if (matcher.matches() && project.properties[activeProp].toBoolean()) {
-                        def N = matcher[0][1] // extract the number
-                        def serverId = project.properties['publish.tomcat7-maven-plugin.' + N + '.server']
-                        def server = settings.servers.find { it.id == serverId }
-                        if (server == null) {
-                          throw new IllegalStateException("Server '" + serverId + "' not found in settings.xml for Tomcat #" + N)
-                        }
-                        project.properties['publish.tomcat7-maven-plugin.' + N + '.server.username'] = server.username
-                        project.properties['publish.tomcat7-maven-plugin.' + N + '.server.password'] = server.password
-                      }
-                    }
-                  ]]></source>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
             <groupId>org.apache.tomcat.maven</groupId><artifactId>tomcat7-maven-plugin</artifactId>
             <executions>
               <execution>
@@ -4215,6 +4187,37 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                   <path>${publish.tomcat7-maven-plugin.2.path}${publish.tomcat7-maven-plugin.2.path.extra}</path>
                   <update>${publish.tomcat7-maven-plugin.2.update}</update>
                   <url>${publish.tomcat7-maven-plugin.2.url}</url>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.gmaven</groupId><artifactId>groovy-maven-plugin</artifactId>
+            <executions>
+              <!--
+                Cannot build into the following maven-antrun-plugin execution because settings are not available.
+                See https://stackoverflow.com/a/11239913
+              -->
+              <execution>
+                <id>publish.tomcat7-maven-plugin.get-auth-from-settings</id><phase>${publish.tomcat7-maven-plugin.get-auth-from-settings.phase}</phase><goals><goal>execute</goal></goals>
+                <configuration>
+                  <source><![CDATA[
+                    // Handles any number of Tomcat instances by searching all properties for "publish.tomcat7-maven-plugin.N.active"
+                    def regex = /^publish\.tomcat7-maven-plugin\.(\d+)\.active$/
+                    project.properties.keySet().each { activeProp ->
+                      def matcher = activeProp =~ regex
+                      if (matcher.matches() && project.properties[activeProp].toBoolean()) {
+                        def N = matcher[0][1] // extract the number
+                        def serverId = project.properties['publish.tomcat7-maven-plugin.' + N + '.server']
+                        def server = settings.servers.find { it.id == serverId }
+                        if (server == null) {
+                          throw new IllegalStateException("Server '" + serverId + "' not found in settings.xml for Tomcat #" + N)
+                        }
+                        project.properties['publish.tomcat7-maven-plugin.' + N + '.server.username'] = server.username
+                        project.properties['publish.tomcat7-maven-plugin.' + N + '.server.password'] = server.password
+                      }
+                    }
+                  ]]></source>
                 </configuration>
               </execution>
             </executions>
