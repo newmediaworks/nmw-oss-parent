@@ -181,6 +181,11 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <spotbugs.phase>verify</spotbugs.phase>
     <default-install.phase>install</default-install.phase>
     <default-deploy.phase>deploy</default-deploy.phase>
+    <!-- Flag that lets other places know this profile is active -->
+    <publish.tomcat7-maven-plugin.1.active>false</publish.tomcat7-maven-plugin.1.active>
+    <publish.tomcat7-maven-plugin.2.active>false</publish.tomcat7-maven-plugin.2.active>
+    <publish.tomcat7-maven-plugin.1.parallel-deployment.active>false</publish.tomcat7-maven-plugin.1.parallel-deployment.active>
+    <publish.tomcat7-maven-plugin.2.parallel-deployment.active>false</publish.tomcat7-maven-plugin.2.parallel-deployment.active>
     <!--
       publish.tomcat7-maven-plugin phases are enabled by any of the publish.tomcat7-maven-plugin.N profiles.
       This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
@@ -190,6 +195,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <publish.tomcat7-maven-plugin.read-project-properties.phase>none</publish.tomcat7-maven-plugin.read-project-properties.phase>
     <publish.tomcat7-maven-plugin.capture-maven-context.phase>none</publish.tomcat7-maven-plugin.capture-maven-context.phase>
     <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>none</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
+    <publish.tomcat7-maven-plugin.restart-tomcat.phase>none</publish.tomcat7-maven-plugin.restart-tomcat.phase>
     <publish.tomcat7-maven-plugin.warmup-sleep.phase>none</publish.tomcat7-maven-plugin.warmup-sleep.phase>
     <publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>none</publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>
     <publish.tomcat7-maven-plugin.warmup-get-url.phase>none</publish.tomcat7-maven-plugin.warmup-get-url.phase>
@@ -3910,6 +3916,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
+        <publish.tomcat7-maven-plugin.restart-tomcat.phase>deploy</publish.tomcat7-maven-plugin.restart-tomcat.phase>
         <publish.tomcat7-maven-plugin.warmup-sleep.phase>deploy</publish.tomcat7-maven-plugin.warmup-sleep.phase>
         <publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>deploy</publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>
         <publish.tomcat7-maven-plugin.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.warmup-get-url.phase>
@@ -3921,7 +3928,50 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.1.requireProperties.phase>validate</publish.tomcat7-maven-plugin.1.requireProperties.phase>
         <publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>
         <publish.tomcat7-maven-plugin.1.read-project-properties.phase>install</publish.tomcat7-maven-plugin.1.read-project-properties.phase>
+        <!-- Executions to be done on non-parallel builds only -->
+        <publish.tomcat7-maven-plugin.1.requireProperties-non-parallel.phase>validate</publish.tomcat7-maven-plugin.1.requireProperties-non-parallel.phase>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>publish.tomcat7-maven-plugin.1.requireProperties-non-parallel</id><phase>${publish.tomcat7-maven-plugin.1.requireProperties-non-parallel.phase}</phase><goals><goal>enforce</goal></goals>
+                <configuration>
+                  <rules>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.1.ssh-path</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.1.ssh-path' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
+                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.1.tomcat-username</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.1.tomcat-username' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
+                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.1.tomcat-hostname</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.1.tomcat-hostname' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
+                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.1.tomcat-work</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.1.tomcat-work' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
+                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.1.tomcat-path</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.1.tomcat-path' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
+                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>publish.tomcat7-maven-plugin.2</id><activation><file><exists>profile.d/publish.tomcat7-maven-plugin.2</exists></file></activation>
@@ -3940,6 +3990,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
+        <publish.tomcat7-maven-plugin.restart-tomcat.phase>deploy</publish.tomcat7-maven-plugin.restart-tomcat.phase>
         <publish.tomcat7-maven-plugin.warmup-sleep.phase>deploy</publish.tomcat7-maven-plugin.warmup-sleep.phase>
         <publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>deploy</publish.tomcat7-maven-plugin.verify-published-war-file-fingerprint.phase>
         <publish.tomcat7-maven-plugin.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.warmup-get-url.phase>
@@ -3951,7 +4002,50 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.2.requireProperties.phase>validate</publish.tomcat7-maven-plugin.2.requireProperties.phase>
         <publish.tomcat7-maven-plugin.2.conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.2.conditional-deploy-only.phase>
         <publish.tomcat7-maven-plugin.2.read-project-properties.phase>install</publish.tomcat7-maven-plugin.2.read-project-properties.phase>
+        <!-- Executions to be done on non-parallel builds only -->
+        <publish.tomcat7-maven-plugin.2.requireProperties-non-parallel.phase>validate</publish.tomcat7-maven-plugin.2.requireProperties-non-parallel.phase>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>publish.tomcat7-maven-plugin.2.requireProperties-non-parallel</id><phase>${publish.tomcat7-maven-plugin.2.requireProperties-non-parallel.phase}</phase><goals><goal>enforce</goal></goals>
+                <configuration>
+                  <rules>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.2.ssh-path</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.2.ssh-path' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
+                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.2.tomcat-username</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.2.tomcat-username' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
+                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.2.tomcat-hostname</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.2.tomcat-hostname' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
+                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.2.tomcat-work</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.2.tomcat-work' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
+                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.2.tomcat-path</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.2.tomcat-path' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
+                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <!-- Parallel deployment -->
@@ -3959,6 +4053,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <!-- Note: Tomcat server.xml/Host/undeployOldVersions must be set to "true" to clean-up old versions -->
       <id>publish.tomcat7-maven-plugin.1.parallel-deployment</id><activation><file><exists>profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment</exists></file></activation>
       <properties>
+        <!-- Flag that lets other places know this profile is active -->
+        <publish.tomcat7-maven-plugin.1.parallel-deployment.active>true</publish.tomcat7-maven-plugin.1.parallel-deployment.active>
         <!-- Parallel deployment settings -->
         <publish.tomcat7-maven-plugin.1.update>false</publish.tomcat7-maven-plugin.1.update>
         <publish.tomcat7-maven-plugin.1.path.extra>##${publish.tomcat7-maven-plugin.parallel.deployment.version}</publish.tomcat7-maven-plugin.1.path.extra>
@@ -3974,6 +4070,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           and publish (activated on command line) profiles must be active for the actions to be taken.
         -->
         <publish.tomcat7-maven-plugin.1.parallel-deployment.requireProperties.phase>validate</publish.tomcat7-maven-plugin.1.parallel-deployment.requireProperties.phase>
+        <!-- Executions to be done on non-parallel builds only -->
+        <publish.tomcat7-maven-plugin.1.requireProperties-non-parallel.phase>none</publish.tomcat7-maven-plugin.1.requireProperties-non-parallel.phase>
       </properties>
     </profile>
     <profile>
@@ -3982,6 +4080,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <!-- Note: Tomcat server.xml/Host/undeployOldVersions must be set to "true" to clean-up old versions -->
       <id>publish.tomcat7-maven-plugin.2.parallel-deployment</id><activation><file><exists>profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment</exists></file></activation>
       <properties>
+        <!-- Flag that lets other places know this profile is active -->
+        <publish.tomcat7-maven-plugin.2.parallel-deployment.active>true</publish.tomcat7-maven-plugin.2.parallel-deployment.active>
         <!-- Parallel deployment settings -->
         <publish.tomcat7-maven-plugin.2.update>false</publish.tomcat7-maven-plugin.2.update>
         <publish.tomcat7-maven-plugin.2.path.extra>##${publish.tomcat7-maven-plugin.parallel.deployment.version}</publish.tomcat7-maven-plugin.2.path.extra>
@@ -3997,6 +4097,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           and publish (activated on command line) profiles must be active for the actions to be taken.
         -->
         <publish.tomcat7-maven-plugin.2.parallel-deployment.requireProperties.phase>validate</publish.tomcat7-maven-plugin.2.parallel-deployment.requireProperties.phase>
+        <!-- Executions to be done on non-parallel builds only -->
+        <publish.tomcat7-maven-plugin.2.requireProperties-non-parallel.phase>none</publish.tomcat7-maven-plugin.2.requireProperties-non-parallel.phase>
       </properties>
     </profile>
     <profile>
@@ -4352,15 +4454,66 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       </sequential>
                     </macrodef>
                     <parallel>
-                      <existing-war-file-fingerprints if:set="publish.tomcat7-maven-plugin.1.active" N="1" />
-                      <existing-war-file-fingerprints if:set="publish.tomcat7-maven-plugin.2.active" N="2" />
+                      <existing-war-file-fingerprints if:true="${publish.tomcat7-maven-plugin.1.active}" N="1" />
+                      <existing-war-file-fingerprints if:true="${publish.tomcat7-maven-plugin.2.active}" N="2" />
                     </parallel>
                   </target>
                 </configuration>
               </execution>
-              <!-- TODO: restart-tomcat here if not parallel deployment -->
-              <!-- TODO: delete-tomcat-work-sleep here if not parallel deployment -->
-              <!-- TODO: delete-tomcat-work here if not parallel deployment -->
+              <execution>
+                <id>publish.tomcat7-maven-plugin.restart-tomcat</id><phase>${publish.tomcat7-maven-plugin.restart-tomcat.phase}</phase><goals><goal>run</goal></goals>
+                <configuration>
+                  <target xmlns:if="ant:if" xmlns:unless="ant:unless">
+                    <macrodef name="restart-tomcat">
+                      <attribute name="N" />
+                      <sequential>
+                        <echo if:true="${publish.tomcat7-maven-plugin.@{N}.running-war-file.matches}" level="debug" message="Not restarting Tomcat #@{N} because WAR file matches" />
+                        <sequential unless:true="${publish.tomcat7-maven-plugin.@{N}.running-war-file.matches}">
+                          <echo level="info" message="Restarting Tomcat #@{N}" />
+                          <!-- Restart Tomcat -->
+                          <exec executable="${publish.tomcat7-maven-plugin.@{N}.ssh-path}" failonerror="true">
+                            <arg value="-oControlPath=none"/>
+                            <arg value="-T"/>
+                            <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-username}@${publish.tomcat7-maven-plugin.@{N}.tomcat-hostname}"/>
+                            <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-path}"/>
+                            <arg value="start"/>
+                          </exec>
+                          <!-- Delete Tomcat work for ensure full JSP recompilation -->
+                          <sleep seconds="1" />
+                          <exec executable="${publish.tomcat7-maven-plugin.@{N}.ssh-path}" failonerror="true">
+                            <arg value="-oControlPath=none" />
+                            <arg value="-T" />
+                            <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-username}@${publish.tomcat7-maven-plugin.@{N}.tomcat-hostname}"/>
+                            <arg value="bash -c 'if [ -d &quot;$1&quot; ] ; then find &quot;$1&quot; &quot;(&quot; -name &quot;*.java&quot; -or -name &quot;*.class&quot; &quot;)&quot; -delete ; fi' delete-tomcat-work '${publish.tomcat7-maven-plugin.@{N}.tomcat-work}'" />
+                          </exec>
+                        </sequential>
+                      </sequential>
+                    </macrodef>
+                    <condition property="restart-tomcat.required">
+                      <or>
+                        <and>
+                          <equals arg1="${publish.tomcat7-maven-plugin.1.active}" arg2="true" />
+                          <equals arg1="${publish.tomcat7-maven-plugin.1.parallel-deployment.active}" arg2="false" />
+                          <equals arg1="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" arg2="false" />
+                        </and>
+                        <and>
+                          <equals arg1="${publish.tomcat7-maven-plugin.2.active}" arg2="true" />
+                          <equals arg1="${publish.tomcat7-maven-plugin.2.parallel-deployment.active}" arg2="false" />
+                          <equals arg1="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" arg2="false" />
+                        </and>
+                      </or>
+                    </condition>
+                    <echo unless:set="restart-tomcat.required" level="debug" message="No Tomcat restarts are required" />
+                    <sequential if:set="restart-tomcat.required">
+                      <sleep seconds="5" />
+                      <parallel>
+                        <restart-tomcat if:true="${publish.tomcat7-maven-plugin.1.active}" unless:true="${publish.tomcat7-maven-plugin.1.parallel-deployment.active}" N="1" />
+                        <restart-tomcat if:true="${publish.tomcat7-maven-plugin.2.active}" unless:true="${publish.tomcat7-maven-plugin.2.parallel-deployment.active}" N="2" />
+                      </parallel>
+                    </sequential>
+                  </target>
+                </configuration>
+              </execution>
               <execution>
                 <id>publish.tomcat7-maven-plugin.warmup-sleep</id><phase>${publish.tomcat7-maven-plugin.warmup-sleep.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
@@ -4414,8 +4567,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       </sequential>
                     </macrodef>
                     <parallel>
-                      <verify-published-war-file-fingerprint if:set="publish.tomcat7-maven-plugin.1.active" unless:true="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" N="1" />
-                      <verify-published-war-file-fingerprint if:set="publish.tomcat7-maven-plugin.2.active" unless:true="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" N="2" />
+                      <verify-published-war-file-fingerprint if:true="${publish.tomcat7-maven-plugin.1.active}" unless:true="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" N="1" />
+                      <verify-published-war-file-fingerprint if:true="${publish.tomcat7-maven-plugin.2.active}" unless:true="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" N="2" />
                     </parallel>
                   </target>
                 </configuration>
@@ -4453,8 +4606,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       </sequential>
                     </macrodef>
                     <parallel>
-                      <parallel-deployment-version-verify if:set="publish.tomcat7-maven-plugin.1.active" unless:true="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" N="1" />
-                      <parallel-deployment-version-verify if:set="publish.tomcat7-maven-plugin.2.active" unless:true="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" N="2" />
+                      <parallel-deployment-version-verify if:true="${publish.tomcat7-maven-plugin.1.active}" unless:true="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" N="1" />
+                      <parallel-deployment-version-verify if:true="${publish.tomcat7-maven-plugin.2.active}" unless:true="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" N="2" />
                     </parallel>
                   </target>
                 </configuration>
@@ -4489,8 +4642,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       </sequential>
                     </macrodef>
                     <parallel>
-                      <warmup-get-url if:set="publish.tomcat7-maven-plugin.1.active" N="1" />
-                      <warmup-get-url if:set="publish.tomcat7-maven-plugin.2.active" N="2" />
+                      <warmup-get-url if:true="${publish.tomcat7-maven-plugin.1.active}" N="1" />
+                      <warmup-get-url if:true="${publish.tomcat7-maven-plugin.2.active}" N="2" />
                     </parallel>
                   </target>
                 </configuration>
