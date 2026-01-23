@@ -195,7 +195,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <publish.tomcat7-maven-plugin.read-project-properties.phase>none</publish.tomcat7-maven-plugin.read-project-properties.phase>
     <publish.tomcat7-maven-plugin.capture-maven-context.phase>none</publish.tomcat7-maven-plugin.capture-maven-context.phase>
     <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>none</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
-    <publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>none</publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>
+    <publish.tomcat7-maven-plugin.deploy-sequence.phase>none</publish.tomcat7-maven-plugin.deploy-sequence.phase>
     <!--
       publish.tomcat7-maven-plugin.N phases are enabled by the publish.tomcat7-maven-plugin.N profile.
       This creates an and condition: both publish.tomcat7-maven-plugin.N (activated in profile.d)
@@ -203,8 +203,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     -->
     <publish.tomcat7-maven-plugin.1.requireProperties.phase>none</publish.tomcat7-maven-plugin.1.requireProperties.phase>
     <publish.tomcat7-maven-plugin.2.requireProperties.phase>none</publish.tomcat7-maven-plugin.2.requireProperties.phase>
-    <publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>none</publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>
-    <publish.tomcat7-maven-plugin.2.conditional-deploy-only.phase>none</publish.tomcat7-maven-plugin.2.conditional-deploy-only.phase>
     <publish.tomcat7-maven-plugin.1.read-project-properties.phase>none</publish.tomcat7-maven-plugin.1.read-project-properties.phase>
     <publish.tomcat7-maven-plugin.2.read-project-properties.phase>none</publish.tomcat7-maven-plugin.2.read-project-properties.phase>
     <!--
@@ -3907,14 +3905,13 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
-        <publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>
+        <publish.tomcat7-maven-plugin.deploy-sequence.phase>deploy</publish.tomcat7-maven-plugin.deploy-sequence.phase>
         <!--
           publish.tomcat7-maven-plugin.N phases are enabled by the publish.tomcat7-maven-plugin.N profile.
           This creates an and condition: both publish.tomcat7-maven-plugin.N (activated in profile.d)
           and publish (activated on command line) profiles must be active for the actions to be taken.
         -->
         <publish.tomcat7-maven-plugin.1.requireProperties.phase>validate</publish.tomcat7-maven-plugin.1.requireProperties.phase>
-        <publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase>
         <publish.tomcat7-maven-plugin.1.read-project-properties.phase>install</publish.tomcat7-maven-plugin.1.read-project-properties.phase>
         <!-- Executions to be done on non-parallel builds only -->
         <publish.tomcat7-maven-plugin.1.requireProperties-non-parallel.phase>validate</publish.tomcat7-maven-plugin.1.requireProperties-non-parallel.phase>
@@ -3978,14 +3975,13 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.read-project-properties.phase>install</publish.tomcat7-maven-plugin.read-project-properties.phase>
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
-        <publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>
+        <publish.tomcat7-maven-plugin.deploy-sequence.phase>deploy</publish.tomcat7-maven-plugin.deploy-sequence.phase>
         <!--
           publish.tomcat7-maven-plugin.N phases are enabled by the publish.tomcat7-maven-plugin.N profile.
           This creates an and condition: both publish.tomcat7-maven-plugin.N (activated in profile.d)
           and publish (activated on command line) profiles must be active for the actions to be taken.
         -->
         <publish.tomcat7-maven-plugin.2.requireProperties.phase>validate</publish.tomcat7-maven-plugin.2.requireProperties.phase>
-        <publish.tomcat7-maven-plugin.2.conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.2.conditional-deploy-only.phase>
         <publish.tomcat7-maven-plugin.2.read-project-properties.phase>install</publish.tomcat7-maven-plugin.2.read-project-properties.phase>
         <!-- Executions to be done on non-parallel builds only -->
         <publish.tomcat7-maven-plugin.2.requireProperties-non-parallel.phase>validate</publish.tomcat7-maven-plugin.2.requireProperties-non-parallel.phase>
@@ -4204,6 +4200,11 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         project.properties['publish.tomcat7-maven-plugin.' + N + '.server.password'] = server.password
                       }
                     }
+                    // Get Maven PID for tomcat7:deploy-only passing progress output directly to parent Maven's standard out (Linux only)
+                    // See "use-linux-fd-trick" below
+                    def name = java.lang.management.ManagementFactory.runtimeMXBean.name  // Example: "12345@hostname"
+                    def pid = name.split('@')[0]
+                    project.properties['publish.tomcat7-maven-plugin.maven.pid'] = pid
                   ]]></source>
                 </configuration>
               </execution>
@@ -4213,7 +4214,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
             <groupId>org.apache.tomcat.maven</groupId><artifactId>tomcat7-maven-plugin</artifactId>
             <executions>
               <execution>
-                <!-- Phase set to "none", this execution is conditionally triggered within conditional-tomcat7-deploy-only below -->
+                <!-- Phase set to "none", this execution is conditionally triggered within publish.tomcat7-maven-plugin.deploy-sequence below -->
                 <id>publish.tomcat7-maven-plugin.1.deploy-only</id><phase>none</phase><goals><goal>deploy-only</goal></goals>
                 <configuration>
                   <charset>UTF-8</charset>
@@ -4224,7 +4225,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 </configuration>
               </execution>
               <execution>
-                <!-- Phase set to "none", this execution is conditionally triggered within conditional-tomcat7-deploy-only below -->
+                <!-- Phase set to "none", this execution is conditionally triggered within publish.tomcat7-maven-plugin.deploy-sequence below -->
                 <id>publish.tomcat7-maven-plugin.2.deploy-only</id><phase>none</phase><goals><goal>deploy-only</goal></goals>
                 <configuration>
                   <charset>UTF-8</charset>
@@ -4232,55 +4233,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                   <path>${publish.tomcat7-maven-plugin.2.path}${publish.tomcat7-maven-plugin.2.path.extra}</path>
                   <update>${publish.tomcat7-maven-plugin.2.update}</update>
                   <url>${publish.tomcat7-maven-plugin.2.url}</url>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId><artifactId>exec-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>publish.tomcat7-maven-plugin.1.conditional-deploy-only</id><phase>${publish.tomcat7-maven-plugin.1.conditional-deploy-only.phase}</phase><goals><goal>exec</goal></goals>
-                <configuration>
-                  <skip>${publish.tomcat7-maven-plugin.1.running-war-file.matches}</skip>
-                  <executable>mvn</executable>
-                  <!-- -B made colors not work -->
-                  <commandlineArgs>
-                    --quiet
-                    -N
-                    -P${publish.tomcat7-maven-plugin.capture-maven-context.activeProfiles}
-                    ${publish.tomcat7-maven-plugin.capture-maven-context.additionalArguments}
-                    tomcat7:deploy-only@publish.tomcat7-maven-plugin.1.deploy-only
-                  </commandlineArgs>
-                  <environmentVariables>
-                    <JAVA_HOME>${env.JAVA_HOME}</JAVA_HOME>
-                    <MAVEN_OPTS>${env.MAVEN_OPTS}</MAVEN_OPTS>
-                    <!-- Seen in Jenkins builds -->
-                    <!-- TODO: Review set -e inside Jenkinsfile for if any more that we should include -->
-                    <!-- <JAVA_TOOL_OPTIONS>${env.JAVA_TOOL_OPTIONS}</JAVA_TOOL_OPTIONS> -->
-                  </environmentVariables>
-                </configuration>
-              </execution>
-              <execution>
-                <id>publish.tomcat7-maven-plugin.2.conditional-deploy-only</id><phase>${publish.tomcat7-maven-plugin.2.conditional-deploy-only.phase}</phase><goals><goal>exec</goal></goals>
-                <configuration>
-                  <skip>${publish.tomcat7-maven-plugin.2.running-war-file.matches}</skip>
-                  <executable>mvn</executable>
-                  <!-- -B made colors not work -->
-                  <commandlineArgs>
-                    --quiet
-                    -N
-                    -P${publish.tomcat7-maven-plugin.capture-maven-context.activeProfiles}
-                    ${publish.tomcat7-maven-plugin.capture-maven-context.additionalArguments}
-                    tomcat7:deploy-only@publish.tomcat7-maven-plugin.2.deploy-only
-                  </commandlineArgs>
-                  <environmentVariables>
-                    <JAVA_HOME>${env.JAVA_HOME}</JAVA_HOME>
-                    <MAVEN_OPTS>${env.MAVEN_OPTS}</MAVEN_OPTS>
-                    <!-- Seen in Jenkins builds -->
-                    <!-- TODO: Review set -e inside Jenkinsfile for if any more that we should include -->
-                    <!-- <JAVA_TOOL_OPTIONS>${env.JAVA_TOOL_OPTIONS}</JAVA_TOOL_OPTIONS> -->
-                  </environmentVariables>
                 </configuration>
               </execution>
             </executions>
@@ -4434,9 +4386,18 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 </configuration>
               </execution>
               <execution>
-                <id>publish.tomcat7-maven-plugin.after-conditional-deploy-only</id><phase>${publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase}</phase><goals><goal>run</goal></goals>
+                <id>publish.tomcat7-maven-plugin.deploy-sequence</id><phase>${publish.tomcat7-maven-plugin.deploy-sequence.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target xmlns:if="ant:if" xmlns:unless="ant:unless">
+                    <condition property="publish.tomcat7-maven-plugin.is-unix" value="true">
+                      <os family="unix" />
+                    </condition>
+                    <condition if:set="publish.tomcat7-maven-plugin.is-unix" property="publish.tomcat7-maven-plugin.use-linux-fd-trick" value="true">
+                      <and>
+                        <available file="/proc/${publish.tomcat7-maven-plugin.maven.pid}/fd/1" />
+                        <available file="/proc/${publish.tomcat7-maven-plugin.maven.pid}/fd/2" />
+                      </and>
+                    </condition>
                     <macrodef name="warmup-get-url-with-retry">
                       <attribute name="N" />
                       <attribute name="num" />
@@ -4453,11 +4414,40 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         </retry>
                       </sequential>
                     </macrodef>
-                    <macrodef name="after-conditional-deploy-only">
+                    <macrodef name="deploy-sequence">
                       <attribute name="N" />
                       <sequential>
-                        <!-- When running WAR file matches, deploy-only is not called by conditional-deploy-only, so Tomcat restart and related steps are not required -->
+                        <!-- When running WAR file matches, do not deploy to Tomcat or perform any related steps like Tomcat restart -->
                         <sequential unless:true="${publish.tomcat7-maven-plugin.@{N}.running-war-file.matches}">
+                          <!-- Deploy to Tomcat by calling tomcat7:deploy-only in a sub-process -->
+                          <!-- Linux: pass output and error directly to parent Maven's stdout and stderr to see upload progress -->
+                          <exec
+                            if:set="publish.tomcat7-maven-plugin.use-linux-fd-trick"
+                            executable="mvn"
+                            failonerror="true"
+                            output="/proc/${publish.tomcat7-maven-plugin.maven.pid}/fd/1"
+                            error="/proc/${publish.tomcat7-maven-plugin.maven.pid}/fd/2"
+                          >
+                            <arg value="--color=always"/>
+                            <arg value="--quiet"/>
+                            <arg value="-N"/>
+                            <arg value="-P${publish.tomcat7-maven-plugin.capture-maven-context.activeProfiles}"/>
+                            <arg line="${publish.tomcat7-maven-plugin.capture-maven-context.additionalArguments}"/>
+                            <arg value="tomcat7:deploy-only@publish.tomcat7-maven-plugin.@{N}.deploy-only"/>
+                          </exec>
+                          <!-- Non-Linux: No output progress -->
+                          <exec
+                            unless:set="publish.tomcat7-maven-plugin.use-linux-fd-trick"
+                            executable="mvn"
+                            failonerror="true"
+                          >
+                            <arg value="-B"/>
+                            <arg value="--quiet"/>
+                            <arg value="-N"/>
+                            <arg value="-P${publish.tomcat7-maven-plugin.capture-maven-context.activeProfiles}"/>
+                            <arg line="${publish.tomcat7-maven-plugin.capture-maven-context.additionalArguments}"/>
+                            <arg value="tomcat7:deploy-only@publish.tomcat7-maven-plugin.@{N}.deploy-only"/>
+                          </exec>
                           <!-- Tomcat is only restarted for non-parallel deployments -->
                           <echo if:true="${publish.tomcat7-maven-plugin.@{N}.parallel-deployment.active}" level="debug" message="Not restarting Tomcat #@{N} because is parallel deployment" />
                           <sequential unless:true="${publish.tomcat7-maven-plugin.@{N}.parallel-deployment.active}">
@@ -4543,8 +4533,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       </sequential>
                     </macrodef>
                     <parallel>
-                      <after-conditional-deploy-only if:true="${publish.tomcat7-maven-plugin.1.active}" N="1" />
-                      <after-conditional-deploy-only if:true="${publish.tomcat7-maven-plugin.2.active}" N="2" />
+                      <deploy-sequence if:true="${publish.tomcat7-maven-plugin.1.active}" N="1" />
+                      <deploy-sequence if:true="${publish.tomcat7-maven-plugin.2.active}" N="2" />
                     </parallel>
                   </target>
                 </configuration>
