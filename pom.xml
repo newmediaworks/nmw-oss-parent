@@ -4367,8 +4367,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                   <target xmlns:if="ant:if" xmlns:unless="ant:unless">
                     <condition property="warmup-sleep.required">
                       <or>
-                        <equals arg1="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" arg2="true" />
-                        <equals arg1="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" arg2="true" />
+                        <equals arg1="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" arg2="false" />
+                        <equals arg1="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" arg2="false" />
                       </or>
                     </condition>
                     <sleep if:set="warmup-sleep.required" seconds="10" />
