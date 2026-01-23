@@ -196,7 +196,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <publish.tomcat7-maven-plugin.capture-maven-context.phase>none</publish.tomcat7-maven-plugin.capture-maven-context.phase>
     <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>none</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
     <publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>none</publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>
-    <publish.tomcat7-maven-plugin.warmup-get-url.phase>none</publish.tomcat7-maven-plugin.warmup-get-url.phase>
     <!--
       publish.tomcat7-maven-plugin.N phases are enabled by the publish.tomcat7-maven-plugin.N profile.
       This creates an and condition: both publish.tomcat7-maven-plugin.N (activated in profile.d)
@@ -3909,7 +3908,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
         <publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>
-        <publish.tomcat7-maven-plugin.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.warmup-get-url.phase>
         <!--
           publish.tomcat7-maven-plugin.N phases are enabled by the publish.tomcat7-maven-plugin.N profile.
           This creates an and condition: both publish.tomcat7-maven-plugin.N (activated in profile.d)
@@ -3981,7 +3979,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.capture-maven-context.phase>initialize</publish.tomcat7-maven-plugin.capture-maven-context.phase>
         <publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>verify</publish.tomcat7-maven-plugin.existing-war-file-fingerprints.phase>
         <publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>deploy</publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase>
-        <publish.tomcat7-maven-plugin.warmup-get-url.phase>deploy</publish.tomcat7-maven-plugin.warmup-get-url.phase>
         <!--
           publish.tomcat7-maven-plugin.N phases are enabled by the publish.tomcat7-maven-plugin.N profile.
           This creates an and condition: both publish.tomcat7-maven-plugin.N (activated in profile.d)
@@ -4440,6 +4437,22 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <id>publish.tomcat7-maven-plugin.after-conditional-deploy-only</id><phase>${publish.tomcat7-maven-plugin.after-conditional-deploy-only.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target xmlns:if="ant:if" xmlns:unless="ant:unless">
+                    <macrodef name="warmup-get-url-with-retry">
+                      <attribute name="N" />
+                      <attribute name="num" />
+                      <sequential>
+                        <retry if:set="publish.tomcat7-maven-plugin.@{N}.warmup-get-url.@{num}" retrycount="12" retrydelay="15000">
+                          <!-- TODO: Optional username/password for projects that need it -->
+                          <get
+                            retries="1"
+                            src="${publish.tomcat7-maven-plugin.@{N}.warmup-get-url.@{num}}"
+                            dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/warmup-get-url.@{num}.response"
+                            maxtime="120"
+                            httpusecaches="false"
+                          />
+                        </retry>
+                      </sequential>
+                    </macrodef>
                     <macrodef name="after-conditional-deploy-only">
                       <attribute name="N" />
                       <sequential>
@@ -4523,48 +4536,15 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                             </retry>
                           </sequential>
                         </sequential>
-                        <!-- TODO: Warmup / test HTTP requests here, always done even if deploy-only not done -->
-                      </sequential>
-                    </macrodef>
-                    <parallel>
-                      <after-conditional-deploy-only if:true="${publish.tomcat7-maven-plugin.1.active}" N="1" />
-                      <after-conditional-deploy-only if:true="${publish.tomcat7-maven-plugin.2.active}" N="2" />
-                    </parallel>
-                  </target>
-                </configuration>
-              </execution>
-              <execution>
-                <id>publish.tomcat7-maven-plugin.warmup-get-url</id><phase>${publish.tomcat7-maven-plugin.warmup-get-url.phase}</phase><goals><goal>run</goal></goals>
-                <configuration>
-                  <target xmlns:if="ant:if">
-                    <macrodef name="warmup-get-url-with-retry">
-                      <attribute name="N" />
-                      <attribute name="num" />
-                      <sequential>
-                        <retry if:set="publish.tomcat7-maven-plugin.@{N}.warmup-get-url.@{num}" retrycount="12" retrydelay="15000">
-                          <!-- TODO: Optional username/password for projects that need it -->
-                          <get
-                            retries="1"
-                            src="${publish.tomcat7-maven-plugin.@{N}.warmup-get-url.@{num}}"
-                            dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/warmup-get-url.@{num}.response"
-                            maxtime="120"
-                            httpusecaches="false"
-                          />
-                        </retry>
-                      </sequential>
-                    </macrodef>
-                    <macrodef name="warmup-get-url">
-                      <attribute name="N" />
-                      <sequential>
-                        <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}" />
+                        <!-- Warmup / test HTTP requests -->
                         <warmup-get-url-with-retry N="@{N}" num="1" />
                         <warmup-get-url-with-retry N="@{N}" num="2" />
                         <warmup-get-url-with-retry N="@{N}" num="3" />
                       </sequential>
                     </macrodef>
                     <parallel>
-                      <warmup-get-url if:true="${publish.tomcat7-maven-plugin.1.active}" N="1" />
-                      <warmup-get-url if:true="${publish.tomcat7-maven-plugin.2.active}" N="2" />
+                      <after-conditional-deploy-only if:true="${publish.tomcat7-maven-plugin.1.active}" N="1" />
+                      <after-conditional-deploy-only if:true="${publish.tomcat7-maven-plugin.2.active}" N="2" />
                     </parallel>
                   </target>
                 </configuration>
