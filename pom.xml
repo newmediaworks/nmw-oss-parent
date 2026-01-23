@@ -209,12 +209,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <publish.tomcat7-maven-plugin.1.read-project-properties.phase>none</publish.tomcat7-maven-plugin.1.read-project-properties.phase>
     <publish.tomcat7-maven-plugin.2.read-project-properties.phase>none</publish.tomcat7-maven-plugin.2.read-project-properties.phase>
     <!--
-      publish.tomcat7-maven-plugin.parallel-deployment phases are enabled by any of the publish.tomcat7-maven-plugin.N.parallel-deployment profiles.
-      This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
-      and publish (activated on command line) profiles must be active for the actions to be taken.
-    -->
-    <publish.tomcat7-maven-plugin.parallel.deployment-version-verify.phase>none</publish.tomcat7-maven-plugin.parallel.deployment-version-verify.phase>
-    <!--
       publish.tomcat7-maven-plugin.N.parallel-deployment phases are enabled by the publish.tomcat7-maven-plugin.N.parallel-deployment profile.
       This creates an and condition: both publish.tomcat7-maven-plugin.N.parallel-deployment (activated in profile.d)
       and publish (activated on command line) profiles must be active for the actions to be taken.
@@ -4053,12 +4047,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <publish.tomcat7-maven-plugin.1.update>false</publish.tomcat7-maven-plugin.1.update>
         <publish.tomcat7-maven-plugin.1.path.extra>##${publish.tomcat7-maven-plugin.parallel.deployment.version}</publish.tomcat7-maven-plugin.1.path.extra>
         <!--
-          publish.tomcat7-maven-plugin.parallel-deployment phases are enabled by any of the publish.tomcat7-maven-plugin.N.parallel-deployment profiles.
-          This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
-          and publish (activated on command line) profiles must be active for the actions to be taken.
-        -->
-        <publish.tomcat7-maven-plugin.parallel.deployment-version-verify.phase>deploy</publish.tomcat7-maven-plugin.parallel.deployment-version-verify.phase>
-        <!--
           publish.tomcat7-maven-plugin.N.parallel-deployment phases are enabled by the publish.tomcat7-maven-plugin.N.parallel-deployment profile.
           This creates an and condition: both publish.tomcat7-maven-plugin.N.parallel-deployment (activated in profile.d)
           and publish (activated on command line) profiles must be active for the actions to be taken.
@@ -4079,12 +4067,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!-- Parallel deployment settings -->
         <publish.tomcat7-maven-plugin.2.update>false</publish.tomcat7-maven-plugin.2.update>
         <publish.tomcat7-maven-plugin.2.path.extra>##${publish.tomcat7-maven-plugin.parallel.deployment.version}</publish.tomcat7-maven-plugin.2.path.extra>
-        <!--
-          publish.tomcat7-maven-plugin.parallel-deployment phases are enabled by any of the publish.tomcat7-maven-plugin.N.parallel-deployment profiles.
-          This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
-          and publish (activated on command line) profiles must be active for the actions to be taken.
-        -->
-        <publish.tomcat7-maven-plugin.parallel.deployment-version-verify.phase>deploy</publish.tomcat7-maven-plugin.parallel.deployment-version-verify.phase>
         <!--
           publish.tomcat7-maven-plugin.N.parallel-deployment phases are enabled by the publish.tomcat7-maven-plugin.N.parallel-deployment profile.
           This creates an and condition: both publish.tomcat7-maven-plugin.N.parallel-deployment (activated in profile.d)
@@ -4515,6 +4497,31 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                               />
                             </sequential>
                           </retry>
+                          <!-- For parallel deployment only, verify the deployed version -->
+                          <sequential if:true="${publish.tomcat7-maven-plugin.@{N}.parallel-deployment.active}">
+                            <retry retrycount="12" retrydelay="15000">
+                              <sequential>
+                                <local name="publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running" />
+                                <get
+                                  retries="1"
+                                  username="${publish.tomcat7-maven-plugin.@{N}.server.username}"
+                                  password="${publish.tomcat7-maven-plugin.@{N}.server.password}"
+                                  src="${publish.tomcat7-maven-plugin.@{N}.GetParallelDeploymentVersion-url}"
+                                  dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/verify-parallel.deployment.version"
+                                  maxtime="120"
+                                  httpusecaches="false"
+                                />
+                                <loadfile property="publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running" srcFile="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/verify-parallel.deployment.version" />
+                                <condition property="publish.tomcat7-maven-plugin.@{N}.parallel.deployment.version.matches">
+                                  <equals arg1="${publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running}" arg2="${publish.tomcat7-maven-plugin.parallel.deployment.version}" />
+                                </condition>
+                                <fail
+                                  message="Tomcat #@{N}: Parallel deployment version mismatch.  Expected ${publish.tomcat7-maven-plugin.parallel.deployment.version}, got ${publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running}."
+                                  unless="publish.tomcat7-maven-plugin.@{N}.parallel.deployment.version.matches"
+                                />
+                              </sequential>
+                            </retry>
+                          </sequential>
                         </sequential>
                         <!-- TODO: Warmup / test HTTP requests here, always done even if deploy-only not done -->
                       </sequential>
@@ -4522,45 +4529,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                     <parallel>
                       <after-conditional-deploy-only if:true="${publish.tomcat7-maven-plugin.1.active}" N="1" />
                       <after-conditional-deploy-only if:true="${publish.tomcat7-maven-plugin.2.active}" N="2" />
-                    </parallel>
-                  </target>
-                </configuration>
-              </execution>
-              <execution>
-                <id>publish.tomcat7-maven-plugin.parallel.deployment-version-verify</id><phase>${publish.tomcat7-maven-plugin.parallel.deployment-version-verify.phase}</phase><goals><goal>run</goal></goals>
-                <configuration>
-                  <target xmlns:if="ant:if" xmlns:unless="ant:unless">
-                    <macrodef name="parallel-deployment-version-verify">
-                      <attribute name="N" />
-                      <sequential>
-                        <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}" />
-                        <retry retrycount="12" retrydelay="15000">
-                          <sequential>
-                            <local name="publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running" />
-                            <get
-                              retries="1"
-                              username="${publish.tomcat7-maven-plugin.@{N}.server.username}"
-                              password="${publish.tomcat7-maven-plugin.@{N}.server.password}"
-                              src="${publish.tomcat7-maven-plugin.@{N}.GetParallelDeploymentVersion-url}"
-                              dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/verify-parallel.deployment.version"
-                              maxtime="120"
-                              httpusecaches="false"
-                            />
-                            <loadfile property="publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running" srcFile="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/verify-parallel.deployment.version" />
-                            <condition property="publish.tomcat7-maven-plugin.@{N}.parallel.deployment.version.matches">
-                              <equals arg1="${publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running}" arg2="${publish.tomcat7-maven-plugin.parallel.deployment.version}" />
-                            </condition>
-                            <fail
-                              message="Tomcat #@{N}: Parallel deployment version mismatch.  Expected ${publish.tomcat7-maven-plugin.parallel.deployment.version}, got ${publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running}."
-                              unless="publish.tomcat7-maven-plugin.@{N}.parallel.deployment.version.matches"
-                            />
-                          </sequential>
-                        </retry>
-                      </sequential>
-                    </macrodef>
-                    <parallel>
-                      <parallel-deployment-version-verify if:true="${publish.tomcat7-maven-plugin.1.active}" unless:true="${publish.tomcat7-maven-plugin.1.running-war-file.matches}" N="1" />
-                      <parallel-deployment-version-verify if:true="${publish.tomcat7-maven-plugin.2.active}" unless:true="${publish.tomcat7-maven-plugin.2.running-war-file.matches}" N="2" />
                     </parallel>
                   </target>
                 </configuration>
