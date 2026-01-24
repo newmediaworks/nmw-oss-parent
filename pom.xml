@@ -208,6 +208,9 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     -->
     <publish.tomcat7-maven-plugin.1.requireProperties.phase>none</publish.tomcat7-maven-plugin.1.requireProperties.phase>
     <publish.tomcat7-maven-plugin.2.requireProperties.phase>none</publish.tomcat7-maven-plugin.2.requireProperties.phase>
+    <!-- Executions to be done on non-parallel builds only -->
+    <publish.tomcat7-maven-plugin.1.requireProperties-non-parallel.phase>none</publish.tomcat7-maven-plugin.1.requireProperties-non-parallel.phase>
+    <publish.tomcat7-maven-plugin.2.requireProperties-non-parallel.phase>none</publish.tomcat7-maven-plugin.2.requireProperties-non-parallel.phase>
     <!--
       publish.tomcat7-maven-plugin.N.parallel-deployment phases are enabled by the publish.tomcat7-maven-plugin.N.parallel-deployment profile.
       This creates an and condition: both publish.tomcat7-maven-plugin.N.parallel-deployment (activated in profile.d)
@@ -3938,47 +3941,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!-- Executions to be done on non-parallel builds only -->
         <publish.tomcat7-maven-plugin.1.requireProperties-non-parallel.phase>validate</publish.tomcat7-maven-plugin.1.requireProperties-non-parallel.phase>
       </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>publish.tomcat7-maven-plugin.1.requireProperties-non-parallel</id><phase>${publish.tomcat7-maven-plugin.1.requireProperties-non-parallel.phase}</phase><goals><goal>enforce</goal></goals>
-                <configuration>
-                  <rules>
-                    <requireProperty>
-                      <property>publish.tomcat7-maven-plugin.1.ssh-path</property>
-                      <message>Property 'publish.tomcat7-maven-plugin.1.ssh-path' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
-                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
-                    </requireProperty>
-                    <requireProperty>
-                      <property>publish.tomcat7-maven-plugin.1.tomcat-username</property>
-                      <message>Property 'publish.tomcat7-maven-plugin.1.tomcat-username' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
-                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
-                    </requireProperty>
-                    <requireProperty>
-                      <property>publish.tomcat7-maven-plugin.1.tomcat-hostname</property>
-                      <message>Property 'publish.tomcat7-maven-plugin.1.tomcat-hostname' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
-                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
-                    </requireProperty>
-                    <requireProperty>
-                      <property>publish.tomcat7-maven-plugin.1.tomcat-work</property>
-                      <message>Property 'publish.tomcat7-maven-plugin.1.tomcat-work' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
-                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
-                    </requireProperty>
-                    <requireProperty>
-                      <property>publish.tomcat7-maven-plugin.1.tomcat-path</property>
-                      <message>Property 'publish.tomcat7-maven-plugin.1.tomcat-path' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
-                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
-                    </requireProperty>
-                  </rules>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
     <profile>
       <id>publish.tomcat7-maven-plugin.2</id><activation><file><exists>profile.d/publish.tomcat7-maven-plugin.2</exists></file></activation>
@@ -4004,47 +3966,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <!-- Executions to be done on non-parallel builds only -->
         <publish.tomcat7-maven-plugin.2.requireProperties-non-parallel.phase>validate</publish.tomcat7-maven-plugin.2.requireProperties-non-parallel.phase>
       </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>publish.tomcat7-maven-plugin.2.requireProperties-non-parallel</id><phase>${publish.tomcat7-maven-plugin.2.requireProperties-non-parallel.phase}</phase><goals><goal>enforce</goal></goals>
-                <configuration>
-                  <rules>
-                    <requireProperty>
-                      <property>publish.tomcat7-maven-plugin.2.ssh-path</property>
-                      <message>Property 'publish.tomcat7-maven-plugin.2.ssh-path' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
-                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
-                    </requireProperty>
-                    <requireProperty>
-                      <property>publish.tomcat7-maven-plugin.2.tomcat-username</property>
-                      <message>Property 'publish.tomcat7-maven-plugin.2.tomcat-username' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
-                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
-                    </requireProperty>
-                    <requireProperty>
-                      <property>publish.tomcat7-maven-plugin.2.tomcat-hostname</property>
-                      <message>Property 'publish.tomcat7-maven-plugin.2.tomcat-hostname' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
-                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
-                    </requireProperty>
-                    <requireProperty>
-                      <property>publish.tomcat7-maven-plugin.2.tomcat-work</property>
-                      <message>Property 'publish.tomcat7-maven-plugin.2.tomcat-work' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
-                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
-                    </requireProperty>
-                    <requireProperty>
-                      <property>publish.tomcat7-maven-plugin.2.tomcat-path</property>
-                      <message>Property 'publish.tomcat7-maven-plugin.2.tomcat-path' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
-                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
-                    </requireProperty>
-                  </rules>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
     <profile>
       <!-- Parallel deployment -->
@@ -4171,6 +4092,70 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                     <requireProperty>
                       <property>publish.tomcat7-maven-plugin.2.GetWarFileFingerprint-url</property>
                       <message>Property 'publish.tomcat7-maven-plugin.2.GetWarFileFingerprint-url' is required when profile.d/publish.tomcat7-maven-plugin.2 exists.</message>
+                    </requireProperty>
+                  </rules>
+                </configuration>
+              </execution>
+              <execution>
+                <id>publish.tomcat7-maven-plugin.1.requireProperties-non-parallel</id><phase>${publish.tomcat7-maven-plugin.1.requireProperties-non-parallel.phase}</phase><goals><goal>enforce</goal></goals>
+                <configuration>
+                  <rules>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.1.ssh-path</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.1.ssh-path' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
+                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.1.tomcat-username</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.1.tomcat-username' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
+                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.1.tomcat-hostname</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.1.tomcat-hostname' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
+                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.1.tomcat-work</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.1.tomcat-work' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
+                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.1.tomcat-path</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.1.tomcat-path' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
+                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                  </rules>
+                </configuration>
+              </execution>
+              <execution>
+                <id>publish.tomcat7-maven-plugin.2.requireProperties-non-parallel</id><phase>${publish.tomcat7-maven-plugin.2.requireProperties-non-parallel.phase}</phase><goals><goal>enforce</goal></goals>
+                <configuration>
+                  <rules>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.2.ssh-path</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.2.ssh-path' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
+                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.2.tomcat-username</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.2.tomcat-username' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
+                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.2.tomcat-hostname</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.2.tomcat-hostname' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
+                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.2.tomcat-work</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.2.tomcat-work' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
+                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>publish.tomcat7-maven-plugin.2.tomcat-path</property>
+                      <message>Property 'publish.tomcat7-maven-plugin.2.tomcat-path' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
+                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
                     </requireProperty>
                   </rules>
                 </configuration>
