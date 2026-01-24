@@ -182,10 +182,18 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <default-install.phase>install</default-install.phase>
     <default-deploy.phase>deploy</default-deploy.phase>
     <!-- Flag that lets other places know this profile is active -->
+    <POST-SNAPSHOT.active>false</POST-SNAPSHOT.active>
+    <nexus.active>false</nexus.active>
+    <coverage.active>false</coverage.active>
+    <development.active>false</development.active>
+    <jenkins.active>false</jenkins.active>
+    <jenkins-build-altjdk.active>false</jenkins-build-altjdk.active>
+    <jenkins-deploy.active>false</jenkins-deploy.active>
     <publish.tomcat7-maven-plugin.1.active>false</publish.tomcat7-maven-plugin.1.active>
     <publish.tomcat7-maven-plugin.2.active>false</publish.tomcat7-maven-plugin.2.active>
     <publish.tomcat7-maven-plugin.1.parallel-deployment.active>false</publish.tomcat7-maven-plugin.1.parallel-deployment.active>
     <publish.tomcat7-maven-plugin.2.parallel-deployment.active>false</publish.tomcat7-maven-plugin.2.parallel-deployment.active>
+    <publish.active>false</publish.active>
     <!--
       publish.tomcat7-maven-plugin phases are enabled by any of the publish.tomcat7-maven-plugin.N profiles.
       This creates an and condition: both publish.tomcat7-maven-plugin (activated in profile.d)
@@ -2194,6 +2202,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <profile>
       <id>POST-SNAPSHOT</id>
       <properties>
+        <!-- Flag that lets other places know this profile is active -->
+        <POST-SNAPSHOT.active>true</POST-SNAPSHOT.active>
+
         <POST-SNAPSHOT>-POST-SNAPSHOT</POST-SNAPSHOT>
       </properties>
       <build>
@@ -3208,6 +3219,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     </profile>
     <profile>
       <id>nexus</id>
+      <properties>
+        <!-- Flag that lets other places know this profile is active -->
+        <nexus.active>true</nexus.active>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -3408,6 +3423,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         See https://medium.com/codeops/code-coverage-with-jacoco-sonarqube-and-maven-59fb04a9a383
       -->
       <id>coverage</id>
+      <properties>
+        <!-- Flag that lets other places know this profile is active -->
+        <coverage.active>true</coverage.active>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -3427,6 +3446,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <profile>
       <id>development</id><activation><file><exists>profile.d/development</exists></file></activation>
       <properties>
+        <!-- Flag that lets other places know this profile is active -->
+        <development.active>true</development.active>
+
         <!-- devMode and negated notDevMode flags, enabled in "development" profile, enforced must be disabled in "publish" profile -->
         <devMode>true</devMode>
         <notDevMode>false</notDevMode>
@@ -3626,6 +3648,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <profile>
       <id>jenkins</id>
       <properties>
+        <!-- Flag that lets other places know this profile is active -->
+        <jenkins.active>true</jenkins.active>
+
         <!-- Only done in "Build" phase -->
         <!-- <pgpverify-check.phase>validate</pgpverify-check.phase> -->
         <!-- <git.commit.time.phase>validate</git.commit.time.phase> -->
@@ -3712,6 +3737,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       <!-- The "Build" phase on a JDK other than the deployJdk.  These may skip some of the checks that are done on deployJdk. -->
       <id>jenkins-build-altjdk</id>
       <properties>
+        <!-- Flag that lets other places know this profile is active -->
+        <jenkins-build-altjdk.active>true</jenkins-build-altjdk.active>
+
         <!-- Only done in "Build" phase on deployJdk-->
         <!-- <pgpverify-check.phase>validate</pgpverify-check.phase> -->
         <!-- <git.commit.time.phase>validate</git.commit.time.phase> -->
@@ -3757,6 +3785,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <profile>
       <id>jenkins-deploy</id>
       <properties>
+        <!-- Flag that lets other places know this profile is active -->
+        <jenkins-deploy.active>true</jenkins-deploy.active>
+
         <!-- Only done in "Build" phase -->
         <!-- <pgpverify-check.phase>validate</pgpverify-check.phase> -->
         <!-- <git.commit.time.phase>validate</git.commit.time.phase> -->
@@ -4064,6 +4095,10 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     </profile>
     <profile>
       <id>publish</id>
+      <properties>
+        <!-- Flag that lets other places know this profile is active -->
+        <publish.active>true</publish.active>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -4248,7 +4283,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       project.setProperty('publish.tomcat7-maven-plugin.maven.pid', pid)
 
                       // Explicit whitelist of user properties to forward
-                      def whitelist = [
+                      def userPropertyWhitelist = [
                         // Used in parallel deployment version
                         'current.datetime',
                         'jenkins.buildNumber',
@@ -4263,7 +4298,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       if (Boolean.getBoolean(System.getProperty("maven.debug"))) {
                         additionalArguments.append("-X")
                       }
-                      whitelist.each { name ->
+                      userPropertyWhitelist.each { name ->
                         def value = mavenProject.properties[name] ?: System.getProperty(name)
                         if (value != null || mavenProject.properties.containsKey(name)) {
                           if (additionalArguments.length() > 0) {
@@ -4277,9 +4312,27 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       }
                       project.setProperty('publish.tomcat7-maven-plugin.additionalArguments', additionalArguments.toString())
 
-                      // Active profiles
-                      def profiles = mavenProject.activeProfiles*.id
-                      project.setProperty('publish.tomcat7-maven-plugin.activeProfiles', profiles.join(","))
+                      // Explicit whitelist of active profiles forward
+                      // Note: Since automatic detection of active profiles does not include those from parent,
+                      // this requires each of the profiles here to set an "<profile-name>.active" boolean property
+                      // when active.
+                      def profileWhitelist = [
+                        // Profiles from developer/bin/m[dip]*
+                        'POST-SNAPSHOT',
+                        'development',
+                        'nexus',
+                        'publish',
+                        // Additional from Jenkinsfile
+                        'coverage',
+                        'jenkins',
+                        'jenkins-build-altjdk',
+                        'jenkins-deploy',
+                      ]
+
+                      def activeProfiles = profileWhitelist.findAll { name ->
+                          Boolean.parseBoolean(mavenProject.properties[name + '.active'])
+                      }.join(',')
+                      project.setProperty('publish.tomcat7-maven-plugin.activeProfiles', activeProfiles)
                     ]]></groovy>
                     <echo level="debug" message="publish.tomcat7-maven-plugin.maven.pid: ${publish.tomcat7-maven-plugin.maven.pid}" />
                     <echo level="debug" message="publish.tomcat7-maven-plugin.additionalArguments: ${publish.tomcat7-maven-plugin.additionalArguments}" />
