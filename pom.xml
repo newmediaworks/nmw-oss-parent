@@ -4120,11 +4120,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       <message>Property 'publish.tomcat7-maven-plugin.1.tomcat-work' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
                         and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
                     </requireProperty>
-                    <requireProperty>
-                      <property>publish.tomcat7-maven-plugin.1.tomcat-path</property>
-                      <message>Property 'publish.tomcat7-maven-plugin.1.tomcat-path' is required when profile.d/publish.tomcat7-maven-plugin.1 exists
-                        and profile.d/publish.tomcat7-maven-plugin.1.parallel-deployment does not exist.</message>
-                    </requireProperty>
                   </rules>
                 </configuration>
               </execution>
@@ -4150,11 +4145,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                     <requireProperty>
                       <property>publish.tomcat7-maven-plugin.2.tomcat-work</property>
                       <message>Property 'publish.tomcat7-maven-plugin.2.tomcat-work' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
-                        and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
-                    </requireProperty>
-                    <requireProperty>
-                      <property>publish.tomcat7-maven-plugin.2.tomcat-path</property>
-                      <message>Property 'publish.tomcat7-maven-plugin.2.tomcat-path' is required when profile.d/publish.tomcat7-maven-plugin.2 exists
                         and profile.d/publish.tomcat7-maven-plugin.2.parallel-deployment does not exist.</message>
                     </requireProperty>
                   </rules>
@@ -4433,17 +4423,20 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                           <echo if:true="${publish.tomcat7-maven-plugin.@{N}.parallel-deployment.active}" level="debug" message="Not restarting Tomcat #@{N} because is parallel deployment" />
                           <sequential unless:true="${publish.tomcat7-maven-plugin.@{N}.parallel-deployment.active}">
                             <sleep seconds="5" />
-                            <!-- Restart Tomcat -->
-                            <echo level="info" message="Restarting Tomcat #@{N}" />
-                            <exec executable="${publish.tomcat7-maven-plugin.@{N}.ssh-path}" failonerror="true">
-                              <arg value="-oControlPath=none"/>
-                              <arg value="-T"/>
-                              <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-username}@${publish.tomcat7-maven-plugin.@{N}.tomcat-hostname}"/>
-                              <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-path}"/>
-                              <arg value="start"/>
-                            </exec>
+                            <echo unless:set="publish.tomcat7-maven-plugin.@{N}.tomcat-path" level="debug" message="Not restarting Tomcat #@{N} because 'publish.tomcat7-maven-plugin.@{N}.tomcat-path' property not set" />
+                            <sequential if:set="publish.tomcat7-maven-plugin.@{N}.tomcat-path">
+                              <!-- Restart Tomcat -->
+                              <echo level="info" message="Restarting Tomcat #@{N}" />
+                              <exec executable="${publish.tomcat7-maven-plugin.@{N}.ssh-path}" failonerror="true">
+                                <arg value="-oControlPath=none"/>
+                                <arg value="-T"/>
+                                <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-username}@${publish.tomcat7-maven-plugin.@{N}.tomcat-hostname}"/>
+                                <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-path}"/>
+                                <arg value="start"/>
+                              </exec>
+                              <sleep seconds="1" />
+                            </sequential>
                             <!-- Delete Tomcat work to ensure full JSP recompilation -->
-                            <sleep seconds="1" />
                             <exec executable="${publish.tomcat7-maven-plugin.@{N}.ssh-path}" failonerror="true">
                               <arg value="-oControlPath=none" />
                               <arg value="-T" />
