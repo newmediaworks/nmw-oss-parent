@@ -4356,9 +4356,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                     <macrodef name="deploy-sequence">
                       <attribute name="N" />
                       <sequential>
-                        <!-- Compute the expected MD5 fingerprint -->
+                        <!-- Compute the expected SHA-256 fingerprint -->
                         <local name="publish.tomcat7-maven-plugin.build-war-file-fingerprint" />
-                        <checksum file="${project.build.directory}/${project.build.finalName}.war" property="publish.tomcat7-maven-plugin.build-war-file-fingerprint" />
+                        <checksum algorithm="SHA-256" file="${project.build.directory}/${project.build.finalName}.war" property="publish.tomcat7-maven-plugin.build-war-file-fingerprint" />
                         <echo level="debug" message="Tomcat #@{N}: publish.tomcat7-maven-plugin.build-war-file-fingerprint = ${publish.tomcat7-maven-plugin.build-war-file-fingerprint}" />
                         <!-- Download the current fingerprint running on the server -->
                         <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}" />
@@ -4479,7 +4479,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                               <echo level="debug" message="Tomcat #@{N}: publish.tomcat7-maven-plugin.published-war-file-fingerprint = ${publish.tomcat7-maven-plugin.published-war-file-fingerprint}" />
                               <echo level="debug" message="Tomcat #@{N}: publish.tomcat7-maven-plugin.published-war-file-fingerprint.matches = ${publish.tomcat7-maven-plugin.published-war-file-fingerprint.matches}" />
                               <fail
-                                message="Tomcat #@{N}: WAR file MD5 fingerprint mismatch.  Expected ${publish.tomcat7-maven-plugin.build-war-file-fingerprint}, got ${publish.tomcat7-maven-plugin.published-war-file-fingerprint}."
+                                message="Tomcat #@{N}: WAR file SHA-256 fingerprint mismatch..  Expected ${publish.tomcat7-maven-plugin.build-war-file-fingerprint}, got ${publish.tomcat7-maven-plugin.published-war-file-fingerprint}."
                                 unless="publish.tomcat7-maven-plugin.published-war-file-fingerprint.matches"
                               />
                             </sequential>
