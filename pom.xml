@@ -4391,6 +4391,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         <echo level="info" unless:true="${publish.tomcat7-maven-plugin.running-war-file.matches}" message="Tomcat deployment #@{N} will proceed because new build does not match running fingerprint: build = ${publish.tomcat7-maven-plugin.build-war-file-fingerprint}, running = ${publish.tomcat7-maven-plugin.running-war-file-fingerprint}" />
                         <!-- When running WAR file matches, do not deploy to Tomcat or perform any related steps like Tomcat restart -->
                         <sequential unless:true="${publish.tomcat7-maven-plugin.running-war-file.matches}">
+                          <!-- Disallow deploy when the global disallow property is set, using that property in the message -->
+                          <fail if:set="publish.tomcat7-maven-plugin.disallow-deploy-reason" message="Deployment to Tomcat #@{N} disallowed: ${publish.tomcat7-maven-plugin.disallow-deploy-reason}" />
+                          <!-- Disallow deploy when the per-Tomcat disallow property is set, using that property in the message -->
+                          <fail if:set="publish.tomcat7-maven-plugin.@{N}.disallow-deploy-reason" message="Deployment to Tomcat #@{N} disallowed: ${publish.tomcat7-maven-plugin.@{N}.disallow-deploy-reason}" />
                           <!-- Deploy to Tomcat by calling tomcat7:deploy-only in a sub-process -->
                           <!-- Linux: pass output and error directly to parent Maven's stdout and stderr to see upload progress -->
                           <exec
