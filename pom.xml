@@ -4326,6 +4326,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                       <attribute name="suffix" />
                       <attribute name="num" />
                       <sequential>
+                        <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin@{suffix}" />
                         <retry if:set="publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}" retrycount="12" retrydelay="15000">
                           <sequential>
                             <!-- Request without username/password -->
