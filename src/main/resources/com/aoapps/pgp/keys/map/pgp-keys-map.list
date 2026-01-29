@@ -182,3 +182,6 @@ jakarta.ejb:jakarta.ejb-api:[4.0.1,) = 0x1ED4BDDDD0BAAFCDE503C3727D310B363F9B637
 
 # Used by net.sargue:java-time-jsptags-2.0.2
 net.sargue:java-time-jsptags = 0x56C2742ED5907F995483BBEE7670A553E691B2AB
+
+# Used by org.apache.bcel:bcel:6.12.0
+org.apache.bcel:bcel:[6.12.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
