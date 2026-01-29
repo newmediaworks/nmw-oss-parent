@@ -170,45 +170,15 @@ com.google.re2j:re2j:[1.8,) = 0x1DE5E75F1040F8B0DC3A4320F2B5B2B1B9B1180A
 ro.isdc.wro4j:wro4j-core = 0xF562D7199B36C900B913FAA29224D6A53F200F59
 
 # Used by git-commit-id-maven-plugin-7.0.0
-jakarta.json:jakarta.json-api = 0xD58760A74BFDE983E890B455005B27E7CA8E530D
 org.eclipse.parsson:parsson = 0xD3A5F0B70EC567467BEFAA0E938C5A2AF83B88FA
-
-# TODO: Get merged into upstream pgp-keys-map.list
-org.jfree:jfreechart:[1.5.6,) = 0x76A0712EF95F23AD27E6577C9BCEE37704862F01
-commons-fileupload:commons-fileupload:[1.6.0,) = 0x2DB4F1EF0FA761ECC4EA935C86FDC7E2A11262CB
-com.github.spotbugs:spotbugs:[4.9.4,) = 0xD878D4A823EAE731B729D1A8D2151178A123C97F
-com.github.spotbugs:spotbugs-annotations:[4.9.4,) = 0xD878D4A823EAE731B729D1A8D2151178A123C97F
-
-# Used by checkstyle-12.1.1
-com.google.j2objc:j2objc-annotations:[3.1,) = 0xC3259D20DAEC4ACE6D57CC83340B090F727518D8
-
-# Used by postgresql-42.7.8
-org.postgresql:postgresql:[42.7.8,) = 0x86C0144909739E0EE3D1B545305F296EAC47556B
-
-# Used by stripe-java-30.2.0
-com.stripe:stripe-java:[30.2.0,) = 0x13A4324B0B93CA280A36CBFD0D50EC67EBBEE268
 
 # Used by jakarta.platform:jakarta.jakartaee-web-api:10.0.0
 jakarta.authentication:jakarta.authentication-api:[3.0.0,) = 0x2F08881E334A507E3FF71D5DBB2DEBC3BCE7937A
-jakarta.enterprise:jakarta.enterprise.cdi-api:[4.0.1,) = 0x6ACBD5073DF2D83775916804928B20E9AD5298CC
-jakarta.websocket:jakarta.websocket-api:[2.1.1,) = 0xFFA95B1DD22FE6D191189AFA718E28A09E67016B
 jakarta.json.bind:jakarta.json.bind-api:[3.0.0,) = 0xB69AD394A2EF787D34918BF6DB1159D716E4C00E
-jakarta.enterprise:jakarta.enterprise.lang-model:[4.0.1,) = 0x6ACBD5073DF2D83775916804928B20E9AD5298CC
-jakarta.interceptor:jakarta.interceptor-api:[2.1.0,) = 0xFCB6AD548AF8C07562B7F2BCB801691488C03901
 jakarta.faces:jakarta.faces-api:[4.0.1,) = 0x01B236E9B215FD7FAC094EB9E7A47E4F41F0B3E5
 jakarta.platform:jakarta.jakartaee-web-api:[10.0.0,) = 0x71C524683EEC78CCAD6D5554049FE94F2D5DAD9D
-jakarta.websocket:jakarta.websocket-client-api:[2.1.1,) = 0xFFA95B1DD22FE6D191189AFA718E28A09E67016B
 jakarta.security.enterprise:jakarta.security.enterprise-api:[3.0.0,) = 0xD8176C0C4B31042360BCE81E01061A667879AAD9
 jakarta.ejb:jakarta.ejb-api:[4.0.1,) = 0x1ED4BDDDD0BAAFCDE503C3727D310B363F9B6378
-
-# Used by commons-text-1.15.0
-org.apache.commons:commons-text:[1.15.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
-
-# Used by commons-exec-1.6.0
-org.apache.commons:commons-exec:[1.6.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
-
-# Used by io.github.weblegacy:struts-1.5.0-RC2
-io.github.weblegacy = 0x21F8E7306A66F05CAA8046F8480913580EEEC892
 
 # Used by net.sargue:java-time-jsptags-2.0.2
 net.sargue:java-time-jsptags = 0x56C2742ED5907F995483BBEE7670A553E691B2AB
