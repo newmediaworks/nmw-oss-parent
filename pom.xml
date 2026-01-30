@@ -24,12 +24,12 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.25.0</version>
+  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.25.0-POST-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
     <!-- Must be set to ${git.commit.time} for snapshots or ISO 8601 timestamp for releases. -->
-    <project.build.outputTimestamp>2026-01-30T02:40:34Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>${git.commit.time}</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Extensions -->
@@ -1221,7 +1221,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <connection>scm:git:git://github.com/ao-apps/ao-oss-parent.git</connection>
     <developerConnection>scm:git:git@github.com:ao-apps/ao-oss-parent.git</developerConnection>
     <url>https://github.com/ao-apps/ao-oss-parent</url>
-    <tag>ao-oss-parent-1.25.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
@@ -4423,7 +4423,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                               </condition>
                               <echo level="debug" message="Tomcat #@{N}: publish.tomcat7-maven-plugin.published-war-file-fingerprint = ${publish.tomcat7-maven-plugin.published-war-file-fingerprint}" />
                               <echo level="debug" message="Tomcat #@{N}: publish.tomcat7-maven-plugin.published-war-file-fingerprint.matches = ${publish.tomcat7-maven-plugin.published-war-file-fingerprint.matches}" />
-                              <fail message="Tomcat #@{N}: WAR file SHA-256 fingerprint mismatch..  Expected ${publish.tomcat7-maven-plugin.build-war-file-fingerprint}, got ${publish.tomcat7-maven-plugin.published-war-file-fingerprint}." unless="publish.tomcat7-maven-plugin.published-war-file-fingerprint.matches" />
+                              <fail message="Tomcat #@{N}: WAR file SHA-256 fingerprint mismatch.. Expected ${publish.tomcat7-maven-plugin.build-war-file-fingerprint}, got ${publish.tomcat7-maven-plugin.published-war-file-fingerprint}." unless="publish.tomcat7-maven-plugin.published-war-file-fingerprint.matches" />
                             </sequential>
                           </retry>
                           <!-- For parallel deployment only, verify the deployed version -->
@@ -4436,7 +4436,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                                 <condition property="publish.tomcat7-maven-plugin.@{N}.parallel.deployment.version.matches">
                                   <equals arg1="${publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running}" arg2="${publish.tomcat7-maven-plugin.parallel.deployment.version}" />
                                 </condition>
-                                <fail message="Tomcat #@{N}: Parallel deployment version mismatch.  Expected ${publish.tomcat7-maven-plugin.parallel.deployment.version}, got ${publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running}." unless="publish.tomcat7-maven-plugin.@{N}.parallel.deployment.version.matches" />
+                                <fail message="Tomcat #@{N}: Parallel deployment version mismatch. Expected ${publish.tomcat7-maven-plugin.parallel.deployment.version}, got ${publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running}." unless="publish.tomcat7-maven-plugin.@{N}.parallel.deployment.version.matches" />
                               </sequential>
                             </retry>
                           </sequential>
