@@ -93,7 +93,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.apache.commons.commons-lang3.version>3.20.0</org.apache.commons.commons-lang3.version>
     <org.apache.commons.commons-text.version>1.15.0</org.apache.commons.commons-text.version>
     <commons-codec.commons-codec.version>1.21.0</commons-codec.commons-codec.version>
-    <com.aoapps.ao-checkstyle-config.version>1.5.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-checkstyle-config.version>
+    <com.aoapps.ao-checkstyle-config.version>1.5.0${POST-SNAPSHOT}</com.aoapps.ao-checkstyle-config.version>
     <org.codehaus.groovy.groovy-ant.version>3.0.25</org.codehaus.groovy.groovy-ant.version>
 
     <!-- Maven Javadoc Plugin -->
