@@ -80,20 +80,20 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
     <!-- Plugin Dependencies -->
     <org.simplify4u.pgp-keys-map.version>2026.01.20</org.simplify4u.pgp-keys-map.version>
-    <com.aoapps.pgp-keys-map.version>1.14.1<!-- ${POST-SNAPSHOT} --></com.aoapps.pgp-keys-map.version>
+    <com.aoapps.pgp-keys-map.version>1.14.1${POST-SNAPSHOT}</com.aoapps.pgp-keys-map.version>
     <org.codehaus.mojo.extra-enforcer-rules.version>1.11.0</org.codehaus.mojo.extra-enforcer-rules.version>
     <org.ow2.asm.asm.version>9.9.1</org.ow2.asm.asm.version>
     <com.puppycrawl.tools.checkstyle.version>13.1.0</com.puppycrawl.tools.checkstyle.version>
     <com.github.spotbugs.spotbugs.version>4.9.8</com.github.spotbugs.spotbugs.version>
-    <com.aoapps.ao-javadoc-offline.version>3.5.0<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-javadoc-offline.version>
-    <com.aoapps.ao-javadoc-resources.version>1.1.1<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-javadoc-resources.version>
-    <com.aoapps.ao-ant-tasks.version>1.2.1<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-ant-tasks.version>
+    <com.aoapps.ao-javadoc-offline.version>3.5.0${POST-SNAPSHOT}</com.aoapps.ao-javadoc-offline.version>
+    <com.aoapps.ao-javadoc-resources.version>1.1.1${POST-SNAPSHOT}</com.aoapps.ao-javadoc-resources.version>
+    <com.aoapps.ao-ant-tasks.version>1.2.1${POST-SNAPSHOT}</com.aoapps.ao-ant-tasks.version>
     <org.apache.commons.commons-compress.version>1.28.0</org.apache.commons.commons-compress.version>
     <commons-io.commons-io.version>2.21.0</commons-io.commons-io.version>
     <org.apache.commons.commons-lang3.version>3.20.0</org.apache.commons.commons-lang3.version>
     <org.apache.commons.commons-text.version>1.15.0</org.apache.commons.commons-text.version>
     <commons-codec.commons-codec.version>1.21.0</commons-codec.commons-codec.version>
-    <com.aoapps.ao-checkstyle-config.version>1.5.0<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-checkstyle-config.version>
+    <com.aoapps.ao-checkstyle-config.version>1.5.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-checkstyle-config.version>
     <org.codehaus.groovy.groovy-ant.version>3.0.25</org.codehaus.groovy.groovy-ant.version>
 
     <!-- Maven Javadoc Plugin -->
@@ -2975,7 +2975,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <id>empty-javadoc-generate-element-list</id><phase>${empty-javadoc-generate-element-list.phase}</phase><goals><goal>run</goal></goals>
                 <configuration>
                   <target>
-                    <echo file="${project.basedir}/src/main/javadoc/element-list" message="module:${module.name}&#xA;" encoding="${project.build.sourceEncoding}" />
+                    <echo file="${project.basedir}/src/main/javadoc/element-list" message="module:${module.name}&#10;" encoding="${project.build.sourceEncoding}" />
                   </target>
                 </configuration>
               </execution>
@@ -4244,7 +4244,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <configuration>
                   <target xmlns:if="ant:if" xmlns:unless="ant:unless">
                     <!-- Load Groovy support -->
-                    <taskdef name="groovy" classname="org.codehaus.groovy.ant.Groovy" />
+                    <taskdef name="groovy" classname="org.codehaus.groovy.ant.Groovy"/>
                     <!-- Capture the Maven environment -->
                     <groovy><![CDATA[
                       def mavenProject = project.references['maven.project']
@@ -4329,9 +4329,25 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         <retry if:set="publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}" retrycount="12" retrydelay="15000">
                           <sequential>
                             <!-- Request without username/password -->
-                            <get unless:set="publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.username" retries="1" src="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}}" dest="${project.build.directory}/publish.tomcat7-maven-plugin@{suffix}/warmup-get-url.@{num}.response" maxtime="120" httpusecaches="false" />
+                            <get
+                              unless:set="publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.username"
+                              retries="1"
+                              src="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}}"
+                              dest="${project.build.directory}/publish.tomcat7-maven-plugin@{suffix}/warmup-get-url.@{num}.response"
+                              maxtime="120"
+                              httpusecaches="false"
+                            />
                             <!-- Otherwise, request with username/password -->
-                            <get if:set="publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.username" retries="1" username="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.username}" password="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.password}" src="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}}" dest="${project.build.directory}/publish.tomcat7-maven-plugin@{suffix}/warmup-get-url.@{num}.response" maxtime="120" httpusecaches="false" />
+                            <get
+                              if:set="publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.username"
+                              retries="1"
+                              username="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.username}"
+                              password="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}.password}"
+                              src="${publish.tomcat7-maven-plugin@{suffix}.warmup-get-url.@{num}}"
+                              dest="${project.build.directory}/publish.tomcat7-maven-plugin@{suffix}/warmup-get-url.@{num}.response"
+                              maxtime="120"
+                              httpusecaches="false"
+                            />
                           </sequential>
                         </retry>
                       </sequential>
@@ -4345,12 +4361,28 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                         <echo level="debug" message="Tomcat #@{N}: publish.tomcat7-maven-plugin.build-war-file-fingerprint = ${publish.tomcat7-maven-plugin.build-war-file-fingerprint}" />
                         <!-- Download the current fingerprint running on the server -->
                         <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}" />
-                        <get retries="4" username="${publish.tomcat7-maven-plugin.@{N}.server.username}" password="${publish.tomcat7-maven-plugin.@{N}.server.password}" src="${publish.tomcat7-maven-plugin.@{N}.GetWarFileFingerprint-url}" dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/running-war-file-fingerprint" maxtime="20" httpusecaches="false" ignoreerrors="true" />
+                        <get
+                          retries="4"
+                          username="${publish.tomcat7-maven-plugin.@{N}.server.username}"
+                          password="${publish.tomcat7-maven-plugin.@{N}.server.password}"
+                          src="${publish.tomcat7-maven-plugin.@{N}.GetWarFileFingerprint-url}"
+                          dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/running-war-file-fingerprint"
+                          maxtime="20"
+                          httpusecaches="false"
+                          ignoreerrors="true"
+                        />
                         <local name="publish.tomcat7-maven-plugin.running-war-file-fingerprint.exists" />
-                        <available file="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/running-war-file-fingerprint" property="publish.tomcat7-maven-plugin.running-war-file-fingerprint.exists" />
+                        <available
+                          file="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/running-war-file-fingerprint"
+                          property="publish.tomcat7-maven-plugin.running-war-file-fingerprint.exists"
+                        />
                         <local name="publish.tomcat7-maven-plugin.running-war-file-fingerprint" />
-                        <loadfile if:set="publish.tomcat7-maven-plugin.running-war-file-fingerprint.exists" property="publish.tomcat7-maven-plugin.running-war-file-fingerprint" srcFile="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/running-war-file-fingerprint" />
-                        <echo unless:set="publish.tomcat7-maven-plugin.running-war-file-fingerprint" level="warning" message="Tomcat #@{N}: Unable to determine running fingerprint. Check logfiles for info messages from &lt;get&gt;." />
+                        <loadfile
+                            if:set="publish.tomcat7-maven-plugin.running-war-file-fingerprint.exists"
+                            property="publish.tomcat7-maven-plugin.running-war-file-fingerprint"
+                            srcFile="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/running-war-file-fingerprint"
+                        />
+                        <echo unless:set="publish.tomcat7-maven-plugin.running-war-file-fingerprint" level="warning" message="Tomcat #@{N}: Unable to determine running fingerprint.  Check logfiles for info messages from &lt;get&gt;." />
                         <property name="publish.tomcat7-maven-plugin.running-war-file-fingerprint" value="UNKNOWN" />
                         <echo level="debug" message="Tomcat #@{N}: publish.tomcat7-maven-plugin.running-war-file-fingerprint = ${publish.tomcat7-maven-plugin.running-war-file-fingerprint}" />
                         <!-- Set as property to true/false based on if this matches the expected fingerprint -->
@@ -4369,22 +4401,32 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                           <fail if:set="publish.tomcat7-maven-plugin.@{N}.disallow-deploy-reason" message="Deployment to Tomcat #@{N} disallowed: ${publish.tomcat7-maven-plugin.@{N}.disallow-deploy-reason}" />
                           <!-- Deploy to Tomcat by calling tomcat7:deploy-only in a sub-process -->
                           <!-- Linux: pass output and error directly to parent Maven's stdout and stderr to see upload progress -->
-                          <exec if:set="publish.tomcat7-maven-plugin.use-linux-fd-trick" executable="mvn" failonerror="true" output="/proc/${publish.tomcat7-maven-plugin.maven.pid}/fd/1" error="/proc/${publish.tomcat7-maven-plugin.maven.pid}/fd/2">
-                            <arg value="--color=always" />
-                            <arg value="--quiet" />
-                            <arg value="-N" />
-                            <arg value="-P${publish.tomcat7-maven-plugin.activeProfiles}" />
-                            <arg line="${publish.tomcat7-maven-plugin.additionalArguments}" />
-                            <arg value="tomcat7:deploy-only@publish.tomcat7-maven-plugin.@{N}.deploy-only" />
+                          <exec
+                            if:set="publish.tomcat7-maven-plugin.use-linux-fd-trick"
+                            executable="mvn"
+                            failonerror="true"
+                            output="/proc/${publish.tomcat7-maven-plugin.maven.pid}/fd/1"
+                            error="/proc/${publish.tomcat7-maven-plugin.maven.pid}/fd/2"
+                          >
+                            <arg value="--color=always"/>
+                            <arg value="--quiet"/>
+                            <arg value="-N"/>
+                            <arg value="-P${publish.tomcat7-maven-plugin.activeProfiles}"/>
+                            <arg line="${publish.tomcat7-maven-plugin.additionalArguments}"/>
+                            <arg value="tomcat7:deploy-only@publish.tomcat7-maven-plugin.@{N}.deploy-only"/>
                           </exec>
                           <!-- Non-Linux: No output progress -->
-                          <exec unless:set="publish.tomcat7-maven-plugin.use-linux-fd-trick" executable="mvn" failonerror="true">
-                            <arg value="-B" />
-                            <arg value="--quiet" />
-                            <arg value="-N" />
-                            <arg value="-P${publish.tomcat7-maven-plugin.activeProfiles}" />
-                            <arg line="${publish.tomcat7-maven-plugin.additionalArguments}" />
-                            <arg value="tomcat7:deploy-only@publish.tomcat7-maven-plugin.@{N}.deploy-only" />
+                          <exec
+                            unless:set="publish.tomcat7-maven-plugin.use-linux-fd-trick"
+                            executable="mvn"
+                            failonerror="true"
+                          >
+                            <arg value="-B"/>
+                            <arg value="--quiet"/>
+                            <arg value="-N"/>
+                            <arg value="-P${publish.tomcat7-maven-plugin.activeProfiles}"/>
+                            <arg line="${publish.tomcat7-maven-plugin.additionalArguments}"/>
+                            <arg value="tomcat7:deploy-only@publish.tomcat7-maven-plugin.@{N}.deploy-only"/>
                           </exec>
                           <!-- Tomcat is only restarted for non-parallel deployments -->
                           <echo if:true="${publish.tomcat7-maven-plugin.@{N}.parallel-deployment.active}" level="debug" message="Not restarting Tomcat #@{N} because is parallel deployment" />
@@ -4395,11 +4437,11 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                               <!-- Restart Tomcat -->
                               <echo level="info" message="Restarting Tomcat #@{N}" />
                               <exec executable="${publish.tomcat7-maven-plugin.@{N}.ssh-path}" failonerror="true">
-                                <arg value="-oControlPath=none" />
-                                <arg value="-T" />
-                                <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-username}@${publish.tomcat7-maven-plugin.@{N}.tomcat-hostname}" />
-                                <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-path}" />
-                                <arg value="start" />
+                                <arg value="-oControlPath=none"/>
+                                <arg value="-T"/>
+                                <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-username}@${publish.tomcat7-maven-plugin.@{N}.tomcat-hostname}"/>
+                                <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-path}"/>
+                                <arg value="start"/>
                               </exec>
                               <sleep seconds="1" />
                             </sequential>
@@ -4407,7 +4449,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                             <exec executable="${publish.tomcat7-maven-plugin.@{N}.ssh-path}" failonerror="true">
                               <arg value="-oControlPath=none" />
                               <arg value="-T" />
-                              <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-username}@${publish.tomcat7-maven-plugin.@{N}.tomcat-hostname}" />
+                              <arg value="${publish.tomcat7-maven-plugin.@{N}.tomcat-username}@${publish.tomcat7-maven-plugin.@{N}.tomcat-hostname}"/>
                               <arg value="bash -c 'if [ -d &quot;$1&quot; ] ; then find &quot;$1&quot; &quot;(&quot; -name &quot;*.java&quot; -or -name &quot;*.class&quot; &quot;)&quot; -delete ; fi' delete-tomcat-work '${publish.tomcat7-maven-plugin.@{N}.tomcat-work}'" />
                             </exec>
                           </sequential>
@@ -4418,7 +4460,15 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                           <mkdir dir="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}" />
                           <retry retrycount="12" retrydelay="15000">
                             <sequential>
-                              <get retries="1" username="${publish.tomcat7-maven-plugin.@{N}.server.username}" password="${publish.tomcat7-maven-plugin.@{N}.server.password}" src="${publish.tomcat7-maven-plugin.@{N}.GetWarFileFingerprint-url}" dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/published-war-file-fingerprint" maxtime="120" httpusecaches="false" />
+                              <get
+                                retries="1"
+                                username="${publish.tomcat7-maven-plugin.@{N}.server.username}"
+                                password="${publish.tomcat7-maven-plugin.@{N}.server.password}"
+                                src="${publish.tomcat7-maven-plugin.@{N}.GetWarFileFingerprint-url}"
+                                dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/published-war-file-fingerprint"
+                                maxtime="120"
+                                httpusecaches="false"
+                              />
                               <local name="publish.tomcat7-maven-plugin.published-war-file-fingerprint" />
                               <loadfile property="publish.tomcat7-maven-plugin.published-war-file-fingerprint" srcFile="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/published-war-file-fingerprint" />
                               <local name="publish.tomcat7-maven-plugin.published-war-file-fingerprint.matches" />
@@ -4427,20 +4477,34 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                               </condition>
                               <echo level="debug" message="Tomcat #@{N}: publish.tomcat7-maven-plugin.published-war-file-fingerprint = ${publish.tomcat7-maven-plugin.published-war-file-fingerprint}" />
                               <echo level="debug" message="Tomcat #@{N}: publish.tomcat7-maven-plugin.published-war-file-fingerprint.matches = ${publish.tomcat7-maven-plugin.published-war-file-fingerprint.matches}" />
-                              <fail message="Tomcat #@{N}: WAR file SHA-256 fingerprint mismatch.. Expected ${publish.tomcat7-maven-plugin.build-war-file-fingerprint}, got ${publish.tomcat7-maven-plugin.published-war-file-fingerprint}." unless="publish.tomcat7-maven-plugin.published-war-file-fingerprint.matches" />
+                              <fail
+                                message="Tomcat #@{N}: WAR file SHA-256 fingerprint mismatch..  Expected ${publish.tomcat7-maven-plugin.build-war-file-fingerprint}, got ${publish.tomcat7-maven-plugin.published-war-file-fingerprint}."
+                                unless="publish.tomcat7-maven-plugin.published-war-file-fingerprint.matches"
+                              />
                             </sequential>
                           </retry>
                           <!-- For parallel deployment only, verify the deployed version -->
                           <sequential if:true="${publish.tomcat7-maven-plugin.@{N}.parallel-deployment.active}">
                             <retry retrycount="12" retrydelay="15000">
                               <sequential>
-                                <get retries="1" username="${publish.tomcat7-maven-plugin.@{N}.server.username}" password="${publish.tomcat7-maven-plugin.@{N}.server.password}" src="${publish.tomcat7-maven-plugin.@{N}.GetParallelDeploymentVersion-url}" dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/verify-parallel.deployment.version" maxtime="120" httpusecaches="false" />
+                                <get
+                                  retries="1"
+                                  username="${publish.tomcat7-maven-plugin.@{N}.server.username}"
+                                  password="${publish.tomcat7-maven-plugin.@{N}.server.password}"
+                                  src="${publish.tomcat7-maven-plugin.@{N}.GetParallelDeploymentVersion-url}"
+                                  dest="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/verify-parallel.deployment.version"
+                                  maxtime="120"
+                                  httpusecaches="false"
+                                />
                                 <local name="publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running" />
                                 <loadfile property="publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running" srcFile="${project.build.directory}/publish.tomcat7-maven-plugin.@{N}/verify-parallel.deployment.version" />
                                 <condition property="publish.tomcat7-maven-plugin.@{N}.parallel.deployment.version.matches">
                                   <equals arg1="${publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running}" arg2="${publish.tomcat7-maven-plugin.parallel.deployment.version}" />
                                 </condition>
-                                <fail message="Tomcat #@{N}: Parallel deployment version mismatch. Expected ${publish.tomcat7-maven-plugin.parallel.deployment.version}, got ${publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running}." unless="publish.tomcat7-maven-plugin.@{N}.parallel.deployment.version.matches" />
+                                <fail
+                                  message="Tomcat #@{N}: Parallel deployment version mismatch.  Expected ${publish.tomcat7-maven-plugin.parallel.deployment.version}, got ${publish.tomcat7-maven-plugin.parallel.deployment-version-verify.running}."
+                                  unless="publish.tomcat7-maven-plugin.@{N}.parallel.deployment.version.matches"
+                                />
                               </sequential>
                             </retry>
                           </sequential>
@@ -4742,17 +4806,44 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                     <copy overwrite="true" file="${project.basedir}/README.md" todir="${project.build.directory}/substitute-templates" />
 
                     <!-- Replace the values in the build directory -->
-                    <replaceregexp file="${project.build.directory}/substitute-templates/README.md" match="\[!\[java: &amp;gt;= [0-9]+\]\(https://(.*)/ao-badges/java-[0-9]+\.svg\)\]\(.*\)" replace="[![java: &amp;gt;= ${javase.release}](https://\1/ao-badges/java-${javase.release}.svg)](${javase.href})" byline="true" />
-                    <replaceregexp file="${project.build.directory}/substitute-templates/README.md" match="\[!\[(java|jakarta) ee: &amp;gt;= [0-9]+\]\(https://(.*)/ao-badges/(javaee|jakartaee)-[0-9]+\.svg\)\]\(.*\)" replace="[![${javadoc.link.javaee.type}: &amp;gt;= ${javaee.version}](https://\2/ao-badges/${javadoc.link.javaee.type}-${javaee.version}.svg)](${jakartaee.href})" byline="true" />
+                    <replaceregexp
+                      file="${project.build.directory}/substitute-templates/README.md"
+                      match="\[!\[java: &amp;gt;= [0-9]+\]\(https://(.*)/ao-badges/java-[0-9]+\.svg\)\]\(.*\)"
+                      replace="[![java: &amp;gt;= ${javase.release}](https://\1/ao-badges/java-${javase.release}.svg)](${javase.href})"
+                      byline="true"
+                    />
+                    <replaceregexp
+                      file="${project.build.directory}/substitute-templates/README.md"
+                      match="\[!\[(java|jakarta) ee: &amp;gt;= [0-9]+\]\(https://(.*)/ao-badges/(javaee|jakartaee)-[0-9]+\.svg\)\]\(.*\)"
+                      replace="[![${javadoc.link.javaee.type}: &amp;gt;= ${javaee.version}](https://\2/ao-badges/${javadoc.link.javaee.type}-${javaee.version}.svg)](${jakartaee.href})"
+                      byline="true"
+                    />
                     <!-- Split "javaee" into "java ee" and "jakartaee" into "jakarta ee" -->
-                    <replaceregexp file="${project.build.directory}/substitute-templates/README.md" match="\[!\[(java|jakarta)ee: &amp;gt;= ([0-9]+)\]" replace="[![\1 ee: &amp;gt;= \2]" byline="true" />
+                    <replaceregexp
+                      file="${project.build.directory}/substitute-templates/README.md"
+                      match="\[!\[(java|jakarta)ee: &amp;gt;= ([0-9]+)\]"
+                      replace="[![\1 ee: &amp;gt;= \2]"
+                      byline="true"
+                    />
 
                     <!-- Move into place only if changed -->
                     <condition property="readme.matches" value="true">
-                      <filesmatch file1="${project.build.directory}/substitute-templates/README.md" file2="${project.basedir}/README.md" />
+                      <filesmatch
+                        file1="${project.build.directory}/substitute-templates/README.md"
+                        file2="${project.basedir}/README.md"
+                      />
                     </condition>
-                    <copy unless:set="readme.matches" overwrite="true" file="${project.build.directory}/substitute-templates/README.md" tofile="${project.basedir}/README.md" />
-                    <echo if:set="readme.matches" message="README.md unchanged" level="info" />
+                    <copy
+                      unless:set="readme.matches"
+                      overwrite="true"
+                      file="${project.build.directory}/substitute-templates/README.md"
+                      tofile="${project.basedir}/README.md"
+                    />
+                    <echo
+                      if:set="readme.matches"
+                      message="README.md unchanged"
+                      level="info"
+                    />
                   </target>
                 </configuration>
               </execution>
@@ -4787,8 +4878,18 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                     <copy overwrite="true" file="${project.basedir}/book/pom.xml" todir="${project.build.directory}/substitute-templates/book" />
 
                     <!-- Replace the values in the build directory -->
-                    <replaceregexp file="${project.build.directory}/substitute-templates/book/pom.xml" match="&lt;!-- Java .* --&gt;(\n *)&lt;documented\.javase\.version&gt;.*&lt;/documented\.javase\.version&gt;(\n *)&lt;documented\.javadoc\.link\.javase&gt;.*&lt;/documented\.javadoc\.link\.javase&gt;" replace="&lt;!-- Java ${javase.version} --&gt;\1&lt;documented.javase.version&gt;${javase.version}&lt;/documented.javase.version&gt;\2&lt;documented.javadoc.link.javase&gt;\\\$\{javadoc.link.javase.${javase.release}\}&lt;/documented.javadoc.link.javase&gt;" flags="m" />
-                    <replaceregexp file="${project.build.directory}/substitute-templates/book/pom.xml" match="&lt;!-- (Java|Jakarta) EE .* --&gt;(\n *)&lt;documented\.javaee\.version&gt;.*&lt;/documented\.javaee\.version&gt;(\n *)&lt;documented\.javadoc\.link\.javaee&gt;.*&lt;/documented\.javadoc\.link\.javaee&gt;" replace="&lt;!-- \1 EE ${javaee.version} --&gt;\2&lt;documented.javaee.version&gt;${javaee.version}&lt;/documented.javaee.version&gt;\3&lt;documented.javadoc.link.javaee&gt;\\\$\{javadoc.link.${javadoc.link.javaee.type}.${javaee.version}\}&lt;/documented.javadoc.link.javaee&gt;" flags="m" />
+                    <replaceregexp
+                      file="${project.build.directory}/substitute-templates/book/pom.xml"
+                      match="&lt;!-- Java .* --&gt;(\n *)&lt;documented\.javase\.version&gt;.*&lt;/documented\.javase\.version&gt;(\n *)&lt;documented\.javadoc\.link\.javase&gt;.*&lt;/documented\.javadoc\.link\.javase&gt;"
+                      replace="&lt;!-- Java ${javase.version} --&gt;\1&lt;documented.javase.version&gt;${javase.version}&lt;/documented.javase.version&gt;\2&lt;documented.javadoc.link.javase&gt;\\\$\{javadoc.link.javase.${javase.release}\}&lt;/documented.javadoc.link.javase&gt;"
+                      flags="m"
+                    />
+                    <replaceregexp
+                      file="${project.build.directory}/substitute-templates/book/pom.xml"
+                      match="&lt;!-- (Java|Jakarta) EE .* --&gt;(\n *)&lt;documented\.javaee\.version&gt;.*&lt;/documented\.javaee\.version&gt;(\n *)&lt;documented\.javadoc\.link\.javaee&gt;.*&lt;/documented\.javadoc\.link\.javaee&gt;"
+                      replace="&lt;!-- \1 EE ${javaee.version} --&gt;\2&lt;documented.javaee.version&gt;${javaee.version}&lt;/documented.javaee.version&gt;\3&lt;documented.javadoc.link.javaee&gt;\\\$\{javadoc.link.${javadoc.link.javaee.type}.${javaee.version}\}&lt;/documented.javadoc.link.javaee&gt;"
+                      flags="m"
+                    />
 
                     <!-- Verify documented.javase.version matches expected -->
                     <loadfile property="book-pom.documented.javase.version" srcFile="${project.build.directory}/substitute-templates/book/pom.xml">
@@ -4797,7 +4898,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                           <regexp pattern=".*&lt;documented\.javase\.version&gt;(.*)&lt;/documented\.javase\.version&gt;.*" />
                         </linecontainsregexp>
                         <tokenfilter>
-                          <replaceregex pattern=".*&lt;documented\.javase\.version&gt;(.*)&lt;/documented\.javase\.version&gt;.*" replace="\1" />
+                          <replaceregex
+                            pattern=".*&lt;documented\.javase\.version&gt;(.*)&lt;/documented\.javase\.version&gt;.*"
+                            replace="\1"
+                          />
                         </tokenfilter>
                       </filterchain>
                     </loadfile>
@@ -4819,7 +4923,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                           <regexp pattern=".*&lt;documented\.javadoc\.link\.javase&gt;.\{javadoc\.link\.javase\.(.*)\}&lt;/documented\.javadoc\.link\.javase&gt;.*" />
                         </linecontainsregexp>
                         <tokenfilter>
-                          <replaceregex pattern=".*&lt;documented\.javadoc\.link\.javase&gt;.\{javadoc\.link\.javase\.(.*)\}&lt;/documented\.javadoc\.link\.javase&gt;.*" replace="\1" />
+                          <replaceregex
+                            pattern=".*&lt;documented\.javadoc\.link\.javase&gt;.\{javadoc\.link\.javase\.(.*)\}&lt;/documented\.javadoc\.link\.javase&gt;.*"
+                            replace="\1"
+                          />
                         </tokenfilter>
                       </filterchain>
                     </loadfile>
@@ -4841,7 +4948,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                           <regexp pattern=".*&lt;documented\.javaee\.version&gt;(.*)&lt;/documented\.javaee\.version&gt;.*" />
                         </linecontainsregexp>
                         <tokenfilter>
-                          <replaceregex pattern=".*&lt;documented\.javaee\.version&gt;(.*)&lt;/documented\.javaee\.version&gt;.*" replace="\1" />
+                          <replaceregex
+                            pattern=".*&lt;documented\.javaee\.version&gt;(.*)&lt;/documented\.javaee\.version&gt;.*"
+                            replace="\1"
+                          />
                         </tokenfilter>
                       </filterchain>
                     </loadfile>
@@ -4863,7 +4973,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                           <regexp pattern=".*&lt;documented\.javadoc\.link\.javaee&gt;.\{javadoc\.link\.(?:javaee|jakartaee)\.(.*)\}&lt;/documented\.javadoc\.link\.javaee&gt;.*" />
                         </linecontainsregexp>
                         <tokenfilter>
-                          <replaceregex pattern=".*&lt;documented\.javadoc\.link\.javaee&gt;.\{javadoc\.link\.(?:javaee|jakartaee)\.(.*)\}&lt;/documented\.javadoc\.link\.javaee&gt;.*" replace="\1" />
+                          <replaceregex
+                            pattern=".*&lt;documented\.javadoc\.link\.javaee&gt;.\{javadoc\.link\.(?:javaee|jakartaee)\.(.*)\}&lt;/documented\.javadoc\.link\.javaee&gt;.*"
+                            replace="\1"
+                          />
                         </tokenfilter>
                       </filterchain>
                     </loadfile>
@@ -4880,10 +4993,22 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
                     <!-- Move into place only if changed -->
                     <condition property="book-pom.matches" value="true">
-                      <filesmatch file1="${project.build.directory}/substitute-templates/book/pom.xml" file2="${project.basedir}/book/pom.xml" />
+                      <filesmatch
+                        file1="${project.build.directory}/substitute-templates/book/pom.xml"
+                        file2="${project.basedir}/book/pom.xml"
+                      />
                     </condition>
-                    <copy unless:set="book-pom.matches" overwrite="true" file="${project.build.directory}/substitute-templates/book/pom.xml" tofile="${project.basedir}/book/pom.xml" />
-                    <echo if:set="book-pom.matches" message="book/pom.xml unchanged" level="info" />
+                    <copy
+                      unless:set="book-pom.matches"
+                      overwrite="true"
+                      file="${project.build.directory}/substitute-templates/book/pom.xml"
+                      tofile="${project.basedir}/book/pom.xml"
+                    />
+                    <echo
+                      if:set="book-pom.matches"
+                      message="book/pom.xml unchanged"
+                      level="info"
+                    />
                   </target>
                 </configuration>
               </execution>
