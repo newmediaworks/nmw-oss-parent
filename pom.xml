@@ -219,6 +219,8 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     -->
     <publish.tomcat7-maven-plugin.1.parallel-deployment.requireProperties.phase>none</publish.tomcat7-maven-plugin.1.parallel-deployment.requireProperties.phase>
     <publish.tomcat7-maven-plugin.2.parallel-deployment.requireProperties.phase>none</publish.tomcat7-maven-plugin.2.parallel-deployment.requireProperties.phase>
+    <!-- Do not do this Linux trickery in Jenkins builds, we might be sometimes missing some parts of the logging. -->
+    <publish.tomcat7-maven-plugin.allow-linux-fd-trick>true</publish.tomcat7-maven-plugin.allow-linux-fd-trick>
 
     <!-- The version of Java apidocs to link to, preferring https -->
     <!-- Note: This list matches ao-javadoc-offline and semanticcms-tag-reference -->
@@ -3699,6 +3701,8 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <default-deploy.phase>none</default-deploy.phase>
         <!-- Tomcat Deployment: Include Jenkins build number -->
         <publish.tomcat7-maven-plugin.parallel.deployment.version>${current.datetime}-${user.name}-build-${jenkins.buildNumber}</publish.tomcat7-maven-plugin.parallel.deployment.version>
+        <!-- Do not do this Linux trickery in Jenkins builds, we might be sometimes missing some parts of the logging. -->
+        <publish.tomcat7-maven-plugin.allow-linux-fd-trick>false</publish.tomcat7-maven-plugin.allow-linux-fd-trick>
       </properties>
       <build>
         <plugins>
@@ -4320,7 +4324,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                     <condition property="publish.tomcat7-maven-plugin.is-unix" value="true">
                       <os family="unix" />
                     </condition>
-                    <condition if:set="publish.tomcat7-maven-plugin.is-unix" property="publish.tomcat7-maven-plugin.use-linux-fd-trick" value="true">
+                    <condition if:set="publish.tomcat7-maven-plugin.is-unix" property="publish.tomcat7-maven-plugin.use-linux-fd-trick" value="${publish.tomcat7-maven-plugin.allow-linux-fd-trick}">
                       <and>
                         <available file="/proc/${publish.tomcat7-maven-plugin.maven.pid}/fd/1" />
                         <available file="/proc/${publish.tomcat7-maven-plugin.maven.pid}/fd/2" />
@@ -4407,7 +4411,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                           <!-- Deploy to Tomcat by calling tomcat7:deploy-only in a sub-process -->
                           <!-- Linux: pass output and error directly to parent Maven's stdout and stderr to see upload progress -->
                           <exec
-                            if:set="publish.tomcat7-maven-plugin.use-linux-fd-trick"
+                            if:true="publish.tomcat7-maven-plugin.use-linux-fd-trick"
                             executable="mvn"
                             failonerror="true"
                             output="/proc/${publish.tomcat7-maven-plugin.maven.pid}/fd/1"
@@ -4422,7 +4426,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                           </exec>
                           <!-- Non-Linux: No output progress -->
                           <exec
-                            unless:set="publish.tomcat7-maven-plugin.use-linux-fd-trick"
+                            unless:true="publish.tomcat7-maven-plugin.use-linux-fd-trick"
                             executable="mvn"
                             failonerror="true"
                           >
