@@ -37,7 +37,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2016-10-29T20:54:46-05:00"
-    dateModified="2026-02-03T00:34:51Z"
+    dateModified="2026-02-14T00:16:47Z"
   >
     <c:set var="latestRelease" value="1.26.0" />
     <c:if test="${
@@ -53,6 +53,10 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         scmUrl="@{project.scm.url}"
       >
         <!-- TODO: Integrate The Checker Framework into all builds? https://checkerframework.org/ -->
+        <ul>
+          <li>Updated plugin versions.</li>
+          <li>Updated to <ao:a href="https://checkstyle.org/releasenotes.html#Release_13.1.0">Checkstyle 13.1.0</ao:a>.</li>
+        </ul>
       </changelog:release>
     </c:if>
 
