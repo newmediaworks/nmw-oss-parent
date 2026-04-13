@@ -24,7 +24,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.26.0-POST-SNAPSHOT</version>
+  <groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.27.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
@@ -80,7 +80,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
     <!-- Plugin Dependencies -->
     <org.simplify4u.pgp-keys-map.version>2026.01.20</org.simplify4u.pgp-keys-map.version>
-    <com.aoapps.pgp-keys-map.version>1.14.1${POST-SNAPSHOT}</com.aoapps.pgp-keys-map.version>
+    <com.aoapps.pgp-keys-map.version>1.15.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.pgp-keys-map.version>
     <org.codehaus.mojo.extra-enforcer-rules.version>1.12.0</org.codehaus.mojo.extra-enforcer-rules.version>
     <org.ow2.asm.asm.version>9.9.1</org.ow2.asm.asm.version>
     <com.puppycrawl.tools.checkstyle.version>13.1.0</com.puppycrawl.tools.checkstyle.version>

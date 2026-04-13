@@ -188,3 +188,6 @@ org.apache.bcel:bcel:[6.12.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
 
 # Used by commons-codec:commons-codec:1.21.0
 commons-codec:commons-codec:[1.21.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
+
+# Used by commons-logging:commons-logging:1.3.6
+commons-logging:commons-logging:[1.3.6,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
