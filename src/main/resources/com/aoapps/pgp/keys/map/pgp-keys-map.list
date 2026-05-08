@@ -194,3 +194,6 @@ commons-logging:commons-logging:[1.3.6,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C2
 
 # Used by org.apache.ant:ant:1.10.17
 org.apache.ant:ant:[1.10.17,) = 0xBC26C53AF531F8B4B3F5930AAFBD3AF8EAFA72DA
+
+# Used by commons-io:commons-io:2.22.0
+commons-io:commons-io:[2.22.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
