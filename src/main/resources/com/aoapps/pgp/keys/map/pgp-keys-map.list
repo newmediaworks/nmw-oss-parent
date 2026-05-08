@@ -197,3 +197,6 @@ org.apache.ant:ant:[1.10.17,) = 0xBC26C53AF531F8B4B3F5930AAFBD3AF8EAFA72DA
 
 # Used by commons-io:commons-io:2.22.0
 commons-io:commons-io:[2.22.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
+
+# Used by jaxen:jaxen:2.0.1
+jaxen:jaxen:[2.0.1,) = 0x8FCD23073248F3C28EF9F80380EF47E549604C05
