@@ -37,7 +37,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     shortTitle="Changelog"
     tocLevels="1"
     datePublished="2019-05-24T19:05:12-05:00"
-    dateModified="2026-05-08T17:01:07Z"
+    dateModified="2026-05-25T23:15:05Z"
     allowRobots="false"
   >
     <c:set var="latestRelease" value="1.21.2" />
@@ -103,6 +103,13 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <li>For parallel builds, verifies deployed version matches expected version to catch quietly failing deployment scenarios.</li>
               <li>Both global and per-Tomcat warmup/test HTTP requests.</li>
             </ul>
+          </li>
+          <li>Java updates:
+            <ol>
+              <li>Java 25 is now current stable</li>
+              <li>Java 26 is now current stable</li>
+              <li>Java 27 is new beta</li>
+            </ol>
           </li>
         </ul>
       </changelog:release>
