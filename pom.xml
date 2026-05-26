@@ -85,7 +85,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <org.ow2.asm.asm.version>9.10</org.ow2.asm.asm.version>
     <com.puppycrawl.tools.checkstyle.version>13.4.2</com.puppycrawl.tools.checkstyle.version>
     <com.github.spotbugs.spotbugs.version>4.9.8</com.github.spotbugs.spotbugs.version>
-    <com.aoapps.ao-javadoc-offline.version>3.5.0${POST-SNAPSHOT}</com.aoapps.ao-javadoc-offline.version>
+    <com.aoapps.ao-javadoc-offline.version>3.6.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></com.aoapps.ao-javadoc-offline.version>
     <com.aoapps.ao-javadoc-resources.version>1.1.1${POST-SNAPSHOT}</com.aoapps.ao-javadoc-resources.version>
     <com.aoapps.ao-ant-tasks.version>1.2.1${POST-SNAPSHOT}</com.aoapps.ao-ant-tasks.version>
     <org.apache.commons.commons-compress.version>1.28.0</org.apache.commons.commons-compress.version>
@@ -242,7 +242,12 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <javadoc.link.javase.19>https://docs.oracle.com/en/java/javase/19/docs/api/</javadoc.link.javase.19>
     <javadoc.link.javase.20>https://docs.oracle.com/en/java/javase/20/docs/api/</javadoc.link.javase.20>
     <javadoc.link.javase.21>https://docs.oracle.com/en/java/javase/21/docs/api/</javadoc.link.javase.21>
-    <javadoc.link.javase.22>https://download.java.net/java/early_access/jdk22/docs/api/</javadoc.link.javase.22>
+    <javadoc.link.javase.22>https://docs.oracle.com/en/java/javase/22/docs/api/</javadoc.link.javase.22>
+    <javadoc.link.javase.23>https://docs.oracle.com/en/java/javase/23/docs/api/</javadoc.link.javase.23>
+    <javadoc.link.javase.24>https://docs.oracle.com/en/java/javase/24/docs/api/</javadoc.link.javase.24>
+    <javadoc.link.javase.25>https://docs.oracle.com/en/java/javase/25/docs/api/</javadoc.link.javase.25>
+    <javadoc.link.javase.26>https://docs.oracle.com/en/java/javase/26/docs/api/</javadoc.link.javase.26>
+    <javadoc.link.javase.27>https://download.java.net/java/early_access/jdk27/docs/api/</javadoc.link.javase.27>
     <!-- Note: Also add new Java versions to "update-readme" below -->
     <javase.href.5>https://www.oracle.com/java/technologies/javase/j2se5.0.html</javase.href.5>
     <javase.href.6>https://www.oracle.com/java/technologies/javase/javase-overview6.html</javase.href.6>
@@ -261,7 +266,12 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <javase.href.19>https://docs.oracle.com/en/java/javase/19/</javase.href.19>
     <javase.href.20>https://docs.oracle.com/en/java/javase/20/</javase.href.20>
     <javase.href.21>https://docs.oracle.com/en/java/javase/21/</javase.href.21>
-    <javase.href.22>https://openjdk.org/projects/jdk/22/</javase.href.22>
+    <javase.href.22>https://docs.oracle.com/en/java/javase/22/</javase.href.22>
+    <javase.href.23>https://docs.oracle.com/en/java/javase/23/</javase.href.23>
+    <javase.href.24>https://docs.oracle.com/en/java/javase/24/</javase.href.24>
+    <javase.href.25>https://docs.oracle.com/en/java/javase/25/</javase.href.25>
+    <javase.href.26>https://docs.oracle.com/en/java/javase/26/</javase.href.26>
+    <javase.href.27>https://openjdk.org/projects/jdk/27/</javase.href.27>
     <!-- Note: Also add new Java versions to "update-readme" below -->
 
     <!-- The Java EE apidocs to link to, preferring https -->
@@ -4773,6 +4783,21 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                     </condition>
                     <condition property="javase.href" value="${javase.href.22}">
                       <equals arg1="${javase.release}" arg2="22" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.23}">
+                      <equals arg1="${javase.release}" arg2="23" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.24}">
+                      <equals arg1="${javase.release}" arg2="24" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.25}">
+                      <equals arg1="${javase.release}" arg2="25" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.26}">
+                      <equals arg1="${javase.release}" arg2="26" />
+                    </condition>
+                    <condition property="javase.href" value="${javase.href.27}">
+                      <equals arg1="${javase.release}" arg2="27" />
                     </condition>
                     <!-- Note: versions added here must also be added to ao-badges:badges.inc.jspx:arg.javaseVersion -->
                     <fail unless="javase.href" message="Unexpected value for 'javase.release' when updating README.md: &quot;${javase.release}&quot;" />
