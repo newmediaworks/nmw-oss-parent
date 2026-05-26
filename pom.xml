@@ -2851,7 +2851,7 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                 <!-- Direct -->
                 <!-- Note: Note: This list matches ao-javadoc-offline:download.sh -->
                 <offlineLink>
-                  <url>http://sendmail-jilter.sourceforge.net/apidocs/</url>
+                  <url>https://sendmail-jilter.sourceforge.net/apidocs/</url>
                   <location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/com.sendmail/jilter</location>
                 </offlineLink>
                 <offlineLink>
