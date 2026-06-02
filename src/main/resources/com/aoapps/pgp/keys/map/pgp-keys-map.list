@@ -200,3 +200,7 @@ commons-io:commons-io:[2.22.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
 
 # Used by jaxen:jaxen:2.0.1
 jaxen:jaxen:[2.0.1,) = 0x8FCD23073248F3C28EF9F80380EF47E549604C05
+
+# Used by maven-dependency-plugin-3.11.0
+eu.maveniverse.maven.domtrip:domtrip-core:[1.5.1,) = 0x3F068505A1DF611935F03FB1A1011D0A89C9E497
+eu.maveniverse.maven.domtrip:domtrip-maven:[1.5.1,) = 0x3F068505A1DF611935F03FB1A1011D0A89C9E497
