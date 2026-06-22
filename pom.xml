@@ -2151,6 +2151,14 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <!-- Must be defined before "maven-antrun-plugin" workaround. -->
+        <groupId>org.apache.maven.plugins</groupId><artifactId>maven-shade-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <!-- Must be defined before "maven-antrun-plugin" workaround. -->
+        <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jarsigner-plugin</artifactId>
+      </plugin>
       <!--
         Make sure everything else is packaged before timestamp manipulation.
         This must be after the following plugins:
@@ -2161,6 +2169,8 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
           maven-war-plugin
           maven-source-plugin
           maven-javadoc-plugin
+          maven-shade-plugin
+          maven-jarsigner-plugin
       -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId>
