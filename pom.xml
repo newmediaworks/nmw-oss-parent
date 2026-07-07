@@ -3577,26 +3577,6 @@ along with ao-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
         <seo-javadoc-filter.phase>package</seo-javadoc-filter.phase>
         <generate-javadoc-sitemap.phase>package</generate-javadoc-sitemap.phase>
       </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>development-with-javadocs-enforce-profiles</id><goals><goal>enforce</goal></goals>
-                <configuration>
-                  <rules>
-                    <requireActiveProfile>
-                      <message>"development-with-javadocs" requires "development" profile</message>
-                      <profiles>development</profiles>
-                    </requireActiveProfile>
-                  </rules>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
     <!-- Optimize for fastest possible development build -->
     <profile>
