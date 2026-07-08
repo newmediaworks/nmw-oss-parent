@@ -207,3 +207,6 @@ eu.maveniverse.maven.domtrip:domtrip-maven:[1.5.1,) = 0x3F068505A1DF611935F03FB1
 
 # Used by spotbugs-4.10.2
 org.apache.ant:ant-launcher:[1.10.17,) = 0xBC26C53AF531F8B4B3F5930AAFBD3AF8EAFA72DA
+
+# Used by jtidy-1.0.5
+com.github.jtidy:jtidy:[1.0.5,) = noKey # was signed by 0x3FDEA7509C2E6ACFBAAE4E4C062F98BC833AC2BF
