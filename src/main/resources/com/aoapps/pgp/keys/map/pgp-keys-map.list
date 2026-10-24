@@ -223,3 +223,6 @@ commons-validator:commons-validator:[1.11.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5
 
 # Used by xmlbeans-5.4.0
 org.apache.xmlbeans:xmlbeans:[5.4.0,) = 0x6FFE44D6F720907EDBD75D84258E7A9DC3490481
+
+# Used by mysql-connector-j-26.10.0
+com.mysql:mysql-connector-j:[26.10.0,) = 0xAC0DEC49536DBA0E75C27D56E3BA60ACAC1A05AE
