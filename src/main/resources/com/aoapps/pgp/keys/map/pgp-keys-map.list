@@ -226,3 +226,7 @@ org.apache.xmlbeans:xmlbeans:[5.4.0,) = 0x6FFE44D6F720907EDBD75D84258E7A9DC34904
 
 # Used by mysql-connector-j-26.10.0
 com.mysql:mysql-connector-j:[26.10.0,) = 0xAC0DEC49536DBA0E75C27D56E3BA60ACAC1A05AE
+
+# Used by maven-surefire-plugin-3.6.0
+org.apache.maven.plugins:maven-surefire-plugin:[3.6.0,) = 0x716EE302674CDBB2E660E1B44DB5EA09F2E3C800
+org.apache.maven.surefire:*:[3.6.0,) = 0x716EE302674CDBB2E660E1B44DB5EA09F2E3C800
