@@ -175,7 +175,6 @@ org.eclipse.parsson:parsson = 0xD3A5F0B70EC567467BEFAA0E938C5A2AF83B88FA
 
 # Used by jakarta.platform:jakarta.jakartaee-web-api:10.0.0
 jakarta.authentication:jakarta.authentication-api:[3.0.0,) = 0x2F08881E334A507E3FF71D5DBB2DEBC3BCE7937A
-jakarta.json.bind:jakarta.json.bind-api:[3.0.0,) = 0xB69AD394A2EF787D34918BF6DB1159D716E4C00E
 jakarta.faces:jakarta.faces-api:[4.0.1,) = 0x01B236E9B215FD7FAC094EB9E7A47E4F41F0B3E5
 jakarta.platform:jakarta.jakartaee-web-api:[10.0.0,) = 0x71C524683EEC78CCAD6D5554049FE94F2D5DAD9D
 jakarta.security.enterprise:jakarta.security.enterprise-api:[3.0.0,) = 0xD8176C0C4B31042360BCE81E01061A667879AAD9
@@ -184,39 +183,14 @@ jakarta.ejb:jakarta.ejb-api:[4.0.1,) = 0x1ED4BDDDD0BAAFCDE503C3727D310B363F9B637
 # Used by net.sargue:java-time-jsptags-2.0.2
 net.sargue:java-time-jsptags = 0x56C2742ED5907F995483BBEE7670A553E691B2AB
 
-# Used by org.apache.bcel:bcel:6.12.0
-org.apache.bcel:bcel:[6.12.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
-
-# Used by commons-codec:commons-codec:1.21.0
-commons-codec:commons-codec:[1.21.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
-
-# Used by commons-logging:commons-logging:1.3.6
-commons-logging:commons-logging:[1.3.6,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
-
 # Used by org.apache.ant:ant:1.10.17
 org.apache.ant:ant:[1.10.17,) = 0xBC26C53AF531F8B4B3F5930AAFBD3AF8EAFA72DA
-
-# Used by commons-io:commons-io:2.22.0
-commons-io:commons-io:[2.22.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
-
-# Used by jaxen:jaxen:2.0.1
-jaxen:jaxen:[2.0.1,) = 0x8FCD23073248F3C28EF9F80380EF47E549604C05
-
-# Used by maven-dependency-plugin-3.11.0
-eu.maveniverse.maven.domtrip:domtrip-core:[1.5.1,) = 0x3F068505A1DF611935F03FB1A1011D0A89C9E497
-eu.maveniverse.maven.domtrip:domtrip-maven:[1.5.1,) = 0x3F068505A1DF611935F03FB1A1011D0A89C9E497
 
 # Used by spotbugs-4.10.2
 org.apache.ant:ant-launcher:[1.10.17,) = 0xBC26C53AF531F8B4B3F5930AAFBD3AF8EAFA72DA
 
 # Used by jtidy-1.0.5
 com.github.jtidy:jtidy:[1.0.5,) = noKey # was signed by 0x3FDEA7509C2E6ACFBAAE4E4C062F98BC833AC2BF
-
-# Used by maven-bundle-plugin-6.1.0
-org.osgi:org.osgi.core:[5.0.0,) = 0xF1122E51D257893CADEA116D4834BC0C818CD34C
-org.apache.felix:org.apache.felix.bundlerepository:[2.0.10,) = 0xEB1BC31D2376161CA9F00C7BDDFD4F61F24F0D9F
-org.apache.felix:org.apache.felix.metatype:[1.2.4,) = 0x5FD5145A8BD0317A94DC77133FCF529FF2F27A06
-net.sf.kxml:kxml2:2.2.2 = noSig
 
 # Used by commons-validator-1.11.0
 commons-validator:commons-validator:[1.11.0,) = 0xF4DD59C90148BDC52BEB90A4530AA5F25C25011F
@@ -226,7 +200,3 @@ org.apache.xmlbeans:xmlbeans:[5.4.0,) = 0x6FFE44D6F720907EDBD75D84258E7A9DC34904
 
 # Used by mysql-connector-j-26.10.0
 com.mysql:mysql-connector-j:[26.10.0,) = 0xAC0DEC49536DBA0E75C27D56E3BA60ACAC1A05AE
-
-# Used by maven-surefire-plugin-3.6.0
-org.apache.maven.plugins:maven-surefire-plugin:[3.6.0,) = 0x716EE302674CDBB2E660E1B44DB5EA09F2E3C800
-org.apache.maven.surefire:*:[3.6.0,) = 0x716EE302674CDBB2E660E1B44DB5EA09F2E3C800
