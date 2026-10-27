@@ -345,8 +345,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
     <!--
       The Java module name, defaulting to the value previously used for "Bundle-SymbolicName" in Java < 9. All projects should set this to match the module name defined in "module-info.java". Furthermore, projects without "module-info.java" should also add the "Automatic-Module-Name" manifest entry. -->
     <module.name>${project.groupId}.${project.artifactId}</module.name>
-    <!-- Default bundle resources-filtered, may be overridden as part of "alt.build.dir" property -->
+    <!-- Default bundle settings, may be overridden as part of "alt.build.dir" property -->
     <bundle.resources-filtered>target/resources-filtered</bundle.resources-filtered>
+    <bundle.module-info>target/classes/module-info.class</bundle.module-info>
     <!-- Optional Main-Class for JAR manifest -->
     <osgi.mainClass><!-- Default is none --></osgi.mainClass>
     <!-- Optional Permissions for JAR manifest -->
@@ -2397,6 +2398,7 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
       </activation>
       <properties>
         <bundle.resources-filtered>${alt.build.dir}/resources-filtered</bundle.resources-filtered>
+        <bundle.module-info>${alt.build.dir}/classes/module-info.class</bundle.module-info>
       </properties>
       <build>
         <directory>${alt.build.dir}</directory>
@@ -2698,6 +2700,17 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
               <groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId>
               <configuration>
                 <instructions>
+                  <!--
+                  maven-bundle-plugin-6.2.0 is putting the full path to module-info.class which is breaking
+                  reproducible builds.
+
+                  Attempting to use ${project.build.directory} also results in the full path.
+                  <Include-Resource>{maven-resources},module-info.class=${project.build.directory}/classes/module-info.class</Include-Resource>
+
+                  The use of the ${bundle.module-info} requires any build directory changes to use the alt.build.dir
+                  property to activate the alternateBuildDir profile.
+                  -->
+                  <Include-Resource>{maven-resources},module-info.class=${bundle.module-info}</Include-Resource>
                   <Private-Package>.;-split-package:=merge-first,{local-packages}</Private-Package>
                 </instructions>
               </configuration>
