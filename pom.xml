@@ -1258,9 +1258,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
   <pluginRepositories>
     <pluginRepository>
-      <id>central-snapshots</id>
-      <name>Central Snapshot Repository</name>
-      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+      <id>aoapps-snapshots</id>
+      <name>AOApps Snapshot Repository</name>
+      <url>https://snapshots.maven.aoapps.com/</url>
       <releases>
         <enabled>false</enabled>
       </releases>
@@ -1272,9 +1272,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
   <repositories>
     <repository>
-      <id>central-snapshots</id>
-      <name>Central Snapshot Repository</name>
-      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+      <id>aoapps-snapshots</id>
+      <name>AOApps Snapshot Repository</name>
+      <url>https://snapshots.maven.aoapps.com/</url>
       <releases>
         <enabled>false</enabled>
       </releases>
@@ -1286,9 +1286,9 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
 
   <distributionManagement>
     <snapshotRepository>
-      <id>${nexusServerId}</id>
-      <name>${nexusServerId}</name>
-      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+      <id>aoapps-distribution</id>
+      <name>AOApps Snapshot Repository</name>
+      <url>scpexe://snapshots.maven.aoapps.com/var/www/snapshots.maven.aoapps.com/htdocs</url>
     </snapshotRepository>
     <repository>
       <id>${nexusServerId}</id>
@@ -3856,10 +3856,6 @@ along with nmw-oss-parent.  If not, see <https://www.gnu.org/licenses/>.
                     <requireActiveProfile>
                       <message>"jenkins-deploy" requires "jenkins" profile</message>
                       <profiles>jenkins</profiles>
-                    </requireActiveProfile>
-                    <requireActiveProfile>
-                      <message>"jenkins-deploy" requires "nexus" profile</message>
-                      <profiles>nexus</profiles>
                     </requireActiveProfile>
                   </rules>
                 </configuration>
